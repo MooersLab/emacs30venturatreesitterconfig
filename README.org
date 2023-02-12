@@ -27,8 +27,8 @@ The content of the configuration file supports my academic research writing with
 - Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
 
 * What the landing page (dashboard) will resemble when first loaded
-#+attr_html: :width 300px
-#+attr_latex: :width 370px
+
+#+attr_html: :width 346px
 [[./emacs30dashboard.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
