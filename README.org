@@ -18,7 +18,7 @@ There are several Mac specific lines in the basic configuration section that can
 
 * Features
 
-- Configured for structured editing combobulate and tree-sitter (see [[][]] to compile Emacs with 
+- Configured for structured editing combobulate and tree-sitter (see [[][]]) to compile Emacs with 
 - Uses the Vertico and friends for completion.
 - Supports org-mode, org-agenda, and org-roam.
 - Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
