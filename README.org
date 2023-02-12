@@ -1,6 +1,6 @@
 #+Title: Emacs Configuration with Support for Structured Editing
 
-* Purpose
+** Purpose
 
 This configuration supports structured editing of computer code with concrete syntax trees. 
 The built-in package tree-sitter and the new package combobulate support this kind of editing.
@@ -16,7 +16,7 @@ This init.el file was developed on Ventura (macOS 13.2), but it should be transf
 There are several Mac specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
 
 
-* Features
+** Features
 
 The content of the configuration file supports my academic research writing with occassional code writing for research purposes.
 
