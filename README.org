@@ -27,7 +27,14 @@ The content of the configuration file supports my academic research writing with
 - Support pdf-tools.
 - Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
 
-* What the landing page (dashboard) will resemble when first loaded
+** What the landing page (dashboard) will resemble when first loaded
+
+The default image for the dashboard is the Emacs logo. 
+I subsituted another image that is included above for testing.
+
+The startup time should be shorter on Linux and longer on Windows. 
+
+I tried zsh and bash. There was no difference in startup time.
 
 #+attr_html: :width 346px
 [[./emacs30dashboard.png]]
