@@ -35,10 +35,12 @@ I subsituted another image that is included above for testing.
 The startup time should be shorter on Linux and longer on Windows. 
 
 I tried zsh and bash. There was no difference in startup time.
+
 #+BEGIN_center
 #+attr_html: :width 400px
 [[./emacs30dashboard.png]]
 #+END_center
+
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 Also note that the bookmarks can be to directories and PDFs.
 Clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
