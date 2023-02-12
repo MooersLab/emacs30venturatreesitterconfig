@@ -26,7 +26,7 @@ The content of the configuration file supports my academic research writing with
 - Support pdf-tools.
 - Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
 
-* What the land page (dashbaord) will resemble when first loaded
+* What the landing page (dashboard) will resemble when first loaded
 #+attr_html: :width 300px
 #+attr_latex: :width 370px
 [[./emacs30dashboard.png]]
