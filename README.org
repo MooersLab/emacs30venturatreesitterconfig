@@ -36,7 +36,8 @@ The startup time should be shorter on Linux and longer on Windows.
 
 I tried zsh and bash. There was no difference in startup time.
 
-<img src="emacs30dashboard.png" alt="Paris" class="center" width="400"> 
+<p align="center"><img src="./emacs30dashboard.png" alt="HTML5 Icon" style="width:606px;height:404px;"></p>
+
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 Also note that the bookmarks can be to directories and PDFs.
