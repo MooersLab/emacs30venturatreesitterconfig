@@ -36,8 +36,6 @@ The startup time should be shorter on Linux and longer on Windows.
 
 I tried zsh and bash. There was no difference in startup time.
 
-<p align="center"><img src="./emacs30dashboard.png" alt="HTML5 Icon" style="width:606px;height:404px;"></p>
-
 #+ATTR_HTML: :alt Zoomed image.
 #+ATTR_HTML: :width 606
 [[./images/emacs30dashboard.png]]
