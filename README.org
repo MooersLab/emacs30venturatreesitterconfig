@@ -1,0 +1,28 @@
+#+Title: Configuration file for Emacs version 30.0.5 with support for structured editing
+
+* Purpose
+
+This configuration supports structured editing of code with concrete syntax trees. 
+The built-in package tree-sitter and the new package combobulate support this kind of editing.
+Emacs has to be compiled with support for tree-sitter.
+See [[][this repo]] for a protocol for compiling Emacs from source on macOS.
+
+This configuration file is also a rewrite of my basic configuration file with the packages in use listed at the top to speed up the start-up of Emacs.
+The `package` package is used to install the missing packages rather than `use-package`, but `use-package` is still used to customize packages and load packages when needed.
+This rearrangement reduced the start-up time by about 30%.
+
+This init.el file was developed on Ventura (macOS 13.2), but it should be tranferrable to older Mac operating systems.
+There are several Mac specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
+
+
+
+* Features
+
+- Configured for structured editing combobulate and tree-sitter (see [[][]] to compile Emacs with 
+- Uses the Vertico and friends for completion.
+- Supports org-mode, org-agenda, and org-roam.
+- Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
+
+* What the land page will look like with first loaded
+
+[[/images/loxoSmall.png]]
