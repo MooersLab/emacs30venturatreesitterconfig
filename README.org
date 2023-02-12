@@ -18,15 +18,17 @@ There are several Mac specific lines in the basic configuration section that can
 
 * Features
 
-The content of the configuration file supports my academic research with occassional code writing for research purposes.
+The content of the configuration file supports my academic research writing with occassional code writing for research purposes.
 
 - Configured for structured editing combobulate and tree-sitter.
 - Uses the Vertico and friends for completion.
 - Supports org-mode, org-agenda, org-babel, and org-roam.
+- Support pdf-tools.
 - Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
 
 * What the land page (dashbaord) will resemble when first loaded
-
+#+attr_html: :width 300px
+#+attr_latex: :width 370px
 [[./emacs30dashboard.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
