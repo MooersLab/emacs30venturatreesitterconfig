@@ -27,7 +27,7 @@ The content of the configuration file supports my academic research with occassi
 
 * What the land page (dashbaord) will resemble when first loaded
 
-[[./images/emacs30dashboard.png]]
+[[./emacs30dashboard.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 Also note that the bookmarks can be to directories and PDFs.
