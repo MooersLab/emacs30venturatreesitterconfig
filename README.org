@@ -8,11 +8,12 @@ Emacs has to be compiled with support for tree-sitter.
 See [[https://github.com/MooersLab/emacs30macos13treesitter][this repo]] for a protocol for compiling Emacs from source code on macOS.
 
 This configuration file is also a rewrite of my basic configuration file with the packages in use listed at the top to speed up the start-up of Emacs.
-The `package` package is used to install the missing packages rather than `use-package`, but `use-package` is still used to customize packages and load packages when needed.
-This rearrangement reduced the start-up time by about 30%.
+The *package* package is used to install the missing packages rather than 
+*use-package*, but *use-package* is still used to customize packages and load packages when needed.
+This massive rearrangement reduced the start-up time by about 30%.
 Many thanks go to Jeff Bowman for this suggestion.
 
-This init.el file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
+The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
 There are several Mac specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
 
 
