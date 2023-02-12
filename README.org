@@ -1,4 +1,4 @@
-#+Title: Configuration file for Emacs version 30.0.5 with support for structured editing
+#+Title: Emacs Configuration File with Support for Structured Editing
 
 * Purpose
 
