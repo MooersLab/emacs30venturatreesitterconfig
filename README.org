@@ -40,8 +40,7 @@ I tried zsh and bash. There was no difference in startup time.
 #+ATTR_HTML: :width 606
 [[./images/emacs30dashboard.png]]
 
-
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
-Also note that the bookmarks can be to directories and PDFs.
-Clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
+Also note that the bookmarks are not limited to registers in files; they can be directories or PDFs.
+For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
 The dashboard is a way of keeping track of material that needs to be read soon.
