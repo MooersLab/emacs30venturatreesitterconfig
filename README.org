@@ -35,7 +35,8 @@ I subsituted another image that is included above for testing.
 
 The startup time should be shorter on Linux and longer on Windows. 
 
-I tried zsh and bash. There was no difference in startup time. The first 10 seconds have nothing to do with loading the packages.
+I tried zsh and bash. There was no difference in Emacs startup times although these two shells differ in the startup times of new tabs.
+The Emacs binary starts up in a flash without a init.el. 
 
 #+ATTR_HTML: :alt Zoomed image.
 #+ATTR_HTML: :width 606
