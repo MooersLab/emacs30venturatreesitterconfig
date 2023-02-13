@@ -1,3 +1,4 @@
+(setq gc-cons-threshold (* 50 1000 1000))
 ;; ######################################## INSTALL PACKAGES ######################################
 (require 'package)
 
@@ -8,7 +9,6 @@
 (add-to-list 'package-archives
         '("org" . "http://orgmode.org/elpa/") t)  ;; for newest version of org mode
 
-
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -18,22 +18,202 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(unless (package-installed-p `better-defaults) (package-install `better-defaults))
-(unless (package-installed-p `material-theme) (package-install `material-theme))
-(unless (package-installed-p `auto-complete) (package-install `auto-complete))
+;(customize-set-variable 'package-load-list
+;;   '((doom-modeline nil) ; never enable or
+;;                         ; install newer versions
+;;                         ; of this package
+;;
+;    (tree-sitter-langs "0.12.8") ; lock this
+;                                 ; package to
+;                                 ; this version
+;                                 ; even if newer
+;                                 ; versions are
+;                                 ; available
+;
+;    all))                        ; enable the
+;;                                  ; rest of the
+;;                                  ; packages
 
 
-;; automate package updating. It is silly to do this manually.
-;; (use-package auto-package-update
-;;   :custom
-;;   (auto-package-update-interval 31)
-;;   (auto-package-update-delete-old-versions t)
-;;   (auto-package-update-prompt-before-update t)
-;;   (auto-package-update-show-preview t)
-;;   :config
-;;   (auto-package-update-maybe))
+;; (unless (package-installed-p `better-defaults) (package-install `better-defaults))
+;; (unless (package-installed-p `auto-complete) (package-install `auto-complete))
 
-;; ##################################### BASIC CUSTOMIZATION ######################################
+;; ####################################### Addlist #########################################
+;; (add-to-list 'package-selected-packages '0blayout)
+;; (add-to-list 'package-selected-packages '0xc)
+;; (add-to-list 'package-selected-packages 'ac-helm)
+;; (add-to-list 'package-selected-packages 'ac-ispell)
+;; (add-to-list 'package-selected-packages 'ace-window)
+;; (add-to-list 'package-selected-packages 'ack)
+(add-to-list 'package-selected-packages 'all-the-icons)
+;; (add-to-list 'package-selected-packages 'anaconda-mode)
+(add-to-list 'package-selected-packages 'atomic-chrome)
+(add-to-list 'package-selected-packages 'auctex)
+;;(add-to-list 'package-selected-packages 'auto-complete)
+;;(add-to-list 'package-selected-packages 'auto-complete-config)
+;;(add-to-list 'package-selected-packages 'auto-complete-auctex)
+;; (add-to-list 'package-selected-packages 'auto-complete-clang)
+;; (add-to-list 'package-selected-packages 'auto-package-update)
+(add-to-list 'package-selected-packages 'better-defaults)
+(add-to-list 'package-selected-packages 'bibtex)
+;; (add-to-list 'package-selected-packages 'c-eldoc)
+(add-to-list 'package-selected-packages 'cape)
+(add-to-list 'package-selected-packages 'cider)
+(add-to-list 'package-selected-packages 'citar)
+;; (add-to-list 'package-selected-packages 'cmake-ide)
+;; (add-to-list 'package-selected-packages 'cmake-mode)
+;; (add-to-list 'package-selected-packages 'code-cells)
+;; (add-to-list 'package-selected-packages 'combobulate)
+;; (add-to-list 'package-selected-packages 'conda)
+(add-to-list 'package-selected-packages 'consult)
+(add-to-list 'package-selected-packages 'corfu)
+;; (add-to-list 'package-selected-packages 'counsel)
+(add-to-list 'package-selected-packages 'dashboard-hackernews)
+(add-to-list 'package-selected-packages 'dashboard)
+(add-to-list 'package-selected-packages 'dap-mode)
+(add-to-list 'package-selected-packages 'dired-icon)
+(add-to-list 'package-selected-packages 'dired-subtree)
+(add-to-list 'package-selected-packages 'dirvish)
+(add-to-list 'package-selected-packages 'dot-mode)
+(add-to-list 'package-selected-packages 'drag-stuff)
+(add-to-list 'package-selected-packages 'ef-themes)
+;; (add-to-list 'package-selected-packages 'ein)
+;; (add-to-list 'package-selected-packages 'eldoc-stan)
+;; (add-to-list 'package-selected-packages 'electric-spacing)
+;; (add-to-list 'package-selected-packages 'elisp-lint)
+;; (add-to-list 'package-selected-packages 'elpy)
+(add-to-list 'package-selected-packages 'elfeed)
+(add-to-list 'package-selected-packages 'elfeed-org)
+(add-to-list 'package-selected-packages 'elfeed-score)
+(add-to-list 'package-selected-packages 'embark)
+(add-to-list 'package-selected-packages 'embark-consult)
+(add-to-list 'package-selected-packages 'emojify)
+(add-to-list 'package-selected-packages 'eros)
+;; (add-to-list 'package-selected-packages 'evil)
+;; (add-to-list 'package-selected-packages 'evil-collection)
+;; (add-to-list 'package-selected-packages 'evil-visual-mark-mode)
+(add-to-list 'package-selected-packages 'exec-path-from-shell)
+;; (add-to-list 'package-selected-packages 'expand-region)
+;; (add-to-list 'package-selected-packages 'exwm)
+(add-to-list 'package-selected-packages 'flycheck)
+;; (add-to-list 'package-selected-packages 'flycheck-grammarly)
+;; (add-to-list 'package-selected-packages 'flycheck-plantuml)
+;; (add-to-list 'package-selected-packages 'flycheck-pycheckers)
+;; (add-to-list 'package-selected-packages 'flycheck-stan)
+;; (add-to-list 'package-selected-packages 'flymake)
+;; (add-to-list 'package-selected-packages 'flymake-grammarly)
+;; (add-to-list 'package-selected-packages 'fn)
+;; (add-to-list 'package-selected-packages 'fzf)
+(add-to-list 'package-selected-packages 'focus)
+(add-to-list 'package-selected-packages 'git-gutter)
+;; (add-to-list 'package-selected-packages 'gnuplot)
+;; (add-to-list 'package-selected-packages 'gnuplot-mode)
+;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
+(add-to-list 'package-selected-packages 'greader)
+(add-to-list 'package-selected-packages 'helpful)
+(add-to-list 'package-selected-packages 'highlight-defined)
+;; (add-to-list 'package-selected-packages 'highlight-parentheses)
+(add-to-list 'package-selected-packages 'impatient-mode)
+;; (add-to-list 'package-selected-packages 'jedi)
+;; (add-to-list 'package-selected-packages 'jedi-core)
+(add-to-list 'package-selected-packages 'jupyter)
+(add-to-list 'package-selected-packages 'languagetool)
+(add-to-list 'package-selected-packages 'lsp-mode)
+(add-to-list 'package-selected-packages 'lsp-pyright)
+(add-to-list 'package-selected-packages 'lsp-ui)
+(add-to-list 'package-selected-packages 'lsp-treemacs)
+(add-to-list 'package-selected-packages 'magit)
+(add-to-list 'package-selected-packages 'markdown-mode)
+(add-to-list 'package-selected-packages 'marginalia)
+;; (add-to-list 'package-selected-packages 'markdown-preview-eww)
+;; (add-to-list 'package-selected-packages 'markdown-preview-mode)
+;; (add-to-list 'package-selected-packages 'material-theme)
+(add-to-list 'package-selected-packages 'maxframe)
+;; (add-to-list 'package-selected-packages 'mu4e-alert)
+;; (add-to-list 'package-selected-packages 'mu4e-views)
+(add-to-list 'package-selected-packages 'multiple-cursors)
+;; (add-to-list 'package-selected-packages 'ob-diagrams)
+;; (add-to-list 'package-selected-packages 'ob-ess-julia)
+;; (add-to-list 'package-selected-packages 'ob-ipython)
+;; (add-to-list 'package-selected-packages 'ob-mermaid)
+(add-to-list 'package-selected-packages 'orderless)
+;; (add-to-list 'package-selected-packages 'org-babel-eval-in-repl)
+;; (add-to-list 'package-selected-packages 'org-bullets)
+(add-to-list 'package-selected-packages 'org-drill)
+;; (add-to-list 'package-selected-packages 'org-evil)
+;; (add-to-list 'package-selected-packages 'org-inline-pdf)
+;; (add-to-list 'package-selected-packages 'org-latex-impatient)
+;; (add-to-list 'package-selected-packages 'org-msg)
+(add-to-list 'package-selected-packages 'org-noter-pdftools)
+(add-to-list 'package-selected-packages 'org-pdftools)
+;; (add-to-list 'package-selected-packages 'org-plus-contrib)
+(add-to-list 'package-selected-packages 'org-pomodoro)
+;; (add-to-list 'package-selected-packages 'org-preview-html)
+;; (add-to-list 'package-selected-packages 'org-ql)
+(add-to-list 'package-selected-packages 'org-ref)
+(add-to-list 'package-selected-packages 'org-roam)
+(add-to-list 'package-selected-packages 'org-roam-bibtex)
+(add-to-list 'package-selected-packages 'org-roam-timestamps)
+(add-to-list 'package-selected-packages 'org-roam-ui)
+(add-to-list 'package-selected-packages 'org-wc)
+;; (add-to-list 'package-selected-packages 'orgtbl-ascii-plot)
+;; (add-to-list 'package-selected-packages 'ox-latex-subfigure)
+;; (add-to-list 'package-selected-packages 'ox-pandoc)
+;; (add-to-list 'package-selected-packages 'package-utils)
+(add-to-list 'package-selected-packages 'page-break-lines)
+(add-to-list 'package-selected-packages 'pdb-mode)
+(add-to-list 'package-selected-packages 'pdf-tools)
+;; (add-to-list 'package-selected-packages 'plantuml-mode)
+;; (add-to-list 'package-selected-packages 'poly-markdown)
+;; (add-to-list 'package-selected-packages 'poly-org)
+;; (add-to-list 'package-selected-packages 'poly-R)
+;; (add-to-list 'package-selected-packages 'pomodoro)
+(add-to-list 'package-selected-packages 'popup)
+(add-to-list 'package-selected-packages 'powerline)
+;; (add-to-list 'package-selected-packages 'powerline-evil)
+;; (add-to-list 'package-selected-packages 'powershell)
+(add-to-list 'package-selected-packages 'projectile)
+;; (add-to-list 'package-selected-packages 'pydoc)
+;; (add-to-list 'package-selected-packages 'python-pytest)
+(add-to-list 'package-selected-packages 'quelpa)
+(add-to-list 'package-selected-packages 'quelpa-use-package)
+(add-to-list 'package-selected-packages 'rainbow-delimiters)
+;; (add-to-list 'package-selected-packages 'rtags)
+(add-to-list 'package-selected-packages 'simple-httpd)
+(add-to-list 'package-selected-packages 'sound-wav)
+;; (add-to-list 'package-selected-packages 'ssh)
+;; (add-to-list 'package-selected-packages 'stan-mode)
+;; (add-to-list 'package-selected-packages 'stan-snippets)
+;; (add-to-list 'package-selected-packages 'standoff-mode)
+(add-to-list 'package-selected-packages 'swiper)
+;; (add-to-list 'package-selected-packages 'sx)
+;; (add-to-list 'package-selected-packages 'treemacs)
+;; (add-to-list 'package-selected-packages 'treemacs-evil)
+;; (add-to-list 'package-selected-packages 'treemacs-icons-dired)
+;; (add-to-list 'package-selected-packages 'treemacs-magit)
+;; (add-to-list 'package-selected-packages 'treemacs-persp)
+;; (add-to-list 'package-selected-packages 'treemacs-projectile)
+(add-to-list 'package-selected-packages 'tree-sitter-langs)
+(add-to-list 'package-selected-packages 'vertico)
+;; (add-to-list 'package-selected-packages 'try)
+;; (add-to-list 'package-selected-packages 'use-package)
+;; (add-to-list 'package-selected-packages 'wc-mode)
+;; (add-to-list 'package-selected-packages 'web)
+(add-to-list 'package-selected-packages 'which-key)
+;; (add-to-list 'package-selected-packages 'xelb)
+;; (add-to-list 'package-selected-packages 'xwidgets-reuse)
+;; (add-to-list 'package-selected-packages 'xwwp-follow-link-ivy)
+(add-to-list 'package-selected-packages 'yasnippet)
+;; (add-to-list 'package-selected-packages 'yasnippet-classic-snippets)
+;; (add-to-list 'package-selected-packages 'yasnippet-snippets)
+;; (add-to-list 'package-selected-packages 'ztree)
+
+(package-install-selected-packages)
+(message "Installing missing packages. Take 4-5 minutes when all are missing.")
+
+
+;; ############################## Basics Configuration ################################
+
 (setq inhibit-startup-message t) ;; hide the startup message
 ;; (load-theme 'material t) ;; load material theme
 ;; (global-linum-mode t) ;; enable line numbers globally
@@ -44,8 +224,7 @@
 ;;### Shell configuration
 (use-package exec-path-from-shell
   :init
-  (setenv "SHELL" "/bin/zsh")
-  :ensure t
+  (setenv "SHELL" "/opt/local/bin/bash")
   :if (memq window-system '(mac ns x))
   :config
   (setq exec-path-from-shell-variables '("PATH" "GOPATH" "PYTHONPATH"))
@@ -53,16 +232,15 @@
 
 
 ;;### Faked full screen
-(use-package maxframe
-     :ensure t)
-(defvar my-fullscreen-p t "Check if fullscreen is on or off")
-(defun my-toggle-fullscreen ()
-  (interactive)
-  (setq my-fullscreen-p (not my-fullscreen-p))
-  (if my-fullscreen-p
-	  (restore-frame)
-	(maximize-frame)))
-;; (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen) ;; conflicts with an auctex command to insert an \item in a list.
+;; (use-package maxframe
+;; (defvar my-fullscreen-p t "Check if fullscreen is on or off")
+;; (defun my-toggle-fullscreen ()
+;; (interactive)
+;; (setq my-fullscreen-p (not my-fullscreen-p))
+;; (if my-fullscreen-p
+;;   (restore-frame)
+;;   (maximize-frame)))
+;; ;; (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen) ;; conflicts with an auctex command to insert an \item in a list.
 
 ;;### Turn on font-locking or syntax highlighting
 (global-font-lock-mode t)
@@ -130,7 +308,6 @@
 
 
 ;; dired-icon-mode
-
 (add-hook 'dired-mode-hook 'dired-icon-mode)
 
 ;; replace dired with dirvish
@@ -144,9 +321,7 @@
 
 ;; customize powerline
 ;; (line above the command line at the bottom of the screen)
-(use-package powerline
-  :ensure t)
-(require 'powerline)
+(use-package powerline)
 (powerline-default-theme)
 
 
@@ -239,8 +414,6 @@
 
 (global-set-key "\C-cm" 'switch-to-minibuffer) ;; Bind to `C-c m' for minibuffer.
 
-
-
 ;; Bibtex configuration
 (defconst blaine/bib-libraries (list "/Users/blaine/Documents/global.bib")) 
 
@@ -256,298 +429,441 @@
 (setq show-paren-delay 0)
 (show-paren-mode t)
 
+;; **** Window management
+;; ***** winner-mode C-c <rigth> undo change C-c <left> redo change
+(winner-mode 1)
 
-;; rainbow-delimiters
-(use-package rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(set-face-attribute 'rainbow-delimiters-unmatched-face nil
-            :foreground "magenta"
-            :inherit 'error
-            :box t)
-            
-;; Added February 3, 2023
-(require 'bookmark)
-(list-bookmarks)
-(switch-to-buffer "*Bookmark List*")
+(defun split-vertical-evenly ()
+  (interactive)
+  (command-execute 'split-window-vertically)
+  (command-execute 'balance-windows))
+(global-set-key (kbd "C-x 2") 'split-vertical-evenly)
 
+
+(defun split-horizontal-evenly ()
+  (interactive)
+  (command-execute 'split-window-horizontally)
+  (command-execute 'balance-windows))
+(global-set-key (kbd "C-x 3") 'split-horizontal-evenly)
+
+(message "Starting config of packages--takes 5-60 seconds, depending on the operating system.")
 
 ;; ############################## Package Configurations ################################
 
-;;## A
+;;** A
 
-;;### auto-complete
-;; do default config for auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(global-auto-complete-mode t)
-(ac-flyspell-workaround)
+;;; crafted-completion.el --- Crafted Completion Configuration -*- lexical-binding: t; -*-
 
+(use-package cape)
+(use-package consult)
+(use-package corfu)
+(use-package embark-consult)
+(use-package embark)
+(use-package orderless)
+(use-package vertico)
+(use-package marginalia)
 
+;; Copyright (C) 2022
+;; SPDX-License-Identifier: MIT
 
-;;;### auto-complete-auctex.el --- auto-completion for auctex
-
-;; Copyright (C) 2012 Christopher Monsanto
-     
-;; Author: Christopher Monsanto <chris@monsan.to>
-;; Version: 1.0
-;; Package-Requires: ((yasnippet "0.6.1") (auto-complete "1.4"))
-
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; Author: System Crafters Community
 
 ;;; Commentary:
 
-;; You can install this by (require 'auto-complete-auctex).
-;; Feel free to contribute better documentation!
+;; Setup completion packages.  Completion in this sense is more like
+;; narrowing, allowing the user to find matches based on minimal
+;; inputs and "complete" the commands, variables, etc from the
+;; narrowed list of possible choices.
 
-;;;#### Code:
-
-(require 'tex)
-(require 'latex)
-
-(eval-when-compile
-  (require 'auto-complete)
-  (require 'yasnippet))
-
-(defvar ac-auctex-arg-lookup-table
-  '((TeX-arg-define-macro . ("\\MacroName"))
-    (TeX-arg-counter . ("Counter"))
-    (TeX-arg-define-counter . ("\\CounterName"))
-    (TeX-arg-file . ("Filename"))
-    (TeX-arg-bibliography . ("Filename"))
-    (TeX-arg-bibstyle . ("Style"))
-    (TeX-arg-environment . ("Environment"))
-    (TeX-arg-define-environment . ("EnvironmentName"))
-    (TeX-arg-size . ("(w, h)"))
-    (TeX-arg-ref . ("Name"))
-    (TeX-arg-index . ("Index"))
-    (TeX-arg-define-label . ("Label"))
-    (LaTeX-arg-usepackage . (["opt1,..."] "Package"))
-    (LaTeX-env-label . nil)
-    (LaTeX-amsmath-env-aligned . (["htbp!"]))
-    (LaTeX-amsmath-env-alignat . (["# Columns"]))
-    (LaTeX-env-array . (["bct"] "lcrpmb|"))
-    (LaTeX-env-item . nil)
-    (LaTeX-env-document . nil)
-    (LaTeX-env-figure . (["htbp!"]))
-    (LaTeX-env-contents . ("Filename"))
-    (LaTeX-env-minipage . (["htbp!"] "Width"))
-    (LaTeX-env-list . ("Label" "\\itemsep,\\labelsep,..."))
-    (LaTeX-env-picture . ("(w, h)" "(x, y)"))
-    (LaTeX-env-tabular* . ("Width" ["htbp!"] "lcrpmb|><"))
-    (LaTeX-env-bib . ("WidestLabel"))
-    (TeX-arg-conditional . ([""]))
-    (2 . ("" ""))
-    (3 . ("" "" ""))
-    (4 . ("" "" "" ""))
-    (5 . ("" "" "" "" ""))
-    (6 . ("" "" "" "" "" ""))
-    (7 . ("" "" "" "" "" "" ""))
-    (8 . ("" "" "" "" "" "" "" ""))
-    (9 . ("" "" "" "" "" "" "" "" "")))
-  "Anything not in this table defaults to '(\"\")")
-
-(defun ac-auctex-expand-arg-info (arg-info)
-  (loop for item in arg-info
-	append (cond
-		((or (stringp item) (and (vectorp item) (stringp (elt item 0))))
-		 (list item))
-		((vectorp item)
-		 (loop for item-2 in (or (assoc-default (or (car-safe (elt item 0)) (elt item 0))
-							ac-auctex-arg-lookup-table 'equal) '(""))
-		       collect [item-2]))
-		(t
-		 (or (assoc-default (or (car-safe item) item) ac-auctex-arg-lookup-table) '(""))))))
-
-(defun ac-auctex-snippet-arg (n arg)
-  (let* ((opt (vectorp arg))
-	 (item (if opt (elt arg 0) arg))
-	 (m (if (vectorp arg) (1+ n) n))
-	 (var (format "${%s}" item)))
-    (list (1+ m)
-	  (if opt
-	      (concat (format "${[") var "]}")
-	    (concat "{" var "}")))))
-
-;;;#### Macros
-;;
-
-(defun ac-auctex-expand-args (str env)
-  (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default str env))))
-
-(defun ac-auctex-macro-snippet (arg-info)
-  (let ((count 1))
-    (apply 'concat (loop for item in (ac-auctex-expand-arg-info arg-info)
-			 collect (destructuring-bind (n val)
-				     (ac-auctex-snippet-arg count item)
-				   (setq count n)
-				   val)))))
-
-(defun ac-auctex-macro-candidates ()
-   (let ((comlist (if TeX-symbol-list
-		      (mapcar (lambda (item)
-			        (or (car-safe (car item)) (car item)))
-			    TeX-symbol-list))))
-    (all-completions ac-prefix comlist)))
-
-(defun ac-auctex-macro-action ()
-  (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))) 
-
-(ac-define-source auctex-macros
-  '((init . TeX-symbol-list)
-    (candidates . ac-auctex-macro-candidates)
-    (action . ac-auctex-macro-action)
-    (requires . 0)
-    (symbol . "m")
-    (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
-
-;;;#### Symbols
-
-(defun ac-auctex-symbol-candidates ()
-  (all-completions ac-prefix (mapcar 'cadr LaTeX-math-default)))
-
-(defun ac-auctex-symbol-action ()
-  (re-search-backward candidate)
-  (delete-region (1- (match-beginning 0)) (match-end 0))
-  (if (texmathp)
-      (progn
-	(insert "\\" candidate)
-	(yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list))))
-    (insert "$\\" candidate "$")
-    (backward-char)
-    (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))))
-
-(defun ac-auctex-symbol-document (c)
-  (let* ((cl (assoc c (mapcar 'cdr LaTeX-math-default)))
-         (decode (if (nth 2 cl) (char-to-string (decode-char 'ucs (nth 2 cl))) ""))
-         (st (nth 1 cl))
-         (hs (if (listp st) (mapconcat 'identity st " ") st)))
-    (and decode (concat hs " == " decode))))
-
-(ac-define-source auctex-symbols
-  '((init . LaTeX-math-mode)
-    (candidates . ac-auctex-symbol-candidates)
-    (document . ac-auctex-symbol-document)
-    (action . ac-auctex-symbol-action)
-    (requires . 0)
-    (symbol . "s")
-    (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
+;;; Code:
 
 
-;;;#### Environments
+(defun crafted-completion/minibuffer-backward-kill (arg)
+  "Delete word or delete up to parent folder when completion is a file.
 
-(defvar ac-auctex-environment-prefix "beg")
+ARG is the thing being completed in the minibuffer."
+  (interactive "p")
+  (if minibuffer-completing-file-name
+      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+      (if (string-match-p "/." (minibuffer-contents))
+          (zap-up-to-char (- arg) ?/)
+        (delete-minibuffer-contents))
+    (backward-kill-word arg)))
 
-(defun ac-auctex-environment-candidates ()
-  (let ((envlist (mapcar (lambda (item) (concat ac-auctex-environment-prefix (car item)))
-			 LaTeX-environment-list)))
-    (all-completions ac-prefix envlist)))
+;;; Vertico
+;; (require 'vertico)
 
-(defun ac-auctex-environment-action ()
-  (re-search-backward candidate)
-  (delete-region (1- (match-beginning 0)) (match-end 0))
-  (let ((candidate (substring candidate (length ac-auctex-environment-prefix))))
-    (yas/expand-snippet (format "\\begin{%s}%s\n$0\n\\end{%s}"
-				candidate
-				(ac-auctex-macro-snippet (assoc-default candidate LaTeX-environment-list))
-				candidate)))) 
+;; Straight and Package bundle the vertico package differently. When
+;; using `package.el', the extensions are built into the package and
+;; available on the load-path. When using `straight.el', the
+;; extensions are not built into the package, so have to add that path
+;; to the load-path manually to enable the following require.
+;;(when (eq crafted-package-system 'straight)
+;;  (add-to-list 'load-path
+;;               (expand-file-name "straight/build/vertico/extensions"
+;;                                 straight-base-dir)))
+;;(require 'vertico-directory)
 
-(ac-define-source auctex-environments
-  '((init . LaTeX-environment-list)
-    (candidates . ac-auctex-environment-candidates)
-    (action .  ac-auctex-environment-action)
-    (requires . 0)
-    (symbol . "e")
-    (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
+(with-eval-after-load 'evil
+  (define-key vertico-map (kbd "C-j") 'vertico-next)
+  (define-key vertico-map (kbd "C-k") 'vertico-previous)
+  (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
 
+;; Cycle back to top/bottom result when the edge is reached
+(customize-set-variable 'vertico-cycle t)
 
-;;;#### Refs
+;; Start Vertico
+(vertico-mode 1)
 
-(defun ac-auctex-label-candidates ()
-  (all-completions ac-prefix (mapcar 'car LaTeX-label-list)))
+;;; Marginalia
 
-(ac-define-source auctex-labels
-  '((init . LaTeX-label-list)
-    (candidates . ac-auctex-label-candidates)
-    (requires . 0)
-    (symbol . "r")
-    (prefix . "\\\\ref{\\([^}]*\\)\\=")))
+;; Configure Marginalia
+;; (require 'marginalia)
+(customize-set-variable 'marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+(marginalia-mode 1)
 
+;; Set some consult bindings
+(global-set-key (kbd "C-s") 'consult-line)
+(define-key minibuffer-local-map (kbd "C-r") 'consult-history)
 
-;;;#### Bibs
-
-(defun ac-auctex-bib-candidates ()
-  (all-completions ac-prefix (mapcar 'car LaTeX-bibitem-list)))
-
-(ac-define-source auctex-bibs
-  `((init . LaTeX-bibitem-list)
-    (candidates . ac-auctex-bib-candidates)
-    (requires . 0)
-    (symbol . "b")
-    (prefix . ,(concat "\\\\cite"
-		       "\\(?:"
-		         "\\[[^]]*\\]"
-		       "\\)?"
-		       "{\\([^},]*\\)"
-		       "\\="))))
-
-;;;#### Setup
-
-(defun ac-auctex-setup ()
-  (setq ac-sources (append
-                      '(ac-source-auctex-symbols
-                        ac-source-auctex-macros
-			ac-source-auctex-environments
-			ac-source-auctex-labels
-			ac-source-auctex-bibs)
-                      ac-sources)))
-
-(add-to-list 'ac-modes 'latex-mode)
-(add-hook 'LaTeX-mode-hook 'ac-auctex-setup)
-
-(provide 'auto-complete-auctex)
-
-;;; auto-complete-auctex.el ends here
-
-;; indent with spaces instead of tabs for pep8 compatibility
-(setq tab-width 4)
-(setq-default indent-tabs-mode nil)
-
-;; atomic-chrome, used to interact with GhostText extension for Google Chrome.
-(use-package atomic-chrome)
-(atomic-chrome-start-server)
-(setq atomic-chrome-default-major-mode 'python-mode)
-(setq atomic-chrome-extension-type-list '(ghost-text))
-;;(atomic-chrome-start-httpd)
-(setq atomic-chrome-server-ghost-text-port 4001)
-(setq atomic-chrome-url-major-mode-alist
-      '(("github\\.com" . gfm-mode)
-        ("overleaf.com" . latex-mode)
-        ("750words.com" . latex-mode)))
-; Select the style of opening the editing buffer by atomic-chrome-buffer-open-style.
-; full: Open in the selected window.
-; split: Open in the new window by splitting the selected window (default).
-; frame: Create a new frame and window in it. Must be using some windowing pacakge.
-(setq atomic-chrome-buffer-open-style 'split)
+(setq completion-in-region-function #'consult-completion-in-region)
 
 
-;; awesome-tabs
+;;; Orderless
+
+;; Set up Orderless for better fuzzy matching
+;;(require 'orderless)
+(customize-set-variable 'completion-styles '(orderless basic))
+(customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
+
+;;; Embark
+;;(require 'embark)
+;;(require 'embark-consult)
+
+(global-set-key [remap describe-bindings] #'embark-bindings)
+(global-set-key (kbd "C-.") 'embark-act)
+
+;; Use Embark to show bindings in a key prefix with `C-h`
+(setq prefix-help-command #'embark-prefix-help-command)
+
+(with-eval-after-load 'embark-consult
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+
+;;; Corfu
+
+;; Setup corfu for popup like completion
+(customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
+(customize-set-variable 'corfu-auto t)  ; Enable auto completion
+(customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
+(customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
+(customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
+
+(global-corfu-mode 1)
+
+;;; Cape
+
+;; Setup Cape for better completion-at-point support and more
+;; (require 'cape)
+
+;; Add useful defaults completion sources from cape
+(add-to-list 'completion-at-point-functions #'cape-file)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+
+;; Silence the pcomplete capf, no errors or messages!
+;; Important for corfu
+(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+;; Ensure that pcomplete does not write to the buffer
+;; and behaves as a pure `completion-at-point-function'.
+(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
+(add-hook 'eshell-mode-hook
+          (lambda () (setq-local corfu-quit-at-boundary t
+                            corfu-quit-no-match t
+                            corfu-auto nil)
+            (corfu-mode)))
+
+
+
+;; ;;*** auto-complete
+;; ;; do default config for auto-complete
+;; (use-package auto-complete)
+;; (use-package auto-complete-config)
+;; (ac-config-default)
+;; (global-auto-complete-mode t)
+;; (ac-flyspell-workaround)
+;; 
+
+
+;; ;;;### auto-complete-auctex.el --- auto-completion for auctex
+;; 
+;; ;; Copyright (C) 2012 Christopher Monsanto
+;;      
+;; ;; Author: Christopher Monsanto <chris@monsan.to>
+;; ;; Version: 1.0
+;; ;; Package-Requires: ((yasnippet "0.6.1") (auto-complete "1.4"))
+;; 
+;; ;; This program is free software; you can redistribute it and/or modify
+;; ;; it under the terms of the GNU General Public License as published by
+;; ;; the Free Software Foundation, either version 3 of the License, or
+;; ;; (at your option) any later version.
+;; 
+;; ;; This program is distributed in the hope that it will be useful,
+;; ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; ;; GNU General Public License for more details.
+;; 
+;; ;; You should have received a copy of the GNU General Public License
+;; ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; 
+;; ;;; Commentary:
+;; 
+;; ;; You can install this by (require 'auto-complete-auctex).
+;; ;; Feel free to contribute better documentation!
+;; 
+;; ;;;#### Code:
+;; 
+;; 
+;; (eval-when-compile
+;;   (require 'auto-complete)
+;;   (require 'yasnippet))
+;; 
+;; (defvar ac-auctex-arg-lookup-table
+;;   '((TeX-arg-define-macro . ("\\MacroName"))
+;;     (TeX-arg-counter . ("Counter"))
+;;     (TeX-arg-define-counter . ("\\CounterName"))
+;;     (TeX-arg-file . ("Filename"))
+;;     (TeX-arg-bibliography . ("Filename"))
+;;     (TeX-arg-bibstyle . ("Style"))
+;;     (TeX-arg-environment . ("Environment"))
+;;     (TeX-arg-define-environment . ("EnvironmentName"))
+;;     (TeX-arg-size . ("(w, h)"))
+;;     (TeX-arg-ref . ("Name"))
+;;     (TeX-arg-index . ("Index"))
+;;     (TeX-arg-define-label . ("Label"))
+;;     (LaTeX-arg-usepackage . (["opt1,..."] "Package"))
+;;     (LaTeX-env-label . nil)
+;;     (LaTeX-amsmath-env-aligned . (["htbp!"]))
+;;     (LaTeX-amsmath-env-alignat . (["# Columns"]))
+;;     (LaTeX-env-array . (["bct"] "lcrpmb|"))
+;;     (LaTeX-env-item . nil)
+;;     (LaTeX-env-document . nil)
+;;     (LaTeX-env-figure . (["htbp!"]))
+;;     (LaTeX-env-contents . ("Filename"))
+;;     (LaTeX-env-minipage . (["htbp!"] "Width"))
+;;     (LaTeX-env-list . ("Label" "\\itemsep,\\labelsep,..."))
+;;     (LaTeX-env-picture . ("(w, h)" "(x, y)"))
+;;     (LaTeX-env-tabular* . ("Width" ["htbp!"] "lcrpmb|><"))
+;;     (LaTeX-env-bib . ("WidestLabel"))
+;;     (TeX-arg-conditional . ([""]))
+;;     (2 . ("" ""))
+;;     (3 . ("" "" ""))
+;;     (4 . ("" "" "" ""))
+;;     (5 . ("" "" "" "" ""))
+;;     (6 . ("" "" "" "" "" ""))
+;;     (7 . ("" "" "" "" "" "" ""))
+;;     (8 . ("" "" "" "" "" "" "" ""))
+;;     (9 . ("" "" "" "" "" "" "" "" "")))
+;;   "Anything not in this table defaults to '(\"\")")
+;; 
+;; (defun ac-auctex-expand-arg-info (arg-info)
+;;   (loop for item in arg-info
+;; 	append (cond
+;; 		((or (stringp item) (and (vectorp item) (stringp (elt item 0))))
+;; 		 (list item))
+;; 		((vectorp item)
+;; 		 (loop for item-2 in (or (assoc-default (or (car-safe (elt item 0)) (elt item 0))
+;; 							ac-auctex-arg-lookup-table 'equal) '(""))
+;; 		       collect [item-2]))
+;; 		(t
+;; 		 (or (assoc-default (or (car-safe item) item) ac-auctex-arg-lookup-table) '(""))))))
+;; 
+;; (defun ac-auctex-snippet-arg (n arg)
+;;   (let* ((opt (vectorp arg))
+;; 	 (item (if opt (elt arg 0) arg))
+;; 	 (m (if (vectorp arg) (1+ n) n))
+;; 	 (var (format "${%s}" item)))
+;;     (list (1+ m)
+;; 	  (if opt
+;; 	      (concat (format "${[") var "]}")
+;; 	    (concat "{" var "}")))))
+;; 
+;; ;;;#### Macros
+;; ;;
+;; 
+;; (defun ac-auctex-expand-args (str env)
+;;   (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default str env))))
+;; 
+;; (defun ac-auctex-macro-snippet (arg-info)
+;;   (let ((count 1))
+;;     (apply 'concat (loop for item in (ac-auctex-expand-arg-info arg-info)
+;; 			 collect (destructuring-bind (n val)
+;; 				     (ac-auctex-snippet-arg count item)
+;; 				   (setq count n)
+;; 				   val)))))
+;; 
+;; (defun ac-auctex-macro-candidates ()
+;;    (let ((comlist (if TeX-symbol-list
+;; 		      (mapcar (lambda (item)
+;; 			        (or (car-safe (car item)) (car item)))
+;; 			    TeX-symbol-list))))
+;;     (all-completions ac-prefix comlist)))
+;; 
+;; (defun ac-auctex-macro-action ()
+;;   (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))) 
+;; 
+;; (ac-define-source auctex-macros
+;;   '((init . TeX-symbol-list)
+;;     (candidates . ac-auctex-macro-candidates)
+;;     (action . ac-auctex-macro-action)
+;;     (requires . 0)
+;;     (symbol . "m")
+;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
+;; 
+;; ;;;#### Symbols
+;; 
+;; (defun ac-auctex-symbol-candidates ()
+;;   (all-completions ac-prefix (mapcar 'cadr LaTeX-math-default)))
+;; 
+;; (defun ac-auctex-symbol-action ()
+;;   (re-search-backward candidate)
+;;   (delete-region (1- (match-beginning 0)) (match-end 0))
+;;   (if (texmathp)
+;;       (progn
+;; 	(insert "\\" candidate)
+;; 	(yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list))))
+;;     (insert "$\\" candidate "$")
+;;     (backward-char)
+;;     (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))))
+;; 
+;; (defun ac-auctex-symbol-document (c)
+;;   (let* ((cl (assoc c (mapcar 'cdr LaTeX-math-default)))
+;;          (decode (if (nth 2 cl) (char-to-string (decode-char 'ucs (nth 2 cl))) ""))
+;;          (st (nth 1 cl))
+;;          (hs (if (listp st) (mapconcat 'identity st " ") st)))
+;;     (and decode (concat hs " == " decode))))
+;; 
+;; (ac-define-source auctex-symbols
+;;   '((init . LaTeX-math-mode)
+;;     (candidates . ac-auctex-symbol-candidates)
+;;     (document . ac-auctex-symbol-document)
+;;     (action . ac-auctex-symbol-action)
+;;     (requires . 0)
+;;     (symbol . "s")
+;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
+;; 
+;; 
+;; ;;;#### Environments
+;; 
+;; (defvar ac-auctex-environment-prefix "beg")
+;; 
+;; (defun ac-auctex-environment-candidates ()
+;;   (let ((envlist (mapcar (lambda (item) (concat ac-auctex-environment-prefix (car item)))
+;; 			 LaTeX-environment-list)))
+;;     (all-completions ac-prefix envlist)))
+;; 
+;; (defun ac-auctex-environment-action ()
+;;   (re-search-backward candidate)
+;;   (delete-region (1- (match-beginning 0)) (match-end 0))
+;;   (let ((candidate (substring candidate (length ac-auctex-environment-prefix))))
+;;     (yas/expand-snippet (format "\\begin{%s}%s\n$0\n\\end{%s}"
+;; 				candidate
+;; 				(ac-auctex-macro-snippet (assoc-default candidate LaTeX-environment-list))
+;; 				candidate)))) 
+;; 
+;; (ac-define-source auctex-environments
+;;   '((init . LaTeX-environment-list)
+;;     (candidates . ac-auctex-environment-candidates)
+;;     (action .  ac-auctex-environment-action)
+;;     (requires . 0)
+;;     (symbol . "e")
+;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
+;; 
+;; 
+;; ;;;#### Refs
+;; 
+;; (defun ac-auctex-label-candidates ()
+;;   (all-completions ac-prefix (mapcar 'car LaTeX-label-list)))
+;; 
+;; (ac-define-source auctex-labels
+;;   '((init . LaTeX-label-list)
+;;     (candidates . ac-auctex-label-candidates)
+;;     (requires . 0)
+;;     (symbol . "r")
+;;     (prefix . "\\\\ref{\\([^}]*\\)\\=")))
+;; 
+;; 
+;; ;;;#### Bibs
+;; 
+;; (defun ac-auctex-bib-candidates ()
+;;   (all-completions ac-prefix (mapcar 'car LaTeX-bibitem-list)))
+;; 
+;; (ac-define-source auctex-bibs
+;;   `((init . LaTeX-bibitem-list)
+;;     (candidates . ac-auctex-bib-candidates)
+;;     (requires . 0)
+;;     (symbol . "b")
+;;     (prefix . ,(concat "\\\\cite"
+;; 		       "\\(?:"
+;; 		         "\\[[^]]*\\]"
+;; 		       "\\)?"
+;; 		       "{\\([^},]*\\)"
+;; 		       "\\="))))
+;; 
+;; ;;;#### Setup
+;; 
+;; (defun ac-auctex-setup ()
+;;   (setq ac-sources (append
+;;                       '(ac-source-auctex-symbols
+;;                         ac-source-auctex-macros
+;; 			ac-source-auctex-environments
+;; 			ac-source-auctex-labels
+;; 			ac-source-auctex-bibs)
+;;                       ac-sources)))
+;; 
+;; (add-to-list 'ac-modes 'latex-mode)
+;; (add-hook 'LaTeX-mode-hook 'ac-auctex-setup)
+;; 
+;; (provide 'auto-complete-auctex)
+;; 
+;; ;;; auto-complete-auctex.el ends here
+;; 
+;; ;; indent with spaces instead of tabs for pep8 compatibility
+;; (setq tab-width 4)
+;; (setq-default indent-tabs-mode nil)
+;; 
+;; ;; *** atomic-chrome, used to interact with GhostText extension for Google Chrome.
+;; (use-package atomic-chrome)
+;; ;;(atomic-chrome-start-server)
+;; (setq atomic-chrome-default-major-mode 'python-mode)
+;; (setq atomic-chrome-extension-type-list '(ghost-text))
+;; ;;(atomic-chrome-start-httpd)
+;; (setq atomic-chrome-server-ghost-text-port 4001)
+;; (setq atomic-chrome-url-major-mode-alist
+;;       '(("github\\.com" . gfm-mode)
+;;         ("overleaf.com" . latex-mode)
+;;         ("750words.com" . latex-mode)))
+;; ; Select the style of opening the editing buffer by atomic-chrome-buffer-open-style.
+;; ; full: Open in the selected window.
+;; ; split: Open in the new window by splitting the selected window (default).
+;; ; frame: Create a new frame and window in it. Must be using some windowing pacakge.
+;; (setq atomic-chrome-buffer-open-style 'split)
+
+
+;;*** AUCTeX config
+(eval-after-load "tex"
+  '(setcdr (assoc "LaTeX" TeX-command-list)
+          '("%`%l%(mode) -shell-escape%' %t"
+          TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")
+    )
+  )
+
+
+;; *** awesome-tabs
 ;; I love awesome-tabs; some people do not.
 ;; cd ~/latex-emacs2906/manual-packages
 ;; git clone --depth=1 https://github.com/manateelazycat/awesome-tab.git 
 (use-package awesome-tab
-  :load-path "~/latex-emacs2906/manual-packages/awesome-tab"
+  :load-path "~/latex-tree-emacs30/manual-packages/awesome-tab"
   :config
   (awesome-tab-mode t))
 
@@ -563,21 +879,7 @@
 (global-set-key (kbd "s-0") 'awesome-tab-select-visible-tab)
 
 
-
-;; avy
-;; Navigate buffer after selecting all sites starting with the same one or two letters.
-;; After entering the avy command in the minibuffer, selected sites will be highlighted but they will be indexed with letters.
-;; Enter a letter to go to a desired site.
-;; See https://github.com/abo-abo/avy for documentation. 
-;; 
-
-(use-package avy
-    :ensure t
-    :bind ("M-s" . avy-goto-char)
-         ("M-d" . avy-goto-char-2)
-         ("M-g f" . avy-goto-line)
-         ("M-g w" . avy-goto-word-1)
-)
+;;**B
 
 ;;** B
 
@@ -654,10 +956,10 @@
   )
 
 
-;; *** bookmarks+
 
-(require 'quelpa)
-(require 'quelpa-use-package)
+;;*** bookmarks+
+(use-package quelpa)
+(use-package quelpa-use-package)
 
 
 ;; load bookmark+-mac.el and then bytecompile the rest 
@@ -692,43 +994,160 @@
 ;;   (require 'bookmark+))
 
 
+;;** C
+;;*** Cider
+
+(setq org-babel-clojure-backend 'cider)
+(use-package cider)
+(setq org-edit-src-content-indentation 0
+     org-src-tab-acts-natively t
+     org-src-fontify-natively t
+     org-confirm-babel-evaluate nil)
+(setq nrepl-hide-special-buffers t
+     cider-repl-pop-to-buffer-on-connect nil
+     cider-popup-stacktraces nil
+     cider-repl-popup-stacktraces t)
+
+;; Useful keybindings when using Clojure from Org
+;; (org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+;; (org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
 
 
-;; ** D 
+;; git clone --single-branch --branch correlations-heatmap https://github.com/BlaineMooersLab/clojure-sandbox.git
+;; (inspired by: https://github.com/clojure-emacs/cider/issues/3094)
+;;(require 'cider-mode)
 
-;; *** Getting pretty icons. Used by dashboard.
-(use-package all-the-icons
-    :ensure t)
+(defun cider-tap (&rest r) ; inspired by https://github.com/clojure-emacs/cider/issues/3094
+  (cons (concat "(let [__value "
+                (caar r)
+                "] (tap> {:clay-tap? true :form (quote " (caar r) ") :value __value}) __value)")
+        (cdar r)))
+
+(advice-add 'cider-nrepl-request:eval
+:filter-args #'cider-tap)
 
 
-;; *** dashboard
+;; Clay related functions from Daniel Slutsky
+;; https://scicloj.github.io/clay/#Setup
+
+(defun scittle-show ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename
+        (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(scicloj.clay.v2.api/show-doc! \"" filename "\" {})")))))
+(define-key clojure-mode-map "\C-c\C-s" 'scittle-show)
+
+(defun scittle-show-and-write ()
+  (interactive)
+  (save-buffer)
+  (let
+      ((filename
+        (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(scicloj.clay.v2.api/show-doc-and-write-html! \"" filename "\" {:toc? true})")))))
+(define-key clojure-mode-map "\C-c\C-w" 'scittle-show-and-write)
+
+
+;; Clerk is another "notebook"--really a brower interface
+;;
+
+(defun clerk-show ()
+  (interactive)
+  (when-let
+      ((filename
+        (buffer-file-name)))
+    (save-buffer)
+    (cider-interactive-eval
+     (concat "(nextjournal.clerk/show! \"" filename "\")"))))
+
+(define-key clojure-mode-map (kbd "<M-return>") 'clerk-show)
+
+
+;;*** Clojure
+(use-package lsp-mode
+  :hook ((clojure-mode . lsp)
+         (clojurec-mode . lsp)
+         (clojurescript-mode . lsp))
+  :config
+  ;; add paths to your local installation of project mgmt tools, like lein
+  (setenv "PATH" (concat
+                   "/usr/local/bin" path-separator
+                   (getenv "PATH")))
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+  (setq lsp-clojure-server-command '("/usr/local/Cellar/clojure-lsp-native"))) ; Optional: In case `clojure-lsp` is not in your $PATH
+
+
+
+;;*** combobulate
+;; (quelpa '(combobulate :fetcher github :repo mickeynp/combobulate))
+;; (use-package combobulate) See tree-sitter below
+
+;;*** command-log-mode
+(use-package command-log-mode
+  :commands command-log-mode)
+
+
+;;** D
+;;*** Dashboard related
+;; Getting pretty icons for use with dashboard
+;;(use-package all-the-icons)
+;;(use-package dashboard
+;;  :init
+;;  (dashboard-setup-startup-hook)
+;;  :custom
+;;  (setq dashboard-banner-logo-title "Just begin and the mind grows heated; continue and the task will be completed. -- Geothe")
+;;  (setq dashboard--ascii-banner-centered t)
+;;  (setq dashboard-startup-banner "/Users/blaine/images/loxo.png")
+;;  (setq dashboard-image-banner-max-width 120)
+;;  (setq dashboard-image-banner-max-height 150)
+;;  (setq dashboard-center-content t)
+;;  (dashboard-set-navigator t)
+;;  (use-package page-break-lines)
+;;  (setq dashboard-set-heading-icons t)
+;;  (setq dashboard-set-file-icons t)
+;;  (setq dashboard-items '((recents  . 10)
+;;                          (bookmarks . 10)
+;;                          (projects . 10)
+;;                          (hackernews . 10))))
+;;(use-package dashboard-hackernews)
+;;(dashboard-refresh-buffer)
+
 (use-package dashboard
-;;   :after (all-the-icons dashboard-hackernews helm-system-packages)
-  :ensure t
   :init
   (dashboard-setup-startup-hook)
-
   :custom
-  (dashboard-banner-logo-title "Let's get stuff done!")
-  (dashboard-startup-banner 'logo)
-  (dashboard-center-content t)
+  (dashboard-banner-logo-title "Just begin and the mind grows heated; continue and the task will be completed! -- Geothe")
+  (dashboard-startup-banner "/Users/blaine/images/loxoSmall.png")
+  (setq dashboard-image-banner-max-width 37)
+  (setq dashboard-image-banner-max-height 30)
   (dashboard-set-navigator t)
-;;   (dashboard-navigator-buttons '((("⤓" " Install system package" " Install system package" (lambda (&rest _) (helm-system-packages))))))
+  (dashboard-center-content t)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
   (dashboard-items '((projects . 10)
                      (recents . 15)
-                     (hackernews . 5))))
+                     (bookmarks . 10)
+                     (hackernews . 10))))
+(use-package dashboard-hackernews)
+(dashboard-refresh-buffer)
 
-;;*** hackernews
-(use-package dashboard-hackernews
-    :ensure t)
+
+
+
 
 
 
 ;;*** Dired related
 (use-package dired-subtree
-  :ensure t
   :after dired
   :config
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
@@ -748,13 +1167,45 @@
 ;;(require 'highlight)
 
 
+;;*** dot-mode
+;; This minor mode enables the use of C-. to repeat the last command.
+;; I want to mimic this great Vi command enabled globally.
+(use-package dot-mode)
+(global-dot-mode t)
 
-;; ** E
 
-;;*** ef-theme
+;;*** Drag stuff
+;; ;;Usage
+;; To start drag-stuff
+;;     (drag-stuff-mode t) or M-x drag-stuff-mode
+;; 
+;; Or if you want it to be done automatically
+;;     (drag-stuff-global-mode t)
+;; 
+;; ### Drag line
+;; To drag a line up and down. Put the cursor on that line and press
+;; **<M-up>** and **<M-down>**.
+;; 
+;; ### Drag lines
+;; To drag several lines up and down. Select the lines you want to drag
+;; and press **<M-up>** and **<M-down>**.
+;; 
+;; ### Drag region
+;; A region can be dragged to the left and right. Select the region you
+;; want to drag and press **<M-left>** and **<M-right>**.
+;; 
+;; ### Drag word
+;; To drag a word. Just place the cursor on the word and press
+;; **<M-left>** and **<M-right>**.
+(use-package drag-stuff)
+(drag-stuff-global-mode t)
 
-(use-package ef-themes
-    :ensure t)
+;;## E
+
+
+;; *** ef-theme
+
+(use-package ef-themes)
 ;; If you like two specific themes and want to switch between them, you
 ;; can specify them in `ef-themes-to-toggle' and then invoke the command
 ;; `ef-themes-toggle'.  All the themes are included in the variable
@@ -802,7 +1253,6 @@
 ;; - `ef-themes-preview-colors-current'#+END_SRC
 
 
-
 ;; *** Electric-pair mode. Add matching pairs of quotes and parentheses.
 (electric-pair-mode)
 
@@ -810,14 +1260,12 @@
 ;; *** electric-spacing
 ;; An emacs minor-mode to automatically add spacing around [[https://github.com/xwl/electric-spacing][operators] in math expressions.].
 ;; Backspace over the whitespaces to remove them when none are permitted.
-(use-package electric-spacing
-      :ensure t)
-
-;; git clone https://github.com/walmes/electric-spacing.git into ~/latex-emacs29/manual-packages
-;; byte-compile with (byte-compile-file "~/latex-emacs29/manual-packages/electric-spacing/electric-spacing.el")
-;; byte-compile with (byte-compile-file "~/latex-emacs29/manual-packages/electric-spacing/electric-spacing-r.el")
-(add-to-list 'load-path "~/latex-emacs2906/manual-packages/electric-spacing")
-(require 'electric-spacing-r)
+;; git clone https://github.com/walmes/electric-spacing.git into ~/latex-tree-emacs30/manual-packages
+;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing.el")
+;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing-r.el")
+(add-to-list 'load-path "~/latex-tree-emacs30/manual-packages/electric-spacing")
+(use-package electric-spacing)
+(use-package electric-spacing-r)
 (add-hook 'ess-mode-hook #'electric-spacing-mode)
 ;; restrict to limited number of modes to keep it out of the minibuffer
 (defvar my-electic-pair-modes '(python-mode julia-mode org-mode latex-mode))
@@ -826,13 +1274,135 @@
 (setq electric-pair-inhibit-predicate #'my-inhibit-electric-pair-mode)
 
 
-;; *** Emojis
+(use-package elfeed)
+(setq elfeed-curl-program-name "/opt/local/bin/curl")
+(setq elfeed-search-title-max-width 130)
+(use-package elfeed-org)
+(setq rmh-elfeed-org-files (list "~/latex-tree-emacs30/elfeed.org"))
+(elfeed-org)
+;;
+;;(setq elfeed-feeds '("https://planet.emacslife.com/atom.xml" "http://feeds.nature.com/nchem/rss/current"
+;;    "http://feeds.nature.com/nature/rss/current"
+;;    "https://onlinelibrary.wiley.com/feed/1469896x/most-recent"
+;;    "https://www.science.org/action/showFeed?type=axatoc&feed=rss&jc=science"
+;;    "https://journals.iucr.org/j/rss10.xml"
+;;    "https://journals.iucr.org/s/rss10.xml"
+;;    "https://journals.iucr.org/m/rss10.xml"
+;;    "https://journals.iucr.org/a/rss10.xml"
+;;    "https://journals.iucr.org/d/rss10.xml"
+;;    "http://feeds.feedburner.com/acs/chreay"
+;;    "https://rss.sciencedirect.com/publication/science/10933263"
+;;    "http://feeds.feedburner.com/acs/jcisd8"
+;;    "https://www.pnas.org/about/rss"
+;;    "http://feeds.feedburner.com/acs/cgdefu"
+;;    "https://pubs.acs.org/page/follow.html?widget=follow-pane-rss"
+;;    "https://rss.sciencedirect.com/publication/science/00222836"
+;;    "https://academic.oup.com/rss/site_5127/3091.xml"
+;;    "http://www.cell.com/cell/current.rss"
+;;    "http://www.cell.com/cell/inpress.rss"
+;;    "https://www.jstatsoft.org/gateway/plugin/WebFeedGatewayPlugin/atom"
+;;    "https://rss.sciencedirect.com/publication/science/09692126"
+;;    "https://onlinelibrary.wiley.com/feed/10970282/most-recent"
+;;    "http://connect.biorxiv.org/biorxiv_xml.php?subject=biophysics+biochemistry+cancer"
+;;    )
+
+;; The following config is from Chris Cundy (https://cundy.me/post/elfeed/)
+(defun concatenate-authors (authors-list)
+  "Given AUTHORS-LIST, list of plists; return string of all authors
+concatenated."
+  (mapconcat
+   (lambda (author) (plist-get author :name))
+   authors-list ", "))
+
+(defun my-search-print-fn (entry)
+  "Print ENTRY to the buffer."
+  (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+	 (title (or (elfeed-meta entry :title)
+		    (elfeed-entry-title entry) ""))
+	 (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+	 (feed (elfeed-entry-feed entry))
+	 (feed-title
+	  (when feed
+	    (or (elfeed-meta feed :title) (elfeed-feed-title feed))))
+	 (entry-authors (concatenate-authors
+			 (elfeed-meta entry :authors)))
+	 (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
+	 (tags-str (mapconcat
+		    (lambda (s) (propertize s 'face
+					    'elfeed-search-tag-face))
+		    tags ","))
+	 (title-width (- (window-width) 10
+			 elfeed-search-trailing-width))
+	 (title-column (elfeed-format-column
+			title (elfeed-clamp
+			       elfeed-search-title-min-width
+			       title-width
+			       elfeed-search-title-max-width)
+			:left))
+	 (authors-width 135)
+	 (authors-column (elfeed-format-column
+			entry-authors (elfeed-clamp
+			       elfeed-search-title-min-width
+			       authors-width
+			       131)
+			:left)))
+
+    (insert (propertize date 'face 'elfeed-search-date-face) " ")
+
+    (insert (propertize title-column
+			'face title-faces 'kbd-help title) " ")
+
+    (insert (propertize authors-column
+			'face 'elfeed-search-date-face
+			'kbd-help entry-authors) " ")
+
+    ;; (when feed-title
+    ;;   (insert (propertize entry-authors
+    ;; 'face 'elfeed-search-feed-face) " "))
+
+    (when entry-authors
+      (insert (propertize feed-title
+			  'face 'elfeed-search-feed-face) " "))
+
+    ;; (when tags
+    ;;   (insert "(" tags-str ")"))
+
+    )
+  )
+(setq elfeed-search-print-entry-function #'my-search-print-fn)
+
+(global-set-key (kbd "C-x w") 'elfeed)
+
+(use-package  elfeed-score)
+(elfeed-score-enable)
+(define-key elfeed-search-mode-map "=" elfeed-score-map)
+
+(run-at-time nil (* 8 60 60) #'elfeed-update)
+
+;;*** Emojis
 (use-package emojify
   :init
   (add-hook 'after-init-hook #'global-emojify-mode))
 
 
-;; ** F
+
+;;*** eros
+;; Eros: Evaluation Result OverlayS for Emacs Lisp.
+;; Eros is on MELPA.
+;; Eros is by Tianxiang Xiong.
+;; He has developed two other Emacs Lisp Packages.
+;; https://github.com/xiongtx/eros
+;; Eros provides Cider like behavoir for elisp with the output resturned in-line.
+;; I learned about eros from yantar92 during the 2023-01-01 meeting of Mastering Emacs bookclub.
+
+(use-package eros
+      :ensure t
+      :init
+      (eros-mode 1))
+
+
+
+;;** F
 
 
 ;; *** FlySpell (spell checking)
@@ -863,115 +1433,20 @@
 ;; (define-key flyspell-mode-map (kbd "C-,") #'helm-flyspell-correct))
 
 
-;; *** Focus
+;;*** Focus
 ;; Highlights the current section or function.
 (use-package focus)
 
-;; ** G
 
-
-
-
-
-;; ** H
-;; *** Helm
-;; Use ivy or helm but not both.
-;; (use-package helm
-;;  :after (projectile helm-projectile)
-;;
-;;  :init
-;;  (helm-mode 1)
-;;  (projectile-mode +1)
-;;  (helm-projectile-on)
-;;  (helm-adaptive-mode 1)
-;;  ;; hide uninteresting buffers from buffer list
-;;  (add-to-list 'helm-boring-buffer-regexp-list (rx "magit-"))
-;;  (add-to-list 'helm-boring-buffer-regexp-list (rx "*helm"))
-;;
-;;  :custom
-;;  (helm-M-x-fuzzy-match t)
-;;  (projectile-completion-system 'helm)
-;;  (helm-split-window-in-side-p t)
-;;
-;;  :bind
-;;  (("M-x" . helm-M-x)
-;;   ("C-x C-f" . helm-find-files)
-;;   ;; get the awesome buffer list instead of the standard stuff
-;;   ("C-x b" . helm-mini)))
-;;
-;;;; *** helm-system-packages
-;;;;(use-package helm-system-packages
-;;;;    :after helm)
-;;
-;;;; *** Helm-bibtex
-;;;; Can only use helm-bitex or ivy-bibtex
-;;;; See https://github.com/tmalsburg/helm-bibtex for extensive documentation and configuration.
-;;(use-package helm-bibtex
-;;    :ensure t
-;;    :config
-;;    (setq bibtex-completion-library-path '("~/0labeledPapers" "~/0bookaLabeled"))
-;;    (setq bibtex-completion-pdf-field "File")
-;;    (setq bibtex-completion-notes-path '("~/0labeledPapers/notes" "~/0papersLabeled/notes"))
-;;    (setq org-cite-follow-processor 'helm-bibtex-org-cite-follow)
-;;    (setq bibtex-completion-display-formats
-;;        '((article       . "${=has-pdf=:1}${=has-note=:1} ${=type=:3} ${year:4} ${author:36} ${title:*} ${journal:40}")
-;;          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${=type=:3} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-;;          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${=type=:3} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;;          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${=type=:3} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;;          (t             . "${=has-pdf=:1}${=has-note=:1} ${=type=:3} ${year:4} ${author:36} ${title:*}")))
-;;    (setq bibtex-completion-additional-search-fields '(keywords))
-;;    (setq bibtex-completion-pdf-symbol "⌘")
-;;    (setq bibtex-completion-notes-symbol "✎")
-;;    (setq bibtex-completion-pdf-open-function
-;;      (lambda (fpath)
-;;        (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath)))
-;;    (setq bibtex-completion-find-additional-pdfs t)
-;;    (setq bibtex-completion-browser-function
-;;      (lambda (url _) (start-process "firefox" "*firefox*" "firefox" url)))
-;;      (setq bibtex-completion-format-citation-functions
-;;        '((org-mode      . bibtex-completion-format-citation-org-title-link-to-PDF)
-;;          (latex-mode    . bibtex-completion-format-citation-cite)
-;;          (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
-;;          (default       . bibtex-completion-format-citation-default)))
-;;      (setq bibtex-completion-additional-search-fields '(tags))
-;;)
+;;*** greader
+;; Reads back the text that you have written in Emacs.
+;;Install espeak via macports or brew.
 ;; 
-;;;; (require 'helm-config)
-;;;; 
-;;(global-set-key (kbd "<menu>") 'helm-command-prefix)
-;;
-;;(define-key helm-command-map "b" 'helm-bibtex)
-;;(define-key helm-command-map "B" 'helm-bibtex-with-local-bibliography)
-;;(define-key helm-command-map "n" 'helm-bibtex-with-notes)
-;;(define-key helm-command-map (kbd "<menu>") 'helm-resume)
-;;
-;;(defun helm-bibtex-my-publications (&optional arg)
-;;  "Search BibTeX entries authored by “Blaine Mooers”.
-;;
-;;With a prefix ARG, the cache is invalidated and the bibliography reread."
-;;  (interactive "P")
-;;  (helm-bibtex arg nil "Blaine Mooers"))
-;;
-;;;; Bind this search function to Ctrl-x p:
-;;(global-set-key (kbd "C-x p") 'helm-bibtex-my-publications)
-;;
-;;;; 
-;;(helm-add-action-to-source
-;; "Open annotated PDF (if present)" 'helm-bibtex-open-annotated-pdf
-;; helm-source-bibtex 1)
-;;
-;;(helm-delete-action-from-source "Insert BibTeX key" helm-source-bibtex)
-;;(helm-add-action-to-source "Insert BibTeX key" 'helm-bibtex-insert-key helm-source-bibtex 0)
-;;
-;;(helm-bibtex-helmify-action bibtex-completion-<action> helm-bibtex-<action>)
-;;
-;;;; (setq tmalsburg-pdf-watch
-;;;;       (file-notify-add-watch bibtex-completion-library-path
-;;;;       '(change)
-;;;;        (lambda (event) (bibtex-completion-candidates))))
-;;
+(use-package greader)
 
 
+
+;;** H
 ;; *** helpful
 ;; Note that the built-in `describe-function' includes both functions
 ;; and macros. `helpful-function' is functions only, so we provide
@@ -999,28 +1474,46 @@
 ;; look at interactive functions.
 (global-set-key (kbd "C-h C") #'helpful-command)
 
-;; Ivy users can use Helpful with counsel commands:
 
-(setq counsel-describe-function-function #'helpful-callable)
-(setq counsel-describe-variable-function #'helpful-variable)
+;;  Emacs minor mode that highlights defined Emacs Lisp symbols in source code.
+;;  Currently it recognizes Lisp function, built-in function, macro, face and variable names.
+(use-package highlight-defined
+  :ensure t)
+(add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode)
 
 
-;; **  I
 
-;; *** ivy
-;; Use ivy or helm but not both.
-(use-package ivy
- :ensure t
- :init
- (ivy-mode 1)
- (global-set-key "\C-s" 'swiper)
- (unbind-key "S-SPC" ivy-minibuffer-map)
- (setq ivy-height 15
-       ivy-use-virtual-buffers t
-       ivy-count-format "(%d/%d) "
-       ivy-use-selectable-prompt t))
-(use-package ivy-bibtex
-   :ensure t)
+;;**I
+
+;;*** ido-mode
+(ido-mode 1)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+
+
+;;*** ielm
+;; ;; Enables `auto-complete' support in \\[ielm]
+;; (defalias 'erepl 'ielm)
+;; (defun ielm-auto-complete ()
+;;   "Enables `auto-complete' support in \\[ielm]."
+;;   (setq ac-sources '(ac-source-functions
+;;                      ac-source-variables
+;;                      ac-source-features
+;;                      ac-source-symbols
+;;                      ac-source-words-in-same-mode-buffers))
+;;   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+;;   (auto-complete-mode 1))
+;; (add-hook 'ielm-mode-hook 'ielm-auto-complete)
+
+
+;;*** imenu
+(global-set-key (kbd "M-i") 'imenu)
+
+
+
+
+
+
 
 
 ;;** L
@@ -1033,7 +1526,6 @@
 
 
 (use-package languagetool
-  :ensure t
   :defer t
   :commands (languagetool-check
              languagetool-clear-suggestions
@@ -1170,9 +1662,6 @@
 ;; (intellisense like using company-capf), navigation (jump to symbol), 
 ;; refactoring functionality and so on. lsp-ui is used to get prettier boxes and 
 ;; more info visible in an easy way (like javadoc). 
-;; Currently dap-mode is added because I play a bit with it, 
-;; and my first impressions are great so far 
-;; (for the few times I use a debugger, I know I’m weird for not needing it much at all).
 
 (use-package lsp-mode
   :bind
@@ -1200,16 +1689,65 @@
   :config
   (lsp-treemacs-sync-mode 1))
 
-;; debugger component (for the few times I need it)
-(use-package dap-mode
-  :after lsp-mode
-  :init
-  (dap-auto-configure-mode))
-
 (use-package flycheck
   :custom
   (flycheck-indication-mode nil)
   (flycheck-highlighting-mode 'lines))
+
+(use-package lsp-mode)
+(use-package lsp-treemacs)
+(add-hook 'latex-mode 'lsp)
+(add-hook 'python-mode 'lsp)
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (yas-global-mode))
+
+  (use-package lsp-mode
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l", "s-l")
+    (setq lsp-keymap-prefix "s-l")
+    :hook (; replace XXX-mode with concrete major-mode (e. g. python-mode)
+           (clojure-mode . lsp)
+           (clojurec-mode . lsp)
+           (clojurescript-mode . lsp)
+           (latex-mode . lsp)
+           (python-mode . lsp)
+           ;; if you want which-key integration
+           (lsp-mode . lsp-enable-which-key-integration))
+     :config
+     ;; add paths to your local installation of project mgmt tools, like lein
+     (setenv "PATH" (concat
+                      "/Users/blaine/bin" path-separator
+                      (getenv "PATH")))
+     (dolist (m '(clojure-mode
+                  clojurec-mode
+                  clojurescript-mode
+                  clojurex-mode))
+        (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+     (setq lsp-clojure-server-command '("/usr/local/bin/clojure-lsp")) ;; Optional: In case `clojure-lsp` is not in your $PATH
+     :commands (lsp)
+  )
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :hook (lsp-mode . lsp-ui-imenu)
+  :hook (lsp-mode . lsp-ui-doc-mode)
+  :hook (lsp-mode . lsp-ui-doc-show)
+  :hook (lsp-mode . lsp-ui-doc-frame-mode)
+  :hook (lsp-mode . anaconda-mode)
+  :hook (lsp-mode . anaconda-eldoc-mode)
+)
+(setq lsp-ui-doc-position 'right)
+(setq lsp-ui-sideline-enable t)
+(setq lsp-ui-sideline-show-hover t)
+(setq anaconda-mode t)
+(setq lsp-eldoc-render-all t)
+(use-package lsp-treemacs
+  :after lsp)
+
+
+
+
 
 
 ;; ** M
@@ -1237,20 +1775,17 @@
 
 ;; *** Configured for GitHub Markdown
 (use-package markdown-mode
-  :ensure t
   :mode ("\\.md\\'" . gfm-mode)
   :commands (markdown-mode gfm-mode)
   :config
   (setq markdown-command "pandoc -t html5"))
 ;;Install simple-httpd and impatient-mode packages.
 (use-package simple-httpd
-  :ensure t
   :config
   (setq httpd-port 7070)
   (setq httpd-host (system-name)))
 ;; The impatient-mode package takes the content of your buffer, passes it through a filter, and serves the result via simple-httpd HTTP server.
 (use-package impatient-mode
-  :ensure t
   :commands impatient-mode)
 ;; Create a filter function to process the Markdown buffer. 
 ;; The function my-markdown-filter uses github-markdown-css to mimic the look of GitHub.
@@ -1304,49 +1839,48 @@
 ;;   (imp-visit-buffer))
 
 
-;;### Move selected regions up or down
-;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
-;; Thank you to DivineDomain for the suggested upgrade.
-;; Source: https://www.emacswiki.org/emacs/MoveText 
-(defun move-text-internal (arg)
-  (cond
-   ((and mark-active transient-mark-mode)
-    (if (> (point) (mark))
-        (exchange-point-and-mark))
-    (let ((column (current-column))
-          (text (delete-and-extract-region (point) (mark))))
-      (forward-line arg)
-      (move-to-column column t)
-      (set-mark (point))
-      (insert text)
-      (exchange-point-and-mark)
-      (setq deactivate-mark nil)))
-   (t
-    (let ((column (current-column)))
-      (beginning-of-line)
-      (when (or (> arg 0) (not (bobp)))
-        (forward-line)
-        (when (or (< arg 0) (not (eobp)))
-          (transpose-lines arg))
-        (forward-line -1))
-      (move-to-column column t)))))
-
-(defun move-line-region-down (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines down."
-  (interactive "*p")
-  (move-text-internal arg))
-
-(defun move-line-region-up (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines up."
-  (interactive "*p")
-  (move-text-internal (- arg)))
-
-(global-set-key (kbd "M-<down>") 'move-line-region-down)
-(global-set-key (kbd "M-<up>") 'move-line-region-up)
-
-
+;; This following overlaps with the function of the drug-stuff package.
+;; ;;### Move selected regions up or down
+;; ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
+;; ;; Thank you to DivineDomain for the suggested upgrade.
+;; ;; Source: https://www.emacswiki.org/emacs/MoveText 
+;; (defun move-text-internal (arg)
+;;   (cond
+;;    ((and mark-active transient-mark-mode)
+;;     (if (> (point) (mark))
+;;         (exchange-point-and-mark))
+;;     (let ((column (current-column))
+;;           (text (delete-and-extract-region (point) (mark))))
+;;       (forward-line arg)
+;;       (move-to-column column t)
+;;       (set-mark (point))
+;;       (insert text)
+;;       (exchange-point-and-mark)
+;;       (setq deactivate-mark nil)))
+;;    (t
+;;     (let ((column (current-column)))
+;;       (beginning-of-line)
+;;       (when (or (> arg 0) (not (bobp)))
+;;         (forward-line)
+;;         (when (or (< arg 0) (not (eobp)))
+;;           (transpose-lines arg))
+;;         (forward-line -1))
+;;       (move-to-column column t)))))
+;; 
+;; (defun move-line-region-down (arg)
+;;   "Move region (transient-mark-mode active) or current line
+;;   arg lines down."
+;;   (interactive "*p")
+;;   (move-text-internal arg))
+;; 
+;; (defun move-line-region-up (arg)
+;;   "Move region (transient-mark-mode active) or current line
+;;   arg lines up."
+;;   (interactive "*p")
+;;   (move-text-internal (- arg)))
+;; 
+;; (global-set-key (kbd "M-<down>") 'move-line-region-down)
+;; (global-set-key (kbd "M-<up>") 'move-line-region-up)
 
 ;; ;;### Move lines up an down
 ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
@@ -1382,28 +1916,30 @@
 ;; in the file in places with the same pattern, 
 ;; other times it is inserting a sequence of numbers.
 
-(use-package multiple-cursors
-  :bind
-  ("C->" . mc/mark-next-like-this))
-
+;;*** Multiple-cursors
+(use-package multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; ** O
 
-;; *** Olivetti 
-;; Improves readability. 
-;; Olivetti centers the entire buffer like a sheet 
-;; of paper and truncates the content. 
-;; This helps my eyes when writing things that are 
+;; *** Olivetti
+;; Improves readability.
+;; Olivetti centers the entire buffer like a sheet
+;; of paper and truncates the content.
+;; This helps my eyes when writing things that are
 ;; more natural flowing text (articles, books, other org mode stuff).
 
-(use-package olivetti
-  :if window-system
-  :after org
-  :custom
-  (olivetti-minimum-body-width 100)
-  (olivetti-body-width 0.8)
-  :hook
-  (org-mode . olivetti-mode))
+; (use-package olivetti
+;   :if window-system
+;   :after org
+;   :custom
+;   (olivetti-minimum-body-width 100)
+;   (olivetti-body-width 0.8)
+;   :hook
+;   (org-mode . olivetti-mode))
 
 
 ;; <<<<<<< BEGINNING of org-agenda >>>>>>>>>>>>>>
@@ -1449,57 +1985,57 @@
 (setq org-refile-use-outline-path 'file)
 
 ;; ***** customized agenda views
-;; 
+;;
 ;; These are my customized agenda views by project.
 ;; The letter is the last parameter.
 ;; For example, enter ~C-c a b~ and then enter 402 at the prompt to list all active tasks related to 402 tasks.
-;; 
+;;
 ;; I learned about this approach [[https://tlestang.github.io/blog/keeping-track-of-tasks-and-projects-using-emacs-and-org-mode.html][here]].
-;; 
+;;
 ;; The CATEGORY keyword resides inside of a Properties drawer.
 ;; The drawers are usually closed.
 ;; I am having trouble opening my drawers in may org files.
 ;; In addition, I do not want to have to add a drawer to each TODO.
-;; 
+;;
 ;; I am loving Tags now.
 ;; I may switch to using Tags because they are visible in org files.
 ;; I tried and they are not leading to the expect list of TODOs in org-agenda.
 ;; I am stumped.
-;; 
+;;
 ;; In the meantime, enter ~C-c \~ inside JournalArticles.org to narrow the focus to the list of TODOs or enter ~C-c i b~ to get an indirect buffer.
-;; 
+;;
 
 (setq org-agenda-custom-commands
       '(
-	("b"
+    ("b"
              "List of all active 402 tasks."
              tags-todo
              "402\"/TODO|INITIATED|WAITING")
-	("c"
+    ("c"
              "List of all active 523 RNA-drug crystallization review paper tasks."
              tags-todo
              "CATEGORY=\"523\"/TODO|INITIATED|WAITING")
-	("d"
+    ("d"
              "List of all active 485PyMOLscGUI tasks."
              tags-todo
              "CATEGORY=\"485\"/TODO|INITIATED|WAITING")
-	("e"
+    ("e"
              "List of all active 2104 Emacs tasks"
              tags-todo
              "2104+CATEGORY=\"2104\"/NEXT|TODO|INITIATED|WAITING")
-	("n"
+    ("n"
              "List of all active 651 ENAX2 tasks"
              tags-todo
              "651+CATEGORY=\"651\"/NEXT|TODO|INITIATED|WAITING")
-	("q"
+    ("q"
              "List of all active 561 charge density review"
              tags
              "561+CATEGORY=\"211\"/NEXT|TODO|INITIATED|WAITING")
-	("r"
+    ("r"
              "List of all active 211 rcl/dnph tasks"
              tags-todo
              "211+CATEGORY=\"211\"/NEXT|TODO|INITIATED|WAITING")
-	("P"
+    ("P"
          "List of all projects"
          tags
          "LEVEL=2/PROJ")))
@@ -1509,15 +2045,15 @@
 ;; I loathe having to come back latter to refile my tasks.
 ;; I want to do the filing at the time of capture.
 ;; I found a solution [[https://stackoverflow.com/questions/9005843/interactively-enter-headline-under-which-to-place-an-entry-using-capture][here]].
-;; 
+;;
 ;; A project has two or more tasks.
 ;; I believe that the 10,000 projects is the upper limit for a 30 year academic career.
 ;; There are about 10,000 workdays in a 30 year career if you work six days a week.
 ;; Of course, most academics work seven a week and many work longer than 30 years, some even reach 60 years.
-;; 
+;;
 ;; I have my projects split into ten org files.
 ;; Each org file has a limit of 1000 projects for ease of scrolling.
-;; 
+;;
 ;; It is best to let Emacs insert new task because it is easy to accidently delete sectons in an org file, especially when sections are folded.
 ;; (I know that many love folded sections.
 ;; There is a strong appeal to being able to collapse secitons of text.
@@ -1532,7 +2068,7 @@
 ;; I am now prompted for the tag.
 ;; After entering the tag, I fill out the task entry.
 ;; I then enter ~C-c C-c~ to save the capture.
-;; 
+;;
 ;;This protocol can be executed from inside the target org file or from a different buffer.
 ;;
 ;;I learned about the following function, which I modified by changing "Headline " to "Tag", from
@@ -1609,12 +2145,34 @@
 
 ;; <<<<<<< END of org-agenda >>>>>>>>>>>>>>
 
-;; *** org-drill
+;;*** org-babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (shell . t)
+   (c . nil)
+   (cpp . nil)
+   (clojure . t)
+   (F90 . nil)
+   (gnuplot . t)
+   (js . nil)
+   (ditaa . nil)
+   (java . t)
+   (mathematica . nil)
+   (plantuml . nil)
+   (lisp . t)
+   (org . t)
+   (julia . t)
+   (python . t)
+   (R . t)
+   (jupyter . t)))
+
+
+;;*** org-drill
 ;; org-drill for spaced repetition learning in org-mode
 ;; You have to install org-drill from MELPA.;; This is a YouTube video about how to use org-drill[[https://www.youtube.com/watch?v=uraPXeLfWcM][to learn Chinese]].
 ;;You can use org tables to generate [[https://github.com/chrisbarrett/org-drill-table][flashcards]].
 (use-package org-drill
-             :ensure t
              :config (progn
                           (add-to-list 'org-modules 'org-drill)
                           (setq org-drill-add-random-noise-to-intervals-p t)
@@ -1625,23 +2183,26 @@
              )
 )
 
-
-
-;; *** org-pdftools and org-noter-pdftools. Requires pdf-tools, which is configured under P.
-;; From https://github.com/fuxialexander/org-pdftools
-
+;;*** org-pdf-noter
 (use-package org-noter
-  :ensure t
+  :after org
   :config
   ;; Your org-noter config ........
-  (require 'org-noter-pdftools))
+  :config
+  (setq
+    org_notes (concat (getenv "HOME") "/org-roam/")
+    zot_bib (concat (getenv "HOME") "/Documents/global.bib")
+    org-directory org_notes
+    deft-directory org_notes
+    org-roam-directory org_notes
+    ;; keep an empty line between headings and content in Org file
+    org-noter-separate-notes-from-heading t)
+)
 
 (use-package org-pdftools
-  :ensure t
   :hook (org-mode . org-pdftools-setup-link))
 
 (use-package org-noter-pdftools
-  :ensure t
   :after org-noter
   :config
   ;; Add a function to ensure precise note is inserted
@@ -1673,70 +2234,73 @@ With a prefix ARG, remove start location."
                            (org-noter--pretty-print-location location))))))))
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+; (eval-after-load 'org '(require 'org-pdfview))
+;
+; (add-to-list 'org-file-apps
+;              '("\\.pdf\\'" . (lambda (file link)
+;                                      (org-pdfview-open link))))
 
 
 
 
 
 
+;;*** org-pomodoro
 (use-package org-pomodoro
-    :ensure t
     :commands (org-pomodoro)
     :config
     (setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))
 
-;; (use-package sound-wav)
-;; (setq org-pomodoro-ticking-sound-p nil)
-;; ; (setq org-pomodoro-ticking-sound-states '(:pomodoro :short-break :long-break))
-;; (setq org-pomodoro-ticking-sound-states '(:pomodoro))
-;; (setq org-pomodoro-ticking-frequency 1)
-;; (setq org-pomodoro-audio-player "mplayer")
-;; (setq org-pomodoro-finished-sound-args "-volume 0.9")
-;; (setq org-pomodoro-long-break-sound-args "-volume 0.9")
-;; (setq org-pomodoro-short-break-sound-args "-volume 0.9")
-;; (setq org-pomodoro-ticking-sound-args "-volume 0.3")
+(use-package sound-wav)
+(setq org-pomodoro-ticking-sound-p nil)
+(setq org-pomodoro-ticking-sound-states '(:pomodoro :short-break :long-break))
+(setq org-pomodoro-ticking-sound-states '(:pomodoro))
+(setq org-pomodoro-ticking-frequency 1)
+(setq org-pomodoro-audio-player "mplayer")
+(setq org-pomodoro-finished-sound-args "-volume 0.9")
+(setq org-pomodoro-long-break-sound-args "-volume 0.9")
+(setq org-pomodoro-short-break-sound-args "-volume 0.9")
+(setq org-pomodoro-ticking-sound-args "-volume 0.3")
 
 (global-set-key (kbd "C-c o") 'org-pomodoro)
 
 
 
 ;; <<<<<<< BEGIN org-ref >>>>>>>>>>>>>>
-;; (use-package org-ref
-;;     :ensure t)
-;; ;; emacs2906(require 'org-ref-ivy)
-;; (use-package bibtex
-;;     :ensure t)
-;; 
-;; (setq bibtex-completion-bibliography '("/Users/blaine/Documents/global.bib")
-;; 	bibtex-completion-library-path '("/Users/blaine/0papersLabeled/")
-;; 	bibtex-completion-notes-path "/Users/blaine/Documents/notes/"
-;; 	bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
-;; 	bibtex-completion-additional-search-fields '(keywords)
-;; 	bibtex-completion-display-formats
-;; 	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-;; 	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-;; 	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;; 	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-;; 	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-;; 	bibtex-completion-pdf-open-function
-;; 	(lambda (fpath)
-;; 	  (call-process "open" nil 0 nil fpath)))
-;;       
-;; (setq bibtex-autokey-year-length 4
-;;       bibtex-autokey-name-year-separator "-"
-;;       bibtex-autokey-year-title-separator "-"
-;;       bibtex-autokey-titleword-separator "-"
-;;       bibtex-autokey-titlewords 2
-;;       bibtex-autokey-titlewords-stretch 1
-;;       bibtex-autokey-titleword-length 5)
-;; 
-;; ;; H is the hyper key. I have bound H to Fn. For the MacAlly keyboard, it is bound to right-command.
-;; ;;(define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
-;; ;;(define-key org-mode-map (kbd "H-c") org-ref-insert-cite-function)
-;; ;;(define-key org-mode-map (kbd "H-r") org-ref-insert-ref-function)
-;; ;;(define-key org-mode-map (kbd "H-l") org-ref-insert-label-function)
-;; ;;(define-key org-mode-map (kbd "H-d") 'doi-add-bibtex-entry)
-;; ;;
+(use-package org-ref)
+;; (require 'org-ref-ivy)
+(use-package bibtex)
+
+(setq bibtex-completion-bibliography '("/Users/blaine/Documents/global.bib")
+    bibtex-completion-library-path '("/Users/blaine/0papersLabeled/")
+    bibtex-completion-notes-path "/Users/blaine/Documents/notes/"
+    bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
+    bibtex-completion-additional-search-fields '(keywords)
+    bibtex-completion-display-formats
+    '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+      (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+      (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+      (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+      (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+    bibtex-completion-pdf-open-function
+    (lambda (fpath)
+      (call-process "open" nil 0 nil fpath)))
+
+(setq bibtex-autokey-year-length 4
+      bibtex-autokey-name-year-separator "-"
+      bibtex-autokey-year-title-separator "-"
+      bibtex-autokey-titleword-separator "-"
+      bibtex-autokey-titlewords 2
+      bibtex-autokey-titlewords-stretch 1
+      bibtex-autokey-titleword-length 5)
+
+;; H is the hyper key. I have bound H to Fn. For the MacAlly keyboard, it is bound to right-command.
+(define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
+(define-key org-mode-map (kbd "H-c") org-ref-insert-cite-function)
+(define-key org-mode-map (kbd "H-r") org-ref-insert-ref-function)
+(define-key org-mode-map (kbd "H-l") org-ref-insert-label-function)
+(define-key org-mode-map (kbd "H-d") 'doi-add-bibtex-entry)
+
 
 ;; <<<<<<< END org-ref >>>>>>>>>>>>>>
 
@@ -1744,7 +2308,7 @@ With a prefix ARG, remove start location."
 
 
 ;; <<<<<<< BEGIN org-roam >>>>>>>>>>>>>>
- 
+
 ;; ** Basic org-roam config
 (use-package org-roam
    :ensure t
@@ -1761,9 +2325,9 @@ With a prefix ARG, remove start location."
    ;; If you're using a vertical completion framework, you might want a more informative completion interface
    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
    (org-roam-db-autosync-mode)
-   (org-roam-ui-mode)
+   (org-roam-ui-mode))
    ;; If using org-roam-protocol
-   (require 'org-roam-protocol))
+   ;;(use-package org-roam-protocol))
 
 
 ;; ** Basic org-roam config
@@ -1823,7 +2387,7 @@ With a prefix ARG, remove start location."
 
 (setq org-preview-latex-default-process 'dvisvgm)
 
-(setq org-latex-to-pdf-process 
+(setq org-latex-to-pdf-process
   '("xelatex -interaction nonstopmode %f"
      "xelatex -interaction nonstopmode %f")) ;; for multiple passes
 
@@ -1840,7 +2404,7 @@ With a prefix ARG, remove start location."
 ;;         (file-name-directory
 ;;          (file-relative-name (org-roam-node-file node) org-roam-directory))))
 ;;     (error "")))
-;; 
+;;
 
 ;;(setq org-roam-node-display-template
 ;;          (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -1874,7 +2438,7 @@ With a prefix ARG, remove start location."
   :NOTER_DOCUMENT: ${file}
   :NOTER_PAGE:
   :END:")))
-  
+
 
 (use-package citar-org-roam
   :after citar org-roam
@@ -1914,33 +2478,28 @@ With a prefix ARG, remove start location."
            " -o "
            (file-name-sans-extension (buffer-file-name))
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
-
 (defalias 'o2d 'hm/convert-org-to-docx)
-
-
-
-
 
 
 ;; ** P
 
 ;; Paredit makes paranthesis handling a breeze in Lisp-languages.
-;; Only setting I really need is to make it possible to select something 
+;; Only setting I really need is to make it possible to select something
 ;; and delete the selection (including the paranthesis).
 
-;; (use-package paredit
-;;   :config
-;;   ;; making paredit work with delete-selection-mode
-;;   ;; found on the excellent place called what the emacs d.
-;;   (put 'paredit-forward-delete 'delete-selection 'supersede)
-;;   (put 'paredit-backward-delete 'delete-selection 'supersede)
-;;   (put 'paredit-open-round 'delete-selection t)
-;;   (put 'paredit-open-square 'delete-selection t)
-;;   (put 'paredit-doublequote 'delete-selection t)
-;;   (put 'paredit-newline 'delete-selection t)
-;;   :hook
-;;   ((emacs-lisp-mode . paredit-mode)
-;;    (scheme-mode . paredit-mode)))
+;;(use-package paredit
+;;  :config
+;;  ;; making paredit work with delete-selection-mode
+;;  ;; found on the excellent place called what the emacs d.
+;;  (put 'paredit-forward-delete 'delete-selection 'supersede)
+;;  (put 'paredit-backward-delete 'delete-selection 'supersede)
+;;  (put 'paredit-open-round 'delete-selection t)
+;;  (put 'paredit-open-square 'delete-selection t)
+;;  (put 'paredit-doublequote 'delete-selection t)
+;;  (put 'paredit-newline 'delete-selection t)
+;;  :hook
+;;  ((emacs-lisp-mode . paredit-mode)
+;;   (scheme-mode . paredit-mode)))
 
 
 ;; *** Move to cursor to previously visited window
@@ -1960,7 +2519,7 @@ With a prefix ARG, remove start location."
 
 
 ;; pdb.el
-(load-file "~/latex-emacs2906/manual-packages/emacs-pdb-mode/pdb-mode.el")
+(load-file "~/latex-tree-emacs30/manual-packages/emacs-pdb-mode/pdb-mode.el")
 (setq pdb-rasmol-name "/Applications/PyMOL.app/Contents/bin/pymol")
 (setq auto-mode-alist
      (cons (cons "pdb$" 'pdb-mode)
@@ -1975,11 +2534,11 @@ With a prefix ARG, remove start location."
 ;; This is an alternative to the built-in DocView package.
 ;; I allows smooth scrolling and it superior in general.
 ;; I could load several PDFs, including 500 pages books.
-;; 
-;; 
+;;
+;;
 ;; The pdf-tools package runs on top of pdf-view package.
 ;; This making capturing text from PDFs much easier.
-;; 
+;;
 ;; I followed a [[http://pragmaticemacs.com/emacs/view-and-annotate-pdfs-in-emacs-with-pdf-tools][blog post]].
 ;; You enter highlights by selecting with the mouse and entering C-c C-a h.
 ;; An annotation menu opens in the minibuffer.
@@ -1994,7 +2553,6 @@ With a prefix ARG, remove start location."
   :config
   ;; initialise
   (pdf-tools-install)
-
   ;; This means that pdfs are fitted to width by default when you open them
   (setq-default pdf-view-display-size 'fit-width)
   ;; open pdfs scaled to fit page
@@ -2018,9 +2576,9 @@ With a prefix ARG, remove start location."
 ;; | Reset margins                            | ~s r~           |
 ;; | Reset z oom                              | ~0~             |
 ;; |------------------------------------------+-----------------|
-;; 
+;;
 ;; **** Useful keybindings for navigating PDFs
-;; 
+;;
 ;; |-----------------------------------------------+-----------------------|
 ;; | Navigation                                    |                       |
 ;; |-----------------------------------------------+-----------------------|
@@ -2041,12 +2599,11 @@ With a prefix ARG, remove start location."
 ;; | Jump to Page                                  | ~M-g g~               |
 ;; | Store position / Jump to position in register | ~m~ / ~'~             |
 ;; |-----------------------------------------------+-----------------------|
-;; 
+;;
 
 
 ;; *** projectile
-(use-package projectile
- :ensure t)
+(use-package projectile)
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -2054,276 +2611,168 @@ With a prefix ARG, remove start location."
 
 ;; *** Python
 
-;; I sometimes write Python code for various things, sometimes as a calculator 
-;; :P (SymPy, NumPy and MatplotLib <3 ). 
-;;     
-;; I choose to start lsp manually due to sometimes not needing a language server 
+;; I sometimes write Python code for various things, sometimes as a calculator
+;; :P (SymPy, NumPy and MatplotLib <3 ).
+;;
+;; I choose to start lsp manually due to sometimes not needing a language server
 ;; for minor edits (which is what I mostly do with Python).
 
-(use-package lsp-pyright
-  :after lsp-mode
-  :init
-  (require 'lsp-pyright))
+;; (use-package lsp-pyright
+;;   :after lsp-mode
+;;   :init
+;;   (require 'lsp-pyright))
 
+
+;;** Q
+
+
+
+
+
+;;** R
+;; rainbow-delimiters
+(use-package rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(set-face-attribute 'rainbow-delimiters-unmatched-face nil
+            :foreground "magenta"
+            :inherit 'error
+            :box t)
+;;(add-hook 'clojure-mode-hook 'rainbow-blocks-mode)
+;;(add-hook 'org-mode-hook 'rainbow-blocks-mode)
+;;(add-hook 'emacs-lisp-mode-hook 'rainbow-blocks-mode)
 
 
 ;;** S
-
-
-;; *** Straight
-;; Install straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-
-;;### pdf-drop-mode
-(straight-use-package
-  '(pdf-drop-mode :type git :host github :repo "rougier/pdf-drop-mode"))
-
-
-(require 'pdf-drop-mode)
-
-(defun my/pdf-process (file doi)
-  (message "%s : %s" file doi))
-
-(setq pdf-drop-search-hook #'my/pdf-process)
-(pdf-drop-mode)
-
-
-;;### Swiper related confg from https://github.com/zamansky/using-emacs/blob/lesson-6-swiper/init.el
-(use-package try
-	:ensure t)
-
-
-;; Org-mode stuff
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-(defalias 'list-buffers 'ibuffer)
-;; (defalias 'list-buffers 'ibuffer-other-window)
-
-; If you like a tabbar 
-;(use-package tabbar
-;  :ensure t
-;  :config
-;  (tabbar-mode 1))
-
-
-(use-package ace-window
-  :ensure t
-  :init
-  (progn
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
-    ))
-
-
-;; it looks like counsel is a requirement for swiper
-(use-package counsel
-  :ensure t
-  )
-
 (use-package swiper
-  :ensure try
   :config
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
     (global-set-key "\C-s" 'swiper)
-    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-    (global-set-key (kbd "<f6>") 'ivy-resume)
-    (global-set-key (kbd "M-x") 'counsel-M-x)
-    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-    (global-set-key (kbd "<f1> l") 'counsel-load-library)
-    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-    (global-set-key (kbd "C-c g") 'counsel-git)
-    (global-set-key (kbd "C-c j") 'counsel-git-grep)
-    (global-set-key (kbd "C-c k") 'counsel-ag)
-    (global-set-key (kbd "C-x l") 'counsel-locate)
-    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+;;    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+;;    (global-set-key (kbd "<f6>") 'ivy-resume)
+;;    (global-set-key (kbd "M-x") 'counsel-M-x)
+;;    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;;    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+;;    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;;    (global-set-key (kbd "<f1> l") 'counsel-load-library)
+;;    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+;;    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+;;    (global-set-key (kbd "C-c g") 'counsel-git)
+;;    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+;;    (global-set-key (kbd "C-c k") 'counsel-ag)
+;;    (global-set-key (kbd "C-x l") 'counsel-locate)
+;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+;;    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
 
 
-;; ;; ** T
-;; ;; *** tabspaces
-;; ;; Source: 
-;; 
-;; (use-package tabspaces
-;;   ;; use this next line only if you also use straight, otherwise ignore it. 
-;;   :straight (:type git :host github :repo "mclear-tools/tabspaces")
-;;   :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
-;;   :commands (tabspaces-switch-or-create-workspace
-;;              tabspaces-open-or-create-project-and-workspace)
-;;   :custom
-;;   (tabspaces-use-filtered-buffers-as-default t)
-;;   (tabspaces-default-tab "Default")
-;;   (tabspaces-remove-to-default t)
-;;   (tabspaces-include-buffers '("*scratch*"))
-;;   ;; sessions
-;;   (tabspaces-session t)
-;;   (tabspaces-session-auto-restore t))
-;;   
-;; (defvar tabspaces-command-map
-;;   (let ((map (make-sparse-keymap)))
-;;     (define-key map (kbd "C") 'tabspaces-clear-buffers)
-;;     (define-key map (kbd "b") 'tabspaces-switch-to-buffer)
-;;     (define-key map (kbd "d") 'tabspaces-close-workspace)
-;;     (define-key map (kbd "k") 'tabspaces-kill-buffers-close-workspace)
-;;     (define-key map (kbd "o") 'tabspaces-open-or-create-project-and-workspace)
-;;     (define-key map (kbd "r") 'tabspaces-remove-current-buffer)
-;;     (define-key map (kbd "R") 'tabspaces-remove-selected-buffer)
-;;     (define-key map (kbd "s") 'tabspaces-switch-or-create-workspace)
-;;     (define-key map (kbd "t") 'tabspaces-switch-buffer-and-tab)
-;;     map)
-;;   "Keymap for tabspace/workspace commands after `tabspaces-keymap-prefix'.")
-;; 
-;; ;; If you use ivy you can use this function to limit your buffer search to only those in the tabspace.
-;; (defun tabspaces-ivy-switch-buffer (buffer)
-;;   "Display the local buffer BUFFER in the selected window.
-;; This is the frame/tab-local equivilant to `switch-to-buffer'."
-;;   (interactive
-;;    (list
-;;     (let ((blst (mapcar #'buffer-name (tabspaces-buffer-list))))
-;;       (read-buffer
-;;        "Switch to local buffer: " blst nil
-;;        (lambda (b) (member (if (stringp b) b (car b)) blst))))))
-;;   (ivy-switch-buffer buffer))
-;; 
-;; 
-;; ;; By default the *scratch* buffer is included in all workspaces. 
-;; ;; You can modify which buffers are included by default by changing the value of tabspaces-include-buffers.
-;; ;; If you want emacs to startup with a set of initial buffers in a workspace, do something like the following:
-;; 
-;; 
-;; 
-;; (defun my--tabspace-setup ()
-;;   "Set up tabspace at startup."
-;;   ;; Add *Messages* and *splash* to Tab \`Home\'
-;;   (tabspaces-mode 1)
-;;   (progn
-;;     (tab-bar-rename-tab "Home")
-;;     (when (get-buffer "*Messages*")
-;;       (set-frame-parameter nil
-;;                            'buffer-list
-;;                            (cons (get-buffer "*Messages*")
-;;                                  (frame-parameter nil 'buffer-list))))
-;;     (when (get-buffer "*splash*")
-;;       (set-frame-parameter nil
-;;                            'buffer-list
-;;                            (cons (get-buffer "*splash*")
-;;                                  (frame-parameter nil 'buffer-list))))))
-;; 
-;; (add-hook 'after-init-hook #'my--tabspace-setup)
-;; 
-;; ;; *** TeXcount setup for TeXcount version 2.3 and later
-;; ;; See https://app.uio.no/ifi/texcount/howto.html to use from the command line.
-;; (defun texcount ()
-;;   (interactive)
-;;   (let*
-;;     ( (this-file (buffer-file-name))
-;;       (enc-str (symbol-name buffer-file-coding-system))
-;;       (enc-opt
-;;         (cond
-;;           ((string-match "utf-8" enc-str) "-utf8")
-;;           ((string-match "latin" enc-str) "-latin1")
-;;           ("-encoding=guess")
-;;       ) )
-;;       (word-count
-;;         (with-output-to-string
-;;           (with-current-buffer standard-output
-;;             (call-process "/opt/local/bin/texcount" nil t nil "-0" enc-opt this-file)
-;;     ) ) ) )
-;;     (message word-count)
-;; ) )
-;; (add-hook 'LaTeX-mode-hook (lambda () (define-key LaTeX-mode-map "\C-cw" 'texcount)))
-;; (add-hook 'latex-mode-hook (lambda () (define-key latex-mode-map "\C-cw" 'texcount)))
+;;**T
+;;*** Tree-sitter
+;; `M-x combobulate' (or `C-c o o') to start using Combobulate
+(use-package treesit
+  :preface
+  (defun mp-setup-install-grammars ()
+    "Install Tree-sitter grammars if they are absent."
+    (interactive)
+    (dolist (grammar
+             '((css "https://github.com/tree-sitter/tree-sitter-css")
+               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+               (python "https://github.com/tree-sitter/tree-sitter-python")
+               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+               (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+      (add-to-list 'treesit-language-source-alist grammar)
+      ;; Only install `grammar' if we don't already have it
+      ;; installed. However, if you want to *update* a grammar then
+      ;; this obviously prevents that from happening.
+      (unless (treesit-language-available-p (car grammar))
+        (treesit-install-language-grammar (car grammar)))))
 
+  ;; Optional, but recommended. Tree-sitter enabled major modes are
+  ;; distinct from their ordinary counterparts.
+  ;;
+  ;; You can remap major modes with `major-mode-remap-alist'. Note
+  ;; that this does *not* extend to hooks! Make sure you migrate them
+  ;; also
+  (dolist (mapping '((python-mode . python-ts-mode)
+                     (css-mode . css-ts-mode)
+                     (typescript-mode . tsx-ts-mode)
+                     (js-mode . js-ts-mode)
+                     (css-mode . css-ts-mode)
+                     (yaml-mode . yaml-ts-mode)))
+    (add-to-list 'major-mode-remap-alist mapping))
 
-
-;; *** activate word count mode
-;; This mode will count the LaTeX markup, but it does give the count of incrementally added words.
-(use-package wc-mode)
-(add-hook 'text-mode-hook 'wc-mode)
-;; Suggested setting
-(global-set-key "\C-cw" 'wc-mode)
-
-
-
-;; *** Tramp
-;; Set default connection mode to SSH
-(setq tramp-default-method "ssh")
-
-
-;; *** tree-sitter
-
-;; (require 'tree-sitter)
-;; (require 'tree-sitter-langs)
-;; (require 'evil-textobj-tree-sitter)
-;; (global-tree-sitter-mode)
-;; 
-
-
-;; ;; ** U
-;; ;; *** undo-tree
-;; (use-package undo-tree
-;;     :init
-;;     (global-undo-tree-mode)
-;;     :custom
-;;     (undo-tree-history-directory-alist '(("." . "~/latex-emacs/undo")))
-;;     )
+  :config
+  (mp-setup-install-grammars)
+  ;; Do not forget to customize Combobulate to your liking:
+  ;;
+  ;;  M-x customize-group RET combobulate RET
+  ;;
+  (use-package combobulate
+    ;; Optional, but recommended.
+    ;;
+    ;; You can manually enable Combobulate with `M-x
+    ;; combobulate-mode'.
+    :hook ((python-ts-mode . combobulate-mode)
+           (js-ts-mode . combobulate-mode)
+           (css-ts-mode . combobulate-mode)
+           (yaml-ts-mode . combobulate-mode)
+           (typescript-ts-mode . combobulate-mode)
+           (tsx-ts-mode . combobulate-mode))
+    ;; Amend this to the directory where you keep Combobulate's source
+    ;; code.
+    :load-path ("/Users/blaine/latex-tree-emacs30/manual-packages/combobulate")))
 
 
 
 
 
 
-;; ** W 
-;; *** Which help
+;;** W
+;; *** wc-mode
 
+;; (require 'wc-mode)
+;; ;; Source: https://www.emacswiki.org/emacs/wcMode
+;; (setq mode-line-position
+;;   (append
+;;    mode-line-position
+;;    '((wc-mode
+;;   (6 (:eval (if (use-region-p)
+;;         (format " %d,%d,%d"
+;;             (abs (- (point) (mark)))
+;;             (count-words-region (point) (mark))
+;;             (abs (- (line-number-at-pos (point))
+;;                 (line-number-at-pos (mark)))))
+;;           (format " %d,%d,%d"
+;;               (- (point-max) (point-min))
+;;               (count-words-region (point-min) (point-max))
+;;               (line-number-at-pos (point-max))))))
+;;   nil))))
+
+;;*** which-key
 (use-package which-key
-     :ensure t
-     :custom
-     (which-key-idle-delay 2)
-     :config
-     (which-key-mode))
+  :custom
+  (which-key-idle-delay 2)
+  :init
+  :defer 0
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.3))
+;;   (add-hook 'c-mode-hook 'lsp)
+;; (add-hook 'c++-mode-hook 'lsp)
+(add-hook 'clojure-mode-hook 'lsp)
+;; (add-hook 'julia-mode-hook 'lsp)
+(add-hook 'latex-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'lsp)
+;; (add-hook 'R-mode-hook 'lsp)
+(which-key-setup-side-window-right-bottom)
 
-;; *** writeroom
-;; writeroom-mode for distraction-free writing.
-
-(with-eval-after-load 'writeroom-mode
-       (define-key writeroom-mode-map (kbd "C-M-<") #'writeroom-decrease-width)
-       (define-key writeroom-mode-map (kbd "C-M->") #'writeroom-increase-width)
-       (define-key writeroom-mode-map (kbd "C-M-=") #'writeroom-adjust-width))
 
 
-
-
-;; ** Y 
+;; ** Y
 ;; *** yasnippet related
 (use-package yasnippet
-  :ensure t
   :config
   (yas-global-mode 1)
   :bind
@@ -2332,55 +2781,45 @@ With a prefix ARG, remove start location."
   )
 (global-set-key "\C-o" 'yas-expand)
 
-(use-package popup
-  :ensure t)
-;; (require 'yasnippet)
-;; ;; add some shotcuts in popup menu mode
-;; (define-key popup-menu-keymap (kbd "M-n") 'popup-next)
-;; (define-key popup-menu-keymap (kbd "TAB") 'popup-next)
-;; (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-;; (define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
-;; (define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
-;;
-;; (defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
-;;   (when (featurep 'popup)
-;;     (popup-menu*
-;;      (mapcar
-;;       (lambda (choice)
-;;         (popup-make-item
-;;          (or (and display-fn (funcall display-fn choice))
-;;              choice)
-;;          :value choice))
-;;       choices)
-;;      :prompt prompt
-;;      ;; start isearch mode immediately
-;;      :isearch t
-;;      )))
-;; (setq yas/prompt-functions '(yas/popup-isearch-prompt yas/no-prompt))
-;;
-;; (defun complete-if-yas-field (&rest _)
-;;   (let ((field (yas-current-field)))
-;;     (when (and field
-;;                (not (yas--field-modified-p field)))
-;;       (company-manual-begin))))
-;;
-;; (advice-add 'company-complete-selection :after 'complete-if-yas-field)
-;; (advice-add 'yas-next-field :after 'complete-if-yas-field)
+(use-package popup)
+;; add some shotcuts in popup menu mode
+(define-key popup-menu-keymap (kbd "M-n") 'popup-next)
+(define-key popup-menu-keymap (kbd "TAB") 'popup-next)
+(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
+(define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
+(define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
+
+(defun yas/popup-isearch-prompt (prompt choices &optional display-fn)
+  (when (featurep 'popup)
+    (popup-menu*
+     (mapcar
+      (lambda (choice)
+        (popup-make-item
+         (or (and display-fn (funcall display-fn choice))
+             choice)
+         :value choice))
+      choices)
+     :prompt prompt
+     ;; start isearch mode immediately
+     :isearch t
+     )))
+(setq yas/prompt-functions '(yas/popup-isearch-prompt yas/no-prompt))
+
+(message "config • Finished package configuration. You now may enjoy Emacs.")
 
 
-;; *** Do NOT MESS with the code below
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "/Users/blaine/latex-emacs2906/bookmarks")
  '(org-agenda-files
-   '("/Users/blaine/gtd/tasks/JournalArticles.org" "/Users/blaine/gtd/tasks/Proposals.org" "/Users/blaine/gtd/tasks/Books.org" "/Users/blaine/gtd/tasks/Talks.org" "/Users/blaine/gtd/tasks/Posters.org" "/Users/blaine/gtd/tasks/ManuscriptReviews.org" "/Users/blaine/gtd/tasks/Private.org" "/Users/blaine/gtd/tasks/Service.org" "/Users/blaine/gtd/tasks/Teaching.org" "/Users/blaine/gtd/tasks/Workshops.org")))
+   '("/Users/blaine/gtd/tasks/JournalArticles.org" "/Users/blaine/gtd/tasks/Proposals.org" "/Users/blaine/gtd/tasks/Books.org" "/Users/blaine/gtd/tasks/Talks.org" "/Users/blaine/gtd/tasks/Posters.org" "/Users/blaine/gtd/tasks/ManuscriptReviews.org" "/Users/blaine/gtd/tasks/Private.org" "/Users/blaine/gtd/tasks/Service.org" "/Users/blaine/gtd/tasks/Teaching.org" "/Users/blaine/gtd/tasks/Workshops.org"))
+ '(package-selected-packages
+   '(drag-stuff greader citar bookmark+ quelpa-use-package citar-org-roam org-noter-pdftools projectile yasnippet which-key sound-wav rainbow-delimiters powerline pdf-tools org-roam-ui org-roam-timestamps org-roam-bibtex org-roam org-pomodoro org-pdftools maxframe exec-path-from-shell ef-themes dirvish dired-subtree dashboard dashboard-hackernews better-defaults auto-complete-auctex auto-complete auctex atomic-chrome all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-
+ )
