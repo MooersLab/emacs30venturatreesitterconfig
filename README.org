@@ -35,7 +35,7 @@ I subsituted another image that is included above for testing.
 
 The startup time should be shorter on Linux and longer on Windows. 
 
-I tried zsh and bash. There was no difference in startup time.
+I tried zsh and bash. There was no difference in startup time. The first 10 seconds have nothing to do with loading the packages.
 
 #+ATTR_HTML: :alt Zoomed image.
 #+ATTR_HTML: :width 606
