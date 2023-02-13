@@ -5,7 +5,8 @@
 This configuration supports structured editing of computer code with concrete syntax trees. 
 The built-in package tree-sitter and the new package combobulate support this kind of editing.
 Emacs has to be compiled with support for tree-sitter.
-See [[https://github.com/MooersLab/emacs30macos13treesitter][this repo]] for a protocol for compiling Emacs from source code on macOS.
+See [[https://github.com/MooersLab/emacs30macos13treesitter][this repo]] for a protocol for compiling Emacs 30 from source code on macOS and this [[https://github.com/MooersLab/emacs30macos13treesitter][one]] for doing likewise with Ubuntu 
+These protocols should work with Emacs 29.0.5.
 
 This configuration file is also a rewrite of my basic configuration file with the packages in use listed at the top to speed up the start-up of Emacs.
 The *package* package is used to install the missing packages rather than 
