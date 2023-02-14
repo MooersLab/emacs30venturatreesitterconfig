@@ -54,6 +54,7 @@
 ;;(add-to-list 'package-selected-packages 'auto-complete-auctex)
 ;; (add-to-list 'package-selected-packages 'auto-complete-clang)
 ;; (add-to-list 'package-selected-packages 'auto-package-update)
+(add-to-list 'package-selected-packages 'avy)
 (add-to-list 'package-selected-packages 'better-defaults)
 (add-to-list 'package-selected-packages 'bibtex)
 ;; (add-to-list 'package-selected-packages 'c-eldoc)
@@ -67,6 +68,7 @@
 ;; (add-to-list 'package-selected-packages 'conda)
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'corfu)
+(add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
 (add-to-list 'package-selected-packages 'dashboard-hackernews)
 (add-to-list 'package-selected-packages 'dashboard)
@@ -117,6 +119,7 @@
 ;; (add-to-list 'package-selected-packages 'jedi)
 ;; (add-to-list 'package-selected-packages 'jedi-core)
 (add-to-list 'package-selected-packages 'jupyter)
+(add-to-list 'package-selected-packages 'ivy-prescient)
 (add-to-list 'package-selected-packages 'languagetool)
 (add-to-list 'package-selected-packages 'lsp-mode)
 (add-to-list 'package-selected-packages 'lsp-pyright)
@@ -171,7 +174,8 @@
 (add-to-list 'package-selected-packages 'popup)
 (add-to-list 'package-selected-packages 'powerline)
 ;; (add-to-list 'package-selected-packages 'powerline-evil)
-;; (add-to-list 'package-selected-packages 'powershell)
+(add-to-list 'package-selected-packages 'powershell)
+(add-to-list 'package-selected-packages 'prescient)
 (add-to-list 'package-selected-packages 'projectile)
 ;; (add-to-list 'package-selected-packages 'pydoc)
 ;; (add-to-list 'package-selected-packages 'python-pytest)
@@ -195,6 +199,7 @@
 ;; (add-to-list 'package-selected-packages 'treemacs-projectile)
 (add-to-list 'package-selected-packages 'tree-sitter-langs)
 (add-to-list 'package-selected-packages 'vertico)
+(add-to-list 'package-selected-packages 'vertico-prescient)
 ;; (add-to-list 'package-selected-packages 'try)
 ;; (add-to-list 'package-selected-packages 'use-package)
 ;; (add-to-list 'package-selected-packages 'wc-mode)
@@ -536,6 +541,12 @@ ARG is the thing being completed in the minibuffer."
 (customize-set-variable 'completion-styles '(orderless basic))
 (customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
 
+;; Improve speed and highlighting
+(setq orderless-skip-highlighting (lambda () selectrum-is-active))
+
+;; Added 14 Feb 2023
+(setq vertico-prescient-mode t)
+
 ;;; Embark
 ;;(require 'embark)
 ;;(require 'embark-consult)
@@ -582,8 +593,23 @@ ARG is the thing being completed in the minibuffer."
                             corfu-auto nil)
             (corfu-mode)))
 
+;; The alover completion framework is missing prescient which lists options based on frequecy of use
+
+(use-package prescient)
+(use-package corfu-prescient)
+;; (straight-use-package 'company-prescient)
+(use-package ivy-prescient) ; I have ivy lurking about in this configuration.
+;; (use-package 'selectrum-prescient) vertico has replaced slection
+(use-package vertico-prescient)
 
 
+;; Keybindings suggested here https://github.com/revrari/emacs_elements_chapter_2/blob/main/orderless-selectrum-prescient-etc.txt
+(global-set-key (kbd "<f7>") 'consult-outline)
+(global-set-key [C-tab] 'consult-buffer)
+(global-set-key (kbd "C-x C-r") 'consult-recent-file)
+  
+
+;; I am testing whether I can live with the above cool-kid completion system for now.
 ;; ;;*** auto-complete
 ;; ;; do default config for auto-complete
 ;; (use-package auto-complete)
@@ -831,22 +857,22 @@ ARG is the thing being completed in the minibuffer."
 ;; (setq tab-width 4)
 ;; (setq-default indent-tabs-mode nil)
 ;; 
-;; ;; *** atomic-chrome, used to interact with GhostText extension for Google Chrome.
-;; (use-package atomic-chrome)
-;; ;;(atomic-chrome-start-server)
-;; (setq atomic-chrome-default-major-mode 'python-mode)
-;; (setq atomic-chrome-extension-type-list '(ghost-text))
-;; ;;(atomic-chrome-start-httpd)
-;; (setq atomic-chrome-server-ghost-text-port 4001)
-;; (setq atomic-chrome-url-major-mode-alist
-;;       '(("github\\.com" . gfm-mode)
-;;         ("overleaf.com" . latex-mode)
-;;         ("750words.com" . latex-mode)))
-;; ; Select the style of opening the editing buffer by atomic-chrome-buffer-open-style.
-;; ; full: Open in the selected window.
-;; ; split: Open in the new window by splitting the selected window (default).
-;; ; frame: Create a new frame and window in it. Must be using some windowing pacakge.
-;; (setq atomic-chrome-buffer-open-style 'split)
+;; *** atomic-chrome, used to interact with GhostText extension for Google Chrome.
+(use-package atomic-chrome)
+;;(atomic-chrome-start-server)
+(setq atomic-chrome-default-major-mode 'python-mode)
+(setq atomic-chrome-extension-type-list '(ghost-text))
+;;(atomic-chrome-start-httpd)
+(setq atomic-chrome-server-ghost-text-port 4001)
+(setq atomic-chrome-url-major-mode-alist
+      '(("github\\.com" . gfm-mode)
+        ("overleaf.com" . latex-mode)
+        ("750words.com" . latex-mode)))
+; Select the style of opening the editing buffer by atomic-chrome-buffer-open-style.
+; full: Open in the selected window.
+; split: Open in the new window by splitting the selected window (default).
+; frame: Create a new frame and window in it. Must be using some windowing pacakge.
+(setq atomic-chrome-buffer-open-style 'split)
 
 
 ;;*** AUCTeX config
@@ -856,6 +882,26 @@ ARG is the thing being completed in the minibuffer."
           TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")
     )
   )
+
+
+;; avy superimposes letters in the buffer with coloured backgrounds. 
+
+;; line commands
+;; especially helpful across windows
+(global-set-key (kbd "M-g f") 'avy-goto-line) ;; go to a line, but not by using line-numbers; useful for moving across windows
+(global-set-key (kbd "C-c l") 'avy-copy-line) ;; useful for copying lines across windows
+(global-set-key (kbd "C-c m") 'avy-move-line) ;; useful for moving lines across windows
+
+;; word commands
+(global-set-key (kbd "M-g w") 'avy-goto-word-1)
+
+;; char commands
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(global-set-key (kbd "M-j") 'avy-goto-char-timer) ;; adds a timer feature, offering a slight delay BEFORE the coloured letters appear, allowing you to orientated yourself in buffer.
+(setq avy-timeout 1.0) ;; sets the duration of the variable
+
+
 
 
 ;; *** awesome-tabs
@@ -976,22 +1022,29 @@ ARG is the thing being completed in the minibuffer."
 ;;                                      "bookmark+-chg.el"))
 ;;                  :defer 2)
 ;;
-;; (require 'bookmark+)
+
+;;*** Bookmarks+
+;; Drew Adams package that runs on top of the built-in bookmark package. 
+;; Inside your emacs directory, create manual-packages/bookmark-plus.
+;; Uncomment this code, paste into the scratch buffer, run once to install the package, and comment the code again
 ;;
-;;
-;; (let ((bookmarkplus-dir "~/latex-emacs2906/manual-packages/bookmark-plus/")
-;;       (emacswiki-base "https://www.emacswiki.org/emacs/download/")
-;;       (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
-;;   (require 'url)
-;;   (add-to-list 'load-path bookmarkplus-dir)
-;;   (make-directory bookmarkplus-dir t)
-;;   (mapcar (lambda (arg)
-;;             (let ((local-file (concat bookmarkplus-dir arg)))
-;;               (unless (file-exists-p local-file)
-;;                 (url-copy-file (concat emacswiki-base arg) local-file t))))
-;;             bookmark-files)
-;;   (byte-recompile-directory bookmarkplus-dir 0)
-;;   (require 'bookmark+))
+;;(let ((bookmarkplus-dir "~/latex-tree-emacs30/manual-packages/bookmark-plus/")
+;;      (emacswiki-base "https://www.emacswiki.org/emacs/download/")
+;;      (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
+;;  (require 'url)
+;;  (add-to-list 'load-path bookmarkplus-dir)
+;;  (make-directory bookmarkplus-dir t)
+;;  (mapcar (lambda (arg)
+;;            (let ((local-file (concat bookmarkplus-dir arg)))
+;;              (unless (file-exists-p local-file)
+;;                (url-copy-file (concat emacswiki-base arg) local-file t))))
+;;            bookmark-files)
+;;  (byte-recompile-directory bookmarkplus-dir 0))
+
+
+(use-package bookmark+
+    :load-path "manual-packages/bookmark-plus/")
+
 
 
 ;;** C
@@ -1155,13 +1208,23 @@ ARG is the thing being completed in the minibuffer."
 
 
 ;;*** Dired+ and related packages related
-(add-to-list 'load-path "~/latex-emacs2906/manual-packages/dired-plus")
-(require 'dired+)
-(setq diredp-wrap-around-flag nil)
+;; (add-to-list 'load-path "~/latex-emacs2906/manual-packages/dired-plus")
+;; (require 'dired+)
+(use-package dired+
+  :load-path "manual-packages/dired-plus/"
+  :config
+  (setq diredp-wrap-around-flag nil))
 ;;(setq diredp-copressed-file-suffix ((t (:foreground "orange"))))
 
-(add-to-list 'load-path "~/latex-emacs2906/manual-packages/icicles")
-(require 'icicles)
+;; (add-to-list 'load-path "~/latex-emacs2906/manual-packages/icicles")
+;; (require 'icicles)
+(use-package icicles
+    :load-path "manual-packages/icicles/"
+    ;; do not start on start-up; bloggs startup too much
+    :config
+    (icy-mode 0))
+(setq org-roam-completion-system 'default)
+
 
 ;;(add-to-list 'load-path "~/latex-emacs2906/manual-packages/highlight")
 ;;(require 'highlight)
@@ -1170,8 +1233,9 @@ ARG is the thing being completed in the minibuffer."
 ;;*** dot-mode
 ;; This minor mode enables the use of C-. to repeat the last command.
 ;; I want to mimic this great Vi command enabled globally.
-(use-package dot-mode)
-(global-dot-mode t)
+(use-package dot-mode
+    :config
+    (global-dot-mode t))
 
 
 ;;*** Drag stuff
@@ -2336,17 +2400,17 @@ With a prefix ARG, remove start location."
 (setq org-roam-capture-templates
       '(("m" "main" plain
          "%?"
-         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n#+ROAM_TAGS: %? \n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new
-         (file+head "reference/${title}.org" "#+title: ${title}\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         (file+head "reference/${title}.org" "#+title: ${title}\n#+ROAM_TAGS: %? \n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
         ("a" "article" plain "%?"
          :if-new
-         (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         (file+head "articles/${title}.org" "#+title: ${title}\n#+ROAM_TAGS:  %? :article:\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)))
 
@@ -2815,6 +2879,8 @@ With a prefix ARG, remove start location."
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    '("/Users/blaine/gtd/tasks/JournalArticles.org" "/Users/blaine/gtd/tasks/Proposals.org" "/Users/blaine/gtd/tasks/Books.org" "/Users/blaine/gtd/tasks/Talks.org" "/Users/blaine/gtd/tasks/Posters.org" "/Users/blaine/gtd/tasks/ManuscriptReviews.org" "/Users/blaine/gtd/tasks/Private.org" "/Users/blaine/gtd/tasks/Service.org" "/Users/blaine/gtd/tasks/Teaching.org" "/Users/blaine/gtd/tasks/Workshops.org"))
+ '(org-pomodoro-ticking-frequency 1)
+ '(org-pomodoro-ticking-sound-p nil)
  '(package-selected-packages
    '(drag-stuff greader citar bookmark+ quelpa-use-package citar-org-roam org-noter-pdftools projectile yasnippet which-key sound-wav rainbow-delimiters powerline pdf-tools org-roam-ui org-roam-timestamps org-roam-bibtex org-roam org-pomodoro org-pdftools maxframe exec-path-from-shell ef-themes dirvish dired-subtree dashboard dashboard-hackernews better-defaults auto-complete-auctex auto-complete auctex atomic-chrome all-the-icons)))
 (custom-set-faces
