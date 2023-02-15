@@ -97,6 +97,7 @@
 (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'emojify)
 (add-to-list 'package-selected-packages 'eros)
+(add-to-list 'package-selected-packages 'evil-nerd-commenter)
 ;; (add-to-list 'package-selected-packages 'evil)
 ;; (add-to-list 'package-selected-packages 'evil-collection)
 ;; (add-to-list 'package-selected-packages 'evil-visual-mark-mode)
@@ -1290,7 +1291,7 @@ ARG is the thing being completed in the minibuffer."
 (use-package drag-stuff)
 (drag-stuff-global-mode t)
 
-;;## E
+;;**E
 
 
 ;; *** ef-theme
@@ -1490,9 +1491,21 @@ concatenated."
 ;; I learned about eros from yantar92 during the 2023-01-01 meeting of Mastering Emacs bookclub.
 
 (use-package eros
-      :ensure t
       :init
       (eros-mode 1))
+
+
+;; Easier commenting 
+;; Inspired by https://www.youtube.com/watch?v=vTdbb7tsvQc
+;; source https://github.com/redguardtoo/evil-nerd-commenter
+;; Enter M-; anywhere in line to comment it out from the start of the line
+;; Enter C-u 99 to M-; to comment out the 99 following lines.
+(use-package evil-nerd-commenter)
+(evilnc-default-hotkeys)()
+(defun matlab-mode-hook-config ()
+  (local-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines))
+(add-hook 'matlab-mode-hook 'matlab-mode-hook-config)
+
 
 
 
