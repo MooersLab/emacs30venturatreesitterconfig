@@ -24,11 +24,11 @@ Both kinds of sites are marked with *;; ==> adjust here* in the init.el file.
 
 The content of the configuration file supports my academic research writing with occassional code writing for research purposes.
 
-- Configured for structured editing combobulate and tree-sitter.
+- Configured for structured editing with combobulate and tree-sitter.
 - Uses the Vertico and friends for completion.
 - Supports org-mode, org-agenda, org-babel, and org-roam.
-- Support pdf-tools.
-- Uses booksmarks+, dired+, and iscicles (off by default). These require custom installation.  
+- Supports pdf-tools.
+- Uses booksmarks+, dired+, and iscicles (the last is off by default--it is a heavy-duty completion engine for the minibuffer). These require custom installation because they are on the Emacs Wiki and not in a repository.  
 
 ** What the landing page (dashboard) will resemble when first loaded
 
@@ -37,7 +37,7 @@ I subsituted another image that is included above for testing.
 
 The startup time should be shorter on Linux and longer on Windows. 
 
-I tried zsh and bash. There was no difference in Emacs startup times although these two shells differ in the startup times of new tabs.
+I tried zsh and bash. There was no difference in Emacs startup times on the Mac although these two shells differ in the startup times of new tabs.
 The Emacs binary starts up in a flash without a init.el. 
 
 #+ATTR_HTML: :alt Zoomed image.
@@ -45,6 +45,6 @@ The Emacs binary starts up in a flash without a init.el.
 [[./images/emacs30dashboard.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
-Also note that the bookmarks are not limited to registers in files; they can be directories or PDFs.
+Also note that the bookmarks are not limited to registers in files; they can be directories or PDFs when using the bookmarks+.el package.
 For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
 The dashboard is a way of keeping track of material that needs to be read soon.
