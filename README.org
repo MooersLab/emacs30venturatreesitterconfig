@@ -17,7 +17,7 @@ Many thanks go to Jeff Bowman for this suggestion.
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
 There are several Mac specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
 There are also several file paths that may need customizing. 
-Both kinds of sites are marked with `;; ==> adjust here` in the init.el file.
+Both kinds of sites are marked with *;; ==> adjust here* in the init.el file.
 
 
 ** Features
