@@ -8,6 +8,10 @@
          '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
         '("org" . "http://orgmode.org/elpa/") t)  ;; for newest version of org mode
+(add-to-list 'package-archives 
+        '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
+
+
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -45,6 +49,7 @@
 ;; (add-to-list 'package-selected-packages 'ac-ispell)
 ;; (add-to-list 'package-selected-packages 'ace-window)
 ;; (add-to-list 'package-selected-packages 'ack)
+;;(add-to-list 'package-selected-packages 'aide)
 (add-to-list 'package-selected-packages 'all-the-icons)
 ;; (add-to-list 'package-selected-packages 'anaconda-mode)
 (add-to-list 'package-selected-packages 'atomic-chrome)
@@ -66,6 +71,7 @@
 ;; (add-to-list 'package-selected-packages 'code-cells)
 ;; (add-to-list 'package-selected-packages 'combobulate)
 ;; (add-to-list 'package-selected-packages 'conda)
+;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'corfu)
 (add-to-list 'package-selected-packages 'corfu-prescient)
@@ -139,6 +145,7 @@
 ;; (add-to-list 'package-selected-packages 'ob-ess-julia)
 ;; (add-to-list 'package-selected-packages 'ob-ipython)
 ;; (add-to-list 'package-selected-packages 'ob-mermaid)
+;;(add-to-list 'package-selected-packages 'openai)
 (add-to-list 'package-selected-packages 'orderless)
 ;; (add-to-list 'package-selected-packages 'org-babel-eval-in-repl)
 ;; (add-to-list 'package-selected-packages 'org-bullets)
@@ -218,6 +225,9 @@
 
 
 ;; ############################## Basics Configuration ################################
+;; ==> adjust here
+;;(setq openai-key "[]")
+;;(setq openai-api-key "")
 
 (setq inhibit-startup-message t) ;; hide the startup message
 ;; (load-theme 'material t) ;; load material theme
@@ -226,6 +236,7 @@
 (prefer-coding-system 'utf-8) ;; use UTF-8
 
 
+;; ==> adjust here
 ;;### Shell configuration
 (use-package exec-path-from-shell
   :init
@@ -382,6 +393,7 @@
 (defconst *is-unix* (not *is-windows*))
 
 
+;; ==> adjust here
 ;; See this [[http://ergoemacs.org/emacs/emacs_hyper_super_keys.html][ for more information.]]
 ;; set keys for Apple keyboard, for emacs in OS X 
 ;; Source http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
@@ -903,10 +915,10 @@ ARG is the thing being completed in the minibuffer."
 
 
 
-
+;; ==> adjust here
 ;; *** awesome-tabs
 ;; I love awesome-tabs; some people do not.
-;; cd ~/latex-emacs2906/manual-packages
+;; cd ~/latex-tree-emacs30/manual-packages
 ;; git clone --depth=1 https://github.com/manateelazycat/awesome-tab.git 
 (use-package awesome-tab
   :load-path "~/latex-tree-emacs30/manual-packages/awesome-tab"
@@ -924,8 +936,6 @@ ARG is the thing being completed in the minibuffer."
 (global-set-key (kbd "s-9") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "s-0") 'awesome-tab-select-visible-tab)
 
-
-;;**B
 
 ;;** B
 
@@ -1041,7 +1051,7 @@ ARG is the thing being completed in the minibuffer."
 ;;            bookmark-files)
 ;;  (byte-recompile-directory bookmarkplus-dir 0))
 
-
+;; ==> adjust here
 (use-package bookmark+
     :load-path "manual-packages/bookmark-plus/")
 
@@ -1139,15 +1149,31 @@ ARG is the thing being completed in the minibuffer."
   (setq lsp-clojure-server-command '("/usr/local/Cellar/clojure-lsp-native"))) ; Optional: In case `clojure-lsp` is not in your $PATH
 
 
-
-;;*** combobulate
-;; (quelpa '(combobulate :fetcher github :repo mickeynp/combobulate))
-;; (use-package combobulate) See tree-sitter below
+;; (use-package openai
+;;     :load-path "manual-packages/openai/")
+;; 
+;; 
+;; ;;***codegpt
+;; ;; https://github.com/emacs-openai/codegpt
+;; ;;Commad 	Description
+;; ;;codegpt 	The master command
+;; ;;codegpt-custom 	Write your own instruction
+;; ;;codegpt-doc 	Automatically write documentation for your code
+;; ;;codegpt-fix 	Find problems with it
+;; ;;codegpt-explain 	Explain the selected code
+;; ;;codegpt-improve 	Improve, refactor or optimize it
+;; (use-package codegpt
+;;   :load-path "manual-packages/codegpt/"
+;;   :after openai)
+;; 
+;; ;; https://github.com/junjizhi/aide.el
+;; (use-package aide
+;;     :load-path "manual-packages/aide/")
+;; (setq aide-max-tokens 200)
 
 ;;*** command-log-mode
 (use-package command-log-mode
   :commands command-log-mode)
-
 
 ;;** D
 ;;*** Dashboard related
@@ -1321,12 +1347,14 @@ ARG is the thing being completed in the minibuffer."
 (electric-pair-mode)
 
 
+
 ;; *** electric-spacing
 ;; An emacs minor-mode to automatically add spacing around [[https://github.com/xwl/electric-spacing][operators] in math expressions.].
 ;; Backspace over the whitespaces to remove them when none are permitted.
 ;; git clone https://github.com/walmes/electric-spacing.git into ~/latex-tree-emacs30/manual-packages
 ;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing.el")
 ;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing-r.el")
+;; ==> adjust here
 (add-to-list 'load-path "~/latex-tree-emacs30/manual-packages/electric-spacing")
 (use-package electric-spacing)
 (use-package electric-spacing-r)
@@ -1338,6 +1366,8 @@ ARG is the thing being completed in the minibuffer."
 (setq electric-pair-inhibit-predicate #'my-inhibit-electric-pair-mode)
 
 
+
+;; ==> adjust here
 (use-package elfeed)
 (setq elfeed-curl-program-name "/opt/local/bin/curl")
 (setq elfeed-search-title-max-width 130)
@@ -2408,12 +2438,17 @@ With a prefix ARG, remove start location."
          (file+head "reference/${title}.org" "#+title: ${title}\n#+ROAM_TAGS: %? \n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
+         ("l" "clipboard" plain #'org-roam-caputre--get-point "%i%a" 
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n#+ROAM_TAGS: %?"
+         :unnarrowed t
+         :prepend t
+         :jump-to-captured t)
         ("a" "article" plain "%?"
          :if-new
          (file+head "articles/${title}.org" "#+title: ${title}\n#+ROAM_TAGS:  %? :article:\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)))
-
 
 (setq org-roam-node-display-template
     (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -2582,6 +2617,7 @@ With a prefix ARG, remove start location."
 ;;[[https://github.com/mmagnus/emacs-pdb-mode][Gitub repo]]]
 
 
+;; ==> adjust here
 ;; pdb.el
 (load-file "~/latex-tree-emacs30/manual-packages/emacs-pdb-mode/pdb-mode.el")
 (setq pdb-rasmol-name "/Applications/PyMOL.app/Contents/bin/pymol")
@@ -2786,7 +2822,7 @@ With a prefix ARG, remove start location."
     ;; Amend this to the directory where you keep Combobulate's source
     ;; code.
     :load-path ("/Users/blaine/latex-tree-emacs30/manual-packages/combobulate")))
-
+;; ==> adjust here
 
 
 
