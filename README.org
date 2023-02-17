@@ -47,4 +47,6 @@ The Emacs binary starts up in a flash without a init.el.
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 Also note that the bookmarks are not limited to registers in files; they can be directories or PDFs when using the bookmarks+.el package.
 For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
-The dashboard is a way of keeping track of material that needs to be read soon.
+The dashboard is a way of keeping track of material that needs to be read soon. 
+
+With bookmarks+, you add bookmarks to websites with the src_sh[:exports code]{C-x x c u} keybinding. You can add bookmarks to directories by entering C-x d and with the directory name selected in the dired buffer, enter C-x x m to add the directory as a bookmark. 
