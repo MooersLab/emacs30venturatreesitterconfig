@@ -120,6 +120,7 @@
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
 (add-to-list 'package-selected-packages 'greader)
 (add-to-list 'package-selected-packages 'helpful)
+(add-to-list 'package-selected-packages 'helm)
 (add-to-list 'package-selected-packages 'highlight-defined)
 ;; (add-to-list 'package-selected-packages 'highlight-parentheses)
 (add-to-list 'package-selected-packages 'impatient-mode)
@@ -1289,7 +1290,6 @@ ARG is the thing being completed in the minibuffer."
 ;; To drag a word. Just place the cursor on the word and press
 ;; **<M-left>** and **<M-right>**.
 (use-package drag-stuff)
-(drag-stuff-global-mode t)
 
 ;;**E
 
@@ -1554,6 +1554,34 @@ concatenated."
 
 
 ;;** H
+
+(use-package helm
+   :config 
+    (helm-autoresize-mode 1)
+    (helm-mode 0)
+    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
+      (setq helm-autoresize-max-height 0)
+      (setq helm-autoresize-min-height 20)
+      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+      (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+      (global-set-key (kbd "C-c h") 'helm-command-prefix)
+      (global-unset-key (kbd "C-x c"))
+      (global-set-key (kbd "M-x") #'helm-M-x)
+      (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+      (global-set-key (kbd "C-x C-f") #'helm-find-files)
+    (helm-autoresize-mode 1)
+    (helm-mode 0)
+    )
+
+
+
+
 ;; *** helpful
 ;; Note that the built-in `describe-function' includes both functions
 ;; and macros. `helpful-function' is functions only, so we provide
@@ -1947,76 +1975,76 @@ concatenated."
 
 
 ;; This following overlaps with the function of the drug-stuff package.
-;; ;;### Move selected regions up or down
-;; ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
-;; ;; Thank you to DivineDomain for the suggested upgrade.
-;; ;; Source: https://www.emacswiki.org/emacs/MoveText 
-;; (defun move-text-internal (arg)
-;;   (cond
-;;    ((and mark-active transient-mark-mode)
-;;     (if (> (point) (mark))
-;;         (exchange-point-and-mark))
-;;     (let ((column (current-column))
-;;           (text (delete-and-extract-region (point) (mark))))
-;;       (forward-line arg)
-;;       (move-to-column column t)
-;;       (set-mark (point))
-;;       (insert text)
-;;       (exchange-point-and-mark)
-;;       (setq deactivate-mark nil)))
-;;    (t
-;;     (let ((column (current-column)))
-;;       (beginning-of-line)
-;;       (when (or (> arg 0) (not (bobp)))
-;;         (forward-line)
-;;         (when (or (< arg 0) (not (eobp)))
-;;           (transpose-lines arg))
-;;         (forward-line -1))
-;;       (move-to-column column t)))))
-;; 
-;; (defun move-line-region-down (arg)
-;;   "Move region (transient-mark-mode active) or current line
-;;   arg lines down."
-;;   (interactive "*p")
-;;   (move-text-internal arg))
-;; 
-;; (defun move-line-region-up (arg)
-;;   "Move region (transient-mark-mode active) or current line
-;;   arg lines up."
-;;   (interactive "*p")
-;;   (move-text-internal (- arg)))
-;; 
-;; (global-set-key (kbd "M-<down>") 'move-line-region-down)
-;; (global-set-key (kbd "M-<up>") 'move-line-region-up)
+;;### Move selected regions up or down
+;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
+;; Thank you to DivineDomain for the suggested upgrade.
+;; Source: https://www.emacswiki.org/emacs/MoveText 
+(defun move-text-internal (arg)
+  (cond
+   ((and mark-active transient-mark-mode)
+    (if (> (point) (mark))
+        (exchange-point-and-mark))
+    (let ((column (current-column))
+          (text (delete-and-extract-region (point) (mark))))
+      (forward-line arg)
+      (move-to-column column t)
+      (set-mark (point))
+      (insert text)
+      (exchange-point-and-mark)
+      (setq deactivate-mark nil)))
+   (t
+    (let ((column (current-column)))
+      (beginning-of-line)
+      (when (or (> arg 0) (not (bobp)))
+        (forward-line)
+        (when (or (< arg 0) (not (eobp)))
+          (transpose-lines arg))
+        (forward-line -1))
+      (move-to-column column t)))))
 
-;; ;;### Move lines up an down
+(defun move-line-region-down (arg)
+  "Move region (transient-mark-mode active) or current line
+  arg lines down."
+  (interactive "*p")
+  (move-text-internal arg))
+
+(defun move-line-region-up (arg)
+  "Move region (transient-mark-mode active) or current line
+  arg lines up."
+  (interactive "*p")
+  (move-text-internal (- arg)))
+
+(global-set-key (kbd "M-<down>") 'move-line-region-down)
+(global-set-key (kbd "M-<up>") 'move-line-region-up)
+
+;;### Move lines up an down
 ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
 ;; Retained for those who have not mastered regions.
-;; (defun move-line (n)
-;;   "Move the current line up or down by N lines."
-;;   (interactive "p")
-;;   (setq col (current-column))
-;;   (beginning-of-line) (setq start (point))
-;;   (end-of-line) (forward-char) (setq end (point))
-;;   (let ((line-text (delete-and-extract-region start end)))
-;;     (forward-line n)
-;;     (insert line-text)
-;;     ;; restore point to original column in moved line
-;;     (forward-line -1)
-;;     (forward-char col)))
+(defun move-line (n)
+  "Move the current line up or down by N lines."
+  (interactive "p")
+  (setq col (current-column))
+  (beginning-of-line) (setq start (point))
+  (end-of-line) (forward-char) (setq end (point))
+  (let ((line-text (delete-and-extract-region start end)))
+    (forward-line n)
+    (insert line-text)
+    ;; restore point to original column in moved line
+    (forward-line -1)
+    (forward-char col)))
 
-;; (defun move-line-up (n)
-;;   "Move the current line up by N lines."
-;;   (interactive "p")
-;;   (move-line (if (null n) -1 (- n))))
+(defun move-line-up (n)
+  "Move the current line up by N lines."
+  (interactive "p")
+  (move-line (if (null n) -1 (- n))))
 
-;; (defun move-line-down (n)
-;;   "Move the current line down by N lines."
-;;   (interactive "p")
-;;   (move-line (if (null n) 1 n)))
+(defun move-line-down (n)
+  "Move the current line down by N lines."
+  (interactive "p")
+  (move-line (if (null n) 1 n)))
 
-;; (global-set-key (kbd "M-<up>") 'move-line-up)
-;; (global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-<up>") 'move-line-up)
+(global-set-key (kbd "M-<down>") 'move-line-down)
 
 ;; Sometimes we want to edit multiple places in the file at the same time. 
 ;; Most of the time this is just adding the same characters multiple places 
@@ -2926,10 +2954,11 @@ With a prefix ARG, remove start location."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "/Users/blaine/latex-tree-emacs30/bookmarks")
  '(org-agenda-files
    '("/Users/blaine/gtd/tasks/JournalArticles.org" "/Users/blaine/gtd/tasks/Proposals.org" "/Users/blaine/gtd/tasks/Books.org" "/Users/blaine/gtd/tasks/Talks.org" "/Users/blaine/gtd/tasks/Posters.org" "/Users/blaine/gtd/tasks/ManuscriptReviews.org" "/Users/blaine/gtd/tasks/Private.org" "/Users/blaine/gtd/tasks/Service.org" "/Users/blaine/gtd/tasks/Teaching.org" "/Users/blaine/gtd/tasks/Workshops.org"))
- '(org-pomodoro-ticking-frequency 1)
- '(org-pomodoro-ticking-sound-p nil)
+ '(org-pomodoro-ticking-frequency 1 t)
+ '(org-pomodoro-ticking-sound-p nil t)
  '(package-selected-packages
    '(drag-stuff greader citar bookmark+ quelpa-use-package citar-org-roam org-noter-pdftools projectile yasnippet which-key sound-wav rainbow-delimiters powerline pdf-tools org-roam-ui org-roam-timestamps org-roam-bibtex org-roam org-pomodoro org-pdftools maxframe exec-path-from-shell ef-themes dirvish dired-subtree dashboard dashboard-hackernews better-defaults auto-complete-auctex auto-complete auctex atomic-chrome all-the-icons)))
 (custom-set-faces
