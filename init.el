@@ -260,6 +260,53 @@
 ;;   (maximize-frame)))
 ;; ;; (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen) ;; conflicts with an auctex command to insert an \item in a list.
 
+;;### Backups
+(setq vc-make-backup-files t)
+
+(setq version-control t ;; Use version numbers for backups.
+        kept-new-versions 10 ;; Number of newest versions to keep.
+        kept-old-versions 0 ;; Number of oldest versions to keep.
+        delete-old-versions t ;; Don't ask to delete excess backup versions.
+        backup-by-copying t) ;; Copy all files, don't rename them.
+;; If you want to avoid 'backup-by-copying', you can instead use
+;;
+;; (setq backup-by-copying-when-linked t)
+;;
+;; but that makes the second, "per save" backup below not run, since
+;; buffers with no backing file on disk are not backed up, and
+;; renaming removes the backing file.  The "per session" backup will
+;; happen in any case, you'll just have less consistent numbering of
+;; per-save backups (i.e. only the second and subsequent save will
+;; result in per-save backups).
+
+;; If you want to avoid backing up some files, e.g. large files,
+;; then try setting 'backup-enable-predicate'.  You'll want to
+;; extend 'normal-backup-enable-predicate', which already avoids
+;; things like backing up files in '/tmp'.
+
+;; Default and per-save backups go here:
+(setq backup-directory-alist '(("" . "~/latex-tree-emacs30/backup/per-save")))
+
+ (defun force-backup-of-buffer ()
+    ;; Make a special "per session" backup at the first save of each
+    ;; emacs session.
+    (when (not buffer-backed-up)
+      ;; Override the default parameters for per-session backups.
+      (let ((backup-directory-alist '(("" . "~/latex-tree-emacs30/backup/per-session")))
+            (kept-new-versions 3))
+        (backup-buffer)))
+    ;; Make a "per save" backup on each save.  The first save results in
+    ;; both a per-session and a per-save backup, to keep the numbering
+    ;; of per-save backups consistent.
+    (let ((buffer-backed-up nil))
+      (backup-buffer)))
+
+(add-hook 'before-save-hook  'force-backup-of-buffer)
+
+
+
+
+
 ;;### Turn on font-locking or syntax highlighting
 (global-font-lock-mode t)
 
@@ -1555,31 +1602,30 @@ concatenated."
 
 ;;** H
 
-(use-package helm
-   :config 
-    (helm-autoresize-mode 1)
-    (helm-mode 0)
-    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t
-      helm-echo-input-in-header-line t)
-      (setq helm-autoresize-max-height 0)
-      (setq helm-autoresize-min-height 20)
-      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-      (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-      (global-set-key (kbd "C-c h") 'helm-command-prefix)
-      (global-unset-key (kbd "C-x c"))
-      (global-set-key (kbd "M-x") #'helm-M-x)
-      (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-      (global-set-key (kbd "C-x C-f") #'helm-find-files)
-    (helm-autoresize-mode 1)
-    (helm-mode 0)
-    )
+(use-package helm)
 
 
+;;    :config 
+;;     (helm-autoresize-mode 1)
+;;     (helm-mode 0)
+;;     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+;;       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+;;       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+;;       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+;;       helm-ff-file-name-history-use-recentf t
+;;       helm-echo-input-in-header-line t)
+;;       (setq helm-autoresize-max-height 0)
+;;       (setq helm-autoresize-min-height 20)
+;;       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+;;       (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+;;       (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+;;       (global-set-key (kbd "C-c h") 'helm-command-prefix)
+;;       (global-unset-key (kbd "C-x c"))
+;;       (global-set-key (kbd "M-x") #'helm-M-x)
+;;       (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+;;       (global-set-key (kbd "C-x C-f") #'helm-find-files)
+;;     (helm-autoresize-mode 1)
+;;     (helm-mode 0)
 
 
 ;; *** helpful
@@ -1621,9 +1667,71 @@ concatenated."
 ;;**I
 
 ;;*** ido-mode
+;; Idomode is a built-in completion framework for moving to a destination that you are certain about.
+;; Use other completion frameworks, like helm, for when you are uncertain about where you want to go.
+;; ido-mode useful for finding files and switching buffers and directories.
+;; ido-mode is often used with C-x C-f, C-x d, and C-x b.
+;;
+;; ido-mode needs flex-mathcing enabled to use fuzzy matching.
+;; This feature greatly eases file finding, buffer switching, and directory switching.
+;; 
+;; ido-mode presents the candidates in a horizontal list. 
+;; Type the name of the option that you want to narrow the list.
+;; You can cycle forward through the options by entering C-s repeatedly until the point lands on the desired candidate.
+;; The right arrow has the same effect but reaching for it will break your tempo.
+;; You can cycle in reverse by entering C-r repeatedly.
+;; The left arrow has the same effect but reaching for it will break your tempo.
+;;
+;; Backspace works in a context dependent manner in ido-mode.
+;; It deletes one letter at a time when making file selections from a list of candidates.
+;; A single backspace removes the entire directory names when you are editing a file path.
+;;
+;; ido-mode is smart about file paths.
+;; It recognizes ~/ for the home directory and // for the root directory.
+;; If you know the fullpath, ignore what is in the minibuffer and start typing the fullpath.
+;;
+;; When you are the using C-x C-f to find a file, you can select the folder containing the file and enter C-d to open a Dired buffer for that folder. 
+;; Likewise, after issuing C-x d, select the the folder containing the file and enter C-d to open a Dired buffer for that folder. 
+
 (ido-mode 1)
 (setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
+(setq ido-enable-flex-matching t) ; partial file and buffer names work. 
+
+
+;; The article (https://www.masteringemacs.org/article/introduction-to-ido-mode) by Mickey Petersen descirbe additional configurations for ido-mode.
+;; 
+;; Find file at point (ffap) can be enabled with the following setting.
+;; Mickey recommends also disabling URL ffap with the second setting below.
+
+(setq ido-use-filename-at-point 'guess)
+(setq ido-use-url-at-point nil)
+
+
+;; Turn off the prompting for permission to create a new buffer.
+(setq ido-create-new-buffer 'always)
+
+;; You can control the order in files are displayed in the minibuffer by their extension if you tend to be more likely to open files of a certain type.
+;;
+(setq ido-file-extensions-order '(".tex" ".org" ".md" ".pdf" ".txt" ".el" ".py" ".R" ".clj" ".html"))
+
+;; You can toggle ido-mode on and off temporarily by entering C-b when making a buffer selection and C-f when making a file a selection.
+;; This feature is useful when the autocompletion cannot work when you are trying to create a new folder or new file.
+;;
+;; C-c toggles whether you should ignore case when searing buffer and file names.
+;; C-p toggles prefix matching; that is, when on, ido will only match the start of a filename rather than the any letters in it.
+;; C-t toggles the matching of any Emacs regular expression; this could be very powerful!
+;;
+;; C-<space> or C-@ restricts the selection list to your current input.
+;; When started with C-x C-f, M-d will extend the search for the files in the subfolders of the current folder.
+;; When started with C-x C-f, M-m will create a new subfolder and C-k will delete the selected file.
+;; The last keybinding looks dangerous to me.
+;; When started with C-x b, C-k kills the currently focused buffer.
+;; 
+;; When using C-x C-f, ido caches recently visited directories; these are known as work directories.
+;; You can cycle through the previous or next work directories by entering M-p and M-n.
+;; You can enter C-k to remove the current directory from the list of work directories.
+;; You can search the list of work directories by entering M-s.
+
 
 
 ;;*** ielm
