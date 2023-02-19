@@ -9,13 +9,19 @@ See [[https://github.com/MooersLab/emacs30macos13treesitter][this repo]] for a p
 These protocols should work with Emacs 29.0.5.
 
 This configuration file is also a rewrite of my basic configuration file with the packages in use listed at the top to speed up the start-up of Emacs.
-The *package* package is used to install the missing packages rather than 
+The *package* package is used to install the missing packages rather than by using the `:enusre t` option in
 *use-package*, but *use-package* is still used to customize packages and load packages when needed.
 This massive rearrangement reduced the start-up time by about 30%.
 Many thanks go to Jeff Bowman for this suggestion.
 
+However, after a two weeks of use, I am having trouble with not all of the elisp file in the elpa folder compiling after upgradng packages.
+Fixing this issue manually can take 30 minutes.
+I did not have this issue when I used `:enusre t` with use-package.
+I recommend not updating your packages frequently; once a month may be frequent enough.
+I also recommend using the emacs-server for instant access.
+
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
-There are several Mac specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
+There are several Mac-specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
 There are also several file paths that may need customizing. 
 Both kinds of sites are marked with *;; ==> adjust here* in the init.el file.
 
