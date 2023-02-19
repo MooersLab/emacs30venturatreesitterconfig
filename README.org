@@ -35,10 +35,13 @@ You may have to byte-recompile these packages.
 The content of the configuration file supports my academic research writing with occassional code writing for research purposes.
 
 - Configured for structured editing with combobulate and tree-sitter.
-- Uses the Vertico and friends for completion.
-- Supports org-mode, org-agenda, org-babel, and org-roam.
+- Uses the Vertico and friends for completion by defualt. I love the in-line documentation from Marginalia.
+- Can opt in the use of helm.
+- Configured for org-mode, org-agenda, org-babel, and org-roam to get organized, track notes, and do literate programming.
 - Supports pdf-tools.
-- Uses booksmarks+, dired+, and iscicles (the last is off by default--it is a heavy-duty completion engine for the minibuffer). These require custom installation because they are on the Emacs Wiki and not in a repository.  
+- Uses booksmarks+, dired+, and iscicles (the last is off by default--it is a heavy-duty completion engine for the minibuffer). These require custom installation because they are on the Emacs Wiki and not in a repository. I find it much easier to bookmark URLs of heavily visited sites than to store them in a html file.
+- Uses evil-nerd-commenter for smart commenting of lines and regions.
+- Configured for Python, R, and Clojure programming.
 
 ** What the landing page (dashboard) will resemble when first loaded
 
