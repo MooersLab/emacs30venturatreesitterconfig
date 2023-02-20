@@ -9,16 +9,16 @@ See [[https://github.com/MooersLab/emacs30macos13treesitter][this repo]] for a p
 These protocols should work with Emacs 29.0.5.
 
 This configuration file is also a rewrite of my basic configuration file with the packages in use listed at the top to speed up the start-up of Emacs.
-The *package* package is used to install the missing packages rather than by using the `:enusre t` option in
+The *package* package is used to install the missing packages rather than by using the `:ensure t` option in
 *use-package*, but *use-package* is still used to customize packages and load packages when needed.
 This massive rearrangement reduced the start-up time by about 30%.
 Many thanks go to Jeff Bowman for this suggestion.
 
-However, after a two weeks of use, I am having trouble with not all of the elisp file in the elpa folder compiling after upgradng packages.
-Fixing this issue manually can take 30 minutes.
-I did not have this issue when I used `:enusre t` with use-package.
+However, after two weeks of use, I am having trouble with not all of the elisp files in the elpa folder compiled after upgrading packages.
+Fixing this issue can take 30 minutes.
+I did not have this issue when I used `:ensure t` with use-package.
 I recommend not updating your packages frequently; once a month may be frequent enough.
-I also recommend using the emacs-server for instant access.
+I also recommend using the emacs-server and emacsclient for instant access.
 
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
 There are several Mac-specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
@@ -32,16 +32,34 @@ You may have to byte-recompile these packages.
 
 ** Features
 
-The content of the configuration file supports my academic research writing with occassional code writing for research purposes.
+The content of the configuration file supports my academic research writing with occasional code writing for research purposes.
 
 - Configured for structured editing with combobulate and tree-sitter.
-- Uses the Vertico and friends for completion by defualt. I love the in-line documentation from Marginalia.
-- Can opt in the use of helm.
+- Uses the Vertico and friends for completion by default. I love the in-line documentation from Marginalia.
+- Fuzzy matching is turned one for use in Ido.
+- Can opt in the use of Helm or Icicles.
+- Helm's helm-google-suggest command is very cool.
 - Configured for org-mode, org-agenda, org-babel, and org-roam to get organized, track notes, and do literate programming.
+- Supports org-pomodoro.
 - Supports pdf-tools.
-- Uses booksmarks+, dired+, and iscicles (the last is off by default--it is a heavy-duty completion engine for the minibuffer). These require custom installation because they are on the Emacs Wiki and not in a repository. I find it much easier to bookmark URLs of heavily visited sites than to store them in a html file.
+- Uses booksmarks+, dired+, and iscicles (the last is off by default--it is a heavy-duty completion engine for the minibuffer). These require custom installation because they are on the Emacs Wiki and not in a repository. 
 - Uses evil-nerd-commenter for smart commenting of lines and regions.
-- Configured for Python, R, and Clojure programming.
+- Configured for Clojure, Python, and R programming.
+- Supports the use of LaTeX via AUCTeX.
+
+I invoke org-pomodoro with the point on a Project's headline in a org file to generate the logbook for storing the record of pomodoros.
+I store my lists of manuscirpts, grant applications, service activities, etc in separate org files rather than in a single task.org folder because I have too many projects for a singe org file.
+I bookmarked the headlines for speicfic projects to acclerate my access to a project via the *Bookmarks List* buffer.
+I use the area under a project headline to store the logbook and over relevant information.
+Perhaps I would not need the bookmarks if I used org-agenda for scheduling my daily activites, which I do not because it is too hard to stay on top of everything.
+I just use org-agenda to schedule upcoming meetings.
+
+Note that the bookmarks+ package runs on top of the built-in bookmarks.el package. 
+Bookmarks+ can bookmark a much wide array of items.
+You can bookmark PDFs for later reading and websites of interest.
+I find it much easier to bookmark URLs of heavily visited sites than to store them in my private index.html file.
+You can also bookmark project directories and even dired buffers.
+
 
 ** What the landing page (dashboard) will resemble when first loaded
 
@@ -58,8 +76,13 @@ The Emacs binary starts up in a flash without a init.el.
 [[./images/emacs30dashboard.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
-Also note that the bookmarks are not limited to registers in files; they can be directories or PDFs when using the bookmarks+.el package.
 For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
-The dashboard is a way of keeping track of material that needs to be read soon. 
+The bookmarks are a way of keeping track of material that needs to be read soon. 
 
-With bookmarks+, you add bookmarks to websites with the ~C-x x c u~ keybinding. You can also add bookmarks to directories. Navigate to the directory of interest in a Dired buffer. With the directory name selected in the Dired buffer, enter ~C-x x m~ to add the directory as a bookmark. Remember to save the *bookmarks list* buffer. I add bookmarks to my writing projects on Overleaf, to the project folder in my local drive, and to a PROJ headline in my journalArticles.org file where I store my logbook for tracking my pomodoros on a project. I can pop into any of those three locations in a flash via the clock of a mouse thanks to bookmarks+ and its developer Drew Adams. 
+With bookmarks+, you add bookmarks to websites with the ~C-x x c u~ keybinding. 
+You can also add bookmarks to directories. 
+Navigate to the directory of interest in a Dired buffer. 
+With the directory name selected in the Dired buffer, enter ~C-x x m~ to add the directory as a bookmark. 
+Remember to save the *bookmarks list* buffer. 
+I add bookmarks to my writing projects on Overleaf, to the project folder in my local drive, and to a PROJ headline in my journalArticles.org file where I store my logbook for tracking my pomodoros on a project. 
+I can pop into any of those three locations in a flash via the click of a mouse thanks to bookmarks+ and its developer Drew Adams. 
