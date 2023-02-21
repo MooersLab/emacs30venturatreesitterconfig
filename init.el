@@ -238,6 +238,22 @@
 (set-default 'truncate-lines t) ;; do not wrap
 (prefer-coding-system 'utf-8) ;; use UTF-8
 
+;; Zoom
+(set-face-attribute 'default nil :height 128)
+
+;; Save History
+(savehist-mode +1)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+
+
+;; Size of the starting Window
+(setq initial-frame-alist '((top . 1)
+			    (left . 450)
+			    (width . 101)
+			    (height . 70)))
+
+
+
 
 ;; ==> adjust here
 ;;### Shell configuration
@@ -563,216 +579,208 @@
 
 ;;** A
 
-;;; crafted-completion.el --- Crafted Completion Configuration -*- lexical-binding: t; -*-
-
-(use-package cape)
-(use-package consult)
-(use-package corfu)
-(use-package embark-consult)
-(use-package embark)
-(use-package orderless)
-(use-package vertico)
-(use-package marginalia)
 
 
-;;*** Auto-completion from Gavin Freeborn
-;; https://github.com/Gavinok
+;;;;*** Auto-completion from Gavin Freeborn
+;;;; https://github.com/Gavinok
+;;;;
+
+;;(use-package vertico
+;;  :init
+;;  ;; Enable vertico using the vertico-flat-mode
+;;  (require 'vertico-directory)
+;;  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
 ;;
-
-(use-package vertico
-  :init
-  ;; Enable vertico using the vertico-flat-mode
-  (require 'vertico-directory)
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-
-  (use-package orderless
-    :commands (orderless)
-    :custom (completion-styles '(orderless flex)))
-  (load (concat user-emacs-directory
-                "lisp/affe-config.el"))
-  (use-package marginalia
-    :custom
-    (marginalia-annotators
-     '(marginalia-annotators-heavy marginalia-annotators-light nil))
-    :init
-    (marginalia-mode))
-  (vertico-mode t)
-  :config
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
-;;;; Extra Completion Functions
-(use-package consult
-  :after vertico
-  :bind (("C-x b"       . consult-buffer)
-         ("C-x C-k C-k" . consult-kmacro)
-         ("M-y"         . consult-yank-pop)
-         ("M-g g"       . consult-goto-line)
-         ("M-g M-g"     . consult-goto-line)
-         ("M-g f"       . consult-flymake)
-         ("M-g i"       . consult-imenu)
-         ("M-s l"       . consult-line)
-         ("M-s L"       . consult-line-multi)
-         ("M-s u"       . consult-focus-lines)
-         ("M-s g"       . consult-ripgrep)
-         ("M-s M-g"     . consult-ripgrep)
-         ("C-x C-SPC"   . consult-global-mark)
-         ("C-x M-:"     . consult-complex-command)
-         ("C-c n"       . consult-org-agenda)
-         ("C-c m"       . my/notegrep)
-         :map help-map
-         ("a" . consult-apropos)
-         :map minibuffer-local-map
-         ("M-r" . consult-history))
-  :custom
-  (completion-in-region-function #'consult-completion-in-region)
-  :config
-  (defun my/notegrep ()
-    "Use interactive grepping to search my notes"
-    (interactive)
-    (consult-ripgrep org-directory))
-  (recentf-mode t))
-(use-package consult-dir
-  :ensure t
-  :bind (("C-x C-j" . consult-dir)
-         ;; :map minibuffer-local-completion-map
-         :map vertico-map
-         ("C-x C-j" . consult-dir)))
-(use-package consult-recoll
-  :bind (("M-s r" . counsel-recoll)
-         ("C-c I" . recoll-index))
-  :init
-  (setq consult-recoll-inline-snippets t)
-  :config
-  (defun recoll-index (&optional arg) (interactive)
-    (start-process-shell-command "recollindex"
-                                 "*recoll-index-process*"
-                                 "recollindex")))
-
-(use-package embark
-  :ensure t
-  :bind
-  ;; pick some comfortable binding
-  (("C-="                     . embark-act)
-   ([remap describe-bindings] . embark-bindings)
-   :map embark-file-map
-   ("C-d"                     . dragon-drop)
-   :map embark-defun-map
-   ("M-t" . chatgpt-gen-tests-for-region)
-   :map embark-general-map
-   ("M-c" . chatgpt-prompt)
-   :map embark-region-map
-   ("?"   . chatgpt-explain-region)
-   ("M-f" . chatgpt-fix-region)
-   ("M-f" . chatgpt-fix-region))
-  :custom
-  (embark-indicators
-   '(embark-highlight-indicator
-     embark-isearch-highlight-indicator
-     embark-minimal-indicator))
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-  (setq embark-prompter 'embark-completing-read-prompter)
-  :config
-  (defun search-in-source-graph (text))
-  (defun dragon-drop (file)
-    (start-process-shell-command "dragon-drop" nil
-                                 (concat "dragon-drop " file))))
-;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (:all embark consult)
-  :demand t
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
-;; For uploading files
-(use-package 0x0
-  :ensure t
-  :after embark
-  :bind (
-         :map embark-file-map
-         ("U"    . 0x0-upload-file)
-         :map embark-region-map
-         ("U"    . 0x0-dwim))
-  :commands (0x0-dwim 0x0-upload-file))
-
-;;;; Code Completion
-(use-package corfu
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                 ; Allows cycling through candidates
-  (corfu-auto t)                  ; Enable auto completion
-  (corfu-auto-prefix 2)
-  (corfu-auto-delay 0.0)
-  (corfu-popupinfo-delay '(0.5 . 0.2))
-  (corfu-preview-current 'insert) ; Do not preview current candidate
-  (corfu-preselect-first nil)
-  (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
-
-  ;; Optionally use TAB for cycling, default is `corfu-complete'.
-  :bind (:map corfu-map
-              ("M-SPC"      . corfu-insert-separator)
-              ("TAB"        . corfu-next)
-              ([tab]        . corfu-next)
-              ("S-TAB"      . corfu-previous)
-              ([backtab]    . corfu-previous)
-              ("S-<return>" . corfu-insert)
-              ("RET"        . nil))
-
-  :init
-  (global-corfu-mode)
-  (corfu-history-mode)
-  (corfu-popupinfo-mode) ; Popup completion info
-  :config
-  (add-hook 'eshell-mode-hook
-            (lambda () (setq-local corfu-quit-at-boundary t
-                              corfu-quit-no-match t
-                              corfu-auto nil)
-              (corfu-mode))))
-(use-package cape
-  :defer 10
-  :bind ("C-c f" . cape-file)
-  :init
-  ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (defalias 'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
-  (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
-  (cl-pushnew #'cape-file completion-at-point-functions)
-  :config
-  ;; Silence then pcomplete capf, no errors or messages!
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-
-  ;; Ensure that pcomplete does not write to the buffer
-  ;; and behaves as a pure `completion-at-point-function'.
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
-(use-package yasnippet
-  :ensure t
-  :init
-  (setq yas-nippet-dir "~/.emacs.d/snippets")
-  (yas-global-mode))
-(use-package yasnippet-snippets
-  :ensure t :after yasnippet)
-(use-package cape-yasnippet
-  :ensure nil
-  :quelpa (cape-yasnippet :fetcher github :repo "elken/cape-yasnippet")
-  :after yasnippet
-  :hook ((prog-mode . yas-setup-capf)
-         (text-mode . yas-setup-capf)
-         (lsp-mode  . yas-setup-capf)
-         (sly-mode  . yas-setup-capf))
-  :bind (("C-c y" . cape-yasnippet)
-         ("M-+"   . yas-insert-snippet))
-  :config
-  (defun yas-setup-capf ()
-    (setq-local completion-at-point-functions
-                (cons 'cape-yasnippet
-                      completion-at-point-functions)))
-  (push 'cape-yasnippet completion-at-point-functions))
+;;  (use-package orderless
+;;    :commands (orderless)
+;;    :custom (completion-styles '(orderless flex)))
+;;  (load (concat user-emacs-directory
+;;                "lisp/affe-config.el"))
+;;  (use-package marginalia
+;;    :custom
+;;    (marginalia-annotators
+;;     '(marginalia-annotators-heavy marginalia-annotators-light nil))
+;;    :init
+;;    (marginalia-mode))
+;;  (vertico-mode t)
+;;  :config
+;;  ;; Do not allow the cursor in the minibuffer prompt
+;;  (setq minibuffer-prompt-properties
+;;        '(read-only t cursor-intangible t face minibuffer-prompt))
+;;  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+;;  ;; Enable recursive minibuffers
+;;  (setq enable-recursive-minibuffers t))
+;;
+;;;;;; Extra Completion Functions
+;;(use-package consult
+;;  :after vertico
+;;  :bind (("C-x b"       . consult-buffer)
+;;         ("C-x C-k C-k" . consult-kmacro)
+;;         ("M-y"         . consult-yank-pop)
+;;         ("M-g g"       . consult-goto-line)
+;;         ("M-g M-g"     . consult-goto-line)
+;;         ("M-g f"       . consult-flymake)
+;;         ("M-g i"       . consult-imenu)
+;;         ("M-s l"       . consult-line)
+;;         ("M-s L"       . consult-line-multi)
+;;         ("M-s u"       . consult-focus-lines)
+;;         ("M-s g"       . consult-ripgrep)
+;;         ("M-s M-g"     . consult-ripgrep)
+;;         ("C-x C-SPC"   . consult-global-mark)
+;;         ("C-x M-:"     . consult-complex-command)
+;;         ("C-c n"       . consult-org-agenda)
+;;         ("C-c m"       . my/notegrep)
+;;         :map help-map
+;;         ("a" . consult-apropos)
+;;         :map minibuffer-local-map
+;;         ("M-r" . consult-history))
+;;  :custom
+;;  (completion-in-region-function #'consult-completion-in-region)
+;;  :config
+;;  (defun my/notegrep ()
+;;    "Use interactive grepping to search my notes"
+;;    (interactive)
+;;    (consult-ripgrep org-directory))
+;;  (recentf-mode t))
+;;(use-package consult-dir
+;;  :ensure t
+;;  :bind (("C-x C-j" . consult-dir)
+;;         ;; :map minibuffer-local-completion-map
+;;         :map vertico-map
+;;         ("C-x C-j" . consult-dir)))
+;;
+;;(use-package consult-recoll
+;;  :bind (("M-s r" . counsel-recoll)
+;;         ("C-c I" . recoll-index))
+;;  :init
+;;  (setq consult-recoll-inline-snippets t)
+;;  :config
+;;  (defun recoll-index (&optional arg) (interactive)
+;;    (start-process-shell-command "recollindex"
+;;                                 "*recoll-index-process*"
+;;                                 "recollindex")))
+;;
+;;(use-package embark
+;;  :ensure t
+;;  :bind
+;;  ;; pick some comfortable binding
+;;  (("C-="                     . embark-act)
+;;   ([remap describe-bindings] . embark-bindings)
+;;   :map embark-file-map
+;;   ("C-d"                     . dragon-drop)
+;;   :map embark-defun-map
+;;   ("M-t" . chatgpt-gen-tests-for-region)
+;;   :map embark-general-map
+;;   ("M-c" . chatgpt-prompt)
+;;   :map embark-region-map
+;;   ("?"   . chatgpt-explain-region)
+;;   ("M-f" . chatgpt-fix-region)
+;;   ("M-f" . chatgpt-fix-region))
+;;  :custom
+;;  (embark-indicators
+;;   '(embark-highlight-indicator
+;;     embark-isearch-highlight-indicator
+;;     embark-minimal-indicator))
+;;  :init
+;;  ;; Optionally replace the key help with a completing-read interface
+;;  (setq prefix-help-command #'embark-prefix-help-command)
+;;  (setq embark-prompter 'embark-completing-read-prompter)
+;;  :config
+;;  (defun search-in-source-graph (text))
+;;  (defun dragon-drop (file)
+;;    (start-process-shell-command "dragon-drop" nil
+;;                                 (concat "dragon-drop " file))))
+;;;; Consult users will also want the embark-consult package.
+;;(use-package embark-consult
+;;  :ensure t
+;;  :after (:all embark consult)
+;;  :demand t
+;;  ;; if you want to have consult previews as you move around an
+;;  ;; auto-updating embark collect buffer
+;;  :hook
+;;  (embark-collect-mode . consult-preview-at-point-mode))
+;;;; For uploading files
+;;(use-package 0x0
+;;  :ensure t
+;;  :after embark
+;;  :bind (
+;;         :map embark-file-map
+;;         ("U"    . 0x0-upload-file)
+;;         :map embark-region-map
+;;         ("U"    . 0x0-dwim))
+;;  :commands (0x0-dwim 0x0-upload-file))
+;;
+;;;;;; Code Completion
+;;(use-package corfu
+;;  ;; Optional customizations
+;;  :custom
+;;  (corfu-cycle t)                 ; Allows cycling through candidates
+;;  (corfu-auto t)                  ; Enable auto completion
+;;  (corfu-auto-prefix 2)
+;;  (corfu-auto-delay 0.0)
+;;  (corfu-popupinfo-delay '(0.5 . 0.2))
+;;  (corfu-preview-current 'insert) ; Do not preview current candidate
+;;  (corfu-preselect-first nil)
+;;  (corfu-on-exact-match nil)      ; Don't auto expand tempel snippets
+;;
+;;  ;; Optionally use TAB for cycling, default is `corfu-complete'.
+;;  :bind (:map corfu-map
+;;              ("M-SPC"      . corfu-insert-separator)
+;;              ("TAB"        . corfu-next)
+;;              ([tab]        . corfu-next)
+;;              ("S-TAB"      . corfu-previous)
+;;              ([backtab]    . corfu-previous)
+;;              ("S-<return>" . corfu-insert)
+;;              ("RET"        . nil))
+;;
+;;  :init
+;;  (global-corfu-mode)
+;;  (corfu-history-mode)
+;;  (corfu-popupinfo-mode) ; Popup completion info
+;;  :config
+;;  (add-hook 'eshell-mode-hook
+;;            (lambda () (setq-local corfu-quit-at-boundary t
+;;                              corfu-quit-no-match t
+;;                              corfu-auto nil)
+;;              (corfu-mode))))
+;;(use-package cape
+;;  :defer 10
+;;  :bind ("C-c f" . cape-file)
+;;  :init
+;;  ;; Add `completion-at-point-functions', used by `completion-at-point'.
+;;  (defalias 'dabbrev-after-2 (cape-capf-prefix-length #'cape-dabbrev 2))
+;;  (add-to-list 'completion-at-point-functions 'dabbrev-after-2 t)
+;;  (cl-pushnew #'cape-file completion-at-point-functions)
+;;  :config
+;;  ;; Silence then pcomplete capf, no errors or messages!
+;;  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+;;
+;;  ;; Ensure that pcomplete does not write to the buffer
+;;  ;; and behaves as a pure `completion-at-point-function'.
+;;  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+;;(use-package yasnippet
+;;  :ensure t
+;;  :init
+;;  (setq yas-nippet-dir "~/.emacs.d/snippets")
+;;  (yas-global-mode))
+;;(use-package yasnippet-snippets
+;;  :ensure t :after yasnippet)
+;;(use-package cape-yasnippet
+;;  :ensure nil
+;;  :quelpa (cape-yasnippet :fetcher github :repo "elken/cape-yasnippet")
+;;  :after yasnippet
+;;  :hook ((prog-mode . yas-setup-capf)
+;;         (text-mode . yas-setup-capf)
+;;         (lsp-mode  . yas-setup-capf)
+;;         (sly-mode  . yas-setup-capf))
+;;  :bind (("C-c y" . cape-yasnippet)
+;;         ("M-+"   . yas-insert-snippet))
+;;  :config
+;;  (defun yas-setup-capf ()
+;;    (setq-local completion-at-point-functions
+;;                (cons 'cape-yasnippet
+;;                      completion-at-point-functions)))
+;;  (push 'cape-yasnippet completion-at-point-functions))
 
 
 
@@ -791,118 +799,129 @@
 ;; 
 ;; ;;; Code:
 ;; 
-;; 
-;; (defun crafted-completion/minibuffer-backward-kill (arg)
-;;   "Delete word or delete up to parent folder when completion is a file.
-;; 
-;; ARG is the thing being completed in the minibuffer."
-;;   (interactive "p")
-;;   (if minibuffer-completing-file-name
-;;       ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
-;;       (if (string-match-p "/." (minibuffer-contents))
-;;           (zap-up-to-char (- arg) ?/)
-;;         (delete-minibuffer-contents))
-;;     (backward-kill-word arg)))
-;; 
-;; ;;; Vertico
-;; ;; (require 'vertico)
-;; 
-;; ;; Straight and Package bundle the vertico package differently. When
-;; ;; using `package.el', the extensions are built into the package and
-;; ;; available on the load-path. When using `straight.el', the
-;; ;; extensions are not built into the package, so have to add that path
-;; ;; to the load-path manually to enable the following require.
-;; ;;(when (eq crafted-package-system 'straight)
-;; ;;  (add-to-list 'load-path
-;; ;;               (expand-file-name "straight/build/vertico/extensions"
-;; ;;                                 straight-base-dir)))
-;; ;;(require 'vertico-directory)
-;; 
-;; (with-eval-after-load 'evil
-;;   (define-key vertico-map (kbd "C-j") 'vertico-next)
-;;   (define-key vertico-map (kbd "C-k") 'vertico-previous)
-;;   (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
-;; 
-;; ;; Cycle back to top/bottom result when the edge is reached
-;; (customize-set-variable 'vertico-cycle t)
-;; 
-;; ;; Start Vertico
-;; (vertico-mode 1)
-;; 
-;; ;;; Marginalia
-;; 
-;; ;; Configure Marginalia
-;; ;; (require 'marginalia)
-;; (customize-set-variable 'marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-;; (marginalia-mode 1)
-;; 
-;; ;; Set some consult bindings
-;; (global-set-key (kbd "C-s") 'consult-line)
-;; (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
-;; 
-;; (setq completion-in-region-function #'consult-completion-in-region)
-;; 
-;; 
-;; ;;; Orderless
-;; 
-;; ;; Set up Orderless for better fuzzy matching
-;; ;;(require 'orderless)
-;; (customize-set-variable 'completion-styles '(orderless basic))
-;; (customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
-;; 
-;; ;; Improve speed and highlighting
-;; (setq orderless-skip-highlighting (lambda () selectrum-is-active))
-;; 
-;; ;; Added 14 Feb 2023
-;; (setq vertico-prescient-mode t)
-;; 
-;; ;;; Embark
-;; ;;(require 'embark)
-;; ;;(require 'embark-consult)
-;; 
-;; (global-set-key [remap describe-bindings] #'embark-bindings)
-;; (global-set-key (kbd "C-.") 'embark-act)
-;; 
-;; ;; Use Embark to show bindings in a key prefix with `C-h`
-;; (setq prefix-help-command #'embark-prefix-help-command)
-;; 
-;; (with-eval-after-load 'embark-consult
-;;   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
-;; 
-;; ;;; Corfu
-;; 
-;; ;; Setup corfu for popup like completion
-;; (customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
-;; (customize-set-variable 'corfu-auto t)  ; Enable auto completion
-;; (customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
-;; (customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
-;; (customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
-;; 
-;; (global-corfu-mode 1)
-;; 
-;; ;;; Cape
-;; 
-;; ;; Setup Cape for better completion-at-point support and more
-;; ;; (require 'cape)
-;; 
-;; ;; Add useful defaults completion sources from cape
-;; (add-to-list 'completion-at-point-functions #'cape-file)
-;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-;; 
-;; ;; Silence the pcomplete capf, no errors or messages!
-;; ;; Important for corfu
-;; (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-;; 
-;; ;; Ensure that pcomplete does not write to the buffer
-;; ;; and behaves as a pure `completion-at-point-function'.
-;; (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
-;; (add-hook 'eshell-mode-hook
-;;           (lambda () (setq-local corfu-quit-at-boundary t
-;;                             corfu-quit-no-match t
-;;                             corfu-auto nil)
-;;             (corfu-mode)))
+;;; crafted-completion.el --- Crafted Completion Configuration -*- lexical-binding: t; -*-
 
-;; The alover completion framework is missing prescient which lists options based on frequecy of use
+(use-package cape)
+(use-package consult)
+(use-package corfu)
+(use-package embark-consult)
+(use-package embark)
+(use-package orderless)
+(use-package vertico)
+(use-package marginalia)
+
+
+(defun crafted-completion/minibuffer-backward-kill (arg)
+  "Delete word or delete up to parent folder when completion is a file.
+
+ARG is the thing being completed in the minibuffer."
+  (interactive "p")
+  (if minibuffer-completing-file-name
+      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+      (if (string-match-p "/." (minibuffer-contents))
+          (zap-up-to-char (- arg) ?/)
+        (delete-minibuffer-contents))
+    (backward-kill-word arg)))
+
+;;; Vertico
+;; (require 'vertico)
+
+;; Straight and Package bundle the vertico package differently. When
+;; using `package.el', the extensions are built into the package and
+;; available on the load-path. When using `straight.el', the
+;; extensions are not built into the package, so have to add that path
+;; to the load-path manually to enable the following require.
+;;(when (eq crafted-package-system 'straight)
+;;  (add-to-list 'load-path
+;;               (expand-file-name "straight/build/vertico/extensions"
+;;                                 straight-base-dir)))
+;;(require 'vertico-directory)
+
+(with-eval-after-load 'evil
+  (define-key vertico-map (kbd "C-j") 'vertico-next)
+  (define-key vertico-map (kbd "C-k") 'vertico-previous)
+  (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
+
+;; Cycle back to top/bottom result when the edge is reached
+(customize-set-variable 'vertico-cycle t)
+
+;; Start Vertico
+(vertico-mode 1)
+
+;;; Marginalia
+
+;; Configure Marginalia
+;; (require 'marginalia)
+(customize-set-variable 'marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+(marginalia-mode 1)
+
+;; Set some consult bindings
+(global-set-key (kbd "C-s") 'consult-line)
+(define-key minibuffer-local-map (kbd "C-r") 'consult-history)
+
+(setq completion-in-region-function #'consult-completion-in-region)
+
+
+;;; Orderless
+
+;; Set up Orderless for better fuzzy matching
+;;(require 'orderless)
+(customize-set-variable 'completion-styles '(orderless basic))
+(customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
+
+;; Improve speed and highlighting
+(setq orderless-skip-highlighting (lambda () selectrum-is-active))
+
+;; Added 14 Feb 2023
+(setq vertico-prescient-mode t)
+
+;;; Embark
+;;(require 'embark)
+;;(require 'embark-consult)
+
+(global-set-key [remap describe-bindings] #'embark-bindings)
+(global-set-key (kbd "C-.") 'embark-act)
+
+;; Use Embark to show bindings in a key prefix with `C-h`
+(setq prefix-help-command #'embark-prefix-help-command)
+
+(with-eval-after-load 'embark-consult
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+
+;;; Corfu
+
+;; Setup corfu for popup like completion
+(customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
+(customize-set-variable 'corfu-auto t)  ; Enable auto completion
+(customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
+(customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
+(customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
+
+(global-corfu-mode 1)
+
+;;; Cape
+
+;; Setup Cape for better completion-at-point support and more
+;; (require 'cape)
+
+;; Add useful defaults completion sources from cape
+(add-to-list 'completion-at-point-functions #'cape-file)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+
+;; Silence the pcomplete capf, no errors or messages!
+;; Important for corfu
+(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+;; Ensure that pcomplete does not write to the buffer
+;; and behaves as a pure `completion-at-point-function'.
+(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
+(add-hook 'eshell-mode-hook
+          (lambda () (setq-local corfu-quit-at-boundary t
+                            corfu-quit-no-match t
+                            corfu-auto nil)
+            (corfu-mode)))
+
+;; The above completion framework is missing prescient which lists options based on frequecy of use
 
 (use-package prescient)
 (use-package corfu-prescient)
@@ -1193,6 +1212,138 @@
   )
 
 
+
+;;;; Copyright (C) 2022
+;;;; SPDX-License-Identifier: MIT
+;;
+;;;; Author: System Crafters Community
+;;
+;;;;; Commentary:
+;;
+;;;; Setup completion packages.  Completion in this sense is more like
+;;;; narrowing, allowing the user to find matches based on minimal
+;;;; inputs and "complete" the commands, variables, etc from the
+;;;; narrowed list of possible choices.
+;;
+;;;;; Code:
+;;
+;;
+;;(defun crafted-completion/minibuffer-backward-kill (arg)
+;;  "Delete word or delete up to parent folder when completion is a file.
+;;
+;;ARG is the thing being completed in the minibuffer."
+;;  (interactive "p")
+;;  (if minibuffer-completing-file-name
+;;      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+;;      (if (string-match-p "/." (minibuffer-contents))
+;;          (zap-up-to-char (- arg) ?/)
+;;        (delete-minibuffer-contents))
+;;    (backward-kill-word arg)))
+;;
+;;;;; Vertico
+;;;; (require 'vertico)
+;;
+;;;; Straight and Package bundle the vertico package differently. When
+;;;; using `package.el', the extensions are built into the package and
+;;;; available on the load-path. When using `straight.el', the
+;;;; extensions are not built into the package, so have to add that path
+;;;; to the load-path manually to enable the following require.
+;;;;(when (eq crafted-package-system 'straight)
+;;;;  (add-to-list 'load-path
+;;;;               (expand-file-name "straight/build/vertico/extensions"
+;;;;                                 straight-base-dir)))
+;;;;(require 'vertico-directory)
+;;
+;;(with-eval-after-load 'evil
+;;  (define-key vertico-map (kbd "C-j") 'vertico-next)
+;;  (define-key vertico-map (kbd "C-k") 'vertico-previous)
+;;  (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
+;;
+;;;; Cycle back to top/bottom result when the edge is reached
+;;(customize-set-variable 'vertico-cycle t)
+;;
+;;;; Start Vertico
+;;(vertico-mode 1)
+;;
+;;;;; Marginalia
+;;
+;;;; Configure Marginalia
+;;;; (require 'marginalia)
+;;(customize-set-variable 'marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+;;(marginalia-mode 1)
+;;
+;;;; Set some consult bindings
+;;(global-set-key (kbd "C-s") 'consult-line)
+;;(define-key minibuffer-local-map (kbd "C-r") 'consult-history)
+;;
+;;(setq completion-in-region-function #'consult-completion-in-region)
+;;
+;;
+;;;;; Orderless
+;;
+;;;; Set up Orderless for better fuzzy matching
+;;;;(require 'orderless)
+;;(customize-set-variable 'completion-styles '(orderless basic))
+;;(customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
+;;
+;;;; Improve speed and highlighting
+;;(setq orderless-skip-highlighting (lambda () selectrum-is-active))
+;;
+;;;; Added 14 Feb 2023
+;;(setq vertico-prescient-mode t)
+;;
+;;;;; Embark
+;;;;(require 'embark)
+;;;;(require 'embark-consult)
+;;
+;;(global-set-key [remap describe-bindings] #'embark-bindings)
+;;(global-set-key (kbd "C-.") 'embark-act)
+;;
+;;;; Use Embark to show bindings in a key prefix with `C-h`
+;;(setq prefix-help-command #'embark-prefix-help-command)
+;;
+;;(with-eval-after-load 'embark-consult
+;;  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+;;
+;;;;; Corfu
+;;
+;;;; Setup corfu for popup like completion
+;;(customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
+;;(customize-set-variable 'corfu-auto t)  ; Enable auto completion
+;;(customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
+;;(customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
+;;(customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
+;;
+;;(global-corfu-mode 1)
+;;
+;;;;; Cape
+;;
+;;;; Setup Cape for better completion-at-point support and more
+;;;; (require 'cape)
+;;
+;;;; Add useful defaults completion sources from cape
+;;(add-to-list 'completion-at-point-functions #'cape-file)
+;;(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+;;
+;;;; Silence the pcomplete capf, no errors or messages!
+;;;; Important for corfu
+;;(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+;;
+;;;; Ensure that pcomplete does not write to the buffer
+;;;; and behaves as a pure `completion-at-point-function'.
+;;(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
+;;(add-hook 'eshell-mode-hook
+;;          (lambda () (setq-local corfu-quit-at-boundary t
+;;                            corfu-quit-no-match t
+;;                            corfu-auto nil)
+;;            (corfu-mode)))
+;;
+
+
+
+
+
+
 ;; avy superimposes letters in the buffer with coloured backgrounds. 
 
 ;; line commands
@@ -1468,9 +1619,41 @@
 ;;     :load-path "manual-packages/aide/")
 ;; (setq aide-max-tokens 200)
 
+;; if you change the text, you should also change the cursor_offset
+;; warning: this is measured by UTF-8 encoded bytes
+
+
+;; we recommend using use-package to organize your init.el
+;;(use-package codeium
+;;    :load-path "manual-packages/codeium/"
+;;    :init
+;;    ;; use globally
+;;    (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
+;;    :defer t
+;;    :config
+;;    (setq use-dialog-box nil) ;; do not use popup boxes
+;;    (setq codeium-mode-line-enable
+;;        (lambda (api) (not (memq api '(CancelRequest Heartbeat AcceptCompletion)))))
+;;    (add-to-list 'mode-line-format '(:eval (car-safe codeium-mode-line)) t)
+;;    (setq codeium-api-enabled
+;;        (lambda (api)
+;;            (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion))))
+;;    (defun my-codeium/document/text ()
+;;        (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (min (+ (point) 1000) (point-max))))
+;;    (defun my-codeium/document/cursor_offset ()
+;;        (codeium-utf8-byte-length
+;;            (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (point))))
+;;    (setq codeium/document/text 'my-codeium/document/text)
+;;    (setq codeium/document/cursor_offset 'my-codeium/document/cursor_offset))
+;;
+
 ;;*** command-log-mode
 (use-package command-log-mode
   :commands command-log-mode)
+
+
+
+
 
 ;;** D
 ;;*** Dashboard related
@@ -2463,8 +2646,7 @@ concatenated."
  "/Users/blaine/gtd/tasks/Private.org"
  "/Users/blaine/gtd/tasks/Service.org"
  "/Users/blaine/gtd/tasks/Teaching.org"
- "/Users/blaine/gtd/tasks/Workshops.org"
- "/Users/blaine/gtd/tasks/grasscatchers.org"))
+ "/Users/blaine/gtd/tasks/Workshops.org"))
 
 ;; Cycle through these keywords with shift right or left arrows.
 (setq org-todo-keywords
