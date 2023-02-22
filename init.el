@@ -250,8 +250,12 @@
 (setq initial-frame-alist '((top . 1)
 			    (left . 450)
 			    (width . 101)
-			    (height . 70)))
+			    (height . 90)))
 
+;; Line wrap
+(global-visual-line-mode +1)
+(delete-selection-mode +1)
+(save-place-mode +1)
 
 
 
@@ -460,7 +464,43 @@
 (set-face-attribute 'mode-line nil  :height 360)
 
 ;; List recently opened files.
+;; Recent files
 (recentf-mode 1)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+;; UTF-8
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(set-keyboard-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+
+
+
+;; Quickly access dot emacs d
+(global-set-key (kbd "C-c e")
+    (lambda()
+      (interactive)
+      (find-file "~/latex-tree-emacs30")))
+
+
+;; Global keys
+;; If you use a window manager be careful of possible key binding clashes
+(setq recenter-positions '(top middle bottom))
+(global-set-key (kbd "C-1") 'kill-this-buffer)
+(global-set-key (kbd "C-<down>") (kbd "C-u 1 C-v"))
+(global-set-key (kbd "C-<up>") (kbd "C-u 1 M-v"))
+(global-set-key [C-tab] 'other-window)
+(global-set-key (kbd "C-c c") 'calendar)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-/") #'hippie-expand)
+(global-set-key (kbd "C-x C-j") 'dired-jump)
+(global-set-key (kbd "C-c r") 'remember)
+
+
+(setq case-fold-search t)
+
+;; Browse URLS in text mode
+(global-goto-address-mode +1)
 
 
 ;; Revert buffers when the underlying file has changed.
@@ -2192,7 +2232,7 @@ concatenated."
 (global-set-key (kbd "M-i") 'imenu)
 
 
-
+(ivy-mode 0)
 
 
 
