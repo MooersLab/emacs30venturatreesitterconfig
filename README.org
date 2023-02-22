@@ -65,6 +65,8 @@ You can also bookmark project directories and even dired buffers.
 
 The default image for the dashboard is the Emacs logo. 
 I subsituted another image that is included above for testing.
+The bottom of the dashboards has the top 10 Hackernews items.
+This is an attention trap, so you may to comment it out.
 
 The startup time should be shorter on Linux and longer on Windows. 
 
@@ -77,7 +79,8 @@ The Emacs binary starts up in a flash without a init.el.
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
-The bookmarks are a way of keeping track of material that needs to be read soon. 
+The bookmarks are a way of keeping track of material that needs to be read soon.
+You can configure Emacs to use the *bookmarks* file as the startup page.
 
 With bookmarks+, you add bookmarks to websites with the ~C-x x c u~ keybinding. 
 You can also add bookmarks to directories. 
