@@ -38,7 +38,7 @@ The content of the configuration file supports my academic research writing with
 - Uses the Vertico and friends for completion by default. I love the in-line documentation from Marginalia.
 - Fuzzy matching is turned one for use in Ido.
 - Can opt in the use of Helm or Icicles.
-- Helm's helm-google-suggest command is very cool.
+- Helm's helm-google-suggest command is very cool. Use *google-this* when helm-mode is toggled off.
 - Configured for org-mode, org-agenda, org-babel, and org-roam to get organized, track notes, and do literate programming.
 - Supports org-pomodoro.
 - Supports pdf-tools.
@@ -46,6 +46,8 @@ The content of the configuration file supports my academic research writing with
 - Uses evil-nerd-commenter for smart commenting of lines and regions.
 - Configured for Clojure, Python, and R programming.
 - Supports the use of LaTeX via AUCTeX.
+- Supports *google-this*. Make selection and enter `C-x g n` to submit as search term to Google in default browser.
+- Eglot is built into this version of Emacs.
 
 I invoke org-pomodoro with the point on a Project's headline in a org file to generate the logbook for storing the record of pomodoros.
 I store my lists of manuscirpts, grant applications, service activities, etc in separate org files rather than in a single task.org folder because I have too many projects for a singe org file.
