@@ -117,6 +117,7 @@
 (add-to-list 'package-selected-packages 'git-gutter)
 ;; (add-to-list 'package-selected-packages 'gnuplot)
 ;; (add-to-list 'package-selected-packages 'gnuplot-mode)
+(add-to-list 'package-selected-packages 'google-this)
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
 (add-to-list 'package-selected-packages 'greader)
 (add-to-list 'package-selected-packages 'helpful)
@@ -2061,6 +2062,13 @@ concatenated."
 ;;*** Focus
 ;; Highlights the current section or function.
 (use-package focus)
+
+;;** G
+
+;;*** google-this
+;; use C-x g n on a region for search submission without prompt
+(use-package google-this)
+(global-set-key (kbd "C-x g") 'google-this-mode-submap)
 
 
 ;;*** greader
