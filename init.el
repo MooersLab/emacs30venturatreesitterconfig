@@ -388,6 +388,9 @@
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 
 
+;; display line numbers. Need with s-l. 
+(global-display-line-numbers-mode)
+
 ;;### hippie-expand M-/
 (global-set-key [remap dabbrev-expand]  'hippie-expand)
 
@@ -846,7 +849,6 @@
 (use-package consult)
 (use-package corfu)
 (use-package embark-consult)
-(use-package embark)
 (use-package orderless)
 (use-package vertico)
 (use-package marginalia)
@@ -920,11 +922,17 @@ ARG is the thing being completed in the minibuffer."
 ;;(require 'embark)
 ;;(require 'embark-consult)
 
-(global-set-key [remap describe-bindings] #'embark-bindings)
-(global-set-key (kbd "C-.") 'embark-act)
+(use-package embark
+  :bind
+  (("C-." . embark-act)
+   ("H-l" . embark-line)
+   ("M-." . embark-dwim)
+   ("C-h B" . embark-bindings))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command))
 
-;; Use Embark to show bindings in a key prefix with `C-h`
-(setq prefix-help-command #'embark-prefix-help-command)
+;;(global-set-key [remap describe-bindings] #'embark-bindings)
+;;(global-set-key (kbd "C-.") 'embark-act)
 
 (with-eval-after-load 'embark-consult
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
@@ -976,7 +984,7 @@ ARG is the thing being completed in the minibuffer."
 (global-set-key (kbd "<f7>") 'consult-outline)
 (global-set-key [C-tab] 'consult-buffer)
 (global-set-key (kbd "C-x C-r") 'consult-recent-file)
-  
+(global-set-key (kbd "C-x C-l") 'consult-line)  
 
 ;; I am testing whether I can live with the above cool-kid completion system for now.
 ;; ;;*** auto-complete
@@ -3367,6 +3375,7 @@ With a prefix ARG, remove start location."
 ;; *** projectile
 (use-package projectile)
 (projectile-mode +1)
+(setq projectile-enable-caching t)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
