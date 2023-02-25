@@ -77,7 +77,7 @@ The Emacs binary starts up in a flash without a init.el.
 
 #+ATTR_HTML: :alt Zoomed image.
 #+ATTR_HTML: :width 606
-[[./images/emacs30dashboard.png]]
+[[./images/dashboard25Feb.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
 For example, clicking on the icon in the dashboard of the PDF of a book opens the book in Emacs for immediate reading. 
