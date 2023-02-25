@@ -97,6 +97,7 @@
 (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'emojify)
 (add-to-list 'package-selected-packages 'eros)
+(add-to-list 'package-selected-packages 'ess)
 (add-to-list 'package-selected-packages 'evil-nerd-commenter)
 ;; (add-to-list 'package-selected-packages 'evil)
 ;; (add-to-list 'package-selected-packages 'evil-collection)
@@ -178,7 +179,8 @@
 (add-to-list 'package-selected-packages 'pdb-mode)
 (add-to-list 'package-selected-packages 'pdf-tools)
 ;; (add-to-list 'package-selected-packages 'plantuml-mode)
-;; (add-to-list 'package-selected-packages 'poly-markdown)
+(add-to-list 'package-selected-packages 'poly-markdown)
+(add-to-list 'package-selected-packages 'polymode)
 ;; (add-to-list 'package-selected-packages 'poly-org)
 ;; (add-to-list 'package-selected-packages 'poly-R)
 ;; (add-to-list 'package-selected-packages 'pomodoro)
@@ -1741,10 +1743,10 @@ ARG is the thing being completed in the minibuffer."
   (dashboard-center-content t)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
-  (dashboard-items '((projects . 10)
-                     (recents . 15)
-                     (bookmarks . 10)
-                     (hackernews . 10))))
+  (dashboard-items '((projects . 11)
+                     (recents . 11)
+                     (bookmarks . 11)
+                     (hackernews . 7))))
 (use-package dashboard-hackernews)
 (dashboard-refresh-buffer)
 
@@ -2034,6 +2036,11 @@ concatenated."
 (add-hook 'matlab-mode-hook 'matlab-mode-hook-config)
 
 
+;;*** ess
+;; 25 Feb 2023
+(use-package ess
+  :custom ((ess-plain-first-buffername nil)
+       (ess-ask-about-transfile nil)))
 
 
 ;;** F
@@ -2283,6 +2290,16 @@ concatenated."
 (setq languagetool-console-command "~/.languagetool/languagetool-commandline.jar"
       languagetool-server-command "~/.languagetool/languagetool-server.jar")
 
+;; 25 Feb 2023
+(global-set-key "\C-x4s" 'languagetool-check) ;; s for suggest
+(global-set-key "\C-x4o" 'languagetool-clear-suggestions)
+(global-set-key "\C-x4x" 'languagetool-correct-at-point)
+
+
+
+
+
+
 ;;### LaTeX helpher functions
 ;;#### M-x description
 ;; Converts a selected list into a description list.
@@ -2339,6 +2356,24 @@ concatenated."
     (end-of-buffer)
     (insert "\\end{itemize}\n")))
 
+;; source https://github.com/ashok-khanna/emacs-notes/blob/main/bayes-init.el
+;; 25 Feb 2023
+(use-package tex
+  :ensure auctex
+  :custom ((TeX-auto-save t)
+	   (TeX-parse-self t)
+	   (TeX-master nil)
+	   (reftex-plug-into-auctex t)
+	   (font-latex-fontify-script nil)
+           (LaTeX-electric-left-right-brace t)
+           )
+  :hook ((LaTeX-mode . my-LaTeX-mode)
+	 (LaTeX-mode . flyspell-mode)
+	 (LaTeX-mode . LaTeX-math-mode)
+         (LaTeX-mode . TeX-fold-mode)
+	 (LaTeX-mode . turn-on-reftex)
+	 (LaTeX-mode . rainbow-delimiters-mode)))
+
 
 ;;#### LaTeX related
 (unless (package-installed-p `auctex) (package-install `auctex))
@@ -2358,9 +2393,7 @@ concatenated."
 (eval-after-load "tex" 
   '(setcdr (assoc "LaTeX" TeX-command-list)
           '("%`%l%(mode) -shell-escape%' %t"
-          TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")
-    )
-  )
+          TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")))
 
 ;; Outline-minor-mode key map Source: https://www.emacswiki.org/emacs/OutlineMinorMode
 (define-prefix-command 'cm-map nil "Outline-")
@@ -3372,6 +3405,39 @@ With a prefix ARG, remove start location."
 ;;
 
 
+;; *** polymode 
+;; 25 Feb 2023
+;; source https://github.com/ashok-khanna/emacs-notes/blob/main/bayes-init.el
+;; Polymode settings
+;; https://emacs.stackexchange.com/q/47842
+;; https://polymode.github.io/installation/
+(use-package poly-markdown)
+
+;; https://github.com/vspinu/polymode
+(use-package polymode
+  :diminish (poly-org-mode
+             poly-markdown-mode
+             poly-noweb+r-mode
+             poly-noweb+r-mode
+             poly-markdown+r-mode
+             poly-rapport-mode
+             poly-html+r-mode
+             poly-brew+r-mode
+             poly-r+c++-mode
+             poly-c++r-mode)
+;  :init
+;  (require 'poly-R)
+;  (require 'poly-markdown)
+  :config
+  (add-to-list 'auto-mode-alist '("\\.md$" . poly-markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
+  (add-to-list 'auto-mode-alist '("\\.Rcpp$" . poly-r+c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cppR$" . poly-c++r-mode))
+  )
+
+
+
+
 ;; *** projectile
 (use-package projectile)
 (projectile-mode +1)
@@ -3414,28 +3480,28 @@ With a prefix ARG, remove start location."
 
 
 ;;** S
-(use-package swiper
-  :config
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (global-set-key "\C-s" 'swiper)
-;;    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-;;    (global-set-key (kbd "<f6>") 'ivy-resume)
-;;    (global-set-key (kbd "M-x") 'counsel-M-x)
-;;    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;;    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;;    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-;;    (global-set-key (kbd "<f1> l") 'counsel-load-library)
-;;    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-;;    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-;;    (global-set-key (kbd "C-c g") 'counsel-git)
-;;    (global-set-key (kbd "C-c j") 'counsel-git-grep)
-;;    (global-set-key (kbd "C-c k") 'counsel-ag)
-;;    (global-set-key (kbd "C-x l") 'counsel-locate)
-;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-;;    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
+;; (use-package swiper
+;;   :config
+;;   (progn
+;;     (ivy-mode 1)
+;;     (setq ivy-use-virtual-buffers t)
+;;     (global-set-key "\C-s" 'swiper)
+;; ;;    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+;; ;;    (global-set-key (kbd "<f6>") 'ivy-resume)
+;; ;;    (global-set-key (kbd "M-x") 'counsel-M-x)
+;; ;;    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;; ;;    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+;; ;;    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;; ;;    (global-set-key (kbd "<f1> l") 'counsel-load-library)
+;; ;;    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+;; ;;    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+;; ;;    (global-set-key (kbd "C-c g") 'counsel-git)
+;; ;;    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+;; ;;    (global-set-key (kbd "C-c k") 'counsel-ag)
+;; ;;    (global-set-key (kbd "C-x l") 'counsel-locate)
+;; ;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+;; ;;    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+;;     ))
 
 
 ;;**T
