@@ -131,6 +131,7 @@
 (add-to-list 'package-selected-packages 'jupyter)
 (add-to-list 'package-selected-packages 'ivy-prescient)
 (add-to-list 'package-selected-packages 'languagetool)
+(add-to-list 'package-selected-packages 'latex-preview-pane)
 (add-to-list 'package-selected-packages 'lsp-mode)
 (add-to-list 'package-selected-packages 'lsp-pyright)
 (add-to-list 'package-selected-packages 'lsp-ui)
@@ -182,7 +183,7 @@
 (add-to-list 'package-selected-packages 'poly-markdown)
 (add-to-list 'package-selected-packages 'polymode)
 ;; (add-to-list 'package-selected-packages 'poly-org)
-;; (add-to-list 'package-selected-packages 'poly-R)
+(add-to-list 'package-selected-packages 'poly-R)
 ;; (add-to-list 'package-selected-packages 'pomodoro)
 (add-to-list 'package-selected-packages 'popup)
 (add-to-list 'package-selected-packages 'powerline)
@@ -1820,6 +1821,8 @@ ARG is the thing being completed in the minibuffer."
 ;; **<M-left>** and **<M-right>**.
 (use-package drag-stuff)
 
+
+
 ;;**E
 
 
@@ -2043,6 +2046,7 @@ concatenated."
        (ess-ask-about-transfile nil)))
 
 
+
 ;;** F
 
 
@@ -2078,7 +2082,10 @@ concatenated."
 ;; Highlights the current section or function.
 (use-package focus)
 
+
+
 ;;** G
+
 
 ;;*** google-this
 ;; use C-x g n on a region for search submission without prompt
@@ -2166,7 +2173,8 @@ concatenated."
 
 
 
-;;**I
+;;** I
+
 
 ;;*** ido-mode
 ;; Idomode is a built-in completion framework for moving to a destination that you are certain about.
@@ -2259,8 +2267,6 @@ concatenated."
 
 
 
-
-
 ;;** L
 
 
@@ -2294,9 +2300,6 @@ concatenated."
 (global-set-key "\C-x4s" 'languagetool-check) ;; s for suggest
 (global-set-key "\C-x4o" 'languagetool-clear-suggestions)
 (global-set-key "\C-x4x" 'languagetool-correct-at-point)
-
-
-
 
 
 
@@ -2356,8 +2359,41 @@ concatenated."
     (end-of-buffer)
     (insert "\\end{itemize}\n")))
 
+
+
 ;; source https://github.com/ashok-khanna/emacs-notes/blob/main/bayes-init.el
 ;; 25 Feb 2023
+
+;; LaTeX settings --------------------------------------------------------------
+;; Latex Mode https://tex.stackexchange.com/a/209509
+(defun my-LaTeX-mode()
+  (add-to-list 'TeX-view-program-list '("Skim" "open -a Skim.app %o"))
+  (setq TeX-view-program-selection '((output-pdf "Skim")))
+  )
+
+(add-hook 'LaTeX-mode-hook 'my-LaTeX-mode)
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+
+
+;;(setq
+;; ;; Set the list of viewers for Mac OS X.
+;; TeX-view-program-list
+;; '(("Preview.app" "open -a Preview.app %o")
+;;   ("Skim" "open -a Skim.app %o")
+;;   ("displayline" "displayline %n %o %b")
+;;   ("open" "open %o"))
+;; ;; Select the viewers for each file type.
+;; TeX-view-program-selection
+;; '((output-dvi "open")
+;;   (output-pdf "Skim")
+;;   (output-html "open")))
+
+
+
+;; Latex preview pane
+(use-package latex-preview-pane)
+
+(unless (package-installed-p `auctex) (package-install `auctex))
 (use-package tex
   :ensure auctex
   :custom ((TeX-auto-save t)
@@ -2376,8 +2412,6 @@ concatenated."
 
 
 ;;#### LaTeX related
-(unless (package-installed-p `auctex) (package-install `auctex))
-
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -2421,6 +2455,83 @@ concatenated."
 
 ;; Increase size of LaTeX fragment previews in org files
 ;; (plist-put org-format-latex-options :scale 2)
+
+;; To enable the use of the minted package.
+(eval-after-load "tex"
+  '(setcdr (assoc "LaTeX" TeX-command-list)
+          '("%`%l%(mode) -shell-escape%' %t"
+          TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")))
+
+
+;; PATH to info
+;; Set path to info for texlive. This path is needed by the LSP for LaTeX. 
+(add-to-list 'Info-directory-list "/opt/local/share/texmf-texlive/doc/info")
+
+
+;; LSP in LaTeX
+;; digestif is an LSP for LaTeX. Install it via this command in the terminal:   luarocks install digestif
+;; digestif is one of two latex-lsps available
+;; 
+(setq lsp-tex-server 'digestif)
+
+
+;; automate snippet insertion
+;; If you want automatic snippet insertion upon choosing a completion candidate, make sure to activate yas-minor-mode before starting up Eglot.
+;; (yas-reload-all)
+(add-hook 'LaTeX-mode-hook #'yas-minor-mode)
+
+
+;; eglot in LaTeX mode
+;; Emacs’s polyglot lsp server. 
+;; Eglot provides completion, documentation, and navigation commands in LaTeX documents. 
+;; Must come after yas-minor-mode. 
+;; Add a hook for to invoke eglot in LaTeX-mode. 
+;; But you must install digestif first Source. 
+;; Invoke eglot with M-x eglot or make it available on startup:
+(add-hook 'LaTeX-mode-hook #'eglot-ensure)
+
+
+;; Note that eglot has no dependences, but bleeding-edge Emacs versions have dependencies that can mess it up. 
+;; Enter M-x find-libraries
+
+;; Enlarge equation preview
+;; Set the scale of the preview of the LaTeX equation so you can see it. 
+;; Place the point in equation and enter C-c C-x C-l to render.
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
+
+
+;; Grammar checking with language-tool
+;; (add-hook 'LaTeX-mode-hook
+;;           (lambda ()
+;;              (add-hook 'after-save-hook 'langtool-check nil 'make-it-local)))
+
+;; Spell check with flyspell
+;; Run the command M-x flyspell-buffer or M-x flys-bu.
+;; Turn on ispell for tex fileset
+;; This recommendation is from the 2020 edtion of Petersen’s book Mastering Emacs, page 250.
+(add-hook 'tex-mode-hook
+      #'(lambda () (setq ispell-parser 'tex)))
+
+
+;; Word count in LaTeX files
+;; Run texcount.pl on an open tex document in the current buffer to get a report of word counts by section. 
+;; Enter C-c w. Source.
+;; https://newbedev.com/word-count-for-latex-within-emacs
+(defun my-latex-setup ()
+  (defun latex-word-count ()
+    (interactive)
+    (let* ((this-file (buffer-file-name))
+           (word-count
+            (with-output-to-string
+              (with-current-buffer standard-output
+                (call-process "texcount" nil t nil "-brief" this-file)))))
+      (string-match "\n$" word-count)
+      (message (replace-match "" nil nil word-count))))
+    (define-key LaTeX-mode-map "\C-cw" 'latex-word-count))
+(add-hook 'LaTeX-mode-hook 'my-latex-setup t)
+;; M-! RET texcount test.tex RET
+
+
 
 
 
@@ -2686,7 +2797,8 @@ concatenated."
 ;; Most of the time this is just adding the same characters multiple places 
 ;; in the file in places with the same pattern, 
 ;; other times it is inserting a sequence of numbers.
-
+;; Package by Magnar Sveen, https://github.com/magnars/multiple-cursors.el, the author of emacsrocks.com YouTube video series.
+;; 
 ;;*** Multiple-cursors
 (use-package multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -3425,9 +3537,9 @@ With a prefix ARG, remove start location."
              poly-brew+r-mode
              poly-r+c++-mode
              poly-c++r-mode)
-;  :init
-;  (require 'poly-R)
-;  (require 'poly-markdown)
+   :init
+   (use-package poly-R)
+   (use-package poly-markdown)
   :config
   (add-to-list 'auto-mode-alist '("\\.md$" . poly-markdown-mode))
   (add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
@@ -3467,6 +3579,7 @@ With a prefix ARG, remove start location."
 
 
 ;;** R
+;; See paredit config
 ;; rainbow-delimiters
 ;; (use-package rainbow-delimiters)
 ;; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -3477,6 +3590,15 @@ With a prefix ARG, remove start location."
 ;;(add-hook 'clojure-mode-hook 'rainbow-blocks-mode)
 ;;(add-hook 'org-mode-hook 'rainbow-blocks-mode)
 ;;(add-hook 'emacs-lisp-mode-hook 'rainbow-blocks-mode)
+
+
+;; (use-package poly-R
+;;   :config
+;;   ;; associate the new polymode to Rmd files:
+;;   (add-to-list 'auto-mode-alist
+;;              '("\\.[rR]md\\'" . poly-gfm+r-mode))
+;;   ;; uses braces around code block language strings:
+;;   (setq markdown-code-block-braces t))
 
 
 ;;** S
