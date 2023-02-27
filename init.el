@@ -1752,11 +1752,6 @@ ARG is the thing being completed in the minibuffer."
 (dashboard-refresh-buffer)
 
 
-
-
-
-
-
 ;;*** Dired related
 (use-package dired-subtree
   :after dired
@@ -1781,7 +1776,6 @@ ARG is the thing being completed in the minibuffer."
     ;; do not start on start-up; bloggs startup too much
     :config
     (icy-mode 0))
-(setq org-roam-completion-system 'helm)
 
 
 ;;(add-to-list 'load-path "~/latex-emacs2906/manual-packages/highlight")
@@ -2478,6 +2472,9 @@ concatenated."
 ;; automate snippet insertion
 ;; If you want automatic snippet insertion upon choosing a completion candidate, make sure to activate yas-minor-mode before starting up Eglot.
 ;; (yas-reload-all)
+;; The #' is called sharp quoting. 
+;; Use it to quote functions. 
+;; See http://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html.
 (add-hook 'LaTeX-mode-hook #'yas-minor-mode)
 
 
@@ -2505,6 +2502,7 @@ concatenated."
 ;;           (lambda ()
 ;;              (add-hook 'after-save-hook 'langtool-check nil 'make-it-local)))
 
+
 ;; Spell check with flyspell
 ;; Run the command M-x flyspell-buffer or M-x flys-bu.
 ;; Turn on ispell for tex fileset
@@ -2513,22 +2511,61 @@ concatenated."
       #'(lambda () (setq ispell-parser 'tex)))
 
 
+
+
+
+;; To bind a key in a mode, you need to wait for the mode to be loaded before defining the key. 
+(eval-after-load 'latex 
+                   '(define-key LaTeX-mode-map [(tab)] 'outline-cycle))
+
 ;; Word count in LaTeX files
 ;; Run texcount.pl on an open tex document in the current buffer to get a report of word counts by section. 
-;; Enter C-c w. Source.
-;; https://newbedev.com/word-count-for-latex-within-emacs
-(defun my-latex-setup ()
+;; Create in .bashAppAliases:  alias texcount='/usr/local/bin/texcount.pl'
+;; Enter C-c w if the document is one file.
+;; Enter C-c w m if the docment has multiple parts.
+;; If the shortcut fails: M-! /usr/local/bin/texcount.pl WritingLog.tex
+;; If the shortcut fails: M-! /usr/local/bin/texcount.pl WritingLog.tex -inc -total
+;; Source: https://newbedev.com/word-count-for-latex-within-emacs
+(defun bhmm-latex-setup ()
   (defun latex-word-count ()
+  "Runs the texcount.pl script on the current buffer.
+    If the shortcut fails: M-! /usr/local/bin/texcount.pl WritingLog.tex"
     (interactive)
     (let* ((this-file (buffer-file-name))
            (word-count
             (with-output-to-string
               (with-current-buffer standard-output
-                (call-process "texcount" nil t nil "-brief" this-file)))))
+                (call-process "/usr/local/bin/texcount.pl" nil t nil "-brief" this-file)))))
       (string-match "\n$" word-count)
       (message (replace-match "" nil nil word-count))))
-    (define-key LaTeX-mode-map "\C-cw" 'latex-word-count))
-(add-hook 'LaTeX-mode-hook 'my-latex-setup t)
+      (define-key LaTeX-mode-map "\C-cw" 'latex-word-count)
+  (defun latex-word-count-multi-total ()
+    "Runs the texcount.pl script on the current buffer, which is a master file for multi-part document
+      with numbers include or input feeder documents. Reports just the total results.
+        If the shortcut fails: M-! /usr/local/bin/texcount.pl WritingLog.tex -inc -total"
+        (interactive)
+        (let* ((this-file (buffer-file-name))
+               (word-count
+                (with-output-to-string
+                  (with-current-buffer standard-output
+                    (call-process "/usr/local/bin/texcount.pl" nil t nil "-brief" this-file "-inc" " -total")))))
+          (string-match "\n$" word-count)
+          (message (replace-match "" nil nil word-count))))
+          (define-key LaTeX-mode-map (kbd "C-c u") 'latex-word-count-multi-total)
+  (defun latex-word-count-multi ()
+    "Runs the texcount.pl script on the current buffer which is a master file for multi-part document
+      with numbers include or input feeder documents. Reports section-by-section results.
+      If the shortcut fails: M-! /usr/local/bin/texcount.pl WritingLog.tex -inc"
+        (interactive)
+        (let* ((this-file (buffer-file-name))
+               (word-count
+                (with-output-to-string
+                  (with-current-buffer standard-output
+                    (call-process "/usr/local/bin/texcount.pl" nil t nil "-brief" this-file "-inc")))))
+          (string-match "\n$" word-count)
+          (message (replace-match "" nil nil word-count))))
+          (define-key LaTeX-mode-map (kbd "C-c v") 'latex-word-count-multi))
+(add-hook 'LaTeX-mode-hook 'bhmm-latex-setup t)
 ;; M-! RET texcount test.tex RET
 
 
@@ -3193,14 +3230,13 @@ With a prefix ARG, remove start location."
 
 ;; ** Basic org-roam config
 (use-package org-roam
-   :ensure t
    :custom
    (org-roam-directory (file-truename "/Users/blaine/org-roam/"))
    :bind (("C-c n l" . org-roam-buffer-toggle)
           ("C-c n f" . org-roam-node-find)
           ("C-c n g" . org-roam-graph)
           ("C-c n i" . org-roam-node-insert)
-          ("C-c n c" . org-roam-capture)
+          ("C-c n c" . #'org-id-get-create)
           ;; Dailies
           ("C-c n j" . org-roam-dailies-capture-today))
    :config
@@ -3350,8 +3386,27 @@ With a prefix ARG, remove start location."
 ;; <<<<<<< END org-roam >>>>>>>>>>>>>>
 
 
-;; source: https://www.reddit.com/r/emacs/comments/zjv1gj/org_files_to_docx/
+;; org-speed-commands
+;; https://www.youtube.com/watch?v=v-jLg1VaYzo}
+(defun org-jump-to-heading-beginning ()
+  "Jump to the beginning of the line of the closest Org heading."
+  (interactive)
+  (org-back-to-heading)
+  (beginning-of-line))
 
+(define-key org-mode-map (kbd "&*") 'org-jump-to-heading-beginning)
+
+(setq org-use-speed-commands t)
+(setq org-speed-commands (cons '("w" . widen) org-speed-commands))
+(define-key org-mode-map (kbd "^") 'org-sort)
+(define-key org-mode-map (kbd "z") 'org-refile)
+(define-key org-mode-map (kbd "@") 'org-mark-subtree)
+
+
+
+
+
+;; source: https://www.reddit.com/r/emacs/comments/zjv1gj/org_files_to_docx/
 (defun hm/convert-org-to-docx-with-pandoc ()
   "Use Pandoc to convert .org to .docx.
   Comments:
