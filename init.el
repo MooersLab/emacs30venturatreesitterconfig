@@ -3183,7 +3183,7 @@ With a prefix ARG, remove start location."
 
 (global-set-key (kbd "C-c o") 'org-pomodoro)
 
-
+;; /Applications/Tomighty.app/Contents/Resources/timer_tick.wav
 
 ;; <<<<<<< BEGIN org-ref >>>>>>>>>>>>>>
 (use-package org-ref)
@@ -3397,10 +3397,10 @@ With a prefix ARG, remove start location."
 (define-key org-mode-map (kbd "&*") 'org-jump-to-heading-beginning)
 
 (setq org-use-speed-commands t)
-(setq org-speed-commands (cons '("w" . widen) org-speed-commands))
-(define-key org-mode-map (kbd "^") 'org-sort)
-(define-key org-mode-map (kbd "z") 'org-refile)
-(define-key org-mode-map (kbd "@") 'org-mark-subtree)
+;; (setq org-speed-commands (cons '("w" . widen) org-speed-commands))
+;; (define-key org-mode-map (kbd "^") 'org-sort)
+;; (define-key org-mode-map (kbd "z") 'org-refile)
+;;(define-key org-mode-map (kbd "@") 'org-mark-subtree)
 
 
 
