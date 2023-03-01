@@ -156,7 +156,7 @@
 ;; (add-to-list 'package-selected-packages 'org-bullets)
 (add-to-list 'package-selected-packages 'org-drill)
 ;; (add-to-list 'package-selected-packages 'org-evil)
-;; (add-to-list 'package-selected-packages 'org-inline-pdf)
+(add-to-list 'package-selected-packages 'org-inline-pdf)
 ;; (add-to-list 'package-selected-packages 'org-latex-impatient)
 ;; (add-to-list 'package-selected-packages 'org-msg)
 (add-to-list 'package-selected-packages 'org-noter-pdftools)
@@ -171,6 +171,7 @@
 (add-to-list 'package-selected-packages 'org-roam-timestamps)
 (add-to-list 'package-selected-packages 'org-roam-ui)
 (add-to-list 'package-selected-packages 'org-wc)
+(add-to-list 'package-selected-packages 'org2blog)
 ;; (add-to-list 'package-selected-packages 'orgtbl-ascii-plot)
 ;; (add-to-list 'package-selected-packages 'ox-latex-subfigure)
 ;; (add-to-list 'package-selected-packages 'ox-pandoc)
@@ -195,6 +196,7 @@
 ;; (add-to-list 'package-selected-packages 'python-pytest)
 (add-to-list 'package-selected-packages 'quelpa)
 (add-to-list 'package-selected-packages 'quelpa-use-package)
+(add-to-list 'package-selected-packages 'racket-mode)
 (add-to-list 'package-selected-packages 'rainbow-delimiters)
 ;; (add-to-list 'package-selected-packages 'rtags)
 (add-to-list 'package-selected-packages 'simple-httpd)
@@ -3102,6 +3104,15 @@ concatenated."
              )
 )
 
+
+;;*** org-inline-pdf
+;; https://github.com/shg/org-inline-pdf.el
+;; #+ATTR_ORG: :width 40% :page 3
+;; [[./docs/report.pdf]]
+(add-hook 'org-mode-hook #'org-inline-pdf-mode)
+
+
+
 ;;*** org-pdf-noter
 (use-package org-noter
   :after org
@@ -3158,7 +3169,6 @@ With a prefix ARG, remove start location."
 ; (add-to-list 'org-file-apps
 ;              '("\\.pdf\\'" . (lambda (file link)
 ;                                      (org-pdfview-open link))))
-
 
 
 
@@ -3403,7 +3413,11 @@ With a prefix ARG, remove start location."
 ;;(define-key org-mode-map (kbd "@") 'org-mark-subtree)
 
 
-
+(use-package org2blog)
+(setq org2blog/wp-blog-alist
+      '(("myblog"
+         :url "https://bmooerslab.wordpress.com/xmlrpc.php"
+         :username "blainemooersouhscedu")))
 
 
 ;; source: https://www.reddit.com/r/emacs/comments/zjv1gj/org_files_to_docx/
