@@ -106,6 +106,7 @@
 ;; (add-to-list 'package-selected-packages 'expand-region)
 ;; (add-to-list 'package-selected-packages 'exwm)
 (add-to-list 'package-selected-packages 'flycheck)
+(add-to-list 'package-selected-packages 'flycheck-vale)
 ;; (add-to-list 'package-selected-packages 'flycheck-grammarly)
 ;; (add-to-list 'package-selected-packages 'flycheck-plantuml)
 ;; (add-to-list 'package-selected-packages 'flycheck-pycheckers)
@@ -207,6 +208,8 @@
 ;; (add-to-list 'package-selected-packages 'standoff-mode)
 (add-to-list 'package-selected-packages 'swiper)
 ;; (add-to-list 'package-selected-packages 'sx)
+(add-to-list 'package-selected-packages 'tempel)
+(add-to-list 'package-selected-packages 'tempel-collection)
 ;; (add-to-list 'package-selected-packages 'treemacs)
 ;; (add-to-list 'package-selected-packages 'treemacs-evil)
 ;; (add-to-list 'package-selected-packages 'treemacs-icons-dired)
@@ -232,6 +235,17 @@
 (package-install-selected-packages)
 (message "Installing missing packages. Take 4-5 minutes when all are missing.")
 
+
+;; ############################## save current init.el to ~/.saves ####################
+;; source https://www.reddit.com/r/emacs/comments/11ap924/the_most_important_snippet_in_my_emacs_init_file/
+(setq
+backup-by-copying t ; don't clobber symlinks
+backup-directory-alist
+'(("." . "~/.saves")) ; don't litter my fs tree
+delete-old-versions t
+kept-new-versions 6
+kept-old-versions 2
+version-control t)
 
 ;; ############################## Basics Configuration ################################
 ;; ==> adjust here
@@ -2615,6 +2629,16 @@ concatenated."
   (flycheck-indication-mode nil)
   (flycheck-highlighting-mode 'lines))
 
+;; vale is prose linter that you run from the command line.
+;; 
+;; vale has to be installed first and set up with a config file .vale.ini in each project.
+;; I first learned about vale here: https://github.com/org2blog/org2blog#using-a-package
+;; I found the macports version to be broken. Use the homebrew version.
+;; /usr/local/Cellar/vale/2.23.3/bin/vale
+;; https://github.com/abingham/flycheck-vale
+(use-package flycheck-vale)
+(flycheck-vale-setup)
+
 (use-package lsp-mode)
 (use-package lsp-treemacs)
 (add-hook 'latex-mode 'lsp)
@@ -3753,6 +3777,44 @@ With a prefix ARG, remove start location."
 ;; ==> adjust here
 
 
+
+;; Configure Tempel
+;; soruce:
+(use-package tempel
+  ;; Require trigger prefix before template name when completing.
+  ;; :custom
+  ;; (tempel-trigger-prefix "<")
+
+  :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
+         ("M-*" . tempel-insert))
+
+  :init
+
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.
+    ;; `tempel-expand' only triggers on exact matches. Alternatively use
+    ;; `tempel-complete' if you want to see all matches, but then you
+    ;; should also configure `tempel-trigger-prefix', such that Tempel
+    ;; does not trigger too often when you don't expect it. NOTE: We add
+    ;; `tempel-expand' *before* the main programming mode Capf, such
+    ;; that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand
+                      completion-at-point-functions)))
+
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+
+  ;; Optionally make the Tempel templates available to Abbrev,
+  ;; either locally or globally. `expand-abbrev' is bound to C-x '.
+  ;; (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
+  ;; (global-tempel-abbrev-mode)
+)
+
+;; Optional: Add tempel-collection.
+;; The package is young and doesn't have comprehensive coverage.
+(use-package tempel-collection)
 
 
 
