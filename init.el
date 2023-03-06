@@ -60,6 +60,7 @@
 ;; (add-to-list 'package-selected-packages 'auto-complete-clang)
 ;; (add-to-list 'package-selected-packages 'auto-package-update)
 (add-to-list 'package-selected-packages 'avy)
+(add-to-list 'package-selected-packages 'beframe)
 (add-to-list 'package-selected-packages 'better-defaults)
 (add-to-list 'package-selected-packages 'bibtex)
 ;; (add-to-list 'package-selected-packages 'c-eldoc)
@@ -1456,6 +1457,52 @@ ARG is the thing being completed in the minibuffer."
 
 
 ;;** B
+
+
+
+;;*** beframe
+;; source: https://protesilaos.com/emacs/beframe#h:813b78cc-83e8-4d75-b7a9-6722ffd905cd
+(use-package beframe)
+
+;; This is the default value.  Write here the names of buffers that
+;; should not be beframed.
+(setq beframe-global-buffers '("*scratch*" "*Messages*" "*Backtrace*" "*Bookmark List*"))
+
+(beframe-mode 1)
+
+;; This is just an example.  We do not define any key bindings.  You
+;; do not need this command if you enable `beframe-mode', as
+;; `switch-to-buffer' only shows a list of beframed buffers.
+(define-key global-map (kbd "C-x B") #'beframe-switch-buffer)
+
+;; Replace the generic `buffer-menu'.  With a prefix argument, this
+;; commands prompts for a frame.  Call the `buffer-menu' via M-x if
+;; you absolutely need the global list of buffers.
+(define-key global-map (kbd "C-x C-b") #'beframe-buffer-menu)
+
+;; Integrate beframe with consult
+(defvar consult-buffer-sources)
+(declare-function consult--buffer-state "consult")
+
+(with-eval-after-load 'consult
+  (defface beframe-buffer
+    '((t :inherit font-lock-string-face))
+    "Face for `consult' framed buffers.")
+
+  (defvar beframe-consult-source
+    `( :name     "Frame-specific buffers (current frame)"
+       :narrow   ?F
+       :category buffer
+       :face     beframe-buffer
+       :history  beframe-history
+       :items    ,#'beframe-buffer-names
+       :action   ,#'switch-to-buffer
+       :state    ,#'consult--buffer-state))
+
+  (add-to-list 'consult-buffer-sources 'beframe-consult-source))
+
+
+
 
 
 ;;### bibtex-mode related
