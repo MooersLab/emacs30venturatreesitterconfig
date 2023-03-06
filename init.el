@@ -70,6 +70,7 @@
 ;; (add-to-list 'package-selected-packages 'cmake-mode)
 ;; (add-to-list 'package-selected-packages 'code-cells)
 ;; (add-to-list 'package-selected-packages 'combobulate)
+(add-to-list 'package-selected-packages 'company) ; required by lsp-mode.302
 ;; (add-to-list 'package-selected-packages 'conda)
 ;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
@@ -85,6 +86,7 @@
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
 (add-to-list 'package-selected-packages 'ef-themes)
+(add-to-list 'package-selected-packages 'eglot)
 ;; (add-to-list 'package-selected-packages 'ein)
 ;; (add-to-list 'package-selected-packages 'eldoc-stan)
 ;; (add-to-list 'package-selected-packages 'electric-spacing)
@@ -93,6 +95,7 @@
 (add-to-list 'package-selected-packages 'elfeed)
 (add-to-list 'package-selected-packages 'elfeed-org)
 (add-to-list 'package-selected-packages 'elfeed-score)
+(add-to-list 'package-selected-packages 'elpy)
 (add-to-list 'package-selected-packages 'embark)
 (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'emojify)
@@ -1885,6 +1888,22 @@ ARG is the thing being completed in the minibuffer."
 ;; - `ef-themes-preview-colors-current'#+END_SRC
 
 
+;; *** eglot lsp server
+;; Soruce https://clangd.llvm.org/installation.html
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
+
+
+(use-package eglot)
+
+;; C++ setup
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
+;; 
+
+
+
 ;; *** Electric-pair mode. Add matching pairs of quotes and parentheses.
 (electric-pair-mode)
 
@@ -3663,6 +3682,11 @@ With a prefix ARG, remove start location."
 ;;   :init
 ;;   (require 'lsp-pyright))
 
+
+;; *** elpy (Emacs Lisp Python Environment)
+;; source: https://realpython.com/emacs-the-best-python-editor/#initialization-file
+(use-package elpy)
+(elpy-enable)
 
 ;;** Q
 
