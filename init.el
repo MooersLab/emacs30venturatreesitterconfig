@@ -486,8 +486,8 @@ version-control t)
 
 ;; highlight current line
 (global-hl-line-mode +1)
-(set-face-background hl-line-face "#1c1f26")
-(set-face-attribute 'mode-line nil  :height 360)
+(set-face-background hl-line-face "#salmon1")
+(set-face-attribute 'mode-line nil  :height 180)
 
 ;; List recently opened files.
 ;; Recent files
