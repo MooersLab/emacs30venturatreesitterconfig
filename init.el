@@ -3549,7 +3549,7 @@ concatenated."
 (defalias 'o2d 'hm/convert-org-to-docx)
 
 
-;; ** P
+;;** P
 
 ;; Paredit makes paranthesis handling a breeze in Lisp-languages.
 ;; Only setting I really need is to make it possible to select something
@@ -3727,6 +3727,30 @@ concatenated."
   (add-to-list 'auto-mode-alist '("\\.Rcpp$" . poly-r+c++-mode))
   (add-to-list 'auto-mode-alist '("\\.cppR$" . poly-c++r-mode))
   )
+
+
+;;*** posframe
+;; Like having the minibuffer at point. Very cool!
+;; https://github.com/tumashu/company-posframe
+
+(use-package posframe)
+
+(defvar my-posframe-buffer " *my-posframe-buffer*")
+
+(with-current-buffer (get-buffer-create my-posframe-buffer)
+  (erase-buffer)
+  (insert "Hello world"))
+
+(when (posframe-workable-p)
+  (posframe-show my-posframe-buffer
+                 :position (point)))
+
+(use-package company-posframe)
+(company-posframe-mode 1)
+(setq company-tooltip-minimum-width 40)
+
+(use-package vertico-posframe)
+(vertico-posframe-mode 1)
 
 
 
@@ -3964,6 +3988,26 @@ concatenated."
   )
 (global-set-key "\C-o" 'yas-expand)
 
+;; A cool hydra for finding snippets at point. Invoke wit C-c y.
+(use-package hydra
+  :defer 2
+  :bind ("C-c y" . hydra-yasnippet/body))
+
+(defhydra hydra-yasnippet (:color blue)
+  "
+  ^
+  ^YASnippet^          ^Do^
+  ^─────────^──────────^──^────────
+  _q_ quit             _i_ insert
+  ^^                   _m_ mode
+  ^^                   _n_ new
+  ^^                   ^^
+  "
+  ("q" nil)
+  ("i" yas-insert-snippet)
+  ("m" yas-minor-mode)
+  ("n" yas-new-snippet))
+
 (use-package popup)
 ;; add some shotcuts in popup menu mode
 (define-key popup-menu-keymap (kbd "M-n") 'popup-next)
@@ -3999,3 +4043,4 @@ concatenated."
 (message "Using emacs server.")
 
 
+(put 'upcase-region 'disabled nil)
