@@ -54,6 +54,7 @@
 ;; (add-to-list 'package-selected-packages 'anaconda-mode)
 (add-to-list 'package-selected-packages 'atomic-chrome)
 (add-to-list 'package-selected-packages 'auctex)
+(add-to-list 'package-selected-packages 'auto-yasnippet)
 ;;(add-to-list 'package-selected-packages 'auto-complete)
 ;;(add-to-list 'package-selected-packages 'auto-complete-config)
 ;;(add-to-list 'package-selected-packages 'auto-complete-auctex)
@@ -130,6 +131,7 @@
 (add-to-list 'package-selected-packages 'helm)
 (add-to-list 'package-selected-packages 'highlight-defined)
 ;; (add-to-list 'package-selected-packages 'highlight-parentheses)
+(add-to-list 'package-selected-packages 'iedit)
 (add-to-list 'package-selected-packages 'impatient-mode)
 ;; (add-to-list 'package-selected-packages 'jedi)
 ;; (add-to-list 'package-selected-packages 'jedi-core)
@@ -645,7 +647,17 @@ version-control t)
 
 ;;** A
 
+;;*** affe
+(use-package affe
+:config
+;; Manual preview key for `affe-grep'
+(consult-customize affe-grep :preview-key "M-."))
 
+;; -*- lexical-binding: t -*-
+(defun affe-orderless-regexp-compiler (input _type _ignorecase)
+  (setq input (orderless-pattern-compiler input))
+  (cons input (lambda (str) (orderless--highlight input str))))
+(setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
 
 ;;;;*** Auto-completion from Gavin Freeborn
 ;;;; https://github.com/Gavinok
@@ -1433,6 +1445,17 @@ ARG is the thing being completed in the minibuffer."
 (setq avy-timeout 1.0) ;; sets the duration of the variable
 
 
+(use-package auto-yasnippet)
+
+(global-set-key (kbd "C-c C-y w")   #'aya-create)
+(global-set-key (kbd "C-c C-y TAB") #'aya-expand)
+(global-set-key (kbd "C-c C-y SPC") #'aya-expand-from-history)
+(global-set-key (kbd "C-c C-y d")   #'aya-delete-from-history)
+(global-set-key (kbd "C-c C-y c")   #'aya-clear-history)
+(global-set-key (kbd "C-c C-y n")   #'aya-next-in-history)
+(global-set-key (kbd "C-c C-y p")   #'aya-previous-in-history)
+(global-set-key (kbd "C-c C-y s")   #'aya-persist-snippet)
+(global-set-key (kbd "C-c C-y o")   #'aya-open-line)
 
 ;; ==> adjust here
 ;; *** awesome-tabs
@@ -2317,7 +2340,7 @@ concatenated."
 ;; You can enter C-k to remove the current directory from the list of work directories.
 ;; You can search the list of work directories by entering M-s.
 
-
+(use-package iedit)
 
 ;;*** ielm
 ;; ;; Enables `auto-complete' support in \\[ielm]
