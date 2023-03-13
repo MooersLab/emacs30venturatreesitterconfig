@@ -643,6 +643,11 @@ version-control t)
 
 (message "Starting config of packages--takes 5-60 seconds, depending on the operating system.")
 
+;;*** Zoom in and out via C-scroll wheel
+(global-set-key [C-wheel-up] 'text-scale-increase)
+(global-set-key [C-wheel-down] 'text-scale-decrease)
+
+
 ;; ############################## Package Configurations ################################
 
 ;;** A
@@ -658,6 +663,35 @@ version-control t)
   (setq input (orderless-pattern-compiler input))
   (cons input (lambda (str) (orderless--highlight input str))))
 (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
+
+
+;;*** auto-activating-snippets
+
+
+;;**** latex-auto-activating-snippets
+;; source: https://github.com/tecosaur/LaTeX-auto-activating-snippets
+(use-package laas
+  :hook (LaTeX-mode . laas-mode)
+  :config ; do whatever here
+  (aas-set-snippets 'laas-mode
+                    ;; set condition!
+                    :cond #'texmathp ; expand only while in math
+                    "supp" "\\supp"
+                    "On" "O(n)"
+                    "O1" "O(1)"
+                    "Olog" "O(\\log n)"
+                    "Olon" "O(n \\log n)"
+                    ;; bind to functions!
+                    "Sum" (lambda () (interactive)
+                            (yas-expand-snippet "\\sum_{$1}^{$2} $0"))
+                    "jf" (lambda () (interactive)
+                            (yas-expand-snippet "\\\\( $1 \\\\) $0"))
+                    "Span" (lambda () (interactive)
+                             (yas-expand-snippet "\\Span($1)$0"))
+                    ;; add accent snippets
+                    :cond #'laas-object-on-left-condition
+                    "qq" (lambda () (interactive) (laas-wrap-previous-object "sqrt"))))
+
 
 ;;;;*** Auto-completion from Gavin Freeborn
 ;;;; https://github.com/Gavinok
@@ -3932,6 +3966,14 @@ concatenated."
 ;; Optional: Add tempel-collection.
 ;; The package is young and doesn't have comprehensive coverage.
 (use-package tempel-collection)
+
+
+
+;;*** twauctex
+(add-to-list 'load-path "~/latex-tree-emacs30/manual-packages/twauctex")
+(use-package twauctex)
+(twauctex-global-mode)
+
 
 
 
