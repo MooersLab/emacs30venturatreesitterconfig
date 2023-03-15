@@ -130,6 +130,7 @@
 (add-to-list 'package-selected-packages 'helpful)
 (add-to-list 'package-selected-packages 'helm)
 (add-to-list 'package-selected-packages 'highlight-defined)
+(add-to-list 'package-selected-packages 'hydra)
 ;; (add-to-list 'package-selected-packages 'highlight-parentheses)
 (add-to-list 'package-selected-packages 'iedit)
 (add-to-list 'package-selected-packages 'impatient-mode)
@@ -2839,6 +2840,24 @@ concatenated."
   (setq-default left-fringe-width 20)
   :hook
   (magit-post-refresh . git-gutter:update-all-windows))
+
+;;**** Hydra for magit
+;; source: https://emacs.stackexchange.com/questions/21597/using-magit-for-the-most-basic-add-commit-push
+(defhydra yt-hydra/help (:color blue :hint nil)
+"
+_mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ magit status
+"
+  ;;Magit part
+  ("mp" magit-push)
+  ("mc" magit-commit)
+  ("md" magit-diff)
+  ("mla" magit-log-all)
+  ("ms" magit-status)
+  )
+(global-set-key (kbd "<f1>") 'yt-hydra/help/body)
+
+
+
 
 ;; *** Configured for GitHub Markdown
 (use-package markdown-mode
