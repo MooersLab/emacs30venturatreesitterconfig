@@ -64,6 +64,7 @@
 (add-to-list 'package-selected-packages 'beframe)
 (add-to-list 'package-selected-packages 'better-defaults)
 (add-to-list 'package-selected-packages 'bibtex)
+(add-to-list 'package-selected-packages 'browse-at-remote)
 ;; (add-to-list 'package-selected-packages 'c-eldoc)
 (add-to-list 'package-selected-packages 'cape)
 (add-to-list 'package-selected-packages 'cider)
@@ -110,6 +111,7 @@
 (add-to-list 'package-selected-packages 'exec-path-from-shell)
 ;; (add-to-list 'package-selected-packages 'expand-region)
 ;; (add-to-list 'package-selected-packages 'exwm)
+(add-to-list 'package-selected-packages 'file-info)
 (add-to-list 'package-selected-packages 'flycheck)
 (add-to-list 'package-selected-packages 'flycheck-vale)
 ;; (add-to-list 'package-selected-packages 'flycheck-grammarly)
@@ -2182,8 +2184,22 @@ concatenated."
 
 ;;** F
 
+;;*** file-info
 
-;; *** FlySpell (spell checking)
+(use-package file-info
+  :bind (("C-c d" . 'file-info-show))
+  :config
+  (setq hydra-hint-display-type 'posframe)
+  (setq hydra-posframe-show-params `(:poshandler posframe-poshandler-frame-center
+                                               :internal-border-width 2
+                                               :internal-border-color "#61AFEF"
+                                               :left-fringe 16
+                                               :right-fringe 16)))
+
+
+
+
+;;*** FlySpell (spell checking)
 (dolist (flyspellmodes '(text-mode-hook
 					   org-mode-hook
 					   latex-mode-hook))
