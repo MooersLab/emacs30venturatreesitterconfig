@@ -14,11 +14,11 @@ The *package* package is used to install the missing packages rather than by usi
 This massive rearrangement reduced the start-up time by about 30%.
 Many thanks go to Jeff Bowman for this suggestion.
 
-However, after two weeks of use, I am having trouble with not all of the elisp files in the elpa folder compiled after upgrading packages.
+However, after two weeks of use, I am having trouble with not all the elisp files in the *elpa* folder compiled after upgrading packages.
 Fixing this issue can take 30 minutes.
 I did not have this issue when I used `:ensure t` with use-package.
 I recommend not updating your packages frequently; once a month may be frequent enough.
-I also recommend using the emacs-server and emacsclient for instant access.
+Likewise, I also recommend using the emacs-server and emacsclient for instant access.
 
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
 There are several Mac-specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
@@ -50,14 +50,14 @@ The content of the configuration file supports my academic research writing with
 - Eglot is built into this version of Emacs.
 
 I invoke org-pomodoro with the point on a Project's headline in a org file to generate the logbook for storing the record of pomodoros.
-I store my lists of manuscirpts, grant applications, service activities, etc in separate org files rather than in a single task.org folder because I have too many projects for a singe org file.
-I bookmarked the headlines for speicfic projects to acclerate my access to a project via the *Bookmarks List* buffer.
+I store my lists of manuscripts, grant applications, service activities, etc in separate org files rather than in a single task.org folder because I have too many projects for a singe org file.
+I bookmarked the headlines for specific projects to accelerate my access to a project via the *Bookmarks List* buffer.
 I use the area under a project headline to store the logbook and over relevant information.
-Perhaps I would not need the bookmarks if I used org-agenda for scheduling my daily activites, which I do not because it is too hard to stay on top of everything.
+Perhaps I would not need the bookmarks if I used org-agenda for scheduling my daily activities, which I do not because it is too hard to stay on top of everything.
 I just use org-agenda to schedule upcoming meetings.
 
 Note that the bookmarks+ package runs on top of the built-in bookmarks.el package. 
-Bookmarks+ can bookmark a much wide array of items.
+Bookmarks+ can bookmark a much wider array of items.
 You can bookmark PDFs for later reading and websites of interest.
 I find it much easier to bookmark URLs of heavily visited sites than to store them in my private index.html file.
 You can also bookmark project directories and even dired buffers.
@@ -66,14 +66,14 @@ You can also bookmark project directories and even dired buffers.
 ** What the landing page (dashboard) will resemble when first loaded
 
 The default image for the dashboard is the Emacs logo. 
-I subsituted another image that is included above for testing.
+I substituted another image that is included above for testing.
 The bottom of the dashboards has the top 10 Hackernews items.
 This is an attention trap, so you may to comment it out.
 
 The startup time should be shorter on Linux and longer on Windows. 
 
-I tried zsh and bash. There was no difference in Emacs startup times on the Mac although these two shells differ in the startup times of new tabs.
-The Emacs binary starts up in a flash without a init.el. 
+I tried zsh and bash. There was no difference in Emacs startup times on the Mac, although these two shells differ in the startup times of new tabs.
+The Emacs binary starts up in a flash without an init.el. 
 
 #+ATTR_HTML: :alt Zoomed image.
 #+ATTR_HTML: :width 606
