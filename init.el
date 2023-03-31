@@ -48,7 +48,8 @@
 ;; (add-to-list 'package-selected-packages 'ac-helm)
 ;; (add-to-list 'package-selected-packages 'ac-ispell)
 ;; (add-to-list 'package-selected-packages 'ace-window)
-;; (add-to-list 'package-selected-packages 'ack)
+(add-to-list 'package-selected-packages 'ack)
+(add-to-list 'package-selected-packages 'ack-menu)
 ;;(add-to-list 'package-selected-packages 'aide)
 (add-to-list 'package-selected-packages 'all-the-icons)
 ;; (add-to-list 'package-selected-packages 'anaconda-mode)
@@ -77,6 +78,7 @@
 ;; (add-to-list 'package-selected-packages 'conda)
 ;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
+(add-to-list 'package-selected-packages 'consult-projectile)
 (add-to-list 'package-selected-packages 'corfu)
 (add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
@@ -204,6 +206,7 @@
 (add-to-list 'package-selected-packages 'projectile)
 ;; (add-to-list 'package-selected-packages 'pydoc)
 ;; (add-to-list 'package-selected-packages 'python-pytest)
+(add-to-list 'package-selected-packages 'qemacs)
 (add-to-list 'package-selected-packages 'quelpa)
 (add-to-list 'package-selected-packages 'quelpa-use-package)
 (add-to-list 'package-selected-packages 'racket-mode)
@@ -655,6 +658,11 @@ version-control t)
 
 ;;** A
 
+;;*** ack
+
+(use-package ack)
+(use-package ack-menu)
+
 ;;*** affe
 (use-package affe
 :config
@@ -918,6 +926,7 @@ version-control t)
 
 (use-package cape)
 (use-package consult)
+(use-package consult-projectile)
 (use-package corfu)
 (use-package embark-consult)
 (use-package orderless)
@@ -2004,17 +2013,22 @@ ARG is the thing being completed in the minibuffer."
 
 ;; C++ setup
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-to-list 'eglot-server-programs '((python-mode) "pyls"))
+(add-to-list 'eglot-server-programs '((latex-mode) "digestif"))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
-;; 
+;; from https://whatacold.io/blog/2022-01-22-emacs-eglot-lsp/
+(global-company-mode)
+(setq eldoc-echo-area-use-multiline-p nil)
 
-
+;;(define-key eglot-mode-map (kbd "C-c <tab>") \#'company-complete) ; initiate
+;;(define-key eglot-mode-map (kbd "C-c e $f n^{\prime \prime}$ ) \#'flymake-goto-next-error)
+;;(define-key eglot-mode-map (kbd "C-c e f p") \#'flymake-goto-prev-error)
+;;(define-key eglot-mode-map (kbd "C-c e $r^{\prime \prime}$ ) \#'eglot-rename)
 
 ;; *** Electric-pair mode. Add matching pairs of quotes and parentheses.
 (electric-pair-mode)
-
-
 
 ;; *** electric-spacing
 ;; An emacs minor-mode to automatically add spacing around [[https://github.com/xwl/electric-spacing][operators] in math expressions.].
@@ -3806,9 +3820,9 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (defvar my-posframe-buffer " *my-posframe-buffer*")
 
-(with-current-buffer (get-buffer-create my-posframe-buffer)
-  (erase-buffer)
-  (insert "Hello world"))
+;;(with-current-buffer (get-buffer-create my-posframe-buffer)
+;;  (erase-buffer)
+;;  (insert "Hi!"))
 
 (when (posframe-workable-p)
   (posframe-show my-posframe-buffer
@@ -3816,7 +3830,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (use-package company-posframe)
 (company-posframe-mode 1)
-(setq company-tooltip-minimum-width 40)
+(setq company-tooltip-minimum-width 60)
 
 (use-package vertico-posframe)
 (vertico-posframe-mode 1)
@@ -3853,7 +3867,11 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 ;;** Q
 
+;; *** eqmacs 
+;; This is an interactice quiz.
 
+(use-package qemacs
+    :load-path "~/latex-tree-emacs30/manual-packages/qemacs/")
 
 
 
@@ -4121,3 +4139,4 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
