@@ -128,6 +128,7 @@
 (add-to-list 'package-selected-packages 'git-gutter)
 ;; (add-to-list 'package-selected-packages 'gnuplot)
 ;; (add-to-list 'package-selected-packages 'gnuplot-mode)
+(add-to-list 'package-selected-packages 'gptai)
 (add-to-list 'package-selected-packages 'google-this)
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
 (add-to-list 'package-selected-packages 'greader)
@@ -155,6 +156,7 @@
 ;; (add-to-list 'package-selected-packages 'markdown-preview-mode)
 ;; (add-to-list 'package-selected-packages 'material-theme)
 (add-to-list 'package-selected-packages 'maxframe)
+(add-to-list 'package-selected-packages 'move-text)
 ;; (add-to-list 'package-selected-packages 'mu4e-alert)
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
 (add-to-list 'package-selected-packages 'multiple-cursors)
@@ -1726,7 +1728,7 @@ ARG is the thing being completed in the minibuffer."
 
 ;; Clay related functions from Daniel Slutsky
 ;; https://scicloj.github.io/clay/#Setup
-
+;;
 (defun scittle-show ()
   (interactive)
   (save-buffer)
@@ -2254,6 +2256,28 @@ concatenated."
 ;; use C-x g n on a region for search submission without prompt
 (use-package google-this)
 (global-set-key (kbd "C-x g") 'google-this-mode-submap)
+
+
+
+;;*** gpt
+
+(defun dw/read-openai-key ()
+  "Read api key from disk."
+  (with-temp-buffer
+    (insert-file-contents "~/openapikey.txt")
+    (string-trim (buffer-string))))
+
+
+;;**** gptai
+
+(use-pacakge gptai)
+;; set configurations
+(setq gptai-model "<MODEL-HERE>") 
+(setq gptai-username "<USERNAME-HERE>")
+(setq gptai-api-key #'dw/read-openai-key)
+;; set keybindings optionally
+(global-set-key (kbd "C-c g") 'gptai-send-query)
+    
 
 
 ;;*** greader
@@ -2955,77 +2979,86 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 ;;   (imp-visit-buffer))
 
 
-;; This following overlaps with the function of the drug-stuff package.
+;; This following overlaps with the function of the drag-stuff package.
 ;;### Move selected regions up or down
 ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
 ;; Thank you to DivineDomain for the suggested upgrade.
 ;; Source: https://www.emacswiki.org/emacs/MoveText 
-(defun move-text-internal (arg)
-  (cond
-   ((and mark-active transient-mark-mode)
-    (if (> (point) (mark))
-        (exchange-point-and-mark))
-    (let ((column (current-column))
-          (text (delete-and-extract-region (point) (mark))))
-      (forward-line arg)
-      (move-to-column column t)
-      (set-mark (point))
-      (insert text)
-      (exchange-point-and-mark)
-      (setq deactivate-mark nil)))
-   (t
-    (let ((column (current-column)))
-      (beginning-of-line)
-      (when (or (> arg 0) (not (bobp)))
-        (forward-line)
-        (when (or (< arg 0) (not (eobp)))
-          (transpose-lines arg))
-        (forward-line -1))
-      (move-to-column column t)))))
+;; (defun move-text-internal (arg)
+;;   (cond
+;;    ((and mark-active transient-mark-mode)
+;;     (if (> (point) (mark))
+;;         (exchange-point-and-mark))
+;;     (let ((column (current-column))
+;;           (text (delete-and-extract-region (point) (mark))))
+;;       (forward-line arg)
+;;       (move-to-column column t)
+;;       (set-mark (point))
+;;       (insert text)
+;;       (exchange-point-and-mark)
+;;       (setq deactivate-mark nil)))
+;;    (t
+;;     (let ((column (current-column)))
+;;       (beginning-of-line)
+;;       (when (or (> arg 0) (not (bobp)))
+;;         (forward-line)
+;;         (when (or (< arg 0) (not (eobp)))
+;;           (transpose-lines arg))
+;;         (forward-line -1))
+;;       (move-to-column column t)))))
+;;
+;; (defun move-line-region-down (arg)
+;;   "Move region (transient-mark-mode active) or current line
+;;   arg lines down."
+;;   (interactive "*p")
+;;   (move-text-internal arg))
+;;
+;; (defun move-line-region-up (arg)
+;;   "Move region (transient-mark-mode active) or current line
+;;   arg lines up."
+;;   (interactive "*p")
+;;   (move-text-internal (- arg)))
+;;
+;; (global-set-key (kbd "M-<down>") 'move-line-region-down)
+;; (global-set-key (kbd "M-<up>") 'move-line-region-up)
+;;
+;; ;;### Move lines up an down
+;; ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
+;; ;; Retained for those who have not mastered regions.
+;; (defun move-line (n)
+;;   "Move the current line up or down by N lines."
+;;   (interactive "p")
+;;   (setq col (current-column))
+;;   (beginning-of-line) (setq start (point))
+;;   (end-of-line) (forward-char) (setq end (point))
+;;   (let ((line-text (delete-and-extract-region start end)))
+;;     (forward-line n)
+;;     (insert line-text)
+;;     ;; restore point to original column in moved line
+;;     (forward-line -1)
+;;     (forward-char col)))
+;;
+;; (defun move-line-up (n)
+;;   "Move the current line up by N lines."
+;;   (interactive "p")
+;;   (move-line (if (null n) -1 (- n))))
+;;
+;; (defun move-line-down (n)
+;;   "Move the current line down by N lines."
+;;   (interactive "p")
+;;   (move-line (if (null n) 1 n)))
+;;
+;; (global-set-key (kbd "M-<up>") 'move-line-up)
+;; (global-set-key (kbd "M-<down>") 'move-line-down)
 
-(defun move-line-region-down (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines down."
-  (interactive "*p")
-  (move-text-internal arg))
+;; The above functionality is found in the move-text package.
+;; https://github.com/emacsfodder/move-text
+;; It uses the same keybindings as above.
+;; It is in MELPA.
 
-(defun move-line-region-up (arg)
-  "Move region (transient-mark-mode active) or current line
-  arg lines up."
-  (interactive "*p")
-  (move-text-internal (- arg)))
+(move-text-default-bindings)
 
-(global-set-key (kbd "M-<down>") 'move-line-region-down)
-(global-set-key (kbd "M-<up>") 'move-line-region-up)
 
-;;### Move lines up an down
-;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
-;; Retained for those who have not mastered regions.
-(defun move-line (n)
-  "Move the current line up or down by N lines."
-  (interactive "p")
-  (setq col (current-column))
-  (beginning-of-line) (setq start (point))
-  (end-of-line) (forward-char) (setq end (point))
-  (let ((line-text (delete-and-extract-region start end)))
-    (forward-line n)
-    (insert line-text)
-    ;; restore point to original column in moved line
-    (forward-line -1)
-    (forward-char col)))
-
-(defun move-line-up (n)
-  "Move the current line up by N lines."
-  (interactive "p")
-  (move-line (if (null n) -1 (- n))))
-
-(defun move-line-down (n)
-  "Move the current line down by N lines."
-  (interactive "p")
-  (move-line (if (null n) 1 n)))
-
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
 
 ;; Sometimes we want to edit multiple places in the file at the same time. 
 ;; Most of the time this is just adding the same characters multiple places 
