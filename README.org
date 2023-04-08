@@ -1,5 +1,8 @@
 #+Title: Emacs Configuration with Support for Structured Editing
 
+** Moved to Codeberg
+Go [[https://codeberg.org/MooersLab/emacs30init/src/branch/main/README.org][here]] for most recent version.
+
 ** Purpose
 
 This configuration supports structured editing of computer code with concrete syntax trees. 
