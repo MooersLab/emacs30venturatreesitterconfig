@@ -75,8 +75,8 @@ The startup time should be shorter on Linux and longer on Windows.
 I tried zsh and bash. There was no difference in Emacs startup times on the Mac, although these two shells differ in the startup times of new tabs.
 The Emacs binary starts up in a flash without an init.el. 
 
+#+ATTR_HTML: :width 606 :center t
 #+ATTR_HTML: :alt Zoomed image.
-#+ATTR_HTML: :width 606
 [[./images/dashboard25Feb.png]]
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be listed on the dashboard automatically.
