@@ -70,6 +70,7 @@
 (add-to-list 'package-selected-packages 'cape)
 (add-to-list 'package-selected-packages 'cider)
 (add-to-list 'package-selected-packages 'citar)
+(add-to-list 'package-selected-packages 'citar-org-roam)
 ;; (add-to-list 'package-selected-packages 'cmake-ide)
 ;; (add-to-list 'package-selected-packages 'cmake-mode)
 ;; (add-to-list 'package-selected-packages 'code-cells)
@@ -79,9 +80,11 @@
 ;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'consult-projectile)
+(add-to-list 'package-selected-packages 'consult-org-roam)
 (add-to-list 'package-selected-packages 'corfu)
 (add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
+(add-to-list 'package-selected-packages 'dash)
 (add-to-list 'package-selected-packages 'dashboard-hackernews)
 (add-to-list 'package-selected-packages 'dashboard)
 (add-to-list 'package-selected-packages 'dap-mode)
@@ -150,6 +153,7 @@
 (add-to-list 'package-selected-packages 'lsp-ui)
 (add-to-list 'package-selected-packages 'lsp-treemacs)
 (add-to-list 'package-selected-packages 'magit)
+(add-to-list 'package-selected-packages 'magit-commit)
 (add-to-list 'package-selected-packages 'markdown-mode)
 (add-to-list 'package-selected-packages 'marginalia)
 ;; (add-to-list 'package-selected-packages 'markdown-preview-eww)
@@ -160,6 +164,7 @@
 ;; (add-to-list 'package-selected-packages 'mu4e-alert)
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
 (add-to-list 'package-selected-packages 'multiple-cursors)
+(add-to-list 'package-selected-packages 'nov)
 ;; (add-to-list 'package-selected-packages 'ob-diagrams)
 ;; (add-to-list 'package-selected-packages 'ob-ess-julia)
 ;; (add-to-list 'package-selected-packages 'ob-ipython)
@@ -177,7 +182,7 @@
 (add-to-list 'package-selected-packages 'org-pdftools)
 ;; (add-to-list 'package-selected-packages 'org-plus-contrib)
 (add-to-list 'package-selected-packages 'org-pomodoro)
-;; (add-to-list 'package-selected-packages 'org-preview-html)
+(add-to-list 'package-selected-packages 'org-preview-html)
 ;; (add-to-list 'package-selected-packages 'org-ql)
 (add-to-list 'package-selected-packages 'org-ref)
 (add-to-list 'package-selected-packages 'org-roam)
@@ -238,6 +243,7 @@
 ;; (add-to-list 'package-selected-packages 'wc-mode)
 ;; (add-to-list 'package-selected-packages 'web)
 (add-to-list 'package-selected-packages 'which-key)
+(add-to-list 'package-selected-packages 'wttrin)
 ;; (add-to-list 'package-selected-packages 'xelb)
 ;; (add-to-list 'package-selected-packages 'xwidgets-reuse)
 ;; (add-to-list 'package-selected-packages 'xwwp-follow-link-ivy)
@@ -339,14 +345,14 @@ version-control t)
 ;; things like backing up files in '/tmp'.
 
 ;; Default and per-save backups go here:
-(setq backup-directory-alist '(("" . "~/latex-tree-emacs30/backup/per-save")))
+(setq backup-directory-alist '(("" . "~/emacs30/backup/per-save")))
 
  (defun force-backup-of-buffer ()
     ;; Make a special "per session" backup at the first save of each
     ;; emacs session.
     (when (not buffer-backed-up)
       ;; Override the default parameters for per-session backups.
-      (let ((backup-directory-alist '(("" . "~/latex-tree-emacs30/backup/per-session")))
+      (let ((backup-directory-alist '(("" . "~/emacs30/backup/per-session")))
             (kept-new-versions 3))
         (backup-buffer)))
     ;; Make a "per save" backup on each save.  The first save results in
@@ -397,8 +403,8 @@ version-control t)
 (setq css-indent-offset 2)
 (setq python-basic-offset 4)
 
-(setq user-init-file "/Users/blaine/latex-tree-emacs30/init.el")
-(setq user-emacs-directory "/Users/blaine/latex-tree-emacs30/")
+(setq user-init-file "/Users/blaine/emacs30/init.el")
+(setq user-emacs-directory "/Users/blaine/emacs30/")
 (setq default-directory "/Users/blaine")
 (setenv "HOME" "/Users/blaine")
 ;; (load user-init-file)
@@ -423,8 +429,8 @@ version-control t)
 ;; display line numbers. Need with s-l. 
 (global-display-line-numbers-mode)
 
-;;### hippie-expand M-/
-(global-set-key [remap dabbrev-expand]  'hippie-expand)
+;;### hippie-expand M-/. Seems to be comflicting with Corfu, Cape, and dabrrev.
+;; (global-set-key [remap dabbrev-expand]  'hippie-expand)
 
 
 ;; GUI related settings
@@ -516,7 +522,7 @@ version-control t)
 (global-set-key (kbd "C-c e")
     (lambda()
       (interactive)
-      (find-file "~/latex-tree-emacs30")))
+      (find-file "~/emacs30")))
 
 
 ;; Global keys
@@ -528,7 +534,7 @@ version-control t)
 (global-set-key [C-tab] 'other-window)
 (global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-/") #'hippie-expand)
+; (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-c r") 'remember)
 
@@ -1318,7 +1324,7 @@ ARG is the thing being completed in the minibuffer."
 ;; 
 ;; *** atomic-chrome, used to interact with GhostText extension for Google Chrome.
 (use-package atomic-chrome)
-;;(atomic-chrome-start-server)
+(atomic-chrome-start-server)
 (setq atomic-chrome-default-major-mode 'python-mode)
 (setq atomic-chrome-extension-type-list '(ghost-text))
 ;;(atomic-chrome-start-httpd)
@@ -1511,7 +1517,7 @@ ARG is the thing being completed in the minibuffer."
 ;; cd ~/latex-tree-emacs30/manual-packages
 ;; git clone --depth=1 https://github.com/manateelazycat/awesome-tab.git 
 (use-package awesome-tab
-  :load-path "~/latex-tree-emacs30/manual-packages/awesome-tab"
+  :load-path "~/emacs30/manual-packages/awesome-tab"
   :config
   (awesome-tab-mode t))
 
@@ -1728,28 +1734,68 @@ ARG is the thing being completed in the minibuffer."
 
 ;; Clay related functions from Daniel Slutsky
 ;; https://scicloj.github.io/clay/#Setup
-;;
-(defun scittle-show ()
+(defun clay/start ()
   (interactive)
-  (save-buffer)
-  (let
-      ((filename
-        (buffer-file-name)))
-    (when filename
-      (cider-interactive-eval
-       (concat "(scicloj.clay.v2.api/show-doc! \"" filename "\" {})")))))
-(define-key clojure-mode-map "\C-c\C-s" 'scittle-show)
+  (cider-interactive-eval "
+    (require '[scicloj.clay.v2.api])
+    (scicloj.clay.v2.api/start!)")
+  t)
 
-(defun scittle-show-and-write ()
+(defun clay/show-namespace ()
   (interactive)
+  (clay/start)
   (save-buffer)
   (let
       ((filename
         (buffer-file-name)))
     (when filename
       (cider-interactive-eval
-       (concat "(scicloj.clay.v2.api/show-doc-and-write-html! \"" filename "\" {:toc? true})")))))
-(define-key clojure-mode-map "\C-c\C-w" 'scittle-show-and-write)
+       (concat "(scicloj.clay.v2.api/show-namespace! \"" filename "\" {})")))))
+
+(defun clay/show-namespace-and-write-html ()
+  (interactive)
+  (clay/start)
+  (save-buffer)
+  (let
+      ((filename
+        (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(scicloj.clay.v2.api/show-namespace-and-write-html! \"" filename "\" {:toc? true})")))))
+
+(defun clay/generate-and-show-namespace-quarto ()
+  (interactive)
+  (clay/start)
+  (save-buffer)
+  (let
+      ((filename
+        (buffer-file-name)))
+    (when filename
+      (cider-interactive-eval
+       (concat "(scicloj.clay.v2.api/generate-and-show-namespace-quarto! \"" filename "\" {})")))))
+
+(defun clay/cider-interactive-notify-and-eval (code)
+  (cider-interactive-eval
+   code
+   (cider-interactive-eval-handler nil (point))
+   nil
+   nil))
+
+(defun clay/send (code)
+  (clay/start)
+  (clay/cider-interactive-notify-and-eval
+   (concat "(scicloj.clay.v2.api/handle-form! (quote " code "))")))
+
+(defun clay/send-last-sexp ()
+  (interactive)
+  (clay/start)
+  (clay/send (cider-last-sexp)))
+
+(defun clay/send-defun-at-point ()
+  (interactive)
+  (clay/start)
+  (clay/send (thing-at-point 'defun)))
+
 
 
 ;; Clerk is another "notebook"--really a brower interface
@@ -1839,8 +1885,36 @@ ARG is the thing being completed in the minibuffer."
 (use-package command-log-mode
   :commands command-log-mode)
 
-
-
+;;*** consult-org-roam
+;; Provides consult functionality to org-roam files.
+;; Installed ripgrep with macports.
+;; Source: https://github.com/jgru/consult-org-roam
+;; 
+(use-package consult-org-roam
+   :after org-roam
+   :init
+   (require 'consult-org-roam)
+   ;; Activate the minor mode
+   (consult-org-roam-mode 1)
+   :custom
+   ;; Use `ripgrep' for searching with `consult-org-roam-search'
+   (consult-org-roam-grep-func #'consult-ripgrep)
+   ;; Configure a custom narrow key for `consult-buffer'
+   (consult-org-roam-buffer-narrow-key ?r)
+   ;; Display org-roam buffers right after non-org-roam buffers
+   ;; in consult-buffer (and not down at the bottom)
+   (consult-org-roam-buffer-after-buffers t)
+   :config
+   ;; Eventually suppress previewing for certain functions
+   (consult-customize
+    consult-org-roam-forward-links
+    :preview-key (kbd "M-."))
+   :bind
+   ;; Define some convenient keybindings as an addition
+   ("C-c n e" . consult-org-roam-file-find)
+   ("C-c n b" . consult-org-roam-backlinks)
+   ("C-c n l" . consult-org-roam-forward-links)
+   ("C-c n r" . consult-org-roam-search))
 
 
 ;;** D
@@ -2039,7 +2113,7 @@ ARG is the thing being completed in the minibuffer."
 ;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing.el")
 ;; byte-compile with (byte-compile-file "~/latex-tree-emacs30/manual-packages/electric-spacing/electric-spacing-r.el")
 ;; ==> adjust here
-(add-to-list 'load-path "~/latex-tree-emacs30/manual-packages/electric-spacing")
+(add-to-list 'load-path "~/emacs30/manual-packages/electric-spacing")
 (use-package electric-spacing)
 (use-package electric-spacing-r)
 (add-hook 'ess-mode-hook #'electric-spacing-mode)
@@ -2056,7 +2130,7 @@ ARG is the thing being completed in the minibuffer."
 (setq elfeed-curl-program-name "/opt/local/bin/curl")
 (setq elfeed-search-title-max-width 130)
 (use-package elfeed-org)
-(setq rmh-elfeed-org-files (list "~/latex-tree-emacs30/elfeed.org"))
+(setq rmh-elfeed-org-files (list "~/emacs30/elfeed.org"))
 (elfeed-org)
 ;;
 ;;(setq elfeed-feeds '("https://planet.emacslife.com/atom.xml" "http://feeds.nature.com/nchem/rss/current"
@@ -2258,25 +2332,25 @@ concatenated."
 (global-set-key (kbd "C-x g") 'google-this-mode-submap)
 
 
-
-;;*** gpt
-
-(defun dw/read-openai-key ()
-  "Read api key from disk."
-  (with-temp-buffer
-    (insert-file-contents "~/openapikey.txt")
-    (string-trim (buffer-string))))
-
-
-;;**** gptai
-
-(use-pacakge gptai)
-;; set configurations
-(setq gptai-model "<MODEL-HERE>") 
-(setq gptai-username "<USERNAME-HERE>")
-(setq gptai-api-key #'dw/read-openai-key)
-;; set keybindings optionally
-(global-set-key (kbd "C-c g") 'gptai-send-query)
+;;;; Really, you want to feed Moloch?
+;;;;*** gpt
+;;
+;;(defun dw/read-openai-key ()
+;;  "Read api key from disk."
+;;  (with-temp-buffer
+;;    (insert-file-contents "~/openapikey.txt")
+;;    (string-trim (buffer-string))))
+;;
+;;
+;;;;**** gptai
+;;
+;;(use-pacakge gptai)
+;;;; set configurations
+;;(setq gptai-model "<MODEL-HERE>") 
+;;(setq gptai-username "<USERNAME-HERE>")
+;;(setq gptai-api-key #'dw/read-openai-key)
+;;;; set keybindings optionally
+;;(global-set-key (kbd "C-c g") 'gptai-send-query)
     
 
 
@@ -3073,6 +3147,17 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+
+;; ** N
+
+;; *** noaa
+
+(use-package noaa
+     :load-path "manual-packages/noaa/")
+(setq noaa-latitude 35.65)
+(setq noaa-longitude 97.47)
+     
+
 ;; ** O
 
 ;; *** Olivetti
@@ -3423,6 +3508,12 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 ;; /Applications/Tomighty.app/Contents/Resources/timer_tick.wav
 
+
+;;*** org-preview-html
+(use-package org-preview-html)
+
+
+
 ;; <<<<<<< BEGIN org-ref >>>>>>>>>>>>>>
 (use-package org-ref)
 ;; (require 'org-ref-ivy)
@@ -3492,12 +3583,18 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 (setq org-roam-capture-templates
       '(("m" "main" plain
          "%?"
-         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n#+ROAM_TAGS: %? \n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
+         ;; citar literature note
+        ("n" "literature note" plain
+         "%?"
+         :target (file+head "%(expand-file-name (or citar-org-roam-subdir \"\") org-roam-directory)/${citar-citekey}.org"
+                    "#+title: ${citar-citekey} (${citar-date}). ${note-title}.\n#+created: %U\n#+last_modified: %U\n\n")
+                  :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new
-         (file+head "reference/${title}.org" "#+title: ${title}\n#+ROAM_TAGS: %? \n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         (file+head "reference/${title}.org" "#+title: ${title}\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
          ("l" "clipboard" plain #'org-roam-caputre--get-point "%i%a" 
@@ -3508,7 +3605,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
          :jump-to-captured t)
         ("a" "article" plain "%?"
          :if-new
-         (file+head "articles/${title}.org" "#+title: ${title}\n#+ROAM_TAGS:  %? :article:\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         (file+head "articles/${title}.org" "#+title: ${title}\n :article:\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)))
 
@@ -3516,27 +3613,31 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
     (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
 
 
-(defun jethro/org-roam-node-from-cite (keys-entries)
-    (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
-    (let ((title (citar--format-entry-no-widths (cdr keys-entries)
-                                                "${author editor} :: ${title}")))
-      (org-roam-capture- :templates
-                         '(("r" "reference" plain "%?" :if-new
-                            (file+head "reference/${citekey}.org"
-                                       ":PROPERTIES:
-:ROAM_REFS: [cite:@${citekey}]
-:END:
-#+title: ${title}\n")
-                            :immediate-finish t
-                            :unnarrowed t))
-                         :info (list :citekey (car keys-entries))
-                         :node (org-roam-node-create :title title)
-                         :props '(:finalize find-file))))
+;; Over my head at the moment
+;; (defun jethro/org-roam-node-from-cite (keys-entries)
+;;     (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
+;;     (let ((title (citar--format-entry-no-widths (cdr keys-entries)
+;;                                                 "${author editor} :: ${title}")))
+;;       (org-roam-capture- :templates
+;;                          '(("r" "reference" plain "%?" :if-new
+;;                             (file+head "reference/${citekey}.org"
+;;                                        ":PROPERTIES:
+;; :ROAM_REFS: [cite:@${citekey}]
+;; :END:
+;; #+title: ${title}\n")
+;;                             :immediate-finish t
+;;                             :unnarrowed t))
+;;                          :info (list :citekey (car keys-entries))
+;;                          :node (org-roam-node-create :title title)
+;;                          :props '(:finalize find-file))))
+;; 
+;; 
+;; (defun jethro/tag-new-node-as-draft ()
+;;   (org-roam-tag-add '("draft")))
+;; (add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
+;; 
 
-
-(defun jethro/tag-new-node-as-draft ()
-  (org-roam-tag-add '("draft")))
-(add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
+(use-package consult-org-roam)
 
 
 
@@ -3574,38 +3675,54 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 
 ;; *** org-roam-bibtex config
+;; See this vidoe https://www.youtube.com/watch?v=Wy9WvF5gWYg
 
 (use-package org-roam-bibtex
       :hook (org-roam-mode . org-roam-bibtex-mode))
 
-    (setq orb-preformat-keywords
-          '("citekey" "title" "url" "author-or-editor" "keywords" "file")
-          orb-process-file-keyword t
-          orb-file-field-extensions '("pdf"))
-
-    (setq orb-templates
-          '(("r" "ref" plain(function org-roam-capture--get-point)
-             ""
-             :file-name "${citekey}"
-             :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}
-  - tags ::
-  - keywords :: ${keywords}
-
-  *Notes
-  :PROPERTIES:
-  :Custom_ID: ${citekey}
-  :URL: ${url}
-  :AUTHOR: ${author-or-editor}
-  :NOTER_DOCUMENT: ${file}
-  :NOTER_PAGE:
-  :END:")))
-
+;;    (setq orb-preformat-keywords
+;;          '("citekey" "title" "url" "author-or-editor" "keywords" "file")
+;;          orb-process-file-keyword t
+;;          orb-file-field-extensions '("pdf"))
+;;
+;;    (setq orb-templates
+;;          '(("r" "ref" plain(function org-roam-capture--get-point)
+;;             ""
+;;             :file-name "${citekey}"
+;;             :head "#+TITLE: ${citekey}: ${title}\n#+ROAM_KEY: ${ref}
+;;  - tags ::
+;;  - keywords :: ${keywords}
+;;
+;;  *Notes
+;;  :PROPERTIES:
+;;  :Custom_ID: ${citekey}
+;;  :URL: ${url}
+;;  :AUTHOR: ${author-or-editor}
+;;  :NOTER_DOCUMENT: ${file}
+;;  :NOTER_PAGE:
+;;  :END:")))
+;;
 
 (use-package citar-org-roam
-  :after citar org-roam
+  :after (citar org-roam)
   :no-require
   :config (citar-org-roam-mode))
 
+;; source: https://github.com/emacs-citar/citar/wiki/Notes-configuration#org-roam-bibtex
+;; Not sure if this is outdated.
+;;(citar-register-notes-source
+;; 'orb-citar-source (list :name "Org-Roam Notes"
+;;        :category 'org-roam-node
+;;        :items #'citar-org-roam--get-candidates
+;;        :hasitems #'citar-org-roam-has-notes
+;;        :open #'citar-org-roam-open-note
+;;        :create #'orb-citar-edit-note
+;;        :annotate #'citar-org-roam--annotate))
+
+;; (setq citar-notes-source 'orb-citar-source)
+
+
+(setq citar-org-roam-capture-template-key "n")
 
 (use-package citar
   :bind (("C-c b" . citar-insert-citation)
@@ -3616,6 +3733,9 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (setenv "PATH" (concat ":/opt/local/bin/" (getenv "PATH")))
 (add-to-list 'exec-path "/opt/local/bin/")
+
+
+
 
 ;; org-preview-latex-process-alist
 
@@ -3731,7 +3851,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 ;; ==> adjust here
 ;; pdb.el
-(load-file "~/latex-tree-emacs30/manual-packages/emacs-pdb-mode/pdb-mode.el")
+(load-file "~/emacs30/manual-packages/emacs-pdb-mode/pdb-mode.el")
 (setq pdb-rasmol-name "/Applications/PyMOL.app/Contents/bin/pymol")
 (setq auto-mode-alist
      (cons (cons "pdb$" 'pdb-mode)
@@ -3904,7 +4024,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 ;; This is an interactice quiz.
 
 (use-package qemacs
-    :load-path "~/latex-tree-emacs30/manual-packages/qemacs/")
+    :load-path "~/emacs30/manual-packages/qemacs/")
 
 
 
@@ -4010,7 +4130,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
            (tsx-ts-mode . combobulate-mode))
     ;; Amend this to the directory where you keep Combobulate's source
     ;; code.
-    :load-path ("/Users/blaine/latex-tree-emacs30/manual-packages/combobulate")))
+    :load-path ("/Users/blaine/emacs30/manual-packages/combobulate")))
 ;; ==> adjust here
 
 
@@ -4056,10 +4176,19 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 
 ;;*** twauctex
-(add-to-list 'load-path "~/latex-tree-emacs30/manual-packages/twauctex")
+(add-to-list 'load-path "~/emacs30/manual-packages/twauctex")
 (use-package twauctex)
 (twauctex-global-mode)
 
+
+
+;;** V
+;;*** emacs-vega-view
+(add-to-list 'load-path "~/emacs30/manual-packages/emacs-vega-view")
+(use-package vega-view)
+(setq vega-view-prefer-png t)
+;; source: https://github.com/applied-science/emacs-vega-view
+;; M-x veaga-view
 
 
 
@@ -4103,6 +4232,15 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 ;; (add-hook 'R-mode-hook 'lsp)
 (which-key-setup-side-window-right-bottom)
 
+
+;; *** wttrn
+(use-package wttrin
+    :init
+    (setq wttrin-default-cities '("Oklahoma City" "Chapel Hill")
+        wttrin-default-accept-language '("Accept-Language" . "en-US")))
+
+;; (use-package wttrin-weather-modeline
+;;    :load-path "/Users/blaine/emacs30/manual-packages/wttrin-weather-modeline/")
 
 
 ;; ** Y
@@ -4160,15 +4298,59 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
      )))
 (setq yas/prompt-functions '(yas/popup-isearch-prompt yas/no-prompt))
 
+;; A new snippet can be created in a new buffer with the command C-c & C-n
+;; The key binding is a little awkward but this is a very fast way to generate new snippets.
+;; Enter C-c C-c when finished with the snippet.
+;; I modified the default template for a new template by adding the group field.
+;; This code resides in custom.el.
+;; I include it here for future reference if I delete the custom.el file.
+;; '(yas-new-snippet-default
+;;   "# -*- mode: snippet -*-\12# name: ${1:name} \12# group: ${2:group}\12# key: ${3:${1:$(yas--key-from-desc yas-text)}}\12# --\12$0`(yas-escape-text yas-selected-text)`"))
+
+;; Better yet. Redefine the snippet. 
+;; However, you cannot use defcustom inside the init.el file.
+;; (defcustom yas-new-snippet-default "\
+;; # -*- mode: snippet -*-
+;; # name: $1
+;; # key: $2
+;; # group: $3
+;; # contributor: Blaine Mooers bmooers1@gamil.com
+;; # --
+;; $0`(yas-escape-text yas-selected-text)`"
+;;   "Default snippet to use when creating a new snippet.
+;; If nil, don't use any snippet."
+;;   :type 'string)
+
+
+;; This hack works well enough.
+(customize-set-variable 'yas-new-snippet-default "\
+# -*- mode: snippet -*-
+# name: $1
+# key: $2
+# group: $3
+# contributor: Blaine Mooers bmooers1@gamil.com
+# --
+$0`(yas-escape-text yas-selected-text)`"
+"Default snippet to use when creating a new snippet.
+If nil, don't use any snippet.")
+
+
+
+
+
+
+;;(let ((yas-new-snippet-default my-yas-new-snippet-default)))
+
+
 (message "config • Finished package configuration. You now may enjoy Emacs.")
 
 ;; Start server.
 ;; Enter `M-x server-force-delete’ to disconnect the server.
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
-(message "Using emacs server.")
+;; (require 'server)
+;; (unless (server-running-p)
+;;   (server-start))
+;; 
+;; (message "Using emacs server.")
 
 
 (put 'upcase-region 'disabled nil)
