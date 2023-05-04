@@ -71,6 +71,7 @@
 (add-to-list 'package-selected-packages 'cider)
 (add-to-list 'package-selected-packages 'citar)
 (add-to-list 'package-selected-packages 'citar-org-roam)
+(add-to-list 'package-selected-packages 'clomacs)
 ;; (add-to-list 'package-selected-packages 'cmake-ide)
 ;; (add-to-list 'package-selected-packages 'cmake-mode)
 ;; (add-to-list 'package-selected-packages 'code-cells)
@@ -1830,6 +1831,10 @@ ARG is the thing being completed in the minibuffer."
      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-clojure-server-command '("/usr/local/Cellar/clojure-lsp-native"))) ; Optional: In case `clojure-lsp` is not in your $PATH
 
+;;***clomacs 
+;; source: https://github.com/clojure-emacs/clomacs
+(use-package clomacs)
+
 
 ;; (use-package openai
 ;;     :load-path "manual-packages/openai/")
@@ -2942,7 +2947,37 @@ concatenated."
   :after lsp)
 
 
+ ;; Pair Programming Source: https://www.reddit.com/r/emacs/comments/134k63v/pair_programming_code_snippet_what_i_use_to_pair/
+(defvar gopar-pair-programming nil)
+(defun gopar/pair-programming ()
+  "Poor mans minor mode for setting up things that i like to make pair programming easier."
+  (interactive)
+  (if gopar-pair-programming
+      (progn
+        ;; Don't use global line numbers mode since it will turn on in other modes that arent programming
+        (dolist (buffer (buffer-list))
+          (with-current-buffer buffer
+            (when (derived-mode-p 'prog-mode)
+              (display-line-numbers-mode -1))))
+        (remove-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+        ;; disable all themes change to a friendlier theme
+        (mapcar 'disable-theme custom-enabled-themes)
+        ;; (load-theme 'tao-yin) ;; Theme i use 24/7
+        (setq gopar-pair-programming nil))
+
+    (progn
+      ;; display line numbers
+      (dolist (buffer (buffer-list))
+        (with-current-buffer buffer
+          (when (derived-mode-p 'prog-mode)
+            (display-line-numbers-mode 1))))
+      (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+      ;; disable all themes change to a friendlier theme
+      (mapcar 'disable-theme custom-enabled-themes)
+      (load-theme 'manoj-dark)
+      (setq gopar-pair-programming t))))
 
 
 
