@@ -52,7 +52,7 @@ The content of the configuration file supports my academic research writing with
 - Uses evil-nerd-commenter for smart commenting of lines and regions.
 - Configured for Clojure, Python, and R programming.
 - Supports the use of LaTeX via AUCTeX.
-- Supports *google-this*. Make selection and enter `C-x g n` to submit as search term to Google in default browser.
+- Supports *google-this*. Make selection and enter `C-x / g` to submit as selected region as a search term to Google in default browser.
 - Eglot is built into this version of Emacs.
 
 I invoke org-pomodoro with the point on a Project's headline in a org file to generate the logbook for storing the record of pomodoros.
