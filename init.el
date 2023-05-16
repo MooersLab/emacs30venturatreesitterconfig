@@ -221,6 +221,7 @@
 (add-to-list 'package-selected-packages 'rainbow-delimiters)
 ;; (add-to-list 'package-selected-packages 'rtags)
 (add-to-list 'package-selected-packages 'simple-httpd)
+(add-to-list 'package-selected-packages 'slime)
 (add-to-list 'package-selected-packages 'sound-wav)
 ;; (add-to-list 'package-selected-packages 'ssh)
 ;; (add-to-list 'package-selected-packages 'stan-mode)
@@ -2332,11 +2333,19 @@ concatenated."
 
 
 ;;*** google-this
-;; use C-x g n on a region for search submission without prompt
+;; use C-x / g n on a region for search submission without prompt
 (use-package google-this)
-(global-set-key (kbd "C-x g") 'google-this-mode-submap)
 
+(defun google-this-pymol-reference ()
+  "Visit the most probable pymolwiki.org page for this word."
+  (interactive)
+  (google-this-parse-and-search-string
+   (concat "site:pymolwiki.org" (thing-at-point 'symbol))
+   nil (google-this-lucky-search-url))) 
 
+(global-set-key (kbd "C-x / g p") 'google-this-pymol-reference)
+       
+;;;###autoload
 ;;;; Really, you want to feed Moloch?
 ;;;;*** gpt
 ;;
@@ -3011,13 +3020,13 @@ concatenated."
 _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ magit status
 "
   ;;Magit part
-  ("mp" magit-push)
+  ("mu" magit-push)
   ("mc" magit-commit)
   ("md" magit-diff)
   ("mla" magit-log-all)
   ("ms" magit-status)
   )
-(global-set-key (kbd "<f1>") 'yt-hydra/help/body)
+(global-set-key (kbd "C-c 2") 'yt-hydra/help/body)
 
 
 
@@ -3411,6 +3420,23 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
     (interactive)
     (org-capture nil "s"))
 
+(defhydra hydra-jump-to-project-file
+  (:color amaranth)
+  "Jump to system file"
+  ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org") "JournalArticles.org")
+  ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org") "Proposals.org")
+  ("b" (find-file "/Users/blaine/gtd/tasks/Books..org") "Books.org")
+  ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org") "Talks.org")
+  ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org") "Posters.org")
+  ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org") "ManuscriptReviews.org")
+  ("f" (find-file "/Users/blaine/gtd/tasks/Private.org") "Private.org")
+  ("s" (find-file "/Users/blaine/gtd/tasks/Service.org") "Service.org")
+  ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org") "Teaching.org")
+  ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org") "Workshops.org")
+  ("q" nil "Quit" :color blue)) ; Add :color blue
+(global-set-key (kbd "C-c 1") 'hydra-jump-to-project-file/body)
+
+
 
 ;; <<<<<<< END of org-agenda >>>>>>>>>>>>>>
 
@@ -3433,9 +3459,9 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
    (org . t)
    (julia . t)
    (python . t)
-   (R . t)
-   (jupyter . t)))
+   (R . t)))
 
+;;  Removed  (jupyter . t) on May 14 due to an error message.
 
 ;;*** org-drill
 ;; org-drill for spaced repetition learning in org-mode
@@ -3684,9 +3710,13 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (setq org-preview-latex-default-process 'dvisvgm)
 
-(setq org-latex-to-pdf-process
-  '("xelatex -interaction nonstopmode %f"
-     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+;; (setq org-latex-to-pdf-process
+;;  '("xelatex -interaction nonstopmode %f"
+;;     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+
+(setq org-latex-pdf-process (list
+   "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+
 
 ;; Increase size of LaTeX fragment previews. Note that the previews do not scale up with C-x +
 (plist-put org-format-latex-options :scale 2)
@@ -4087,6 +4117,50 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 
 ;;** S
+
+;; slime 
+
+;; Source: https://github.com/susam/emacs4cl/blob/main/.emacs
+;; Configure SBCL as the Lisp program for SLIME.
+(add-to-list 'exec-path "/opt/local/bin")
+(setq inferior-lisp-program "sbcl")
+
+;; Enable Paredit.
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+(defun override-slime-del-key ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
+(add-hook 'slime-repl-mode-hook 'override-slime-del-key)
+
+;; ;; Enable Rainbow Delimiters.
+;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
+;; 
+;; ;; Customize Rainbow Delimiters.
+;; (use-package rainbow-delimiters)
+;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
+;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")  ; green
+;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")  ; blue
+;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#cc6")  ; yellow
+;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#6cc")  ; cyan
+;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#c6c")  ; magenta
+;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
+;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
+;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#666")  ; dark gray
+;; 
+
+
+
+
+
 ;; (use-package swiper
 ;;   :config
 ;;   (progn
@@ -4109,6 +4183,11 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 ;; ;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 ;; ;;    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 ;;     ))
+
+
+
+
+
 
 
 ;;**T
