@@ -163,6 +163,7 @@
 ;; (add-to-list 'package-selected-packages 'markdown-preview-mode)
 ;; (add-to-list 'package-selected-packages 'material-theme)
 (add-to-list 'package-selected-packages 'maxframe)
+(add-to-list 'package-selected-packages 'mermaid-mode)
 (add-to-list 'package-selected-packages 'move-text)
 ;; (add-to-list 'package-selected-packages 'mu4e-alert)
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
@@ -3057,7 +3058,7 @@ concatenated."
 
 
 
-;; ** M
+;;** M
 ;; *** magit
 (use-package magit
   :commands magit-status
@@ -3243,6 +3244,40 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (move-text-default-bindings)
 
+
+;; mermaid-mode
+;; Flow chart generator
+;; Mermaid is a JavaScript-based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams. 
+;; For examples, see https://github.com/mermaid-js/mermaid
+;; 
+;; 
+;; flowchart LR
+;; 
+;; A[Hard] -->|Text| B(Round)
+;; B --> C{Decision}
+;; C -->|One| D[Result 1]
+;; C -->|Two| E[Result 2]
+;; 
+;; Runs mmdc-cli, which was installed with  `sudo npm install -g @mermaid-js/mermaid-cli`.
+;; Installed in /Users/blaine/.nvm/versions/node/v20.2.0/bin/mmdc
+;; https://github.com/mermaid-js/mermaid-cli
+;; mmdc -i input.mmd -o output.png
+;; mmdc -i input.mmd -o output.svg
+;; *.mmd is the mermaid diagram file
+;; https://github.com/abrochard/mermaid-mode
+
+(use-package mermaid-mode)
+
+(setq mermaid-mode-map
+  (let ((map mermaid-mode-map))
+    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
+    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
+    (define-key map (kbd "C-c C-d f") 'mermaid-compile-file)
+    (define-key map (kbd "C-c C-d b") 'mermaid-compile-buffer)
+    (define-key map (kbd "C-c C-d r") 'mermaid-compile-region)
+    (define-key map (kbd "C-c C-d o") 'mermaid-open-browser)
+    (define-key map (kbd "C-c C-d d") 'mermaid-open-doc)
+    map))
 
 
 ;; Sometimes we want to edit multiple places in the file at the same time. 
