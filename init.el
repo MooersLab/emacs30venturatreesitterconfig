@@ -94,6 +94,7 @@
 (add-to-list 'package-selected-packages 'dirvish)
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
+(add-to-list 'package-selected-packages 'edwina)
 (add-to-list 'package-selected-packages 'ef-themes)
 (add-to-list 'package-selected-packages 'eglot)
 ;; (add-to-list 'package-selected-packages 'ein)
@@ -108,6 +109,7 @@
 (add-to-list 'package-selected-packages 'embark)
 (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'emojify)
+(add-to-list 'package-selected-packages 'engine-mode)
 (add-to-list 'package-selected-packages 'eros)
 (add-to-list 'package-selected-packages 'ess)
 (add-to-list 'package-selected-packages 'evil-nerd-commenter)
@@ -179,6 +181,7 @@
 (add-to-list 'package-selected-packages 'org-inline-pdf)
 ;; (add-to-list 'package-selected-packages 'org-latex-impatient)
 ;; (add-to-list 'package-selected-packages 'org-msg)
+(add-to-list 'package-selected-packages 'org-noter)
 (add-to-list 'package-selected-packages 'org-noter-pdftools)
 (add-to-list 'package-selected-packages 'org-pdftools)
 ;; (add-to-list 'package-selected-packages 'org-plus-contrib)
@@ -424,7 +427,7 @@ version-control t)
   (message (current-time-string)))
 
 ;; Custom key sequences.
-(global-set-key (kbd "C-c t") 'show-current-time)
+;; (global-set-key (kbd "C-c t") 'show-current-time)
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 
 
@@ -2036,6 +2039,16 @@ ARG is the thing being completed in the minibuffer."
 ;;**E
 
 
+;; *** edwina
+;; https://github.com/ajgrf/edwina
+;;
+
+(use-package edwina
+  :config
+  (setq display-buffer-base-action '(display-buffer-below-selected))
+  (edwina-setup-dwm-keys)
+  (edwina-mode 1))
+
 ;; *** ef-theme
 
 (use-package ef-themes)
@@ -2243,6 +2256,60 @@ concatenated."
   (add-hook 'after-init-hook #'global-emojify-mode))
 
 
+;; engine-mode
+(use-package engine-mode
+    :load-path "~/emacs30/manual-packages/engine-mode/"
+    :config (engine-mode t))
+
+(defengine github
+     "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "h")
+
+;; Default prefix is C-x /
+(defengine google 
+    "https://www.google.com/search?q=%s"
+    :keybinding "g")
+
+
+;; Protein Databank 
+(defengine pdb
+        "https://www.rcsb.org/search?q=%s"
+        :keybinding "p")
+
+(defengine pubmed
+        "https://pubmed.ncbi.nlm.nih.gov/?term=%s"
+        :keybinding "m")
+
+(defengine reddit 
+            "https://www.reddit.com/search/?q=%s" 
+            :keybinding "r")
+
+(defengine sciencedirect 
+   "https://www.sciencedirect.com/search?qs=%s"
+    :keybinding "s")
+
+(defengine wolfram 
+    "https://www.wolframalpha.com/input/?i=%s" 
+    :keybinding "w")
+
+(defengine youtube 
+    "https://www.youtube.com/results?search_query=%s"
+    :keybinding "y")
+
+
+
+
+
+
+≈
+(defengine wikipedia
+      "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+      :keybinding "k"
+      :docstring "Searchin' the wikis.")
+
+  (defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s"
+    :keybinding "o")
 
 ;;*** eros
 ;; Eros: Evaluation Result OverlayS for Emacs Lisp.
@@ -3433,6 +3500,7 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
   ("s" (find-file "/Users/blaine/gtd/tasks/Service.org") "Service.org")
   ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org") "Teaching.org")
   ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org") "Workshops.org")
+  ("n" (find-file "/Users/blaine/org/notes.org") "notes.org")
   ("q" nil "Quit" :color blue)) ; Add :color blue
 (global-set-key (kbd "C-c 1") 'hydra-jump-to-project-file/body)
 
@@ -3484,6 +3552,17 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 ;; #+ATTR_ORG: :width 40% :page 3
 ;; [[./docs/report.pdf]]
 (add-hook 'org-mode-hook #'org-inline-pdf-mode)
+
+
+;; org-caputre templates
+
+(setq org-capture-templates
+     '(("r" "Record"
+ plain
+ (file "/Users/blaine/org/notes.org")
+ "* %^{Title}  :%^{Tags}:\n%U%i\n%?\n")))
+
+(global-set-key (kbd "C-c t") 'org-tags-view)
 
 
 
