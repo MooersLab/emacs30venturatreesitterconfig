@@ -68,6 +68,7 @@
 (add-to-list 'package-selected-packages 'browse-at-remote)
 ;; (add-to-list 'package-selected-packages 'c-eldoc)
 (add-to-list 'package-selected-packages 'cape)
+(add-to-list 'package-selected-packages 'change-region)
 (add-to-list 'package-selected-packages 'cider)
 (add-to-list 'package-selected-packages 'citar)
 (add-to-list 'package-selected-packages 'citar-org-roam)
@@ -112,6 +113,7 @@
 (add-to-list 'package-selected-packages 'engine-mode)
 (add-to-list 'package-selected-packages 'eros)
 (add-to-list 'package-selected-packages 'ess)
+(add-to-list 'package-selected-packages 'expand-region)
 (add-to-list 'package-selected-packages 'evil-nerd-commenter)
 ;; (add-to-list 'package-selected-packages 'evil)
 ;; (add-to-list 'package-selected-packages 'evil-collection)
@@ -157,6 +159,7 @@
 (add-to-list 'package-selected-packages 'lsp-treemacs)
 (add-to-list 'package-selected-packages 'magit)
 (add-to-list 'package-selected-packages 'magit-commit)
+(add-to-list 'package-selected-packages 'major-mode-hydra)
 (add-to-list 'package-selected-packages 'markdown-mode)
 (add-to-list 'package-selected-packages 'marginalia)
 ;; (add-to-list 'package-selected-packages 'markdown-preview-eww)
@@ -202,6 +205,7 @@
 ;; (add-to-list 'package-selected-packages 'package-utils)
 (add-to-list 'package-selected-packages 'page-break-lines)
 (add-to-list 'package-selected-packages 'paredit)
+(add-to-list 'package-selected-packages 'parent-mode)
 (add-to-list 'package-selected-packages 'pdb-mode)
 (add-to-list 'package-selected-packages 'pdf-tools)
 ;; (add-to-list 'package-selected-packages 'plantuml-mode)
@@ -215,6 +219,7 @@
 ;; (add-to-list 'package-selected-packages 'powerline-evil)
 (add-to-list 'package-selected-packages 'powershell)
 (add-to-list 'package-selected-packages 'prescient)
+(add-to-list 'package-selected-packages 'pretty-hydra)
 (add-to-list 'package-selected-packages 'projectile)
 ;; (add-to-list 'package-selected-packages 'pydoc)
 ;; (add-to-list 'package-selected-packages 'python-pytest)
@@ -2255,31 +2260,253 @@ concatenated."
 (use-package emojify
   :init
   (add-hook 'after-init-hook #'global-emojify-mode))
+  (bind-key "<C-m> r" 'Region___/body)
 
 
 ;; engine-mode
-(use-package engine-mode
-    :load-path "~/emacs30/manual-packages/engine-mode/"
-    :config (engine-mode t))
+;; source https://readingworldmagazine.com/emacs/2020-03-20-emacs-selection-region-mark-browsers/
 
+;;    
+;;    (transient-mark-mode 1)
+;;    (make-variable-buffer-local 'transient-mark-mode)
+;;    (put 'transient-mark-mode 'permanent-local t)
+;;    (setq-default transient-mark-mode t)
+;;    
+;;    ;enables C-u C-<SPC>, to return to last mark, followed by C-<SPC> to cycle through all marks set
+;;    (setq set-mark-command-repeat-pop t)
+;;    
+;;    ;autofill-mode
+;;    (bind-key "C-c q" 'auto-fill-mode)
+;;    
+;;    ;unfill paragraph
+;;    (defun unfill-paragraph (&optional region)
+;;    "Takes a multi-line paragraph and makes it into a single line of text."
+;;    (interactive (progn (barf-if-buffer-read-only) '(t)))
+;;    (let ((fill-column (point-max))
+;;    	  ;; This would override `fill-column' if it's an integer.
+;;    	  (emacs-lisp-docstring-fill-column t))
+;;      (fill-paragraph nil region)))
+;;    
+;;    ;useful packages
+;;    (use-package expand-region
+;;    :after hydra
+;;    :config
+;;    (require 'expand-region)
+;;    (use-package change-inner
+;;    :config
+;;    (require 'change-inner));end change inner
+;;    (defun ejmr-mark-line ()
+;;        "Mark the current line."
+;;        (interactive)
+;;        (end-of-line)
+;;        (set-mark (point))
+;;        (beginning-of-line))
+;;    );end use-package expand-region
+;;    
+;;    (defvar region-title (with-faicon "book" "Marking The Region"))
+;;    ;generate hydra
+;;    (pretty-hydra-define Region___ ( :title region-title :quit-key "q" :color Pink )
+;;    (   "A"
+;;       (
+;;        ("r" er/expand-region "Expand Region" )
+;;        ("j" er/contract-region "Contract Region" )
+;;        ("i" change-inner "Mark Inside Brackets/Quotes" :color blue)
+;;        ("l" ejmr-mark-line "Mark The Line" :color blue )
+;;        ("t" er/mark-inside-pairs "Mark Inside Pairs" :color blue )
+;;        ("u" er/mark-url "Mark Url" :color blue)
+;;        ("w" er/mark-word "Mark Word" :color blue)
+;;    ;    ("e" academic-phrases "Insert Academic Phrase (content ideas)" )
+;;    ;    ("i" academic-phrases-by-section "Insert Academic Phrase (section ideas)" )
+;;    ;    ("g" writegood-mode "Write Good Mode" :toggle t )
+;;    
+;;    );end theme
+;;    "B"
+;;    (
+;;        ("p" er/mark-paragraph "Mark Paragraph" )
+;;        (";" er/mark-comment "Mark Comment")
+;;        ("R" rectangle-mark-mode "Mark Rectangle")
+;;        ("k" copy-rectangle-as-kill "Copy Rectangle" )
+;;        ("Y" yank-rectangle "Paste Rectangle" )
+;;        ("d" delete-rectangle "Delete Rectangle" )
+;;        ("c"  sp-change-inner "Change Enclosed" :color blue )
+;;    
+;;    
+;;    );end highlighting
+;;    "C"
+;;    (
+;;    
+;;        ("s" er/mark-sentence "Mark Sentence" :color blue)
+;;        ("y" helm-show-kill-ring "Helm Kill Ring")
+;;    ;    ("n" clear-kill-ring "Clear Clip Board")
+;;    ;    ("t" toggle-company-idle-delay "Toggle Company Dropdown")
+;;    ;    ("l" query-replace-regexp "Find and Replace Text" :color blue)
+;;    ;    ("o" Org-Central/body "Visit Org Central" :color blue)
+;;    ;    ("E" Org-Editor/body "Org Editing Manager" :color blue)
+;;    ;    ("#" count-words "Count Words")
+;;        ("h" hydra-helm/body "Return To Helm" :color blue )
+;;        ("<SPC>" nil "Quit" :color blue)
+;;    ;    ("m" visual-fill-column-mode "Wrap Line Column"  :toggle t)
+;;    ;    ("i" highlight-indent-guides-mode  "Show Indent Guides" :toggle t )
+;;    ;    ("g" fci-mode "Show Fill Column" :toggle t )
+;;    );end miscellaneous
+;;    );end hydra body
+;;    );end pretty-hydra-appearance
+;;    
+
+
+
+
+
+
+
+
+;;;(setq browse-url-browser-function 'browse-url-default-browser)
+;;;(setq browse-url-firefox-program firefox-p)
+;;;(setq auto-window-vscroll nil)
+;;;
+;;;;browse-url in this shortcut or hyrda
+;;;(bind-key "C-c C-o" 'browse-url)
+;;;
+;;;;use package engine-mode
+;;;(use-package engine-mode
+;;;:after hydra
+;;;:commands Browse-Web/body
+;;;:config
+;;;;(engine-mode t)
+;;;;engine mode configuration
+;;;
+;;;(defengine duckduckgo
+;;;"https://duckduckgo.com/?q=%s"
+;;;;:keybinding "d"
+;;;)
+;;;
+;;;(defengine github
+;;;"https://github.com/search?ref=simplesearch&q=%s"
+;;;;:keybinding "h"
+;;;)
+;;;
+;;;(defengine google
+;;;"http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+;;;;:keybinding "g"
+;;;)
+;;;
+;;;(defengine google-images
+;;;"http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s"
+;;;;:keybinding "i"
+;;;)
+;;;
+;;;(defengine google-maps
+;;;"http://maps.google.com/maps?q=%s"
+;;;:docstring "Mappin' it up."
+;;;;:keybinding "m"
+;;;)
+;;;
+;;;(defengine stack-overflow
+;;;"https://stackoverflow.com/search?q=%s"
+;;;;:keybinding "q"
+;;;)
+;;;
+;;;(defengine wikipedia
+;;;"http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+;;;;:keybinding "w"
+;;;:docstring "Searchin' the wikis.")
+;;;
+;;;(defengine youtube
+;;;"http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+;;;;:keybinding "y"
+;;;);youtube
+;;;
+;;;(defengine visual-hunt
+;;;"https://visualhunt.com/search/instant/?q=%s"
+;;;:docstring "Searchin' Visual Hunt For Images."
+;;;);end visualhunt
+;;;
+;;;(defengine pxhere
+;;;"https://pxhere.com/en/photos?q=%s"
+;;;:docstring "Searchin' pxhere For Images."
+;;;);end pxhere
+;;;
+;;;;custom function print buffer in browser.
+;;;(defun print-buffer-to-browser ()
+;;;  (interactive)
+;;;  (browse-url-of-buffer (htmlize-buffer)))
+;;;
+;;;;custom function print region to browser
+;;;(defun print-region-to-browser ()
+;;;(interactive)
+;;;(if (use-region-p)
+;;;        (setq beg (region-beginning)
+;;;              end (region-end)))
+;;;(browse-url-of-buffer (htmlize-region beg end)))
+;;;
+;;;:config
+;;;;generate title for hydra
+;;;(defvar browser-title (with-octicon "globe" "USE BROWSER"))
+;;;:bind
+;;;("<C-m> b" . Browse-Web_/body)
+;;;
+;;;:pretty-hydra
+;;;(Browse-Web_ (:color blue :quit-key "q" :title browser-title)
+;;;(
+;;;          "Search Engines"
+;;;          (("d" engine/search-duckduckgo         "Duckduckgo")
+;;;           ("g" engine/search-google                 "Google")
+;;;           ("i" engine/search-google-images   "Google-images")
+;;;           ("m" engine/search-google-maps       "Google-maps")
+;;;           ("v" engine/search-visual-hunt       "Visual Hunt")
+;;;           ("3" engine/search-pxhere                 "PXHERE")
+;;;           ("e" helm-google-suggest   "Google Suggest in Helm")
+;;;);end search
+;;;
+;;;          "Other"
+;;;          (("w" engine/search-wikipedia "Wikipedia")
+;;;           ("b" engine/search-github          "Github")
+;;;           ("s" engine/search-stack-overflow   "Stack Over Flow")
+;;;           ("y" engine/search-youtube      "Youtube")
+;;;           ("x" xah-open-in-external-app "Open File in default file program")
+;;;;          ("c" engine/search-soundcloud "Search Sound Cloud" )
+;;;);end other
+;;;
+;;;          "Send Local Files To Browser"
+;;;          (("u" browse-url "Browse URL At Point")
+;;;           ("P" print-buffer-to-browser   "Print Buffer To Browser")
+;;;           ("p" print-region-to-browser   "Print Region To Browser")
+;;;           ("e" browse-url-of-buffer   "Render Buffer With Browser")
+;;;           ("h" hydra-helm/body "Return To Helm" :color blue )
+;;;           ("<SPC>" nil "QUIT" :color blue ));end local
+;;;);end heads
+;;;);end browse-web hydra
+;;;);end use-package engine-mode
+
+
+
+
+
+(use-package engine-mode)
+(engine-mode t)
+
+;; Default prefix is C-x /
+;; Define the engine
 (defengine github
      "https://github.com/search?ref=simplesearch&q=%s"
     :keybinding "h")
 
-;; Default prefix is C-x /
 (defengine google 
     "https://www.google.com/search?q=%s"
     :keybinding "g")
 
-
-;; Protein Databank 
-(defengine pdb
-        "https://www.rcsb.org/search?q=%s"
-        :keybinding "p")
-
 (defengine pubmed
         "https://pubmed.ncbi.nlm.nih.gov/?term=%s"
         :keybinding "m")
+
+;; Protein Databank 
+(defengine pdb
+                "https://www.rcsb.org/search?q=%s"
+                :keybinding "p")
+
+(defengine stack-overflow
+          "https://stackoverflow.com/search?q=%s"
+          :keybinding "o")
 
 (defengine reddit 
             "https://www.reddit.com/search/?q=%s" 
@@ -2289,6 +2516,11 @@ concatenated."
    "https://www.sciencedirect.com/search?qs=%s"
     :keybinding "s")
 
+(defengine wikipedia
+      "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+      :keybinding "k"
+      :docstring "Searchin' the wikis.")
+
 (defengine wolfram 
     "https://www.wolframalpha.com/input/?i=%s" 
     :keybinding "w")
@@ -2297,20 +2529,22 @@ concatenated."
     "https://www.youtube.com/results?search_query=%s"
     :keybinding "y")
 
+(defhydra hydra-engine
+  (:color amaranth)
+  "Send selected text to website."
+    ("h" engine/search-github  "Github")
+    ("g" engine/search-google  "Google")
+    ("m" engine/search-pubmed  "PubMed")
+    ("p" engine/search-pdb        "PDB")
+    ("o" engine/search-stackoverflow "StackOverflow")
+    ("r" engine/search-reddit "Reddit")
+    ("s" engine/search-sciencedirect "Science Direct")
+    ("k" engine/search-wikipedia "Wikipedia")
+    ("w" engine/search-wolframalpha "Wolfram Alpha")
+    ("y" engine/search-youtube "YouTube")
+    ("q" nil "Quit" :color blue))
+(global-set-key (kbd "C-c 3") 'hydra-engine/body)
 
-
-
-
-
-≈
-(defengine wikipedia
-      "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-      :keybinding "k"
-      :docstring "Searchin' the wikis.")
-
-  (defengine stack-overflow
-    "https://stackoverflow.com/search?q=%s"
-    :keybinding "o")
 
 ;;*** eros
 ;; Eros: Evaluation Result OverlayS for Emacs Lisp.
@@ -2513,6 +2747,99 @@ concatenated."
 (use-package highlight-defined
   :ensure t)
 (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode)
+
+
+;;*** help hydra 
+;; source: https://www.wisdomandwonder.com/article/10760/emacsorg-mode-a-hydra-to-help-describe
+;; (defhydra help/hydra/left/describe (:color blue
+;;                                            :hint nil)
+;;   "
+;; Describe Something: (q to quit)
+;; _a_ all help for everything screen
+;; _b_ bindings
+;; _B_ personal bindings
+;; _c_ char
+;; _C_ coding system
+;; _f_ function
+;; _F_ flycheck checker
+;; _i_ input method
+;; _k_ key briefly
+;; _K_ key
+;; _l_ language environment
+;; _L_ mode lineage
+;; _m_ major mode
+;; _M_ minor mode
+;; _n_ current coding system briefly
+;; _N_ current coding system full
+;; _o_ lighter indicator
+;; _O_ lighter symbol
+;; _p_ package
+;; _P_ text properties
+;; _s_ symbol
+;; _t_ theme
+;; _v_ variable
+;; _w_ where is something defined
+;; "
+;;   ("b" describe-bindings)
+;;   ("B" describe-personal-keybindings)
+;;   ("C" describe-categories)
+;;   ("c" describe-char)
+;;   ("C" describe-coding-system)
+;;   ("f" describe-function)
+;;   ("F" flycheck-describe-checker)
+;;   ("i" describe-input-method)
+;;   ("K" describe-key)
+;;   ("k" describe-key-briefly)
+;;   ("l" describe-language-environment)
+;;   ("L" help/parent-mode-display)
+;;   ("M" describe-minor-mode)
+;;   ("m" describe-mode)
+;;   ("N" describe-current-coding-system)
+;;   ("n" describe-current-coding-system-briefly)
+;;   ("o" describe-minor-mode-from-indicator)
+;;   ("O" describe-minor-mode-from-symbol)
+;;   ("p" describe-package)
+;;   ("P" describe-text-properties)
+;;   ("q" nil)
+;;   ("a" help)
+;;   ("s" describe-symbol)
+;;   ("t" describe-theme)
+;;   ("v" describe-variable)
+;;   ("w" where-is))
+;; (global-set-key (kbd "M-i") nil)
+;; (global-set-key (kbd "M-i") #'help/hydra/left/describe/body)
+;; (use-package parent-mode
+;;   :config
+;;   (defun help/parent-mode-display ()
+;;     "Display this buffer's mode hierarchy."
+;;     (interactive)
+;;     (let ((ls (parent-mode-list major-mode)))
+;;       (princ ls))))
+;; (use-package flycheck
+;;   :ensure t
+;;   :diminish flycheck-mode)
+;; 
+;;***hydra of hydras
+
+
+(defhydra hydra-of-hydras (:hint nil)
+"
+ ^
+   ^Hydras                                      Prefix
+   ^─────────------------------------------------------
+   _q_ quit
+   _e_ engine-mode hydra for web searches        C-c 3
+   _p_ projects hydra for projects in org-mode   C-c 1
+   _y_ yasnippets hydra                          C-c y
+   ^────────-------------------------------------------
+   "
+
+  ("e"   hydra-engine/body :color amaranth)
+  ("p"   hydra-jump-to-project-vertical/body :color blue)
+  ("y"   hydra-yasnippet/body :color blue)
+  ("q" nil :color blue))
+(global-set-key (kbd "C-c 0") 'hydra-of-hydras/body)
+
 
 
 
@@ -3081,20 +3408,54 @@ concatenated."
   :hook
   (magit-post-refresh . git-gutter:update-all-windows))
 
-;;**** Hydra for magit
-;; source: https://emacs.stackexchange.com/questions/21597/using-magit-for-the-most-basic-add-commit-push
-(defhydra yt-hydra/help (:color blue :hint nil)
-"
-_mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ magit status
-"
-  ;;Magit part
-  ("mu" magit-push)
-  ("mc" magit-commit)
-  ("md" magit-diff)
-  ("mla" magit-log-all)
-  ("ms" magit-status)
-  )
-(global-set-key (kbd "C-c 2") 'yt-hydra/help/body)
+;; ;;**** Hydra for magit
+;; ;; source: https://emacs.stackexchange.com/questions/21597/using-magit-for-the-most-basic-add-commit-push
+;; (defhydra yt-hydra/help (:color blue :hint nil)
+;;   "#_mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ magit status"
+;;   ;;Magit part
+;;   ("mu" magit-push)
+;;   ("mc" magit-commit)
+;;   ("md" magit-diff)
+;;   ("mla" magit-log-all)
+;;   ("ms" magit-status)
+;;   )
+;; (global-set-key (kbd "C-c 2") 'yt-hydra/help/body)
+;; 
+
+
+;; major-mode-hydra
+;; source https://github.com/jerrypnz/major-mode-hydra.el
+(use-package major-mode-hydra
+  :bind
+  ("s-SPC" . major-mode-hydra))
+
+
+(major-mode-hydra-define emacs-lisp-mode nil
+  ("Eval"
+   (("b" eval-buffer "buffer")
+    ("e" eval-defun "defun")
+    ("r" eval-region "region"))
+   "REPL"
+   (("I" ielm "ielm"))
+   "Test"
+   (("t" ert "prompt")
+    ("T" (ert t) "all")
+    ("F" (ert :failed) "failed"))
+   "Doc"
+   (("d" describe-foo-at-point "thing-at-pt")
+    ("f" describe-function "function")
+    ("v" describe-variable "variable")
+    ("i" info-lookup-symbol "info lookup"))))
+
+
+;;(major-mode-hydra-define emacs-lisp-mode nil
+;;  ("Search engines"
+;;   (("h" engine/search-github          "Github")
+;;    ("e" eval-defun "defun")
+;;    ("r" eval-region "region"))
+;;))
+;;
+
 
 
 
@@ -3268,16 +3629,16 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 
 (use-package mermaid-mode)
 
-(setq mermaid-mode-map
-  (let ((map mermaid-mode-map))
-    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
-    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
-    (define-key map (kbd "C-c C-d f") 'mermaid-compile-file)
-    (define-key map (kbd "C-c C-d b") 'mermaid-compile-buffer)
-    (define-key map (kbd "C-c C-d r") 'mermaid-compile-region)
-    (define-key map (kbd "C-c C-d o") 'mermaid-open-browser)
-    (define-key map (kbd "C-c C-d d") 'mermaid-open-doc)
-    map))
+;;(setq mermaid-mode-map
+;;  (let ((map mermaid-mode-map))
+;;    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
+;;    (define-key map (kbd "C-c C-d c") 'mermaid-compile)
+;;    (define-key map (kbd "C-c C-d f") 'mermaid-compile-file)
+;;    (define-key map (kbd "C-c C-d b") 'mermaid-compile-buffer)
+;;    (define-key map (kbd "C-c C-d r") 'mermaid-compile-region)
+;;    (define-key map (kbd "C-c C-d o") 'mermaid-open-browser)
+;;    (define-key map (kbd "C-c C-d d") 'mermaid-open-doc)
+;;    map))
 
 
 ;; Sometimes we want to edit multiple places in the file at the same time. 
@@ -3522,22 +3883,77 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
     (interactive)
     (org-capture nil "s"))
 
-(defhydra hydra-jump-to-project-file
-  (:color amaranth)
-  "Jump to system file"
-  ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org") "JournalArticles.org")
-  ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org") "Proposals.org")
-  ("b" (find-file "/Users/blaine/gtd/tasks/Books..org") "Books.org")
-  ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org") "Talks.org")
-  ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org") "Posters.org")
-  ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org") "ManuscriptReviews.org")
-  ("f" (find-file "/Users/blaine/gtd/tasks/Private.org") "Private.org")
-  ("s" (find-file "/Users/blaine/gtd/tasks/Service.org") "Service.org")
-  ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org") "Teaching.org")
-  ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org") "Workshops.org")
-  ("n" (find-file "/Users/blaine/org/notes.org") "notes.org")
-  ("q" nil "Quit" :color blue)) ; Add :color blue
-(global-set-key (kbd "C-c 1") 'hydra-jump-to-project-file/body)
+
+;; ;; Hydra for opening a project file in org mode
+;; (defhydra hydra-jump-to-project-file
+;;   (:color amaranth)
+;;   "Jump to system file"
+;;   ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org") "JournalArticles.org")
+;;   ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org") "Proposals.org")
+;;   ("b" (find-file "/Users/blaine/gtd/tasks/Books..org") "Books.org")
+;;   ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org") "Talks.org")
+;;   ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org") "Posters.org")
+;;   ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org") "ManuscriptReviews.org")
+;;   ("f" (find-file "/Users/blaine/gtd/tasks/Private.org") "Private.org")
+;;   ("s" (find-file "/Users/blaine/gtd/tasks/Service.org") "Service.org")
+;;   ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org") "Teaching.org")
+;;   ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org") "Workshops.org")
+;;   ("n" (find-file "/Users/blaine/org/notes.org") "notes.org")
+;;   ("q" nil "Quit" :color blue)) ; Add :color blue
+;; (global-set-key (kbd "C-c 1") 'hydra-jump-to-project-file/body)
+
+
+;; Hydra for opening a project file in org mode
+(defhydra hydra-jump-to-project-vertical (:hint nil)
+ "
+  ^
+    ^Projects
+    ^─────────-----
+    _q_ quit
+    _m_ manuscripts
+    _g_ grants
+    _b_ books
+    _t_ talks
+    _p_ posters
+    _r_ reviews
+    _f_ family
+    _s_ service
+    _l_ teaching
+    _w_ workshops
+    _n_ notes
+    ^────────-----
+    "
+  ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org"))
+  ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org"))
+  ("b" (find-file "/Users/blaine/gtd/tasks/Books.org"))
+  ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org"))
+  ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org"))
+  ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org"))
+  ("f" (find-file "/Users/blaine/gtd/tasks/Private.org"))
+  ("s" (find-file "/Users/blaine/gtd/tasks/Service.org"))
+  ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org"))
+  ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org"))
+  ("n" (find-file "/Users/blaine/org/notes.org"))
+  ("q" nil :color blue)) ; Add :color blue
+
+(global-set-key (kbd "C-c 1") 'hydra-jump-to-project-vertical/body)
+
+
+;; (defhydra hydra-of-hydras ()
+;;   ("p"   hydra-jump-to-project-vertical/body "projects hydra for projects in org-mode, C-c 1" :color blue)
+;;   ("y"   hydra-yasnippet/body "yasnippets hydra, C-c y" :color blue)
+;;   ("q" nil "Quit" :color blue))
+;; (global-set-key (kbd "C-c 0") 'hydra-of-hydras/body)
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4168,9 +4584,21 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 (vertico-posframe-mode 1)
 
 
+;;*** pretty-hydra
+(use-package pretty-hydra)
 
 
-;; *** projectile
+
+
+
+
+
+
+
+
+
+
+;;*** projectile
 (use-package projectile)
 (projectile-mode +1)
 (setq projectile-enable-caching t)
@@ -4561,10 +4989,6 @@ _mp_ magit-push #_mc_ magit-commit #_md_ magit diff #_mla_ magit diff #_mla_ mag
 $0`(yas-escape-text yas-selected-text)`"
 "Default snippet to use when creating a new snippet.
 If nil, don't use any snippet.")
-
-
-
-
 
 
 ;;(let ((yas-new-snippet-default my-yas-new-snippet-default)))
