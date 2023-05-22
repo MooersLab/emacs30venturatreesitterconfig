@@ -171,6 +171,7 @@
 ;; (add-to-list 'package-selected-packages 'mu4e-alert)
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
 (add-to-list 'package-selected-packages 'multiple-cursors)
+(add-to-list 'package-selected-packages 'my-hydras)
 (add-to-list 'package-selected-packages 'nov)
 ;; (add-to-list 'package-selected-packages 'ob-diagrams)
 ;; (add-to-list 'package-selected-packages 'ob-ess-julia)
@@ -288,6 +289,10 @@ version-control t)
 (set-default 'truncate-lines t) ;; do not wrap
 (prefer-coding-system 'utf-8) ;; use UTF-8
 
+;;l oad prefers the newest version of a file.
+;; This applies when a filename suffix is not explicitly specified and load is trying various possible suffixes (see load-suffixes and load-file-rep-suffixes). Normally, it stops at the first file that exists unless you explicitly specify one or the other. If this option is non-nil, it checks all suffixes and uses whichever file is newest.
+;; (setq load-prefer-newer t) --> causes RECURSIVE LOAD error
+
 ;; Zoom
 (set-face-attribute 'default nil :height 128)
 
@@ -306,6 +311,12 @@ version-control t)
 (global-visual-line-mode +1)
 (delete-selection-mode +1)
 (save-place-mode +1)
+
+
+;; set browser to open url in new tab
+(custom-set-variables
+  '(browse-url-browser-function (quote browse-url-firefox))
+  '(browse-url-firefox-new-window-is-tab t))
 
 
 
@@ -1905,31 +1916,30 @@ ARG is the thing being completed in the minibuffer."
 ;; Installed ripgrep with macports.
 ;; Source: https://github.com/jgru/consult-org-roam
 ;; 
-(use-package consult-org-roam
-   :after org-roam
-   :init
-   (require 'consult-org-roam)
-   ;; Activate the minor mode
-   (consult-org-roam-mode 1)
-   :custom
-   ;; Use `ripgrep' for searching with `consult-org-roam-search'
-   (consult-org-roam-grep-func #'consult-ripgrep)
-   ;; Configure a custom narrow key for `consult-buffer'
-   (consult-org-roam-buffer-narrow-key ?r)
-   ;; Display org-roam buffers right after non-org-roam buffers
-   ;; in consult-buffer (and not down at the bottom)
-   (consult-org-roam-buffer-after-buffers t)
-   :config
-   ;; Eventually suppress previewing for certain functions
-   (consult-customize
-    consult-org-roam-forward-links
-    :preview-key (kbd "M-."))
-   :bind
-   ;; Define some convenient keybindings as an addition
-   ("C-c n e" . consult-org-roam-file-find)
-   ("C-c n b" . consult-org-roam-backlinks)
-   ("C-c n l" . consult-org-roam-forward-links)
-   ("C-c n r" . consult-org-roam-search))
+;;(use-package consult-org-roam
+;;   :after org-roam
+;;   :init
+;;   ;; Activate the minor mode
+;;   (consult-org-roam-mode 1)
+;;   :custom
+;;   ;; Use `ripgrep' for searching with `consult-org-roam-search'
+;;   (consult-org-roam-grep-func #'consult-ripgrep)
+;;   ;; Configure a custom narrow key for `consult-buffer'
+;;   (consult-org-roam-buffer-narrow-key ?r)
+;;   ;; Display org-roam buffers right after non-org-roam buffers
+;;   ;; in consult-buffer (and not down at the bottom)
+;;   (consult-org-roam-buffer-after-buffers t)
+;;   :config
+;;   ;; Eventually suppress previewing for certain functions
+;;   (consult-customize
+;;    consult-org-roam-forward-links
+;;    :preview-key (kbd "M-."))
+;;   :bind
+;;   ;; Define some convenient keybindings as an addition
+;;   ("C-c n e" . consult-org-roam-file-find)
+;;   ("C-c n b" . consult-org-roam-backlinks)
+;;   ("C-c n l" . consult-org-roam-forward-links)
+;;   ("C-c n r" . consult-org-roam-search))
 
 
 ;;** D
@@ -2479,73 +2489,6 @@ concatenated."
 ;;;);end use-package engine-mode
 
 
-
-
-
-(use-package engine-mode)
-(engine-mode t)
-
-;; Default prefix is C-x /
-;; Define the engine
-(defengine github
-     "https://github.com/search?ref=simplesearch&q=%s"
-    :keybinding "h")
-
-(defengine google 
-    "https://www.google.com/search?q=%s"
-    :keybinding "g")
-
-(defengine pubmed
-        "https://pubmed.ncbi.nlm.nih.gov/?term=%s"
-        :keybinding "m")
-
-;; Protein Databank 
-(defengine pdb
-                "https://www.rcsb.org/search?q=%s"
-                :keybinding "p")
-
-(defengine stack-overflow
-          "https://stackoverflow.com/search?q=%s"
-          :keybinding "o")
-
-(defengine reddit 
-            "https://www.reddit.com/search/?q=%s" 
-            :keybinding "r")
-
-(defengine sciencedirect 
-   "https://www.sciencedirect.com/search?qs=%s"
-    :keybinding "s")
-
-(defengine wikipedia
-      "https://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-      :keybinding "k"
-      :docstring "Searchin' the wikis.")
-
-(defengine wolfram 
-    "https://www.wolframalpha.com/input/?i=%s" 
-    :keybinding "w")
-
-(defengine youtube 
-    "https://www.youtube.com/results?search_query=%s"
-    :keybinding "y")
-
-(defhydra hydra-engine
-  (:color amaranth)
-  "Send selected text to website."
-    ("h" engine/search-github  "Github")
-    ("g" engine/search-google  "Google")
-    ("m" engine/search-pubmed  "PubMed")
-    ("p" engine/search-pdb        "PDB")
-    ("o" engine/search-stackoverflow "StackOverflow")
-    ("r" engine/search-reddit "Reddit")
-    ("s" engine/search-sciencedirect "Science Direct")
-    ("k" engine/search-wikipedia "Wikipedia")
-    ("w" engine/search-wolframalpha "Wolfram Alpha")
-    ("y" engine/search-youtube "YouTube")
-    ("q" nil "Quit" :color blue))
-(global-set-key (kbd "C-c 3") 'hydra-engine/body)
-
-
 ;;*** eros
 ;; Eros: Evaluation Result OverlayS for Emacs Lisp.
 ;; Eros is on MELPA.
@@ -2819,26 +2762,6 @@ concatenated."
 ;;   :ensure t
 ;;   :diminish flycheck-mode)
 ;; 
-;;***hydra of hydras
-
-
-(defhydra hydra-of-hydras (:hint nil)
-"
- ^
-   ^Hydras                                      Prefix
-   ^─────────------------------------------------------
-   _q_ quit
-   _e_ engine-mode hydra for web searches        C-c 3
-   _p_ projects hydra for projects in org-mode   C-c 1
-   _y_ yasnippets hydra                          C-c y
-   ^────────-------------------------------------------
-   "
-
-  ("e"   hydra-engine/body :color amaranth)
-  ("p"   hydra-jump-to-project-vertical/body :color blue)
-  ("y"   hydra-yasnippet/body :color blue)
-  ("q" nil :color blue))
-(global-set-key (kbd "C-c 0") 'hydra-of-hydras/body)
 
 
 
@@ -3884,78 +3807,6 @@ concatenated."
     (org-capture nil "s"))
 
 
-;; ;; Hydra for opening a project file in org mode
-;; (defhydra hydra-jump-to-project-file
-;;   (:color amaranth)
-;;   "Jump to system file"
-;;   ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org") "JournalArticles.org")
-;;   ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org") "Proposals.org")
-;;   ("b" (find-file "/Users/blaine/gtd/tasks/Books..org") "Books.org")
-;;   ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org") "Talks.org")
-;;   ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org") "Posters.org")
-;;   ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org") "ManuscriptReviews.org")
-;;   ("f" (find-file "/Users/blaine/gtd/tasks/Private.org") "Private.org")
-;;   ("s" (find-file "/Users/blaine/gtd/tasks/Service.org") "Service.org")
-;;   ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org") "Teaching.org")
-;;   ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org") "Workshops.org")
-;;   ("n" (find-file "/Users/blaine/org/notes.org") "notes.org")
-;;   ("q" nil "Quit" :color blue)) ; Add :color blue
-;; (global-set-key (kbd "C-c 1") 'hydra-jump-to-project-file/body)
-
-
-;; Hydra for opening a project file in org mode
-(defhydra hydra-jump-to-project-vertical (:hint nil)
- "
-  ^
-    ^Projects
-    ^─────────-----
-    _q_ quit
-    _m_ manuscripts
-    _g_ grants
-    _b_ books
-    _t_ talks
-    _p_ posters
-    _r_ reviews
-    _f_ family
-    _s_ service
-    _l_ teaching
-    _w_ workshops
-    _n_ notes
-    ^────────-----
-    "
-  ("m" (find-file "/Users/blaine/gtd/tasks/JournalArticles.org"))
-  ("g" (find-file "/Users/blaine/gtd/tasks/Proposals.org"))
-  ("b" (find-file "/Users/blaine/gtd/tasks/Books.org"))
-  ("t" (find-file "/Users/blaine/gtd/tasks/Talks.org"))
-  ("p" (find-file "/Users/blaine/gtd/tasks/Posters.org"))
-  ("r" (find-file "/Users/blaine/gtd/tasks/ManuscriptReviews.org"))
-  ("f" (find-file "/Users/blaine/gtd/tasks/Private.org"))
-  ("s" (find-file "/Users/blaine/gtd/tasks/Service.org"))
-  ("l" (find-file "/Users/blaine/gtd/tasks/Teaching.org"))
-  ("w" (find-file "/Users/blaine/gtd/tasks/Workshops.org"))
-  ("n" (find-file "/Users/blaine/org/notes.org"))
-  ("q" nil :color blue)) ; Add :color blue
-
-(global-set-key (kbd "C-c 1") 'hydra-jump-to-project-vertical/body)
-
-
-;; (defhydra hydra-of-hydras ()
-;;   ("p"   hydra-jump-to-project-vertical/body "projects hydra for projects in org-mode, C-c 1" :color blue)
-;;   ("y"   hydra-yasnippet/body "yasnippets hydra, C-c y" :color blue)
-;;   ("q" nil "Quit" :color blue))
-;; (global-set-key (kbd "C-c 0") 'hydra-of-hydras/body)
-
-
-
-
-
-
-
-
-
-
-
-
 
 ;; <<<<<<< END of org-agenda >>>>>>>>>>>>>>
 
@@ -4910,25 +4761,16 @@ concatenated."
   )
 (global-set-key "\C-o" 'yas-expand)
 
+
+;; load hydras
+(use-package my-hydras
+    :load-path "~/emacs30/my-hydras/")
+
+
 ;; A cool hydra for finding snippets at point. Invoke wit C-c y.
 (use-package hydra
   :defer 2
   :bind ("C-c y" . hydra-yasnippet/body))
-
-(defhydra hydra-yasnippet (:color blue)
-  "
-  ^
-  ^YASnippet^          ^Do^
-  ^─────────^──────────^──^────────
-  _q_ quit             _i_ insert
-  ^^                   _m_ mode
-  ^^                   _n_ new
-  ^^                   ^^
-  "
-  ("q" nil)
-  ("i" yas-insert-snippet)
-  ("m" yas-minor-mode)
-  ("n" yas-new-snippet))
 
 (use-package popup)
 ;; add some shotcuts in popup menu mode
