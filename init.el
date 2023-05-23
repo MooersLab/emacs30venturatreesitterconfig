@@ -318,6 +318,18 @@ version-control t)
   '(browse-url-browser-function (quote browse-url-firefox))
   '(browse-url-firefox-new-window-is-tab t))
 
+;; Inspried https://sachachua.com/dotemacs/index.html#org4dd39d0
+(defun reload-init ()
+  "Reload my init.el file. Edit the path to suite your needs."
+  (interactive)
+  (load-file "~/emacs30/init.el"))
+
+
+(defun reload-hydras ()
+  "Reload my-hydras.el. Edit the path to suite your needs."
+  (interactive)
+  (load-file "~/emacs30/my-hydras/my-hydras.el"))
+
 
 
 ;; ==> adjust here
