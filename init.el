@@ -140,6 +140,7 @@
 (add-to-list 'package-selected-packages 'google-this)
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
 (add-to-list 'package-selected-packages 'greader)
+(add-to-list 'package-selected-packages 'gxref)
 (add-to-list 'package-selected-packages 'helpful)
 (add-to-list 'package-selected-packages 'helm)
 (add-to-list 'package-selected-packages 'highlight-defined)
@@ -2632,6 +2633,10 @@ concatenated."
 (use-package greader)
 
 
+;;*** gxref
+(use-pacakge gxref)
+(add-to-list 'xref-backend-functions 'gxref-xref-backend)
+
 
 ;;** H
 
@@ -4025,8 +4030,8 @@ concatenated."
    :config
    ;; If you're using a vertical completion framework, you might want a more informative completion interface
    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-   (org-roam-db-autosync-mode)
-   (org-roam-ui-mode))
+   (org-roam-db-autosync-mode))
+   ;;(org-roam-ui-mode))
    ;; If using org-roam-protocol
    ;;(use-package org-roam-protocol))
 
