@@ -200,6 +200,7 @@
 (add-to-list 'package-selected-packages 'org-roam-bibtex)
 (add-to-list 'package-selected-packages 'org-roam-timestamps)
 (add-to-list 'package-selected-packages 'org-roam-ui)
+(add-to-list 'package-selected-packages 'org-similarity)
 (add-to-list 'package-selected-packages 'org-wc)
 (add-to-list 'package-selected-packages 'org2blog)
 ;; (add-to-list 'package-selected-packages 'orgtbl-ascii-plot)
@@ -3997,6 +3998,18 @@ concatenated."
     :config
     (setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))
 
+;; add hook to enable automated start of the next pom after a break.
+;; Source: https://github.com/marcinkoziej/org-pomodoro/issues/32
+(add-hook 'org-pomodoro-break-finished-hook
+          (lambda ()
+            (interactive)
+            (point-to-register 1)
+            (org-clock-goto)
+            (org-pomodoro '(25))
+            (register-to-point 1)
+            ))
+
+
 (use-package sound-wav)
 (setq org-pomodoro-ticking-sound-p nil)
 (setq org-pomodoro-ticking-sound-states '(:pomodoro :short-break :long-break))
@@ -4250,6 +4263,39 @@ concatenated."
 ;; org-preview-latex-default-process
 
 ;; <<<<<<< END org-roam >>>>>>>>>>>>>>
+
+
+;; org-similiarity
+;; source https://github.com/brunoarine/org-similarity
+(use-package org-similarity
+  :load-path  "~/emacs30/manual-packages/org-similarity")
+
+;; Directory to scan for possibly similar documents.
+;; org-roam users might want to change it to `org-roam-directory'.
+(setq org-similarity-directory org-roam-directory)
+
+;; The language passed to the Snowball stemmer in the `nltk' package.  The
+;; following languages are supported: Arabic, Danish, Dutch, English, Finnish,
+;; French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian,
+;; Spanish and Swedish.
+(setq org-similarity-language "english")
+
+;; How many similar entries to list at the end of the buffer.
+(setq org-similarity-number-of-documents 15)
+
+;; Whether to prepend the list entries with similarity scores.
+(setq org-similarity-show-scores t)
+
+;; Whether the resulting list of similar documents will point to ID property or
+;; filename. Default it nil.
+;; However, I recommend setting it to `t' if you use `org-roam' v2.
+(setq org-similarity-use-id-links t)
+
+;; Scan for files inside `org-similarity-directory' recursively.
+(setq org-similarity-recursive-search nil)
+
+
+
 
 
 ;; org-speed-commands
