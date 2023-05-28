@@ -83,6 +83,7 @@
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'consult-projectile)
 (add-to-list 'package-selected-packages 'consult-org-roam)
+(add-to-list 'package-selected-packages 'copilot)
 (add-to-list 'package-selected-packages 'corfu)
 (add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
@@ -461,7 +462,7 @@ version-control t)
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 
 
-;; display line numbers. Need with s-l. 
+;; display line numbers. Need with s-l.
 (global-display-line-numbers-mode)
 
 ;;### hippie-expand M-/. Seems to be comflicting with Corfu, Cape, and dabrrev.
@@ -480,7 +481,7 @@ version-control t)
 
 
 ;; Hey, stop being a whimp and learn the Emacs keybindings!
-;; ;; Set copy+paste 
+;; ;; Set copy+paste
 ;;  (cua-mode t)
 ;;     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 ;;     (transient-mark-mode 1) ;; No region when it is not highlighted
@@ -557,7 +558,7 @@ version-control t)
 (global-set-key (kbd "C-c e")
     (lambda()
       (interactive)
-      (find-file "~/emacs30")))
+      (find-file "~/emacs30/init.el")))
 
 
 ;; Global keys
@@ -622,10 +623,10 @@ version-control t)
 
 ;; ==> adjust here
 ;; See this [[http://ergoemacs.org/emacs/emacs_hyper_super_keys.html][ for more information.]]
-;; set keys for Apple keyboard, for emacs in OS X 
+;; set keys for Apple keyboard, for emacs in OS X
 ;; Source http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 (setq mac-command-modifier 'meta) ; make cmd key do Meta
-(setq mac-option-modifier 'super) ; make option key do Super. 
+(setq mac-option-modifier 'super) ; make option key do Super.
 (setq mac-control-modifier 'control) ; make Control key do Control
 (setq mac-function-modifier 'hyper)  ; make Fn key do Hyper. Only works on Apple produced keyboards.  
 (setq mac-right-command-modifier 'hyper)
@@ -1371,7 +1372,7 @@ ARG is the thing being completed in the minibuffer."
 ; Select the style of opening the editing buffer by atomic-chrome-buffer-open-style.
 ; full: Open in the selected window.
 ; split: Open in the new window by splitting the selected window (default).
-; frame: Create a new frame and window in it. Must be using some windowing pacakge.
+; frame: Create a new frame and window in it. Must be using some windowing package.
 (setq atomic-chrome-buffer-open-style 'split)
 
 
@@ -1868,6 +1869,50 @@ ARG is the thing being completed in the minibuffer."
 ;;***clomacs 
 ;; source: https://github.com/clojure-emacs/clomacs
 (use-package clomacs)
+
+
+
+;;*** copilot
+
+(use-package copilot
+  :quelpa (copilot :fetcher github
+                   :repo "zerolfx/copilot.el"
+                   :branch "main"
+                   :files ("dist" "*.el")))
+;; you can utilize :map :hook and :config to customize copilot
+
+(add-hook 'prog-mode-hook 'copilot-mode)
+
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+
+
+;; copilot-diagnose
+;; Check the current status of the plugin. Also you can check logs in the *copilot events* buffer and stderr output in the *copilot stderr* buffer.
+
+;; copilot-login
+;; Login to GitHub, required for using the plugin.
+;; copilot-mode
+
+;; Enable/disable copilot mode.
+;; copilot-complete
+
+;; Try to complete at the current point.
+;; copilot-accept-completion
+
+;; Accept the current completion.
+;; copilot-clear-overlay
+
+;; Clear copilot overlay in the current buffer.
+;; copilot-accept-completion-by-line / copilot-accept-completion-by-word
+
+;; Similar to copilot-accept-completion, but accept the completion by line or word. You can use prefix argument to specify the number of lines or words to accept.
+;; copilot-next-completion / copilot-previous-completion
+
+;; Cycle through the completion list.
+;; copilot-logout
+
+;; Logout from GitHub.
 
 
 ;; (use-package openai
@@ -2616,7 +2661,7 @@ concatenated."
 ;;
 ;;;;**** gptai
 ;;
-;;(use-pacakge gptai)
+;;(use-package gptai)
 ;;;; set configurations
 ;;(setq gptai-model "<MODEL-HERE>") 
 ;;(setq gptai-username "<USERNAME-HERE>")
@@ -2634,7 +2679,7 @@ concatenated."
 
 
 ;;*** gxref
-(use-pacakge gxref)
+(use-package gxref)
 (add-to-list 'xref-backend-functions 'gxref-xref-backend)
 
 
@@ -3979,7 +4024,7 @@ concatenated."
 (use-package bibtex)
 
 (setq bibtex-completion-bibliography '("/Users/blaine/Documents/global.bib")
-    bibtex-completion-library-path '("/Users/blaine/0papersLabeled/")
+    bibtex-completion-library-path '("/Users/blaine/0papersLabeled/" "/Users/blaine/0booksLabeled/")
     bibtex-completion-notes-path "/Users/blaine/Documents/notes/"
     bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
     bibtex-completion-additional-search-fields '(keywords)
@@ -4002,9 +4047,9 @@ concatenated."
       bibtex-autokey-titleword-length 5)
 
 ;; H is the hyper key. I have bound H to Fn. For the MacAlly keyboard, it is bound to right-command.
-(define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
-(define-key org-mode-map (kbd "H-c") org-ref-insert-cite-function)
-(define-key org-mode-map (kbd "H-r") org-ref-insert-ref-function)
+(define-key bibtex-mode-map (kbd "s-b") 'org-ref-bibtex-hydra/body)
+(define-key org-mode-map (kbd "s-i") org-ref-insert-cite-function)
+(define-key org-mode-map (kbd "s-r") org-ref-insert-ref-function)
 (define-key org-mode-map (kbd "H-l") org-ref-insert-label-function)
 (define-key org-mode-map (kbd "H-d") 'doi-add-bibtex-entry)
 
