@@ -4284,7 +4284,7 @@ concatenated."
 (setq org-similarity-number-of-documents 15)
 
 ;; Whether to prepend the list entries with similarity scores.
-(setq org-similarity-show-scores t)
+(setq org-similarity-show-scores nil)
 
 ;; Whether the resulting list of similar documents will point to ID property or
 ;; filename. Default it nil.
@@ -4292,7 +4292,7 @@ concatenated."
 (setq org-similarity-use-id-links t)
 
 ;; Scan for files inside `org-similarity-directory' recursively.
-(setq org-similarity-recursive-search nil)
+(setq org-similarity-recursive-search t)
 
 
 
