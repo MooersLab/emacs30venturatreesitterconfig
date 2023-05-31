@@ -182,6 +182,7 @@
 ;;(add-to-list 'package-selected-packages 'openai)
 (add-to-list 'package-selected-packages 'orderless)
 ;; (add-to-list 'package-selected-packages 'org-babel-eval-in-repl)
+(add-to-list 'package-selected-packages 'org-bookmark-heading)
 ;; (add-to-list 'package-selected-packages 'org-bullets)
 (add-to-list 'package-selected-packages 'org-drill)
 ;; (add-to-list 'package-selected-packages 'org-evil)
@@ -1734,7 +1735,10 @@ ARG is the thing being completed in the minibuffer."
 (use-package bookmark+
     :load-path "manual-packages/bookmark-plus/")
 
-
+(defadvice bookmark-jump (after bookmark-jump activate)
+  (let ((latest (bookmark-get-bookmark bookmark)))
+    (setq bookmark-alist (delq latest bookmark-alist))
+    (add-to-list 'bookmark-alist latest)))
 
 ;;** C
 ;;*** Cider
@@ -3896,6 +3900,13 @@ concatenated."
 
 ;;  Removed  (jupyter . t) on May 14 due to an error message.
 
+;;*** org-bookmark-heading
+(use-package org-bookmark-heading)
+
+
+
+
+
 ;;*** org-drill
 ;; org-drill for spaced repetition learning in org-mode
 ;; You have to install org-drill from MELPA.;; This is a YouTube video about how to use org-drill[[https://www.youtube.com/watch?v=uraPXeLfWcM][to learn Chinese]].
@@ -3916,7 +3927,11 @@ concatenated."
 ;; https://github.com/shg/org-inline-pdf.el
 ;; #+ATTR_ORG: :width 40% :page 3
 ;; [[./docs/report.pdf]]
-(add-hook 'org-mode-hook #'org-inline-pdf-mode)
+;; (add-hook 'org-mode-hook #'org-inline-pdf-mode)
+
+
+
+
 
 
 ;; org-caputre templates
@@ -4098,23 +4113,23 @@ concatenated."
 ;; Following https://jethrokuan.github.io/org-roam-guide/
 
 (setq org-roam-capture-templates
-      '(("m" "main" plain
+      '(("p" "permanent" plain
          "%?"
-         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
+         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n\n* Note type: permanent\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
          ;; citar literature note
         ("n" "literature note" plain
          "%?"
          :target (file+head "%(expand-file-name (or citar-org-roam-subdir \"\") org-roam-directory)/${citar-citekey}.org"
-                    "#+title: ${citar-citekey} (${citar-date}). ${note-title}.\n#+created: %U\n#+last_modified: %U\n\n")
+                    "#+title: ${citar-citekey} (${citar-date}). ${note-title}.\n Note type: literature\n\n\n#+created: %U\n#+last_modified: %U\n\n")
                   :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new
          (file+head "reference/${title}.org" "#+title: ${title}\n\n\n\n\n* References\n\n* Backlinks\n\n#+created_at: %U\n#+last_modified: %U\n")
          :immediate-finish t
          :unnarrowed t)
-         ("l" "clipboard" plain #'org-roam-caputre--get-point "%i%a" 
+         ("l" "clipboard" plain #'org-roam-capture--get-point "%i%a"
          :file-name "%<%Y%m%d%H%M%S>-${slug}"
          :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n#+ROAM_TAGS: %?"
          :unnarrowed t
@@ -4862,20 +4877,19 @@ concatenated."
 ;; *** yasnippet related
 (use-package yasnippet
   :config
-  (yas-global-mode 1)
-  :bind
-  ("C-c y i" . yas-insert-snippet)
-  ("C-c y n" . yas-new-snippet)
-  )
+  (yas-global-mode 1))
 (global-set-key "\C-o" 'yas-expand)
+(global-set-key "\C-c y i" 'yas-insert-snippet)
+(global-set-key "\C-c y n" 'yas-new-snippet)
+
 
 
 ;; load hydras
 (use-package my-hydras
-    :load-path "~/emacs30/my-hydras/")
+  :load-path "~/emacs30/my-hydras/")
 
 
-;; A cool hydra for finding snippets at point. Invoke wit C-c y.
+;; A cool hydra for finding snippets at point. Invoke with C-c y.
 (use-package hydra
   :defer 2
   :bind ("C-c y" . hydra-yasnippet/body))
