@@ -254,6 +254,7 @@
 (add-to-list 'package-selected-packages 'tree-sitter-langs)
 (add-to-list 'package-selected-packages 'vertico)
 (add-to-list 'package-selected-packages 'vertico-prescient)
+(add-to-list 'package-selected-packages 'vertico-repeat)
 ;; (add-to-list 'package-selected-packages 'try)
 ;; (add-to-list 'package-selected-packages 'use-package)
 ;; (add-to-list 'package-selected-packages 'wc-mode)
@@ -977,6 +978,21 @@ version-control t)
 (use-package embark-consult)
 (use-package orderless)
 (use-package vertico)
+
+;; (setq enable-recursive-minibuffers t)
+;; (use-package vertico-repeat
+;;   :ensure nil
+;;   :bind
+;;   (:map minibuffer-local-map
+;;         ("M-r" . vertico-repeat))
+;; 
+;;   :config
+;;   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+;; 
+;;   ;; preserve history across restarts
+;;   (add-to-list 'savehist-additional-variables 'vertico-repeat-history)
+;;   )
+;; (define-key minibuffer-mode-map (kbd "<up>") #'vertico-repeat)
 (use-package marginalia)
 
 
@@ -4917,6 +4933,10 @@ concatenated."
      :isearch t
      )))
 (setq yas/prompt-functions '(yas/popup-isearch-prompt yas/no-prompt))
+
+(use-package license-snippets
+    :load-path "/Users/blaine/emacs30/manual-packages/license-snippets")
+(license-snippets-init)
 
 ;; A new snippet can be created in a new buffer with the command C-c & C-n
 ;; The key binding is a little awkward but this is a very fast way to generate new snippets.
