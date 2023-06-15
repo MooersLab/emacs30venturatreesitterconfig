@@ -138,6 +138,8 @@
 ;; (add-to-list 'package-selected-packages 'gnuplot)
 ;; (add-to-list 'package-selected-packages 'gnuplot-mode)
 (add-to-list 'package-selected-packages 'gptai)
+(add-to-list 'package-selected-packages 'golden-ratio)
+
 (add-to-list 'package-selected-packages 'google-this)
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
 (add-to-list 'package-selected-packages 'greader)
@@ -206,7 +208,7 @@
 (add-to-list 'package-selected-packages 'org2blog)
 ;; (add-to-list 'package-selected-packages 'orgtbl-ascii-plot)
 ;; (add-to-list 'package-selected-packages 'ox-latex-subfigure)
-;; (add-to-list 'package-selected-packages 'ox-pandoc)
+(add-to-list 'package-selected-packages 'ox-pandoc)
 ;; (add-to-list 'package-selected-packages 'package-utils)
 (add-to-list 'package-selected-packages 'page-break-lines)
 (add-to-list 'package-selected-packages 'paredit)
@@ -234,6 +236,7 @@
 (add-to-list 'package-selected-packages 'racket-mode)
 (add-to-list 'package-selected-packages 'rainbow-delimiters)
 ;; (add-to-list 'package-selected-packages 'rtags)
+(add-to-list 'package-selected-packages 'selcand)
 (add-to-list 'package-selected-packages 'simple-httpd)
 (add-to-list 'package-selected-packages 'slime)
 (add-to-list 'package-selected-packages 'sound-wav)
@@ -254,7 +257,7 @@
 (add-to-list 'package-selected-packages 'tree-sitter-langs)
 (add-to-list 'package-selected-packages 'vertico)
 (add-to-list 'package-selected-packages 'vertico-prescient)
-(add-to-list 'package-selected-packages 'vertico-repeat)
+;; (add-to-list 'package-selected-packages 'vertico-repeat)
 ;; (add-to-list 'package-selected-packages 'try)
 ;; (add-to-list 'package-selected-packages 'use-package)
 ;; (add-to-list 'package-selected-packages 'wc-mode)
@@ -1887,7 +1890,7 @@ ARG is the thing being completed in the minibuffer."
      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-clojure-server-command '("/usr/local/Cellar/clojure-lsp-native"))) ; Optional: In case `clojure-lsp` is not in your $PATH
 
-;;***clomacs 
+;;***clomacs
 ;; source: https://github.com/clojure-emacs/clomacs
 (use-package clomacs)
 
@@ -2692,6 +2695,14 @@ concatenated."
     
 
 
+
+;;*** golden-ratio
+;; https://github.com/roman/golden-ratio.el
+(use-package golden-ratio)
+(golden-ratio-mode 1)
+
+
+
 ;;*** greader
 ;; Reads back the text that you have written in Emacs.
 ;;Install espeak via macports or brew.
@@ -3296,7 +3307,7 @@ concatenated."
   (flycheck-highlighting-mode 'lines))
 
 ;; vale is prose linter that you run from the command line.
-;; 
+;;
 ;; vale has to be installed first and set up with a config file .vale.ini in each project.
 ;; I first learned about vale here: https://github.com/org2blog/org2blog#using-a-package
 ;; I found the macports version to be broken. Use the homebrew version.
@@ -3426,7 +3437,7 @@ concatenated."
 ;;   ("ms" magit-status)
 ;;   )
 ;; (global-set-key (kbd "C-c 2") 'yt-hydra/help/body)
-;; 
+;;
 
 
 ;; major-mode-hydra
@@ -3647,12 +3658,12 @@ concatenated."
 ;;    map))
 
 
-;; Sometimes we want to edit multiple places in the file at the same time. 
-;; Most of the time this is just adding the same characters multiple places 
-;; in the file in places with the same pattern, 
+;; Sometimes we want to edit multiple places in the file at the same time.
+;; Most of the time this is just adding the same characters multiple places
+;; in the file in places with the same pattern,
 ;; other times it is inserting a sequence of numbers.
 ;; Package by Magnar Sveen, https://github.com/magnars/multiple-cursors.el, the author of emacsrocks.com YouTube video series.
-;; 
+;;
 ;;*** Multiple-cursors
 (use-package multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -3669,7 +3680,6 @@ concatenated."
      :load-path "manual-packages/noaa/")
 (setq noaa-latitude 35.65)
 (setq noaa-longitude 97.47)
-     
 
 ;; ** O
 
@@ -4024,22 +4034,23 @@ concatenated."
 
 
 ;;*** org-pomodoro
+;; (shell-command-to-string "open -a tomighty.app")
 (use-package org-pomodoro
-    :commands (org-pomodoro)
+    :commands  (org-pomodoro)
     :config
     (setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))
 
 ;; add hook to enable automated start of the next pom after a break.
 ;; Source: https://github.com/marcinkoziej/org-pomodoro/issues/32
-(add-hook 'org-pomodoro-break-finished-hook
-          (lambda ()
-            (interactive)
-            (point-to-register 1)
-            (org-clock-goto)
-            (org-pomodoro '(25))
-            (register-to-point 1)
-            ))
-
+;; (add-hook 'org-pomodoro-break-finished-hook
+;;           (lambda ()
+;;             (interactive)
+;;             (point-to-register 1)
+;;             (org-clock-goto)
+;;             (org-pomodoro '(25))
+;;             (register-to-point 1)
+;;             (shell-command-to-string "open -a tomighty.app")            
+;;             ))
 
 (use-package sound-wav)
 (setq org-pomodoro-ticking-sound-p nil)
@@ -4369,6 +4380,52 @@ concatenated."
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
 (defalias 'o2d 'hm/convert-org-to-docx)
 
+
+
+
+
+;;*** ox-pandoc
+
+(use-package ox-pandoc)
+
+;;*** docx2txt
+
+(add-to-list 'auto-mode-alist '("\\.docx\\'" . docx2txt.sh)) ;; /usr/local/bin/docx2txt.sh
+
+(defun docx2txt ()
+  "Run docx2txt on the entire buffer."
+  (shell-command-on-region (point-min) (point-max) "docx2txt.sh" t t))
+
+;;**** Convert docx to another format with point on the file in dired
+
+(defun direct-pandoc-docx-md ()
+  (interactive)
+  (dired-do-async-shell-command
+   "pandoc -f docx -t markdown --wrap=none" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)))
+
+;; pandoc --list-output-formats
+;; pandoc -f docx -t org MooersTravellingCV.docx -o MooersTravellingCV.org
+
+(defun direct-pandoc-docx-org ()
+  (interactive)
+  (dired-do-async-shell-command
+   "pandoc -f docx -t org --wrap=none" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)))
+
+(defun direct-pandoc-docx-latex ()
+  (interactive)
+  (dired-do-async-shell-command
+   "pandoc -f docx -t latex --wrap=none" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)))
+
+(defun direct-pandoc-docx-rst ()
+  (interactive)
+  (dired-do-async-shell-command
+   "pandoc -f docx -t rst --wrap=none" current-prefix-arg
+   (dired-get-marked-files t current-prefix-arg)))
+
+(global-set-key (kbd "C-c x") 'direct-pandoc-docx-org)
 
 ;;** P
 
@@ -4827,6 +4884,22 @@ concatenated."
 (twauctex-global-mode)
 
 
+;;** U
+;;*** unicode
+
+
+(set-default-coding-systems 'utf-8)
+    
+;; (set-keyboard-coding-system 'mac-roman)
+;; (create-fontset-from-fontset-spec
+;;  "-apple-monaco-medium-r-normal--10-*-*-*-*-*-fontset-monaco,
+;;   ascii:-apple-monaco-medium-r-normal--10-100-75-75-m-100-mac-roman,
+;;   latin-iso8859-1:-apple-monaco-medium-r-normal--10-100-75-75-m-100-mac-roman,
+;;   mule-unicode-0100-24ff:-apple-monaco-medium-r-normal--10-100-75-75-m-100-mac-roman")
+;; (set-frame-font "fontset-monaco")
+;; (set-clipboard-coding-system 'mac-roman)
+;; 
+
 
 ;;** V
 ;;*** emacs-vega-view
@@ -4991,3 +5064,4 @@ If nil, don't use any snippet.")
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
