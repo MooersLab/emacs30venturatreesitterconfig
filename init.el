@@ -93,7 +93,10 @@
 (add-to-list 'package-selected-packages 'dap-mode)
 (add-to-list 'package-selected-packages 'dired-icon)
 (add-to-list 'package-selected-packages 'dired-subtree)
+(add-to-list 'package-selected-packages 'discover)
+
 (add-to-list 'package-selected-packages 'dirvish)
+
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
 (add-to-list 'package-selected-packages 'edwina)
@@ -135,8 +138,8 @@
 ;; (add-to-list 'package-selected-packages 'fzf)
 (add-to-list 'package-selected-packages 'focus)
 (add-to-list 'package-selected-packages 'git-gutter)
-;; (add-to-list 'package-selected-packages 'gnuplot)
-;; (add-to-list 'package-selected-packages 'gnuplot-mode)
+(add-to-list 'package-selected-packages 'gnuplot)
+(add-to-list 'package-selected-packages 'gnuplot-mode)
 (add-to-list 'package-selected-packages 'gptai)
 (add-to-list 'package-selected-packages 'golden-ratio)
 
@@ -567,6 +570,15 @@ version-control t)
       (find-file "~/emacs30/init.el")))
 
 
+(set-face-attribute 'default nil :height 140)
+
+(set-frame-parameter (selected-frame) 'buffer-predicate
+                     (lambda (buf)
+                       (let ((name (buffer-name buf)))
+                         (not (or (string-prefix-p "*" name)
+                                  (eq 'dired-mode (buffer-local-value 'major-mode buf)))))))
+
+
 ;; Global keys
 ;; If you use a window manager be careful of possible key binding clashes
 (setq recenter-positions '(top middle bottom))
@@ -576,12 +588,29 @@ version-control t)
 (global-set-key [C-tab] 'other-window)
 (global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-; (global-set-key (kbd "M-/") #'hippie-expand)
+(global-set-key (kbd "C-`") 'mode-line-other-buffer)
+;; (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-c r") 'remember)
 
 
 (setq case-fold-search t)
+
+
+;; Show the file path in the title of the frame
+;; source https://stackoverflow.com/questions/2903426/display-path-of-file-in-status-bar See entry by mortnene
+;; This is much more useful than just showing the file name or buffer name in the frame title. 
+
+(setq frame-title-format
+      '(:eval
+        (if buffer-file-name
+            (replace-regexp-in-string
+             "\\\\" "/"
+             (replace-regexp-in-string
+              (regexp-quote (getenv "HOME")) "~"
+              (convert-standard-filename buffer-file-name)))
+          (buffer-name))))
+
 
 ;; Browse URLS in text mode
 (global-goto-address-mode +1)
@@ -1717,7 +1746,7 @@ ARG is the thing being completed in the minibuffer."
 (use-package quelpa-use-package)
 
 
-;; load bookmark+-mac.el and then bytecompile the rest 
+;; load bookmark+-mac.el and then bytecompile the rest
 ;; (use-package bookmark+
 ;;                  :quelpa (bookmark+ :fetcher wiki
 ;;                                     :files
@@ -2099,12 +2128,34 @@ ARG is the thing being completed in the minibuffer."
 ;;(require 'highlight)
 
 
+;;*** discover--context-menu-mappings
+
+(discover-add-context-menu
+ :context-menu '(isearch
+              (description "Isearch, occur and highlighting")
+              (lisp-switches
+               ("-cf" "Case should fold search" case-fold-search t nil))
+              (lisp-arguments
+               ("=l" "context lines to show (occur)"
+                "list-matching-lines-default-context-lines"
+                (lambda (dummy) (interactive) (read-number "Number of context lines to show: "))))
+              (actions
+               ("Isearch"
+                ("_" "isearch forward symbol" isearch-forward-symbol)
+                ("w" "isearch forward word" isearch-forward-word))
+               ("Occur"
+                ("o" "occur" occur))
+               ("More"
+                ("h" "highlighters ..." makey-key-mode-popup-isearch-highlight))))
+ :bind "M-s")
+
+
 ;;*** dot-mode
 ;; This minor mode enables the use of C-. to repeat the last command.
 ;; I want to mimic this great Vi command enabled globally.
 (use-package dot-mode
-    :config
-    (global-dot-mode t))
+  :config
+  (global-dot-mode t))
 
 
 ;;*** Drag stuff
@@ -4351,10 +4402,10 @@ concatenated."
 (define-key org-mode-map (kbd "&*") 'org-jump-to-heading-beginning)
 
 (setq org-use-speed-commands t)
-;; (setq org-speed-commands (cons '("w" . widen) org-speed-commands))
-;; (define-key org-mode-map (kbd "^") 'org-sort)
-;; (define-key org-mode-map (kbd "z") 'org-refile)
-;;(define-key org-mode-map (kbd "@") 'org-mark-subtree)
+(setq org-speed-commands (cons '("w" . widen) org-speed-commands))
+(define-key org-mode-map (kbd "^") 'org-sort)
+(define-key org-mode-map (kbd "z") 'org-refile)
+(define-key org-mode-map (kbd "@") 'org-mark-subtree)
 
 
 (use-package org2blog)
