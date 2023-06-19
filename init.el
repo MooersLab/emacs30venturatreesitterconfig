@@ -2105,6 +2105,7 @@ ARG is the thing being completed in the minibuffer."
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
 
+(add-hook 'dired-initial-position-hook #'hydra-dired/body)
 
 ;;*** Dired+ and related packages related
 ;; (add-to-list 'load-path "~/latex-emacs2906/manual-packages/dired-plus")
@@ -2115,13 +2116,23 @@ ARG is the thing being completed in the minibuffer."
   (setq diredp-wrap-around-flag nil))
 ;;(setq diredp-copressed-file-suffix ((t (:foreground "orange"))))
 
+
+
+
+
+
+
+
+
+
+
 ;; (add-to-list 'load-path "~/latex-emacs2906/manual-packages/icicles")
 ;; (require 'icicles)
 (use-package icicles
-    :load-path "manual-packages/icicles/"
-    ;; do not start on start-up; bloggs startup too much
-    :config
-    (icy-mode 0))
+  :load-path "manual-packages/icicles/"
+  ;; do not start on start-up; bloggs startup too much
+  :config
+  (icy-mode 0))
 
 
 ;;(add-to-list 'load-path "~/latex-emacs2906/manual-packages/highlight")
@@ -2162,22 +2173,22 @@ ARG is the thing being completed in the minibuffer."
 ;; ;;Usage
 ;; To start drag-stuff
 ;;     (drag-stuff-mode t) or M-x drag-stuff-mode
-;; 
+;;
 ;; Or if you want it to be done automatically
 ;;     (drag-stuff-global-mode t)
-;; 
+;;
 ;; ### Drag line
 ;; To drag a line up and down. Put the cursor on that line and press
 ;; **<M-up>** and **<M-down>**.
-;; 
+;;
 ;; ### Drag lines
 ;; To drag several lines up and down. Select the lines you want to drag
 ;; and press **<M-up>** and **<M-down>**.
-;; 
+;;
 ;; ### Drag region
 ;; A region can be dragged to the left and right. Select the region you
 ;; want to drag and press **<M-left>** and **<M-right>**.
-;; 
+;;
 ;; ### Drag word
 ;; To drag a word. Just place the cursor on the word and press
 ;; **<M-left>** and **<M-right>**.
@@ -2636,7 +2647,7 @@ concatenated."
       (eros-mode 1))
 
 
-;; Easier commenting 
+;; Easier commenting
 ;; Inspired by https://www.youtube.com/watch?v=vTdbb7tsvQc
 ;; source https://github.com/redguardtoo/evil-nerd-commenter
 ;; Enter M-; anywhere in line to comment it out from the start of the line
@@ -2682,10 +2693,10 @@ concatenated."
 ;; comments and strings in code
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-;; sets american english as defult 
+;; sets american english as default
 (setq ispell-dictionary "american")
 
-;; let us cycle american english (best written english) and norwegian 
+;; let us cycle american english (best written english) and norwegian
 (defun change-dictionary ()
 (interactive)
 (ispell-change-dictionary (if (string-equal ispell-current-dictionary "american")
@@ -2719,10 +2730,10 @@ concatenated."
   (interactive)
   (google-this-parse-and-search-string
    (concat "site:pymolwiki.org" (thing-at-point 'symbol))
-   nil (google-this-lucky-search-url))) 
+   nil (google-this-lucky-search-url)))
 
 (global-set-key (kbd "C-x / g p") 'google-this-pymol-reference)
-       
+
 ;;;###autoload
 ;;;; Really, you want to feed Moloch?
 ;;;;*** gpt
@@ -2738,12 +2749,12 @@ concatenated."
 ;;
 ;;(use-package gptai)
 ;;;; set configurations
-;;(setq gptai-model "<MODEL-HERE>") 
+;;(setq gptai-model "<MODEL-HERE>")
 ;;(setq gptai-username "<USERNAME-HERE>")
 ;;(setq gptai-api-key #'dw/read-openai-key)
 ;;;; set keybindings optionally
 ;;(global-set-key (kbd "C-c g") 'gptai-send-query)
-    
+
 
 
 
@@ -2837,7 +2848,7 @@ concatenated."
 (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode)
 
 
-;;*** help hydra 
+;;*** help hydra
 ;; source: https://www.wisdomandwonder.com/article/10760/emacsorg-mode-a-hydra-to-help-describe
 ;; (defhydra help/hydra/left/describe (:color blue
 ;;                                            :hint nil)
@@ -2906,7 +2917,7 @@ concatenated."
 ;; (use-package flycheck
 ;;   :ensure t
 ;;   :diminish flycheck-mode)
-;; 
+;;
 
 
 
@@ -2922,8 +2933,8 @@ concatenated."
 ;;
 ;; ido-mode needs flex-mathcing enabled to use fuzzy matching.
 ;; This feature greatly eases file finding, buffer switching, and directory switching.
-;; 
-;; ido-mode presents the candidates in a horizontal list. 
+;;
+;; ido-mode presents the candidates in a horizontal list.
 ;; Type the name of the option that you want to narrow the list.
 ;; You can cycle forward through the options by entering C-s repeatedly until the point lands on the desired candidate.
 ;; The right arrow has the same effect but reaching for it will break your tempo.
@@ -2938,16 +2949,16 @@ concatenated."
 ;; It recognizes ~/ for the home directory and // for the root directory.
 ;; If you know the fullpath, ignore what is in the minibuffer and start typing the fullpath.
 ;;
-;; When you are the using C-x C-f to find a file, you can select the folder containing the file and enter C-d to open a Dired buffer for that folder. 
-;; Likewise, after issuing C-x d, select the the folder containing the file and enter C-d to open a Dired buffer for that folder. 
+;; When you are the using C-x C-f to find a file, you can select the folder containing the file and enter C-d to open a Dired buffer for that folder.
+;; Likewise, after issuing C-x d, select the the folder containing the file and enter C-d to open a Dired buffer for that folder.
 
 (ido-mode 1)
 (setq ido-everywhere t)
-(setq ido-enable-flex-matching t) ; partial file and buffer names work. 
+(setq ido-enable-flex-matching t) ; partial file and buffer names work.
 
 
 ;; The article (https://www.masteringemacs.org/article/introduction-to-ido-mode) by Mickey Petersen descirbe additional configurations for ido-mode.
-;; 
+;;
 ;; Find file at point (ffap) can be enabled with the following setting.
 ;; Mickey recommends also disabling URL ffap with the second setting below.
 
@@ -2974,7 +2985,7 @@ concatenated."
 ;; When started with C-x C-f, M-m will create a new subfolder and C-k will delete the selected file.
 ;; The last keybinding looks dangerous to me.
 ;; When started with C-x b, C-k kills the currently focused buffer.
-;; 
+;;
 ;; When using C-x C-f, ido caches recently visited directories; these are known as work directories.
 ;; You can cycle through the previous or next work directories by entering M-p and M-n.
 ;; You can enter C-k to remove the current directory from the list of work directories.
@@ -3047,7 +3058,7 @@ concatenated."
 ;; The elements of the list must begin with a dash.
 ;; The terms to be inserted into the square brackets
 ;; have to be added after running the function.
-(defun description (beg end) 
+(defun description (beg end)
  "wrap the active region in an 'itemize' environment,
   converting hyphens at the beginning of a line to \item"
   (interactive "r")
@@ -3064,7 +3075,7 @@ concatenated."
 ;;#### M-x enumerate
 ;; Converts a selected list into an enumerated list.
 ;; The elements of the list must begin with a dash.
-(defun enumerate (beg end) 
+(defun enumerate (beg end)
  "wrap the active region in an 'itemize' environment,
   converting hyphens at the beginning of a line to \item"
   (interactive "r")
@@ -3084,7 +3095,7 @@ concatenated."
 ;; A similar function could be made to make an enumerated list
 ;; and a description list.
 ;; Source: \url{https://tex.stackexchange.com/questions/118958/emacsauctex-prevent-region-filling-when-inserting-itemize}
-(defun itemize (beg end) 
+(defun itemize (beg end)
  "wrap the active region in an 'itemize' environment,
   converting hyphens at the beginning of a line to \item"
   (interactive "r")
@@ -3202,41 +3213,41 @@ concatenated."
 
 
 ;; PATH to info
-;; Set path to info for texlive. This path is needed by the LSP for LaTeX. 
+;; Set path to info for texlive. This path is needed by the LSP for LaTeX.
 (add-to-list 'Info-directory-list "/opt/local/share/texmf-texlive/doc/info")
 
 
 ;; LSP in LaTeX
 ;; digestif is an LSP for LaTeX. Install it via this command in the terminal:   luarocks install digestif
 ;; digestif is one of two latex-lsps available
-;; 
+;;
 (setq lsp-tex-server 'digestif)
 
 
 ;; automate snippet insertion
 ;; If you want automatic snippet insertion upon choosing a completion candidate, make sure to activate yas-minor-mode before starting up Eglot.
 ;; (yas-reload-all)
-;; The #' is called sharp quoting. 
-;; Use it to quote functions. 
+;; The #' is called sharp quoting.
+;; Use it to quote functions.
 ;; See http://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html.
 (add-hook 'LaTeX-mode-hook #'yas-minor-mode)
 
 
 ;; eglot in LaTeX mode
-;; Emacs’s polyglot lsp server. 
-;; Eglot provides completion, documentation, and navigation commands in LaTeX documents. 
-;; Must come after yas-minor-mode. 
-;; Add a hook for to invoke eglot in LaTeX-mode. 
-;; But you must install digestif first Source. 
+;; Emacs’s polyglot lsp server.
+;; Eglot provides completion, documentation, and navigation commands in LaTeX documents.
+;; Must come after yas-minor-mode.
+;; Add a hook for to invoke eglot in LaTeX-mode.
+;; But you must install digestif first Source.
 ;; Invoke eglot with M-x eglot or make it available on startup:
 (add-hook 'LaTeX-mode-hook #'eglot-ensure)
 
 
-;; Note that eglot has no dependences, but bleeding-edge Emacs versions have dependencies that can mess it up. 
+;; Note that eglot has no dependences, but bleeding-edge Emacs versions have dependencies that can mess it up.
 ;; Enter M-x find-libraries
 
 ;; Enlarge equation preview
-;; Set the scale of the preview of the LaTeX equation so you can see it. 
+;; Set the scale of the preview of the LaTeX equation so you can see it.
 ;; Place the point in equation and enter C-c C-x C-l to render.
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
 
@@ -3258,12 +3269,12 @@ concatenated."
 
 
 
-;; To bind a key in a mode, you need to wait for the mode to be loaded before defining the key. 
-(eval-after-load 'latex 
+;; To bind a key in a mode, you need to wait for the mode to be loaded before defining the key.
+(eval-after-load 'latex
                    '(define-key LaTeX-mode-map [(tab)] 'outline-cycle))
 
 ;; Word count in LaTeX files
-;; Run texcount.pl on an open tex document in the current buffer to get a report of word counts by section. 
+;; Run texcount.pl on an open tex document in the current buffer to get a report of word counts by section.
 ;; Create in .bashAppAliases:  alias texcount='/usr/local/bin/texcount.pl'
 ;; Enter C-c w if the document is one file.
 ;; Enter C-c w m if the docment has multiple parts.
@@ -3320,11 +3331,11 @@ concatenated."
 ;; (global-nlinum-mode t)
 
 
-;; *** LSP = Language Server Protocol 
-;; lsp-mode uses LSP servers to provides IDE functionality like code completion 
-;; (intellisense like using company-capf), navigation (jump to symbol), 
-;; refactoring functionality and so on. lsp-ui is used to get prettier boxes and 
-;; more info visible in an easy way (like javadoc). 
+;; *** LSP = Language Server Protocol
+;; lsp-mode uses LSP servers to provides IDE functionality like code completion
+;; (intellisense like using company-capf), navigation (jump to symbol),
+;; refactoring functionality and so on. lsp-ui is used to get prettier boxes and
+;; more info visible in an easy way (like javadoc).
 
 (use-package lsp-mode
   :bind
