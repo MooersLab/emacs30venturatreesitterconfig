@@ -78,6 +78,7 @@
 ;; (add-to-list 'package-selected-packages 'code-cells)
 ;; (add-to-list 'package-selected-packages 'combobulate)
 (add-to-list 'package-selected-packages 'company) ; required by lsp-mode.302
+(add-to-list 'package-selected-packages 'company-box) ; required to avoid conflicts with copilot 
 ;; (add-to-list 'package-selected-packages 'conda)
 ;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
@@ -99,7 +100,7 @@
 
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
-(add-to-list 'package-selected-packages 'edwina)
+;;(add-to-list 'package-selected-packages 'edwina)
 (add-to-list 'package-selected-packages 'ef-themes)
 (add-to-list 'package-selected-packages 'eglot)
 ;; (add-to-list 'package-selected-packages 'ein)
@@ -113,6 +114,7 @@
 (add-to-list 'package-selected-packages 'elpy)
 (add-to-list 'package-selected-packages 'embark)
 (add-to-list 'package-selected-packages 'embark-consult)
+(add-to-list 'package-selected-packages 'ement)
 (add-to-list 'package-selected-packages 'emojify)
 (add-to-list 'package-selected-packages 'engine-mode)
 (add-to-list 'package-selected-packages 'eros)
@@ -202,6 +204,8 @@
 (add-to-list 'package-selected-packages 'org-preview-html)
 ;; (add-to-list 'package-selected-packages 'org-ql)
 (add-to-list 'package-selected-packages 'org-ref)
+(add-to-list 'package-selected-packages 'org-reveal)
+(add-to-list 'package-selected-packages 'org-re-reveal)
 (add-to-list 'package-selected-packages 'org-roam)
 (add-to-list 'package-selected-packages 'org-roam-bibtex)
 (add-to-list 'package-selected-packages 'org-roam-timestamps)
@@ -1940,6 +1944,33 @@ ARG is the thing being completed in the minibuffer."
 (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 
 
+;; If you do not want to use tab for completion, you can use the following code to disable it:
+;; https://github.com/milanglacier/dotemacs/blob/5bce7519d2ffb33371705bbe0bcfbbef1033c8ea/lisp/my-init-langtools.el#L180
+;; (use-package copilot
+;;     :init
+;;     (my/toggle-map
+;;         :keymaps 'override
+;;         :states '(normal insert motion)
+;;         "g" #'copilot-mode)
+
+;;     :config
+;;     (general-define-key
+;;      :states '(insert)
+;;      :keymaps 'copilot-mode-map
+;;      "M-y" #'copilot-accept-completion-by-line
+;;      "M-Y" #'copilot-accept-completion
+;;      "M-J" #'copilot-next-completion
+;;      "M-K" #'copilot-previous-completion
+;;      "M->" #'copilot-next-completion
+;;      "M-<" #'copilot-previous-completion))
+
+
+
+
+
+
+
+
 ;; copilot-diagnose
 ;; Check the current status of the plugin. Also you can check logs in the *copilot events* buffer and stderr output in the *copilot stderr* buffer.
 
@@ -1992,6 +2023,13 @@ ARG is the thing being completed in the minibuffer."
 
 ;; if you change the text, you should also change the cursor_offset
 ;; warning: this is measured by UTF-8 encoded bytes
+
+
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
+
 
 
 ;; we recommend using use-package to organize your init.el
@@ -2203,11 +2241,11 @@ ARG is the thing being completed in the minibuffer."
 ;; https://github.com/ajgrf/edwina
 ;;
 
-(use-package edwina
-  :config
-  (setq display-buffer-base-action '(display-buffer-below-selected))
-  (edwina-setup-dwm-keys)
-  (edwina-mode 1))
+;; (use-package edwina
+;;   :config
+;;   (setq display-buffer-base-action '(display-buffer-below-selected))
+;;   (edwina-setup-dwm-keys)
+;;   (edwina-mode 1))
 
 ;; *** ef-theme
 
@@ -2409,6 +2447,14 @@ concatenated."
 (define-key elfeed-search-mode-map "=" elfeed-score-map)
 
 (run-at-time nil (* 8 60 60) #'elfeed-update)
+
+
+;;*** ement
+;; https://github.com/alphapapa/ement.el#bindings
+(use-package ement)
+
+
+
 
 ;;*** Emojis
 (use-package emojify
@@ -3762,6 +3808,10 @@ concatenated."
 ;   (org-mode . olivetti-mode))
 
 
+
+(define-key org-mode-map (kbd "M-i") 'org-insert-item)
+
+
 ;; <<<<<<< BEGINNING of org-agenda >>>>>>>>>>>>>>
 (setq org-agenda-start-with-log-mode t)
 (setq org-log-done 'time)
@@ -3994,21 +4044,37 @@ concatenated."
 
 
 
+;;*** org-cc
+;; source  https://github.com/durableOne/org-cc
+(add-to-list 'load-path "/Users/blaine/emacs30/manual-packages/org-cc")
+(use-package org-cc
+  :ensure nil
+  :after org
+  :custom
+  (org-cc-directory (concat org-directory "org-cc")) ;; subdirectory of the heading's attachment directory
+  (org-cc-days 14)
+  :init
+  (add-hook 'org-clock-in-hook #'org-cc-display-notes)
+)
+(global-set-key (kbd "C-c k") 'org-cc-edit-cc-file)
+(global-set-key (kbd "C-c x") 'org-cc-display-notes)
 
-;;*** org-drill
+
+
+;;*** Org-drill
 ;; org-drill for spaced repetition learning in org-mode
 ;; You have to install org-drill from MELPA.;; This is a YouTube video about how to use org-drill[[https://www.youtube.com/watch?v=uraPXeLfWcM][to learn Chinese]].
 ;;You can use org tables to generate [[https://github.com/chrisbarrett/org-drill-table][flashcards]].
 (use-package org-drill
-             :config (progn
-                          (add-to-list 'org-modules 'org-drill)
-                          (setq org-drill-add-random-noise-to-intervals-p t)
-                          (setq org-drill-hint-separator "||")
-                          (setq org-drill-left-cloze-delimiter "<[")
-                          (setq org-drill-right-cloze-delimiter "]>")
-                          (setq org-drill-learn-fraction 0.25)
-             )
-)
+  :config (progn
+            (add-to-list 'org-modules 'org-drill)
+            (setq org-drill-add-random-noise-to-intervals-p t)
+            (setq org-drill-hint-separator "||")
+            (setq org-drill-left-cloze-delimiter "<[")
+            (setq org-drill-right-cloze-delimiter "]>")
+            (setq org-drill-learn-fraction 0.25)
+            )
+  )
 
 
 ;;*** org-inline-pdf
@@ -4034,7 +4100,7 @@ concatenated."
 
 
 
-;;*** org-pdf-noter
+;;*** Org-pdf-noter
 (use-package org-noter
   :after org
   :config
@@ -4415,9 +4481,9 @@ concatenated."
 (setq org-use-speed-commands t)
 (setq org-speed-commands (cons '("w" . widen) org-speed-commands))
 (define-key org-mode-map (kbd "^") 'org-sort)
-(define-key org-mode-map (kbd "z") 'org-refile)
+;; (define-key org-mode-map (kbd "z") 'org-refile)
 (define-key org-mode-map (kbd "@") 'org-mark-subtree)
-
+(eval-after-load 'org-mode '(define-key org-mode-map "z" nil))
 
 (use-package org2blog)
 (setq org2blog/wp-blog-alist
@@ -4442,10 +4508,11 @@ concatenated."
            (format-time-string "-%Y-%m-%d-%H%M%S") ".docx")))
 (defalias 'o2d 'hm/convert-org-to-docx)
 
+;; source https://github.com/yjwen/org-reveal/
 
-
-
-
+(setq org-reveal-root "file:////Applications/quarto/share/formats/revealjs/reveal/dist/reveal.js")
+;; M-x load-library ox-reveal
+(use-package ox-reveal)
 ;;*** ox-pandoc
 
 (use-package ox-pandoc)
@@ -4775,6 +4842,14 @@ concatenated."
 ;; Configure SBCL as the Lisp program for SLIME.
 (add-to-list 'exec-path "/opt/local/bin")
 (setq inferior-lisp-program "sbcl")
+
+(push "/Users/blaine/software/lispRepos/slime-critic" load-path)
+(add-to-list 'slime-contribs 'slime-critic)
+(slime-setup)
+
+
+;;    M-x slime-critic-critique-buffer: critique the current buffer.
+;;    M-x slime-critic-critique-file: critique a file.
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
