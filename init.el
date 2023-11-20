@@ -8,7 +8,7 @@
          '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
         '("org" . "http://orgmode.org/elpa/") t)  ;; for newest version of org mode
-(add-to-list 'package-archives 
+(add-to-list 'package-archives
         '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
 
 
@@ -62,32 +62,41 @@
 ;; (add-to-list 'package-selected-packages 'auto-complete-clang)
 ;; (add-to-list 'package-selected-packages 'auto-package-update)
 (add-to-list 'package-selected-packages 'avy)
+
 (add-to-list 'package-selected-packages 'beframe)
 (add-to-list 'package-selected-packages 'better-defaults)
 (add-to-list 'package-selected-packages 'bibtex)
 (add-to-list 'package-selected-packages 'browse-at-remote)
+
 ;; (add-to-list 'package-selected-packages 'c-eldoc)
 (add-to-list 'package-selected-packages 'cape)
 (add-to-list 'package-selected-packages 'change-region)
 (add-to-list 'package-selected-packages 'cider)
 (add-to-list 'package-selected-packages 'citar)
 (add-to-list 'package-selected-packages 'citar-org-roam)
-(add-to-list 'package-selected-packages 'clomacs)
+;;(add-to-list 'package-selected-packages 'clomacs) ;; depends on cider-0.22.1
 ;; (add-to-list 'package-selected-packages 'cmake-ide)
 ;; (add-to-list 'package-selected-packages 'cmake-mode)
 ;; (add-to-list 'package-selected-packages 'code-cells)
 ;; (add-to-list 'package-selected-packages 'combobulate)
+
 (add-to-list 'package-selected-packages 'company) ; required by lsp-mode.302
-(add-to-list 'package-selected-packages 'company-box) ; required to avoid conflicts with copilot 
-;; (add-to-list 'package-selected-packages 'conda)
+(add-to-list 'package-selected-packages 'company-box) ; required to avoid conflicts with copilot
+(add-to-list 'package-selected-packages 'company-tabnine)
+(add-to-list 'package-selected-packages 'company-prescient)
+(add-to-list 'package-selected-packages 'company-quickhelp)
+(add-to-list 'package-selected-packages 'company-quickhelp-terminal)
+
+(add-to-list 'package-selected-packages 'conda)
 ;;(add-to-list 'package-selected-packages 'codegpt)
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'consult-projectile)
 (add-to-list 'package-selected-packages 'consult-org-roam)
 (add-to-list 'package-selected-packages 'copilot)
-(add-to-list 'package-selected-packages 'corfu)
-(add-to-list 'package-selected-packages 'corfu-prescient)
+;; (add-to-list 'package-selected-packages 'corfu)
+;; (add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
+
 (add-to-list 'package-selected-packages 'dash)
 (add-to-list 'package-selected-packages 'dashboard-hackernews)
 (add-to-list 'package-selected-packages 'dashboard)
@@ -95,11 +104,10 @@
 (add-to-list 'package-selected-packages 'dired-icon)
 (add-to-list 'package-selected-packages 'dired-subtree)
 (add-to-list 'package-selected-packages 'discover)
-
 (add-to-list 'package-selected-packages 'dirvish)
-
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
+
 ;;(add-to-list 'package-selected-packages 'edwina)
 (add-to-list 'package-selected-packages 'ef-themes)
 (add-to-list 'package-selected-packages 'eglot)
@@ -109,11 +117,14 @@
 ;; (add-to-list 'package-selected-packages 'elisp-lint)
 ;; (add-to-list 'package-selected-packages 'elpy)
 (add-to-list 'package-selected-packages 'elfeed)
+(add-to-list 'package-selected-packages 'elfeed-dashboard)
+
 (add-to-list 'package-selected-packages 'elfeed-org)
 (add-to-list 'package-selected-packages 'elfeed-score)
 (add-to-list 'package-selected-packages 'elpy)
-(add-to-list 'package-selected-packages 'embark)
-(add-to-list 'package-selected-packages 'embark-consult)
+;; (add-to-list 'package-selected-packages 'emacs-cursorless)
+;; (add-to-list 'package-selected-packages 'embark)
+;; (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'ement)
 (add-to-list 'package-selected-packages 'emojify)
 (add-to-list 'package-selected-packages 'engine-mode)
@@ -127,6 +138,7 @@
 (add-to-list 'package-selected-packages 'exec-path-from-shell)
 ;; (add-to-list 'package-selected-packages 'expand-region)
 ;; (add-to-list 'package-selected-packages 'exwm)
+
 (add-to-list 'package-selected-packages 'file-info)
 (add-to-list 'package-selected-packages 'flycheck)
 (add-to-list 'package-selected-packages 'flycheck-vale)
@@ -147,30 +159,36 @@
 
 (add-to-list 'package-selected-packages 'google-this)
 ;; (add-to-list 'package-selected-packages 'graphviz-dot-mode)
-(add-to-list 'package-selected-packages 'greader)
+;; (add-to-list 'package-selected-packages 'greader)
 (add-to-list 'package-selected-packages 'gxref)
+
 (add-to-list 'package-selected-packages 'helpful)
 (add-to-list 'package-selected-packages 'helm)
+(add-to-list 'package-selected-packages 'helm-bibtex)
 (add-to-list 'package-selected-packages 'highlight-defined)
 (add-to-list 'package-selected-packages 'hydra)
 ;; (add-to-list 'package-selected-packages 'highlight-parentheses)
+
 (add-to-list 'package-selected-packages 'iedit)
 (add-to-list 'package-selected-packages 'impatient-mode)
 ;; (add-to-list 'package-selected-packages 'jedi)
 ;; (add-to-list 'package-selected-packages 'jedi-core)
-(add-to-list 'package-selected-packages 'jupyter)
 (add-to-list 'package-selected-packages 'ivy-prescient)
+
+(add-to-list 'package-selected-packages 'jupyter)
+
 (add-to-list 'package-selected-packages 'languagetool)
 (add-to-list 'package-selected-packages 'latex-preview-pane)
 (add-to-list 'package-selected-packages 'lsp-mode)
 (add-to-list 'package-selected-packages 'lsp-pyright)
 (add-to-list 'package-selected-packages 'lsp-ui)
 (add-to-list 'package-selected-packages 'lsp-treemacs)
+
 (add-to-list 'package-selected-packages 'magit)
 (add-to-list 'package-selected-packages 'magit-commit)
 (add-to-list 'package-selected-packages 'major-mode-hydra)
-(add-to-list 'package-selected-packages 'markdown-mode)
 (add-to-list 'package-selected-packages 'marginalia)
+(add-to-list 'package-selected-packages 'markdown-mode)
 ;; (add-to-list 'package-selected-packages 'markdown-preview-eww)
 ;; (add-to-list 'package-selected-packages 'markdown-preview-mode)
 ;; (add-to-list 'package-selected-packages 'material-theme)
@@ -181,12 +199,15 @@
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
 (add-to-list 'package-selected-packages 'multiple-cursors)
 (add-to-list 'package-selected-packages 'my-hydras)
+(add-to-list 'package-selected-packages 'my-uniteai)
+
 (add-to-list 'package-selected-packages 'nov)
 ;; (add-to-list 'package-selected-packages 'ob-diagrams)
 ;; (add-to-list 'package-selected-packages 'ob-ess-julia)
 ;; (add-to-list 'package-selected-packages 'ob-ipython)
 ;; (add-to-list 'package-selected-packages 'ob-mermaid)
 ;;(add-to-list 'package-selected-packages 'openai)
+
 (add-to-list 'package-selected-packages 'orderless)
 ;; (add-to-list 'package-selected-packages 'org-babel-eval-in-repl)
 (add-to-list 'package-selected-packages 'org-bookmark-heading)
@@ -217,6 +238,7 @@
 ;; (add-to-list 'package-selected-packages 'ox-latex-subfigure)
 (add-to-list 'package-selected-packages 'ox-pandoc)
 ;; (add-to-list 'package-selected-packages 'package-utils)
+
 (add-to-list 'package-selected-packages 'page-break-lines)
 (add-to-list 'package-selected-packages 'paredit)
 (add-to-list 'package-selected-packages 'parent-mode)
@@ -237,22 +259,31 @@
 (add-to-list 'package-selected-packages 'projectile)
 ;; (add-to-list 'package-selected-packages 'pydoc)
 ;; (add-to-list 'package-selected-packages 'python-pytest)
+
+(add-to-list 'package-selected-packages 'qclj)
 (add-to-list 'package-selected-packages 'qemacs)
+(add-to-list 'package-selected-packages 'qvoice)
 (add-to-list 'package-selected-packages 'quelpa)
 (add-to-list 'package-selected-packages 'quelpa-use-package)
-(add-to-list 'package-selected-packages 'racket-mode)
+
+;;(add-to-list 'package-selected-packages 'racket-mode)
 (add-to-list 'package-selected-packages 'rainbow-delimiters)
+(add-to-list 'package-selected-packages 'repl-driven-development)
 ;; (add-to-list 'package-selected-packages 'rtags)
+
 (add-to-list 'package-selected-packages 'selcand)
 (add-to-list 'package-selected-packages 'simple-httpd)
-(add-to-list 'package-selected-packages 'slime)
-(add-to-list 'package-selected-packages 'sound-wav)
-;; (add-to-list 'package-selected-packages 'ssh)
+;;(add-to-list 'package-selected-packages 'slime)
+;;(add-to-list 'package-selected-packages 'sound-wav)
+(add-to-list 'package-selected-packages 'ssh)
+(add-to-list 'package-selected-packages 'serenade-mode)
 ;; (add-to-list 'package-selected-packages 'stan-mode)
 ;; (add-to-list 'package-selected-packages 'stan-snippets)
 ;; (add-to-list 'package-selected-packages 'standoff-mode)
 (add-to-list 'package-selected-packages 'swiper)
 ;; (add-to-list 'package-selected-packages 'sx)
+
+(add-to-list 'package-selected-packages 'tabnine)
 (add-to-list 'package-selected-packages 'tempel)
 (add-to-list 'package-selected-packages 'tempel-collection)
 ;; (add-to-list 'package-selected-packages 'treemacs)
@@ -262,6 +293,7 @@
 ;; (add-to-list 'package-selected-packages 'treemacs-persp)
 ;; (add-to-list 'package-selected-packages 'treemacs-projectile)
 (add-to-list 'package-selected-packages 'tree-sitter-langs)
+
 (add-to-list 'package-selected-packages 'vertico)
 (add-to-list 'package-selected-packages 'vertico-prescient)
 ;; (add-to-list 'package-selected-packages 'vertico-repeat)
@@ -269,15 +301,22 @@
 ;; (add-to-list 'package-selected-packages 'use-package)
 ;; (add-to-list 'package-selected-packages 'wc-mode)
 ;; (add-to-list 'package-selected-packages 'web)
+
 (add-to-list 'package-selected-packages 'which-key)
-(add-to-list 'package-selected-packages 'wttrin)
+(add-to-list 'package-selected-packages 'whisper)
+;; (add-to-list 'package-selected-packages 'wttrin)
 ;; (add-to-list 'package-selected-packages 'xelb)
 ;; (add-to-list 'package-selected-packages 'xwidgets-reuse)
 ;; (add-to-list 'package-selected-packages 'xwwp-follow-link-ivy)
+
 (add-to-list 'package-selected-packages 'yasnippet)
-;; (add-to-list 'package-selected-packages 'yasnippet-classic-snippets)
+;; (Add-to-list 'package-selected-packages 'yasnippet-classic-snippets)
 ;; (add-to-list 'package-selected-packages 'yasnippet-snippets)
 ;; (add-to-list 'package-selected-packages 'ztree)
+
+
+(add-to-list 'package-selected-packages 'zetteldesk)
+(add-to-list 'package-selected-packages 'zetteldesk-kb)
 
 (package-install-selected-packages)
 (message "Installing missing packages. Take 4-5 minutes when all are missing.")
@@ -345,6 +384,10 @@ version-control t)
   (interactive)
   (load-file "~/emacs30/my-hydras/my-hydras.el"))
 
+(defun reload-uniteai ()
+    "Reload my-uniteai.el. Edit the path to suite your needs."
+    (interactive)
+    (load-file "~/emacs30/my-uniteai.el"))
 
 
 ;; ==> adjust here
@@ -551,7 +594,7 @@ version-control t)
 
 ;; highlight current line
 (global-hl-line-mode +1)
-(set-face-background hl-line-face "#salmon1")
+(set-face-background hl-line-face "wheat1")
 (set-face-attribute 'mode-line nil  :height 180)
 
 ;; List recently opened files.
@@ -603,7 +646,7 @@ version-control t)
 
 ;; Show the file path in the title of the frame
 ;; source https://stackoverflow.com/questions/2903426/display-path-of-file-in-status-bar See entry by mortnene
-;; This is much more useful than just showing the file name or buffer name in the frame title. 
+;; This is much more useful than just showing the file name or buffer name in the frame title.
 
 (setq frame-title-format
       '(:eval
@@ -667,7 +710,7 @@ version-control t)
 (setq mac-command-modifier 'meta) ; make cmd key do Meta
 (setq mac-option-modifier 'super) ; make option key do Super.
 (setq mac-control-modifier 'control) ; make Control key do Control
-(setq mac-function-modifier 'hyper)  ; make Fn key do Hyper. Only works on Apple produced keyboards.  
+(setq mac-function-modifier 'hyper)  ; make Fn key do Hyper. Only works on Apple produced keyboards.
 (setq mac-right-command-modifier 'hyper)
 
 
@@ -699,7 +742,7 @@ version-control t)
 (global-set-key "\C-cm" 'switch-to-minibuffer) ;; Bind to `C-c m' for minibuffer.
 
 ;; Bibtex configuration
-(defconst blaine/bib-libraries (list "/Users/blaine/Documents/global.bib")) 
+(defconst blaine/bib-libraries (list "/Users/blaine/Documents/global.bib"))
 
 ;; Combined with emacs-mac, this gives good PDF quality for [[https://www.aidanscannell.com/post/setting-up-an-emacs-playground-on-mac/][retina display]].
 (setq pdf-view-use-scaling t)
@@ -735,6 +778,38 @@ version-control t)
 ;;*** Zoom in and out via C-scroll wheel
 (global-set-key [C-wheel-up] 'text-scale-increase)
 (global-set-key [C-wheel-down] 'text-scale-decrease)
+
+
+;; ############################## aliases ################################
+;; Source: https://www.youtube.com/watch?v=ufVldIrUOBg   
+;; Defalias: a quick guide to making an alias in Emacs
+;; Usage: M-x ct
+ 
+(defalias 'ct 'customize-themes)
+(defalias 'cz 'customize)
+(defalias 'ddl 'delete-duplicate-lines)
+(defalias 'dga 'define-global-abbrev)
+(defalias 'dma 'define-mode-abbrev)
+(defalias 'ea 'edit-abbrevs)
+(defalias 'ff 'flip-frame)
+(defalias 'fl 'flush-lines)
+(defalias 'fnd 'find-name-dired)
+(defalias 'klm 'kill-matching-lines)
+(defalias 'lc 'langtool-check)
+(defalias 'lcu 'langtool-check-buffer)
+(defalias 'lp 'list-packages)
+(defalias 'pcr 'package-refresh-contents)
+(defalias 'pi 'package-install)
+(defalias 'pua 'package-upgrade-all)
+(defalias 'qr 'query-replace)
+(defalias 'rg 'rgrep)
+(defalias 'rsv 'replace-smart-quotes)
+(defalias 'sl 'sort-lines)
+(defalias 'slo 'single-lines-only)
+(defalias 'spe 'ispell-region)
+(defalias 'udd 'package-upgrade-all)
+(defalias 'ugg 'package-upgrade-all)
+(defalias 'wr 'write-region)
 
 
 ;; ############################## Package Configurations ################################
@@ -786,7 +861,45 @@ version-control t)
                     :cond #'laas-object-on-left-condition
                     "qq" (lambda () (interactive) (laas-wrap-previous-object "sqrt"))))
 
-
+;;  (use-package corfu
+;;      ;; Optional customizations
+;;      :custom
+;;      (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+;;      (corfu-auto t)                 ;; Enable auto completion
+;;      ;; (corfu-separator ?\s)          ;; Orderless field separator
+;;      ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+;;      ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+;;      ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+;;      ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+;;      ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+;;      ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+;;
+;;      ;; Enable Corfu only for certain modes.
+;;      ;; :hook ((prog-mode . corfu-mode)
+;;      ;;        (shell-mode . corfu-mode)
+;;      ;;        (eshell-mode . corfu-mode))
+;;
+;;      ;; Recommended: Enable Corfu globally.
+;;      ;; This is recommended since Dabbrev can be used globally (M-/).
+;;      ;; See also `corfu-exclude-modes'.
+;;      :init
+;;      (global-corfu-mode))
+;;
+;;    ;; A few more useful configurations...
+;;    (use-package emacs
+;;      :init
+;;      ;; TAB cycle if there are only few candidates
+;;      (setq completion-cycle-threshold 3)
+;;
+;;      ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+;;      ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+;;      ;; (setq read-extended-command-predicate
+;;      ;;       #'command-completion-default-include-p)
+;;
+;;      ;; Enable indentation+completion using the TAB key.
+;;      ;; `completion-at-point' is often bound to M-TAB.
+;;      (setq tab-always-indent 'complete))
+;;
 ;;;;*** Auto-completion from Gavin Freeborn
 ;;;; https://github.com/Gavinok
 ;;;;
@@ -990,62 +1103,370 @@ version-control t)
 
 
 
-;; 
+;;
 ;; ;; Copyright (C) 2022
 ;; ;; SPDX-License-Identifier: MIT
-;; 
+;;
 ;; ;; Author: System Crafters Community
-;; 
+;;
 ;; ;;; Commentary:
-;; 
+;;
 ;; ;; Setup completion packages.  Completion in this sense is more like
 ;; ;; narrowing, allowing the user to find matches based on minimal
 ;; ;; inputs and "complete" the commands, variables, etc from the
 ;; ;; narrowed list of possible choices.
-;; 
+;;
 ;; ;;; Code:
-;; 
+;;
 ;;; crafted-completion.el --- Crafted Completion Configuration -*- lexical-binding: t; -*-
 
-(use-package cape)
-(use-package consult)
-(use-package consult-projectile)
-(use-package corfu)
-(use-package embark-consult)
-(use-package orderless)
-(use-package vertico)
-
+;; (use-package cape)
+;; (use-package consult)
+;; (use-package consult-projectile)
+;; (use-package corfu)
+;; ;; (use-package embark-consult)
+;; (use-package orderless)
+;; (use-package vertico)
+;;
 ;; (setq enable-recursive-minibuffers t)
 ;; (use-package vertico-repeat
 ;;   :ensure nil
 ;;   :bind
 ;;   (:map minibuffer-local-map
 ;;         ("M-r" . vertico-repeat))
-;; 
+;;
 ;;   :config
 ;;   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
-;; 
+;;
 ;;   ;; preserve history across restarts
 ;;   (add-to-list 'savehist-additional-variables 'vertico-repeat-history)
 ;;   )
 ;; (define-key minibuffer-mode-map (kbd "<up>") #'vertico-repeat)
-(use-package marginalia)
+;;  (use-package marginalia)
 
 
-(defun crafted-completion/minibuffer-backward-kill (arg)
-  "Delete word or delete up to parent folder when completion is a file.
+;; This config for embark is from the Github repo.
 
-ARG is the thing being completed in the minibuffer."
-  (interactive "p")
-  (if minibuffer-completing-file-name
-      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
-      (if (string-match-p "/." (minibuffer-contents))
-          (zap-up-to-char (- arg) ?/)
-        (delete-minibuffer-contents))
-    (backward-kill-word arg)))
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
 
-;;; Vertico
-;; (require 'vertico)
+;; (use-package embark
+;;   :ensure t
+
+;;   :bind
+;;   (("C-." . embark-act)         ;; pick some comfortable binding
+;;    ("M-." . embark-dwim)        ;; good alternative: M-.
+;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+;;   :init
+
+;;   ;; Optionally replace the key help with a completing-read interface
+;;   (setq prefix-help-command #'embark-prefix-help-command)
+
+;;   ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
+;;   ;; strategy, if you want to see the documentation from multiple providers.
+;;   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+;;   ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+;;   :config
+
+;;   ;; Hide the mode line of the Embark live/completions buffers
+;;   (add-to-list 'display-buffer-alist
+;;                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+;;                  nil
+;;                  (window-parameters (mode-line-format . none)))))
+
+;; ;; Consult users will also want the embark-consult package.
+;; (use-package embark-consult
+;;   :ensure t ; only need to install it, embark loads it after consult if found
+;;   :hook
+;;   (embark-collect-mode . consult-preview-at-point-mode))
+
+
+
+
+;;(global-set-key (kbd "<tab>") #'company-indent-or-complete-common)
+;;
+;;(with-eval-after-load 'company
+;;  (define-key company-active-map (kbd "M-/") #'company-complete))
+;;
+;;(with-eval-after-load 'company
+;;  (define-key company-active-map
+;;              (kbd "TAB")
+;;              #'company-complete-common-or-cycle)
+;;  (define-key company-active-map
+;;              (kbd "<backtab>")
+;;              (lambda ()
+;;                (interactive)
+;;                (company-complete-common-or-cycle -1))))
+;;
+
+
+;;
+
+;;(use-package company
+;;
+;;  :init
+;;  (setq company-minimum-prefix-length 2
+;;        company-dabbrev-minimum-length 3
+;;        company-dabbrev-code-time-limit 0.3
+;;        company-tooltip-limit 14
+;;        company-tooltip-align-annotations t
+;;        company-require-match 'never
+;;        company-files-exclusions '(".git/" ".DS_Store")
+;;        company-global-modes '(not vterm-mode)
+;;        company-frontends '(company-pseudo-tooltip-frontend
+;;                            ;; always show candidates in overlay tooltip
+;;                            company-echo-metadata-frontend)
+;;        company-backends '((company-files company-yasnippet company-capf :separate company-dabbrev-code))
+;;        company-auto-commit nil
+;;        company-dabbrev-other-buffers nil
+;;        company-dabbrev-code-other-buffers nil
+;;        company-dabbrev-ignore-case t
+;;        company-dabbrev-code-ignore-case t
+;;        company-dabbrev-downcase nil
+;;        company-selection-wrap-around t
+;;        completion-ignore-case t)
+;;
+;;  ;;(my/run-hook-once evil-insert-state-entry-hook global-company-mode)
+;;  ;; (my/run-hook-once evil-insert-state-entry-hook company-tng-mode)
+;;  (my/setq-on-hook text-mode-hook
+;;                   company-backends
+;;                   '((company-files company-yasnippet company-capf :separate company-dabbrev)))
+;;
+;;  :config
+;;  ; (add-hook 'company-mode-hook #'evil-normalize-keymaps)
+;;  ; (evil-make-overriding-map company-mode-map)
+;;  ; (evil-make-overriding-map company-active-map)
+;;
+;;  (unless (display-graphic-p)
+;;    ;; Don't persist company popups when switching back to normal mode.
+;;    ;; `company-box' aborts on mode switch so it doesn't need this.
+;;    (add-hook 'evil-normal-state-entry-hook #'my/company-abort))
+;;
+;;  (with-eval-after-load 'company-files
+;;    ;; Fix `company-files' completion for org file:* links
+;;    (add-to-list 'company-files--regexps "file:\\(\\(?:\\.\\{1,2\\}/\\|~/\\|/\\)[^\]\n]*\\)"))
+;;
+;;  (when (display-graphic-p)
+;;    (add-hook 'company-mode-hook #'company-box-mode))
+;;
+;;  (general-define-key
+;;   :keymaps 'company-active-map
+;;   "C-e" #'company-abort
+;;   ;; use C-y to enter yasnippet expansion
+;;   ;; without input of additional character.
+;;   "C-y" #'company-complete-selection)
+;;
+;;  (general-define-key
+;;   :keymaps
+;;   'company-mode-map
+;;   ;; manually invoke the completion
+;;   "M-i" #'company-complete)
+;;
+;;  (advice-add #'company-capf :around #'my/company-completion-styles)
+;;
+;;  (yas-global-mode)
+;;  )
+;;
+;;(company +childframe)
+;;
+
+;; source https://www.sandeepnambiar.com/my-minimal-emacs-setup/
+;; (use-package company
+;;   :ensure t
+;;   :diminish company-mode
+;;   :config
+;;   (add-hook 'after-init-hook #'global-company-mode))
+;;
+;;
+;;
+;; (global-set-key (kbd "<tab>") #'company-indent-or-complete-common)
+;; (with-eval-after-load 'company
+;;   (define-key company-active-map (kbd "M-/") #'company-complete))
+;;
+;;
+;; (use-package company-box
+;;     :config
+;;     (setq company-box-max-candidates 50
+;;           company-frontends '(company-tng-frontend company-box-frontend)
+;;           company-box-icons-alist 'company-box-icons-all-the-icons))
+;;
+;; (with-eval-after-load 'company
+;;   (define-key company-active-map
+;;               (kbd "TAB")
+;;               #'company-complete-common-or-cycle)
+;;   (define-key company-active-map
+;;               (kbd "<backtab>")
+;;               (lambda ()
+;;                 (interactive)
+;;                 (company-complete-common-or-cycle -1))))
+;;
+;; (with-eval-after-load 'company
+;;   (define-key company-active-map (kbd "M-.") #'company-show-location)
+;;   (define-key company-active-map (kbd "RET") nil))
+
+
+
+
+
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((python-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (setq lsp-enable-symbol-highlighting nil
+        lsp-lens-enable nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-modeline-code-actions-enable nil
+        lsp-diagnostics-provider :none
+        lsp-modeline-diagnostics-enable nil
+        lsp-completion-show-detail nil
+        lsp-completion-show-kind nil
+        lsp-pyright-python-executable-cmd "python3"
+        )
+  :commands (lsp lsp-deferred))
+
+
+
+;; source: https://www.karsdorp.io/posts/dotemacs/
+(use-package company
+  :config
+  (add-hook 'prog-mode-hook 'company-mode)
+  (setq company-global-modes '(not text-mode term-mode markdown-mode gfm-mode))
+  ;; Number the candidates (use M-1, M-2 etc to select completions).
+  (setq company-selection-wrap-around t
+        company-show-numbers t
+        company-tooltip-align-annotations t
+        company-idle-delay 0
+        company-require-match nil
+        company-minimum-prefix-length 2)
+
+  ;; Bind next and previous selection to more intuitive keys
+
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (add-to-list 'company-backends #'company-tabnine)
+  ;; (add-to-list 'company-frontends 'company-tng-frontend)
+  ;; :bind (("TAB" . 'company-indent-or-complete-common)))
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map ("<tab>" . company-indent-or-complete-common)))
+
+(use-package company-box
+     :hook (company-mode . company-box-mode)
+     :config
+     (setq company-box-max-candidates 50
+           company-frontends '(company-tng-frontend company-box-frontend)
+           company-box-icons-alist 'company-box-icons-all-the-icons))
+
+(use-package company-quickhelp
+  :ensure t
+  :after company
+  :config
+  (company-quickhelp-mode))
+
+(use-package company-quickhelp-terminal)
+
+
+(use-package company-tabnine
+  :ensure t
+  :after company
+  :config
+  (add-to-list 'company-backends #'company-tabnine))
+
+(use-package company-prescient
+  :ensure t
+  :after company
+  :config
+  (company-prescient-mode 1))
+
+
+
+; (defun crafted-completion/minibuffer-backward-kill (arg)
+;   "Delete word or delete up to parent folder when completion is a file.
+;
+; ARG is the thing being completed in the minibuffer."
+;   (interactive "p")
+;   (if minibuffer-completing-file-name
+;       ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+;       (if (string-match-p "/." (minibuffer-contents))
+;           (zap-up-to-char (- arg) ?/)
+;         (delete-minibuffer-contents))
+;     (backward-kill-word arg)))
+;
+;;; Vertico  config from the github readme.md file for the vertico package.
+
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  (setq vertico-count 20)
+
+  ;; Grow and shrink the Vertico minibuffer
+  (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  (setq vertico-cycle t)
+  )
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+  ;; Vertico commands are hidden in normal buffers.
+  ;; (setq read-extended-command-predicate
+  ;;       #'command-completion-default-include-p)
+
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
+
+;; Optionally use the `orderless' completion style.
+
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+
+
+
+
 
 ;; Straight and Package bundle the vertico package differently. When
 ;; using `package.el', the extensions are built into the package and
@@ -1080,89 +1501,91 @@ ARG is the thing being completed in the minibuffer."
 (global-set-key (kbd "C-s") 'consult-line)
 (define-key minibuffer-local-map (kbd "C-r") 'consult-history)
 
-(setq completion-in-region-function #'consult-completion-in-region)
+;; (setq completion-in-region-function #'consult-completion-in-region)
 
 
 ;;; Orderless
 
 ;; Set up Orderless for better fuzzy matching
 ;;(require 'orderless)
-(customize-set-variable 'completion-styles '(orderless basic))
-(customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
-
+;; (customize-set-variable 'completion-styles '(orderless basic))
+;; (customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
+;;
 ;; Improve speed and highlighting
-(setq orderless-skip-highlighting (lambda () selectrum-is-active))
+;; (setq orderless-skip-highlighting (lambda () selectrum-is-active))
 
 ;; Added 14 Feb 2023
-(setq vertico-prescient-mode t)
+;;(setq vertico-prescient-mode t)
 
 ;;; Embark
 ;;(require 'embark)
 ;;(require 'embark-consult)
 
-(use-package embark
-  :bind
-  (("C-." . embark-act)
-   ("H-l" . embark-line)
-   ("M-." . embark-dwim)
-   ("C-h B" . embark-bindings))
-  :init
-  (setq prefix-help-command #'embark-prefix-help-command))
+;; (use-package embark
+;;   :bind
+;;   (("C-." . embark-act)
+;;    ("H-l" . embark-line)
+;;    ("M-." . embark-dwim)
+;;    ("C-h B" . embark-bindings))
+;;   :init
+;;   (setq prefix-help-command #'embark-prefix-help-command))
 
-;;(global-set-key [remap describe-bindings] #'embark-bindings)
-;;(global-set-key (kbd "C-.") 'embark-act)
+;; ;;(global-set-key [remap describe-bindings] #'embark-bindings)
+;; ;;(global-set-key (kbd "C-.") 'embark-act)
 
-(with-eval-after-load 'embark-consult
-  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+;; (with-eval-after-load 'embark-consult
+;;   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
-;;; Corfu
+;; ;;; Corfu
 
-;; Setup corfu for popup like completion
-(customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
-(customize-set-variable 'corfu-auto t)  ; Enable auto completion
-(customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
-(customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
-(customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
+;; ;; Setup corfu for popup like completion
+;; (customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
+;; (customize-set-variable 'corfu-auto t)  ; Enable auto completion
+;; (customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
+;; (customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
+;; (customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
 
-(global-corfu-mode 1)
+;; (global-corfu-mode 1)
 
-;;; Cape
+;; ;;; Cape
 
-;; Setup Cape for better completion-at-point support and more
-;; (require 'cape)
+;; ;; Setup Cape for better completion-at-point support and more
+;; ;; (require 'cape)
 
-;; Add useful defaults completion sources from cape
-(add-to-list 'completion-at-point-functions #'cape-file)
-(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+;; (use-package cape)
 
-;; Silence the pcomplete capf, no errors or messages!
-;; Important for corfu
-(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+;; ;; Add useful defaults completion sources from cape
+;; (add-to-list 'completion-at-point-functions #'cape-file)
+;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
 
-;; Ensure that pcomplete does not write to the buffer
-;; and behaves as a pure `completion-at-point-function'.
-(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
-(add-hook 'eshell-mode-hook
-          (lambda () (setq-local corfu-quit-at-boundary t
-                            corfu-quit-no-match t
-                            corfu-auto nil)
-            (corfu-mode)))
+;; ;; Silence the pcomplete capf, no errors or messages!
+;; ;; Important for corfu
+;; (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+;; ;; Ensure that pcomplete does not write to the buffer
+;; ;; and behaves as a pure `completion-at-point-function'.
+;; (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
+;; (add-hook 'eshell-mode-hook
+;;           (lambda () (setq-local corfu-quit-at-boundary t
+;;                             corfu-quit-no-match t
+;;                             corfu-auto nil)
+;;             (corfu-mode)))
 
 ;; The above completion framework is missing prescient which lists options based on frequecy of use
 
-(use-package prescient)
-(use-package corfu-prescient)
+;; (use-package prescient)
+;; (use-package corfu-prescient)
 ;; (straight-use-package 'company-prescient)
-(use-package ivy-prescient) ; I have ivy lurking about in this configuration.
+;; (use-package ivy-prescient) ; I have ivy lurking about in this configuration.
 ;; (use-package 'selectrum-prescient) vertico has replaced slection
-(use-package vertico-prescient)
+;; (use-package vertico-prescient)
 
 
 ;; Keybindings suggested here https://github.com/revrari/emacs_elements_chapter_2/blob/main/orderless-selectrum-prescient-etc.txt
 (global-set-key (kbd "<f7>") 'consult-outline)
 (global-set-key [C-tab] 'consult-buffer)
 (global-set-key (kbd "C-x C-r") 'consult-recent-file)
-(global-set-key (kbd "C-x C-l") 'consult-line)  
+(global-set-key (kbd "C-x C-l") 'consult-line)
 
 ;; I am testing whether I can live with the above cool-kid completion system for now.
 ;; ;;*** auto-complete
@@ -1172,42 +1595,42 @@ ARG is the thing being completed in the minibuffer."
 ;; (ac-config-default)
 ;; (global-auto-complete-mode t)
 ;; (ac-flyspell-workaround)
-;; 
+;;
 
 
 ;; ;;;### auto-complete-auctex.el --- auto-completion for auctex
-;; 
+;;
 ;; ;; Copyright (C) 2012 Christopher Monsanto
-;;      
+;;
 ;; ;; Author: Christopher Monsanto <chris@monsan.to>
 ;; ;; Version: 1.0
 ;; ;; Package-Requires: ((yasnippet "0.6.1") (auto-complete "1.4"))
-;; 
+;;
 ;; ;; This program is free software; you can redistribute it and/or modify
 ;; ;; it under the terms of the GNU General Public License as published by
 ;; ;; the Free Software Foundation, either version 3 of the License, or
 ;; ;; (at your option) any later version.
-;; 
+;;
 ;; ;; This program is distributed in the hope that it will be useful,
 ;; ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; ;; GNU General Public License for more details.
-;; 
+;;
 ;; ;; You should have received a copy of the GNU General Public License
 ;; ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-;; 
+;;
 ;; ;;; Commentary:
-;; 
+;;
 ;; ;; You can install this by (require 'auto-complete-auctex).
 ;; ;; Feel free to contribute better documentation!
-;; 
+;;
 ;; ;;;#### Code:
-;; 
-;; 
+;;
+;;
 ;; (eval-when-compile
 ;;   (require 'auto-complete)
 ;;   (require 'yasnippet))
-;; 
+;;
 ;; (defvar ac-auctex-arg-lookup-table
 ;;   '((TeX-arg-define-macro . ("\\MacroName"))
 ;;     (TeX-arg-counter . ("Counter"))
@@ -1245,53 +1668,53 @@ ARG is the thing being completed in the minibuffer."
 ;;     (8 . ("" "" "" "" "" "" "" ""))
 ;;     (9 . ("" "" "" "" "" "" "" "" "")))
 ;;   "Anything not in this table defaults to '(\"\")")
-;; 
+;;
 ;; (defun ac-auctex-expand-arg-info (arg-info)
 ;;   (loop for item in arg-info
-;; 	append (cond
-;; 		((or (stringp item) (and (vectorp item) (stringp (elt item 0))))
-;; 		 (list item))
-;; 		((vectorp item)
-;; 		 (loop for item-2 in (or (assoc-default (or (car-safe (elt item 0)) (elt item 0))
-;; 							ac-auctex-arg-lookup-table 'equal) '(""))
-;; 		       collect [item-2]))
-;; 		(t
-;; 		 (or (assoc-default (or (car-safe item) item) ac-auctex-arg-lookup-table) '(""))))))
-;; 
+;;     append (cond
+;;         ((or (stringp item) (and (vectorp item) (stringp (elt item 0))))
+;;          (list item))
+;;         ((vectorp item)
+;;          (loop for item-2 in (or (assoc-default (or (car-safe (elt item 0)) (elt item 0))
+;;                             ac-auctex-arg-lookup-table 'equal) '(""))
+;;                collect [item-2]))
+;;         (t
+;;          (or (assoc-default (or (car-safe item) item) ac-auctex-arg-lookup-table) '(""))))))
+;;
 ;; (defun ac-auctex-snippet-arg (n arg)
 ;;   (let* ((opt (vectorp arg))
-;; 	 (item (if opt (elt arg 0) arg))
-;; 	 (m (if (vectorp arg) (1+ n) n))
-;; 	 (var (format "${%s}" item)))
+;;      (item (if opt (elt arg 0) arg))
+;;      (m (if (vectorp arg) (1+ n) n))
+;;      (var (format "${%s}" item)))
 ;;     (list (1+ m)
-;; 	  (if opt
-;; 	      (concat (format "${[") var "]}")
-;; 	    (concat "{" var "}")))))
-;; 
+;;       (if opt
+;;           (concat (format "${[") var "]}")
+;;         (concat "{" var "}")))))
+;;
 ;; ;;;#### Macros
 ;; ;;
-;; 
+;;
 ;; (defun ac-auctex-expand-args (str env)
 ;;   (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default str env))))
-;; 
+;;
 ;; (defun ac-auctex-macro-snippet (arg-info)
 ;;   (let ((count 1))
 ;;     (apply 'concat (loop for item in (ac-auctex-expand-arg-info arg-info)
-;; 			 collect (destructuring-bind (n val)
-;; 				     (ac-auctex-snippet-arg count item)
-;; 				   (setq count n)
-;; 				   val)))))
-;; 
+;;              collect (destructuring-bind (n val)
+;;                      (ac-auctex-snippet-arg count item)
+;;                    (setq count n)
+;;                    val)))))
+;;
 ;; (defun ac-auctex-macro-candidates ()
 ;;    (let ((comlist (if TeX-symbol-list
-;; 		      (mapcar (lambda (item)
-;; 			        (or (car-safe (car item)) (car item)))
-;; 			    TeX-symbol-list))))
+;;               (mapcar (lambda (item)
+;;                     (or (car-safe (car item)) (car item)))
+;;                 TeX-symbol-list))))
 ;;     (all-completions ac-prefix comlist)))
-;; 
+;;
 ;; (defun ac-auctex-macro-action ()
-;;   (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))) 
-;; 
+;;   (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list))))
+;;
 ;; (ac-define-source auctex-macros
 ;;   '((init . TeX-symbol-list)
 ;;     (candidates . ac-auctex-macro-candidates)
@@ -1299,30 +1722,30 @@ ARG is the thing being completed in the minibuffer."
 ;;     (requires . 0)
 ;;     (symbol . "m")
 ;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
-;; 
+;;
 ;; ;;;#### Symbols
-;; 
+;;
 ;; (defun ac-auctex-symbol-candidates ()
 ;;   (all-completions ac-prefix (mapcar 'cadr LaTeX-math-default)))
-;; 
+;;
 ;; (defun ac-auctex-symbol-action ()
 ;;   (re-search-backward candidate)
 ;;   (delete-region (1- (match-beginning 0)) (match-end 0))
 ;;   (if (texmathp)
 ;;       (progn
-;; 	(insert "\\" candidate)
-;; 	(yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list))))
+;;     (insert "\\" candidate)
+;;     (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list))))
 ;;     (insert "$\\" candidate "$")
 ;;     (backward-char)
 ;;     (yas/expand-snippet (ac-auctex-macro-snippet (assoc-default candidate TeX-symbol-list)))))
-;; 
+;;
 ;; (defun ac-auctex-symbol-document (c)
 ;;   (let* ((cl (assoc c (mapcar 'cdr LaTeX-math-default)))
 ;;          (decode (if (nth 2 cl) (char-to-string (decode-char 'ucs (nth 2 cl))) ""))
 ;;          (st (nth 1 cl))
 ;;          (hs (if (listp st) (mapconcat 'identity st " ") st)))
 ;;     (and decode (concat hs " == " decode))))
-;; 
+;;
 ;; (ac-define-source auctex-symbols
 ;;   '((init . LaTeX-math-mode)
 ;;     (candidates . ac-auctex-symbol-candidates)
@@ -1331,26 +1754,26 @@ ARG is the thing being completed in the minibuffer."
 ;;     (requires . 0)
 ;;     (symbol . "s")
 ;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
-;; 
-;; 
+;;
+;;
 ;; ;;;#### Environments
-;; 
+;;
 ;; (defvar ac-auctex-environment-prefix "beg")
-;; 
+;;
 ;; (defun ac-auctex-environment-candidates ()
 ;;   (let ((envlist (mapcar (lambda (item) (concat ac-auctex-environment-prefix (car item)))
-;; 			 LaTeX-environment-list)))
+;;              LaTeX-environment-list)))
 ;;     (all-completions ac-prefix envlist)))
-;; 
+;;
 ;; (defun ac-auctex-environment-action ()
 ;;   (re-search-backward candidate)
 ;;   (delete-region (1- (match-beginning 0)) (match-end 0))
 ;;   (let ((candidate (substring candidate (length ac-auctex-environment-prefix))))
 ;;     (yas/expand-snippet (format "\\begin{%s}%s\n$0\n\\end{%s}"
-;; 				candidate
-;; 				(ac-auctex-macro-snippet (assoc-default candidate LaTeX-environment-list))
-;; 				candidate)))) 
-;; 
+;;                 candidate
+;;                 (ac-auctex-macro-snippet (assoc-default candidate LaTeX-environment-list))
+;;                 candidate))))
+;;
 ;; (ac-define-source auctex-environments
 ;;   '((init . LaTeX-environment-list)
 ;;     (candidates . ac-auctex-environment-candidates)
@@ -1358,60 +1781,60 @@ ARG is the thing being completed in the minibuffer."
 ;;     (requires . 0)
 ;;     (symbol . "e")
 ;;     (prefix . "\\\\\\([a-zA-Z]*\\)\\=")))
-;; 
-;; 
+;;
+;;
 ;; ;;;#### Refs
-;; 
+;;
 ;; (defun ac-auctex-label-candidates ()
 ;;   (all-completions ac-prefix (mapcar 'car LaTeX-label-list)))
-;; 
+;;
 ;; (ac-define-source auctex-labels
 ;;   '((init . LaTeX-label-list)
 ;;     (candidates . ac-auctex-label-candidates)
 ;;     (requires . 0)
 ;;     (symbol . "r")
 ;;     (prefix . "\\\\ref{\\([^}]*\\)\\=")))
-;; 
-;; 
+;;
+;;
 ;; ;;;#### Bibs
-;; 
+;;
 ;; (defun ac-auctex-bib-candidates ()
 ;;   (all-completions ac-prefix (mapcar 'car LaTeX-bibitem-list)))
-;; 
+;;
 ;; (ac-define-source auctex-bibs
 ;;   `((init . LaTeX-bibitem-list)
 ;;     (candidates . ac-auctex-bib-candidates)
 ;;     (requires . 0)
 ;;     (symbol . "b")
 ;;     (prefix . ,(concat "\\\\cite"
-;; 		       "\\(?:"
-;; 		         "\\[[^]]*\\]"
-;; 		       "\\)?"
-;; 		       "{\\([^},]*\\)"
-;; 		       "\\="))))
-;; 
+;;                "\\(?:"
+;;                  "\\[[^]]*\\]"
+;;                "\\)?"
+;;                "{\\([^},]*\\)"
+;;                "\\="))))
+;;
 ;; ;;;#### Setup
-;; 
+;;
 ;; (defun ac-auctex-setup ()
 ;;   (setq ac-sources (append
 ;;                       '(ac-source-auctex-symbols
 ;;                         ac-source-auctex-macros
-;; 			ac-source-auctex-environments
-;; 			ac-source-auctex-labels
-;; 			ac-source-auctex-bibs)
+;;             ac-source-auctex-environments
+;;             ac-source-auctex-labels
+;;             ac-source-auctex-bibs)
 ;;                       ac-sources)))
-;; 
+;;
 ;; (add-to-list 'ac-modes 'latex-mode)
 ;; (add-hook 'LaTeX-mode-hook 'ac-auctex-setup)
-;; 
+;;
 ;; (provide 'auto-complete-auctex)
-;; 
+;;
 ;; ;;; auto-complete-auctex.el ends here
-;; 
+;;
 ;; ;; indent with spaces instead of tabs for pep8 compatibility
 ;; (setq tab-width 4)
 ;; (setq-default indent-tabs-mode nil)
-;; 
+;;
 ;; *** atomic-chrome, used to interact with GhostText extension for Google Chrome.
 (use-package atomic-chrome)
 (atomic-chrome-start-server)
@@ -1437,6 +1860,16 @@ ARG is the thing being completed in the minibuffer."
           TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")
     )
   )
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-.") #'company-show-location)
+  (define-key company-active-map (kbd "RET") nil))
+
+
+
+
+
+
 
 
 
@@ -1571,7 +2004,7 @@ ARG is the thing being completed in the minibuffer."
 
 
 
-;; avy superimposes letters in the buffer with coloured backgrounds. 
+;; avy superimposes letters in the buffer with coloured backgrounds.
 
 ;; line commands
 ;; especially helpful across windows
@@ -1605,7 +2038,7 @@ ARG is the thing being completed in the minibuffer."
 ;; *** awesome-tabs
 ;; I love awesome-tabs; some people do not.
 ;; cd ~/latex-tree-emacs30/manual-packages
-;; git clone --depth=1 https://github.com/manateelazycat/awesome-tab.git 
+;; git clone --depth=1 https://github.com/manateelazycat/awesome-tab.git
 (use-package awesome-tab
   :load-path "~/emacs30/manual-packages/awesome-tab"
   :config
@@ -1623,176 +2056,176 @@ ARG is the thing being completed in the minibuffer."
 (global-set-key (kbd "s-0") 'awesome-tab-select-visible-tab)
 
 
-;;** B
-
-
-
-;;*** beframe
-;; source: https://protesilaos.com/emacs/beframe#h:813b78cc-83e8-4d75-b7a9-6722ffd905cd
-(use-package beframe)
-
-;; This is the default value.  Write here the names of buffers that
-;; should not be beframed.
-(setq beframe-global-buffers '("*scratch*" "*Messages*" "*Backtrace*" "*Bookmark List*"))
-
-(beframe-mode 1)
-
-;; This is just an example.  We do not define any key bindings.  You
-;; do not need this command if you enable `beframe-mode', as
-;; `switch-to-buffer' only shows a list of beframed buffers.
-(define-key global-map (kbd "C-x B") #'beframe-switch-buffer)
-
-;; Replace the generic `buffer-menu'.  With a prefix argument, this
-;; commands prompts for a frame.  Call the `buffer-menu' via M-x if
-;; you absolutely need the global list of buffers.
-(define-key global-map (kbd "C-x C-b") #'beframe-buffer-menu)
-
-;; Integrate beframe with consult
-(defvar consult-buffer-sources)
-(declare-function consult--buffer-state "consult")
-
-(with-eval-after-load 'consult
-  (defface beframe-buffer
-    '((t :inherit font-lock-string-face))
-    "Face for `consult' framed buffers.")
-
-  (defvar beframe-consult-source
-    `( :name     "Frame-specific buffers (current frame)"
-       :narrow   ?F
-       :category buffer
-       :face     beframe-buffer
-       :history  beframe-history
-       :items    ,#'beframe-buffer-names
-       :action   ,#'switch-to-buffer
-       :state    ,#'consult--buffer-state))
-
-  (add-to-list 'consult-buffer-sources 'beframe-consult-source))
-
-
-
-
-
-;;### bibtex-mode related
-;; Fetch bibtex for the given DOI. Insert at point, which should be in your global.bib file.
-;; Needs code to reformat the bibtex key.
-;;
-;; https://www.anghyflawn.net/blog/2014/emacs-give-a-doi-get-a-bibtex-entry/
-
-(defun get-bibtex-from-doi (doi)
- "Get a BibTeX entry from the DOI"
- (interactive "MDOI: ")
- (let ((url-mime-accept-string "text/bibliography;style=bibtex"))
-   (with-current-buffer 
-     (url-retrieve-synchronously 
-       (format "http://dx.doi.org/%s" 
-       	(replace-regexp-in-string "http://dx.doi.org/" "" doi)))
-     (switch-to-buffer (current-buffer))
-     (goto-char (point-max))
-     (setq bibtex-entry 
-     	  (buffer-substring 
-          	(string-match "@" (buffer-string))
-              (point)))
-     (kill-buffer (current-buffer))))
- (insert (decode-coding-string bibtex-entry 'utf-8))
- (define-key bibtex-mode-map (kbd "C-c C-b") 'get-bibtex-from-doi)
- (bibtex-fill-entry))
-;; I want run the above function to define it upon entry into a Bibtex file. 
-(add-hook
-   'bibtex-mode-hook
-   (lambda ()
-       (get-bibtex-from-doi nil)))
-
-;; Hook to add imenu to menubar in bibtex mode
-;; http://www.jonathanleroux.org/bibtex-mode.html
-(add-hook
-  'bibtex-mode-hook
-  (lambda ()
-    (imenu-add-to-menubar "Imenu")))
-
-;; Fetch bibtex information from DOI.
-;; Source https://chainsawriot.com/postmannheim/2022/12/13/aoe13.html
-;; Copy the DOI from Firefox (or any source)
-;; 1. Go back to emacs (By C . e)
-;; 2. Run the custom command: M-x add-doi and paste yank the DOI (C-y)
-;; 3. Auto: Fetch the BIBTEX
-;; 4. from Crossref
-;; 5. Auto: Add it into “~/dev/dotfiles/bib.bib”
-;; 6. Save it
-(defun add-doi ()
-  (interactive)
-  (progn
-    (setq doi-to-query (read-string "DOI "))
-    (find-file "~/Documents/global.bib")
-    (end-of-buffer)
-    (doi-insert-bibtex doi-to-query)
-    )
-  )
-
-;; *** biblio
-(use-package biblio
-  :config
-  (setq-default
-   biblio-bibtex-use-autokey t
-   bibtex-autokey-name-year-separator ""
-   bibtex-autokey-year-title-separator ""
-   bibtex-autokey-year-length 4
-   bibtex-autokey-titlewords 7
-   bibtex-autokey-titleword-length -1 ;; -1 means exactly one
-   bibtex-autokey-titlewords-stretch 0
-   bibtex-autokey-titleword-separator ""
-   bibtex-autokey-titleword-case-convert 'upcase)
-  )
-
-
-
-;;*** bookmarks+
-(use-package quelpa)
-(use-package quelpa-use-package)
-
-
-;; load bookmark+-mac.el and then bytecompile the rest
-;; (use-package bookmark+
-;;                  :quelpa (bookmark+ :fetcher wiki
-;;                                     :files
-;;                                     ("bookmark+.el"
-;;                                      "bookmark+-mac.el"
-;;                                      "bookmark+-bmu.el"
-;;                                      "bookmark+-1.el"
-;;                                      "bookmark+-key.el"
-;;                                      "bookmark+-lit.el"
-;;                                      "bookmark+-doc.el"
-;;                                      "bookmark+-chg.el"))
-;;                  :defer 2)
-;;
-
-;;*** Bookmarks+
-;; Drew Adams package that runs on top of the built-in bookmark package. 
-;; Inside your emacs directory, create manual-packages/bookmark-plus.
-;; Uncomment this code, paste into the scratch buffer, run once to install the package, and comment the code again
-;;
-;;(let ((bookmarkplus-dir "~/latex-tree-emacs30/manual-packages/bookmark-plus/")
-;;      (emacswiki-base "https://www.emacswiki.org/emacs/download/")
-;;      (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
-;;  (require 'url)
-;;  (add-to-list 'load-path bookmarkplus-dir)
-;;  (make-directory bookmarkplus-dir t)
-;;  (mapcar (lambda (arg)
-;;            (let ((local-file (concat bookmarkplus-dir arg)))
-;;              (unless (file-exists-p local-file)
-;;                (url-copy-file (concat emacswiki-base arg) local-file t))))
-;;            bookmark-files)
-;;  (byte-recompile-directory bookmarkplus-dir 0))
-
-;; ==> adjust here
-(use-package bookmark+
-    :load-path "manual-packages/bookmark-plus/")
-
-(defadvice bookmark-jump (after bookmark-jump activate)
-  (let ((latest (bookmark-get-bookmark bookmark)))
-    (setq bookmark-alist (delq latest bookmark-alist))
-    (add-to-list 'bookmark-alist latest)))
-
-;;** C
+; ;;** B
+;
+;
+;
+; ;;*** beframe
+; ;; source: https://protesilaos.com/emacs/beframe#h:813b78cc-83e8-4d75-b7a9-6722ffd905cd
+; (use-package beframe)
+;
+; ;; This is the default value.  Write here the names of buffers that
+; ;; should not be beframed.
+; (setq beframe-global-buffers '("*scratch*" "*Messages*" "*Backtrace*" "*Bookmark List*"))
+;
+; (beframe-mode 1)
+;
+; ;; This is just an example.  We do not define any key bindings.  You
+; ;; do not need this command if you enable `beframe-mode', as
+; ;; `switch-to-buffer' only shows a list of beframed buffers.
+; (define-key global-map (kbd "C-x B") #'beframe-switch-buffer)
+;
+; ;; Replace the generic `buffer-menu'.  With a prefix argument, this
+; ;; commands prompts for a frame.  Call the `buffer-menu' via M-x if
+; ;; you absolutely need the global list of buffers.
+; (define-key global-map (kbd "C-x C-b") #'beframe-buffer-menu)
+;
+; ;; Integrate beframe with consult
+; (defvar consult-buffer-sources)
+; (declare-function consult--buffer-state "consult")
+;
+; (with-eval-after-load 'consult
+;   (defface beframe-buffer
+;     '((t :inherit font-lock-string-face))
+;     "Face for `consult' framed buffers.")
+;
+;   (defvar beframe-consult-source
+;     `( :name     "Frame-specific buffers (current frame)"
+;        :narrow   ?F
+;        :category buffer
+;        :face     beframe-buffer
+;        :history  beframe-history
+;        :items    ,#'beframe-buffer-names
+;        :action   ,#'switch-to-buffer
+;        :state    ,#'consult--buffer-state))
+;
+;   (add-to-list 'consult-buffer-sources 'beframe-consult-source))
+;
+;
+;
+;
+;
+; ;;### bibtex-mode related
+; ;; Fetch bibtex for the given DOI. Insert at point, which should be in your global.bib file.
+; ;; Needs code to reformat the bibtex key.
+; ;;
+; ;; https://www.anghyflawn.net/blog/2014/emacs-give-a-doi-get-a-bibtex-entry/
+;
+; (defun get-bibtex-from-doi (doi)
+;  "Get a BibTeX entry from the DOI"
+;  (interactive "MDOI: ")
+;  (let ((url-mime-accept-string "text/bibliography;style=bibtex"))
+;    (with-current-buffer
+;      (url-retrieve-synchronously
+;        (format "http://dx.doi.org/%s"
+;            (replace-regexp-in-string "http://dx.doi.org/" "" doi)))
+;      (switch-to-buffer (current-buffer))
+;      (goto-char (point-max))
+;      (setq bibtex-entry
+;            (buffer-substring
+;               (string-match "@" (buffer-string))
+;               (point)))
+;      (kill-buffer (current-buffer))))
+;  (insert (decode-coding-string bibtex-entry 'utf-8))
+;  (define-key bibtex-mode-map (kbd "C-c C-b") 'get-bibtex-from-doi)
+;  (bibtex-fill-entry))
+; ;; I want run the above function to define it upon entry into a Bibtex file.
+; (add-hook
+;    'bibtex-mode-hook
+;    (lambda ()
+;        (get-bibtex-from-doi nil)))
+;
+; ;; Hook to add imenu to menubar in bibtex mode
+; ;; http://www.jonathanleroux.org/bibtex-mode.html
+; (add-hook
+;   'bibtex-mode-hook
+;   (lambda ()
+;     (imenu-add-to-menubar "Imenu")))
+;
+; ;; Fetch bibtex information from DOI.
+; ;; Source https://chainsawriot.com/postmannheim/2022/12/13/aoe13.html
+; ;; Copy the DOI from Firefox (or any source)
+; ;; 1. Go back to emacs (By C . e)
+; ;; 2. Run the custom command: M-x add-doi and paste yank the DOI (C-y)
+; ;; 3. Auto: Fetch the BIBTEX
+; ;; 4. from Crossref
+; ;; 5. Auto: Add it into “~/dev/dotfiles/bib.bib”
+; ;; 6. Save it
+; (defun add-doi ()
+;   (interactive)
+;   (progn
+;     (setq doi-to-query (read-string "DOI "))
+;     (find-file "~/Documents/global.bib")
+;     (end-of-buffer)
+;     (doi-insert-bibtex doi-to-query)
+;     )
+;   )
+;
+; ;; *** biblio
+; (use-package biblio
+;   :config
+;   (setq-default
+;    biblio-bibtex-use-autokey t
+;    bibtex-autokey-name-year-separator ""
+;    bibtex-autokey-year-title-separator ""
+;    bibtex-autokey-year-length 4
+;    bibtex-autokey-titlewords 7
+;    bibtex-autokey-titleword-length -1 ;; -1 means exactly one
+;    bibtex-autokey-titlewords-stretch 0
+;    bibtex-autokey-titleword-separator ""
+;    bibtex-autokey-titleword-case-convert 'upcase)
+;   )
+;
+;
+;
+; ;;*** bookmarks+
+;(use-package quelpa)
+; (use-package quelpa-use-package)
+;
+;
+; ;; load bookmark+-mac.el and then bytecompile the rest
+; ;; (use-package bookmark+
+; ;;                  :quelpa (bookmark+ :fetcher wiki
+; ;;                                     :files
+; ;;                                     ("bookmark+.el"
+; ;;                                      "bookmark+-mac.el"
+; ;;                                      "bookmark+-bmu.el"
+; ;;                                      "bookmark+-1.el"
+; ;;                                      "bookmark+-key.el"
+; ;;                                      "bookmark+-lit.el"
+; ;;                                      "bookmark+-doc.el"
+; ;;                                      "bookmark+-chg.el"))
+; ;;                  :defer 2)
+; ;;
+;
+; ;;*** Bookmarks+
+; ;; Drew Adams package that runs on top of the built-in bookmark package.
+; ;; Inside your emacs directory, create manual-packages/bookmark-plus.
+; ;; Uncomment this code, paste into the scratch buffer, run once to install the package, and comment the code again
+; ;;
+; ;;(let ((bookmarkplus-dir "~/latex-tree-emacs30/manual-packages/bookmark-plus/")
+; ;;      (emacswiki-base "https://www.emacswiki.org/emacs/download/")
+; ;;      (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
+; ;;  (require 'url)
+; ;;  (add-to-list 'load-path bookmarkplus-dir)
+; ;;  (make-directory bookmarkplus-dir t)
+; ;;  (mapcar (lambda (arg)
+; ;;            (let ((local-file (concat bookmarkplus-dir arg)))
+; ;;              (unless (file-exists-p local-file)
+; ;;                (url-copy-file (concat emacswiki-base arg) local-file t))))
+; ;;            bookmark-files)
+; ;;  (byte-recompile-directory bookmarkplus-dir 0))
+;
+; ;; ==> adjust here
+; (use-package bookmark+
+;     :load-path "manual-packages/bookmark-plus/")
+;
+; (defadvice bookmark-jump (after bookmark-jump activate)
+;   (let ((latest (bookmark-get-bookmark bookmark)))
+;     (setq bookmark-alist (delq latest bookmark-alist))
+;     (add-to-list 'bookmark-alist latest)))
+;
+;;** C;;
 ;;*** Cider
 
 (setq org-babel-clojure-backend 'cider)
@@ -1925,12 +2358,14 @@ ARG is the thing being completed in the minibuffer."
 
 ;;***clomacs
 ;; source: https://github.com/clojure-emacs/clomacs
-(use-package clomacs)
+;; (use-package clomacs)
 
 
 
 ;;*** copilot
 
+(use-package quelpa)
+(use-package quelpa-use-package)
 (use-package copilot
   :quelpa (copilot :fetcher github
                    :repo "zerolfx/copilot.el"
@@ -1944,90 +2379,137 @@ ARG is the thing being completed in the minibuffer."
 (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 
 
-;; If you do not want to use tab for completion, you can use the following code to disable it:
-;; https://github.com/milanglacier/dotemacs/blob/5bce7519d2ffb33371705bbe0bcfbbef1033c8ea/lisp/my-init-langtools.el#L180
-;; (use-package copilot
-;;     :init
-;;     (my/toggle-map
-;;         :keymaps 'override
-;;         :states '(normal insert motion)
-;;         "g" #'copilot-mode)
 
-;;     :config
-;;     (general-define-key
-;;      :states '(insert)
-;;      :keymaps 'copilot-mode-map
-;;      "M-y" #'copilot-accept-completion-by-line
-;;      "M-Y" #'copilot-accept-completion
-;;      "M-J" #'copilot-next-completion
-;;      "M-K" #'copilot-previous-completion
-;;      "M->" #'copilot-next-completion
-;;      "M-<" #'copilot-previous-completion))
-
-
-
-
-
-
-
-
-;; copilot-diagnose
-;; Check the current status of the plugin. Also you can check logs in the *copilot events* buffer and stderr output in the *copilot stderr* buffer.
-
-;; copilot-login
-;; Login to GitHub, required for using the plugin.
-;; copilot-mode
-
-;; Enable/disable copilot mode.
-;; copilot-complete
-
-;; Try to complete at the current point.
-;; copilot-accept-completion
-
-;; Accept the current completion.
-;; copilot-clear-overlay
-
-;; Clear copilot overlay in the current buffer.
-;; copilot-accept-completion-by-line / copilot-accept-completion-by-word
-
-;; Similar to copilot-accept-completion, but accept the completion by line or word. You can use prefix argument to specify the number of lines or words to accept.
-;; copilot-next-completion / copilot-previous-completion
-
-;; Cycle through the completion list.
-;; copilot-logout
-
-;; Logout from GitHub.
-
-
-;; (use-package openai
-;;     :load-path "manual-packages/openai/")
-;; 
-;; 
-;; ;;***codegpt
-;; ;; https://github.com/emacs-openai/codegpt
-;; ;;Commad 	Description
-;; ;;codegpt 	The master command
-;; ;;codegpt-custom 	Write your own instruction
-;; ;;codegpt-doc 	Automatically write documentation for your code
-;; ;;codegpt-fix 	Find problems with it
-;; ;;codegpt-explain 	Explain the selected code
-;; ;;codegpt-improve 	Improve, refactor or optimize it
-;; (use-package codegpt
-;;   :load-path "manual-packages/codegpt/"
-;;   :after openai)
-;; 
-;; ;; https://github.com/junjizhi/aide.el
-;; (use-package aide
-;;     :load-path "manual-packages/aide/")
-;; (setq aide-max-tokens 200)
-
-;; if you change the text, you should also change the cursor_offset
-;; warning: this is measured by UTF-8 encoded bytes
-
-
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+; ; ;; (use-package copilot
+; ; ;;     :init
+; ; ;;     (my/toggle-map
+; ; ;;         :keymaps 'override
+; ; ;;         :states '(normal insert motion)
+; ; ;;         "g" #'copilot-mode)
+; ; ;;
+; ; ;;     :config
+; ; ;;     (general-define-key
+; ; ;;      :states '(insert)
+; ; ;;      :keymaps 'copilot-mode-map
+; ; ;;      "M-y" #'copilot-accept-completion-by-line
+; ; ;;      "M-Y" #'copilot-accept-completion
+; ; ;;      "M-J" #'copilot-next-completion
+; ; ;;      "M-K" #'copilot-previous-completion
+; ; ;;      "M->" #'copilot-next-completion
+; ; ;;      "M-<" #'copilot-previous-completion))
+; ;
+; ;
+; ; ;;;
+; ; ;;; (use-package copilot
+; ; ;;;   :quelpa (copilot :fetcher github
+; ; ;;;                    :repo "zerolfx/copilot.el"
+; ; ;;;                    :branch "main"
+; ; ;;;                    :files ("dist" "*.el"))
+; ; ;;;   :bind (:map copilot-mode-map
+; ; ;;;               ("<tab>" . my/copilot-tab)
+; ; ;;;               ("s-n" . copilot-next-completion)
+; ; ;;;               ("s-p" . copilot-previous-completion)
+; ; ;;;               ("s-w" . copilot-accept-completion-by-word)
+; ; ;;;               ("s-l" . copilot-accept-completion-by-line))
+; ; ;;;   :config
+; ; ;;;   (defun my/copilot-tab ()
+; ; ;;;     (interactive)
+; ; ;;;     (or (copilot-accept-completion)
+; ; ;;;         (indent-for-tab-command)))
+; ; ;;;   :hook
+; ; ;;;   (prog-mode . copilot-mode))
+; ;
+; ;
+; ;
+; ;
+; ; ;; If you do not want to use tab for completion, you can use the following code to disable it:
+; ; ;; https://github.com/milanglacier/dotemacs/blob/5bce7519d2ffb33371705bbe0bcfbbef1033c8ea/lisp/my-init-langtools.el#L180
+; ; ;; (use-package copilot
+; ; ;;     :init
+; ; ;;     (my/toggle-map
+; ; ;;         :keymaps 'override
+; ; ;;         :states '(normal insert motion)
+; ; ;;         "g" #'copilot-mode)
+; ;
+; ; ;;     :config
+; ; ;;     (general-define-key
+; ; ;;      :states '(insert)
+; ; ;;      :keymaps 'copilot-mode-map
+; ; ;;      "M-y" #'copilot-accept-completion-by-line
+; ; ;;      "M-Y" #'copilot-accept-completion
+; ; ;;      "M-J" #'copilot-next-completion
+; ; ;;      "M-K" #'copilot-previous-completion
+; ; ;;      "M->" #'copilot-next-completion
+; ; ;;      "M-<" #'copilot-previous-completion))
+; ;
+; ;
+; ;
+; ;
+; ;
+; ;
+; ;
+; ;
+; ; ;; copilot-diagnose
+; ; ;; Check the current status of the plugin. Also you can check logs in the *copilot events* buffer and stderr output in the *copilot stderr* buffer.
+; ;
+; ; ;; copilot-login
+; ; ;; Login to GitHub, required for using the plugin.
+; ; ;; copilot-mode
+; ;
+; ; ;; Enable/disable copilot mode.
+; ; ;; copilot-complete
+; ;
+; ; ;; Try to complete at the current point.
+; ; ;; copilot-accept-completion
+; ;
+; ; ;; Accept the current completion.
+; ; ;; copilot-clear-overlay
+; ;
+; ; ;; Clear copilot overlay in the current buffer.
+; ; ;; copilot-accept-completion-by-line / copilot-accept-completion-by-word
+; ;
+; ; ;; Similar to copilot-accept-completion, but accept the completion by line or word. You can use prefix argument to specify the number of lines or words to accept.
+; ; ;; copilot-next-completion / copilot-previous-completion
+; ;
+; ; ;; Cycle through the completion list.
+; ; ;; copilot-logout
+; ;
+; ; ;; Logout from GitHub.
+; ;
+; ;
+; ; ;; (use-package openai
+; ; ;;     :load-path "manual-packages/openai/")
+; ; ;;
+; ; ;;
+; ; ;; ;;***codegpt
+; ; ;; ;; https://github.com/emacs-openai/codegpt
+; ; ;; ;;Commad     Description
+; ; ;; ;;codegpt     The master command
+; ; ;; ;;codegpt-custom     Write your own instruction
+; ; ;; ;;codegpt-doc     Automatically write documentation for your code
+; ; ;; ;;codegpt-fix     Find problems with it
+; ; ;; ;;codegpt-explain     Explain the selected code
+; ; ;; ;;codegpt-improve     Improve, refactor or optimize it
+; ; ;; (use-package codegpt
+; ; ;;   :load-path "manual-packages/codegpt/"
+; ; ;;   :after openai)
+; ; ;;
+; ; ;; ;; https://github.com/junjizhi/aide.el
+; ; ;; (use-package aide
+; ; ;;     :load-path "manual-packages/aide/")
+; ; ;; (setq aide-max-tokens 200)
+; ;
+; ; ;; if you change the text, you should also change the cursor_offset
+; ; ;; warning: this is measured by UTF-8 encoded bytes
+; ;
+; ;
+; ;
+;;;;
+;
+;;
+;;
+;; (use-package company-box
+;;   :hook (company-mode . company-box-mode))
 
 
 
@@ -2060,29 +2542,27 @@ ARG is the thing being completed in the minibuffer."
 (use-package command-log-mode
   :commands command-log-mode)
 
-;;*** consult-org-roam
-;; Provides consult functionality to org-roam files.
-;; Installed ripgrep with macports.
-;; Source: https://github.com/jgru/consult-org-roam
-;; 
-;;(use-package consult-org-roam
-;;   :after org-roam
-;;   :init
-;;   ;; Activate the minor mode
-;;   (consult-org-roam-mode 1)
-;;   :custom
-;;   ;; Use `ripgrep' for searching with `consult-org-roam-search'
-;;   (consult-org-roam-grep-func #'consult-ripgrep)
-;;   ;; Configure a custom narrow key for `consult-buffer'
-;;   (consult-org-roam-buffer-narrow-key ?r)
-;;   ;; Display org-roam buffers right after non-org-roam buffers
-;;   ;; in consult-buffer (and not down at the bottom)
-;;   (consult-org-roam-buffer-after-buffers t)
-;;   :config
-;;   ;; Eventually suppress previewing for certain functions
-;;   (consult-customize
-;;    consult-org-roam-forward-links
-;;    :preview-key (kbd "M-."))
+
+
+;;*** company-tabnine configuration
+;; (use-package company-tabnine :ensure t)
+;; (add-to-list 'company-backends #'company-tabnine)
+;; ;; Trigger completion immediately.
+;; (setq -idle-delay 0)
+
+;; Number the candidates (use M-1, M-2 etc to select completions).
+;; (setq -show-numbers t)
+
+
+;;*** conda
+
+(use-package conda)
+
+(custom-set-variables
+ '(conda-anaconda-home "/Users/blaine/opt/anaconda3"))
+
+
+
 ;;   :bind
 ;;   ;; Define some convenient keybindings as an addition
 ;;   ("C-c n e" . consult-org-roam-file-find)
@@ -2133,6 +2613,8 @@ ARG is the thing being completed in the minibuffer."
                      (bookmarks . 11)
                      (hackernews . 7))))
 (use-package dashboard-hackernews)
+(setq dashboard-items '((hackernews . 10)))
+
 (dashboard-refresh-buffer)
 
 
@@ -2153,17 +2635,6 @@ ARG is the thing being completed in the minibuffer."
   :config
   (setq diredp-wrap-around-flag nil))
 ;;(setq diredp-copressed-file-suffix ((t (:foreground "orange"))))
-
-
-
-
-
-
-
-
-
-
-
 ;; (add-to-list 'load-path "~/latex-emacs2906/manual-packages/icicles")
 ;; (require 'icicles)
 (use-package icicles
@@ -2245,7 +2716,7 @@ ARG is the thing being completed in the minibuffer."
 ;;   :config
 ;;   (setq display-buffer-base-action '(display-buffer-below-selected))
 ;;   (edwina-setup-dwm-keys)
-;;   (edwina-mode 1))
+;;   (edwina-modec1 1))
 
 ;; *** ef-theme
 
@@ -2306,16 +2777,16 @@ ARG is the thing being completed in the minibuffer."
 
 ;; C++ setup
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
-(add-to-list 'eglot-server-programs '((python-mode) "pyls"))
+(add-to-list 'eglot-server-programs '((python-mode) "pls"))
 (add-to-list 'eglot-server-programs '((latex-mode) "digestif"))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
 ;; from https://whatacold.io/blog/2022-01-22-emacs-eglot-lsp/
-(global-company-mode)
+;; (global--mode)
 (setq eldoc-echo-area-use-multiline-p nil)
 
-;;(define-key eglot-mode-map (kbd "C-c <tab>") \#'company-complete) ; initiate
+;;(define-key eglot-mode-map (kbd "C-c <tab>") \#'-complete) ; initiate
 ;;(define-key eglot-mode-map (kbd "C-c e $f n^{\prime \prime}$ ) \#'flymake-goto-next-error)
 ;;(define-key eglot-mode-map (kbd "C-c e f p") \#'flymake-goto-prev-error)
 ;;(define-key eglot-mode-map (kbd "C-c e $r^{\prime \prime}$ ) \#'eglot-rename)
@@ -2342,341 +2813,357 @@ ARG is the thing being completed in the minibuffer."
 
 
 
-;; ==> adjust here
+; ;; ==> adjust here
 (use-package elfeed)
 (setq elfeed-curl-program-name "/opt/local/bin/curl")
-(setq elfeed-search-title-max-width 130)
+(setq elfeed-search-title-max-width 140)
+
+;; List the feeds in an org file here:
 (use-package elfeed-org)
 (setq rmh-elfeed-org-files (list "~/emacs30/elfeed.org"))
 (elfeed-org)
-;;
-;;(setq elfeed-feeds '("https://planet.emacslife.com/atom.xml" "http://feeds.nature.com/nchem/rss/current"
-;;    "http://feeds.nature.com/nature/rss/current"
-;;    "https://onlinelibrary.wiley.com/feed/1469896x/most-recent"
-;;    "https://www.science.org/action/showFeed?type=axatoc&feed=rss&jc=science"
-;;    "https://journals.iucr.org/j/rss10.xml"
-;;    "https://journals.iucr.org/s/rss10.xml"
-;;    "https://journals.iucr.org/m/rss10.xml"
-;;    "https://journals.iucr.org/a/rss10.xml"
-;;    "https://journals.iucr.org/d/rss10.xml"
-;;    "http://feeds.feedburner.com/acs/chreay"
-;;    "https://rss.sciencedirect.com/publication/science/10933263"
-;;    "http://feeds.feedburner.com/acs/jcisd8"
-;;    "https://www.pnas.org/about/rss"
-;;    "http://feeds.feedburner.com/acs/cgdefu"
-;;    "https://pubs.acs.org/page/follow.html?widget=follow-pane-rss"
-;;    "https://rss.sciencedirect.com/publication/science/00222836"
-;;    "https://academic.oup.com/rss/site_5127/3091.xml"
-;;    "http://www.cell.com/cell/current.rss"
-;;    "http://www.cell.com/cell/inpress.rss"
-;;    "https://www.jstatsoft.org/gateway/plugin/WebFeedGatewayPlugin/atom"
-;;    "https://rss.sciencedirect.com/publication/science/09692126"
-;;    "https://onlinelibrary.wiley.com/feed/10970282/most-recent"
-;;    "http://connect.biorxiv.org/biorxiv_xml.php?subject=biophysics+biochemistry+cancer"
-;;    )
 
-;; The following config is from Chris Cundy (https://cundy.me/post/elfeed/)
-(defun concatenate-authors (authors-list)
-  "Given AUTHORS-LIST, list of plists; return string of all authors
-concatenated."
-  (mapconcat
-   (lambda (author) (plist-get author :name))
-   authors-list ", "))
 
-(defun my-search-print-fn (entry)
-  "Print ENTRY to the buffer."
-  (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
-	 (title (or (elfeed-meta entry :title)
-		    (elfeed-entry-title entry) ""))
-	 (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
-	 (feed (elfeed-entry-feed entry))
-	 (feed-title
-	  (when feed
-	    (or (elfeed-meta feed :title) (elfeed-feed-title feed))))
-	 (entry-authors (concatenate-authors
-			 (elfeed-meta entry :authors)))
-	 (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
-	 (tags-str (mapconcat
-		    (lambda (s) (propertize s 'face
-					    'elfeed-search-tag-face))
-		    tags ","))
-	 (title-width (- (window-width) 10
-			 elfeed-search-trailing-width))
-	 (title-column (elfeed-format-column
-			title (elfeed-clamp
-			       elfeed-search-title-min-width
-			       title-width
-			       elfeed-search-title-max-width)
-			:left))
-	 (authors-width 135)
-	 (authors-column (elfeed-format-column
-			entry-authors (elfeed-clamp
-			       elfeed-search-title-min-width
-			       authors-width
-			       131)
-			:left)))
+;; Keep commented out unless it is an emergency
+;;  (setq elfeed-feeds '("https://planet.emacslife.com/atom.xml"
+;;     "http://feeds.nature.com/nchem/rss/current"
+;;     "http://feeds.nature.com/nature/rss/current"
+;;     "https://onlinelibrary.wiley.com/feed/1469896x/most-recent"
+;;     "https://www.science.org/action/showFeed?type=axatoc&feed=rss&jc=science"
+;;     "https://journals.iucr.org/j/rss10.xml"
+;;     "https://journals.iucr.org/s/rss10.xml"
+;;     "https://journals.iucr.org/m/rss10.xml"
+;;     "https://journals.iucr.org/a/rss10.xml"
+;;     "https://journals.iucr.org/d/rss10.xml"
+;;     "http://feeds.feedburner.com/acs/chreay"
+;;     "https://rss.sciencedirect.com/publication/science/10933263"
+;;     "http://feeds.feedburner.com/acs/jcisd8"
+;;     "https://www.pnas.org/about/rss"
+;;     "http://feeds.feedburner.com/acs/cgdefu"
+;;     "https://pubs.acs.org/page/follow.html?widget=follow-pane-rss"
+;;     "https://rss.sciencedirect.com/publication/science/00222836"
+;;     "https://academic.oup.com/rss/site_5127/3091.xml"
+;;     "http://www.cell.com/cell/current.rss"
+;;     "http://www.cell.com/cell/inpress.rss"
+;;     "https://www.jstatsoft.org/gateway/plugin/WebFeedGatewayPlugin/atom"
+;;     "https://rss.sciencedirect.com/publication/science/09692126"
+;;     "https://onlinelibrary.wiley.com/feed/10970282/most-recent"
+;;     "http://connect.biorxiv.org/biorxiv_xml.php?subject=biophysics+biochemistry+cancer"
+;;     )
+;;  )
 
-    (insert (propertize date 'face 'elfeed-search-date-face) " ")
 
-    (insert (propertize title-column
-			'face title-faces 'kbd-help title) " ")
+;;      ;; The following config is from Chris Cundy (https://cundy.me/post/elfeed/)
+;;      (defun concatenate-authors (authors-list)
+;;        "Given AUTHORS-LIST, list of plists; return string of all authors
+;;      concatenated."
+;;        (mapconcat
+;;         (lambda (author) (plist-get author :name))
+;;         authors-list ", "))
+;;      
+;;      (defun my-search-print-fn (entry)
+;;        "Print ENTRY to the buffer."
+;;        (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+;;           (title (or (elfeed-meta entry :title)
+;;                  (elfeed-entry-title entry) ""))
+;;           (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+;;           (feed (elfeed-entry-feed entry))
+;;           (feed-title
+;;            (when feed
+;;              (or (elfeed-meta feed :title) (elfeed-feed-title feed))))
+;;           (entry-authors (concatenate-authors
+;;                   (elfeed-meta entry :authors)))
+;;           (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
+;;           (tags-str (mapconcat
+;;                  (lambda (s) (propertize s 'face
+;;                              'elfeed-search-tag-face))
+;;                  tags ","))
+;;           (title-width (- (window-width) 10
+;;                   elfeed-search-trailing-width))
+;;           (title-column (elfeed-format-column
+;;                  title (elfeed-clamp
+;;                         elfeed-search-title-min-width
+;;                         title-width
+;;                         elfeed-search-title-max-width)
+;;                  :left))
+;;           (authors-width 60)
+;;           (authors-column (elfeed-format-column
+;;                  entry-authors (elfeed-clamp
+;;                         elfeed-search-title-min-width
+;;                         authors-width
+;;                         61)
+;;                  :left)))
+;;      
+;;          (insert (propertize date 'face 'elfeed-search-date-face) " ")
+;;      
+;;          (insert (propertize title-column
+;;                  'face title-faces 'kbd-help title) " ")
+;;      
+;;          (insert (propertize authors-column
+;;                  'face 'elfeed-search-date-face
+;;                  'kbd-help entry-authors) " ")
+;;      
+;;          ;; (when feed-title
+;;          ;;   (insert (propertize entry-authors
+;;          ;; 'face 'elfeed-search-feed-face) " "))
+;;      
+;;          (when entry-authors
+;;            (insert (propertize feed-title
+;;                    'face 'elfeed-search-feed-face) " "))
+;;      
+;;          ;; (when tags
+;;          ;;   (insert "(" tags-str ")"))
+;;      
+;;          )
+;;        )
+;;      (setq elfeed-search-print-entry-function #'my-search-print-fn)
+;;      ;; End of C. Cundy's funciton
 
-    (insert (propertize authors-column
-			'face 'elfeed-search-date-face
-			'kbd-help entry-authors) " ")
 
-    ;; (when feed-title
-    ;;   (insert (propertize entry-authors
-    ;; 'face 'elfeed-search-feed-face) " "))
 
-    (when entry-authors
-      (insert (propertize feed-title
-			  'face 'elfeed-search-feed-face) " "))
-
-    ;; (when tags
-    ;;   (insert "(" tags-str ")"))
-
-    )
-  )
-(setq elfeed-search-print-entry-function #'my-search-print-fn)
-
+;; Runs the elfeed command. Enter elfeed-update to update.
 (global-set-key (kbd "C-x w") 'elfeed)
 
-(use-package  elfeed-score)
-(elfeed-score-enable)
-(define-key elfeed-search-mode-map "=" elfeed-score-map)
 
-(run-at-time nil (* 8 60 60) #'elfeed-update)
+;;        (use-package elfeed-dashboard
+;;          :load-path "~/emacs30/manual-packages/elfeed-dashboard/"
+;;          :config
+;;          (setq elfeed-dashboard-file "~/emacs30/manual-packages/elfeed-dashboard/elfeed-dashboard.org")
+;;          ;; update feed counts on elfeed-quit
+;;          (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
+;;        
+;;        (use-package  elfeed-score)
+;;        (elfeed-score-enable)
+;;        (define-key elfeed-search-mode-map "=" elfeed-score-map)
+;;
 
-
-;;*** ement
-;; https://github.com/alphapapa/ement.el#bindings
-(use-package ement)
-
-
-
-
-;;*** Emojis
-(use-package emojify
-  :init
-  (add-hook 'after-init-hook #'global-emojify-mode))
-  (bind-key "<C-m> r" 'Region___/body)
+;; update every two hours
+(run-at-time nil (* 2 60 60) #'elfeed-update)
 
 
-;; engine-mode
-;; source https://readingworldmagazine.com/emacs/2020-03-20-emacs-selection-region-mark-browsers/
+; ;;*** ement
+; ;; https://github.com/alphapapa/ement.el#bindings
+; (use-package ement)
+;
+;
+;
+;
+; ;;*** Emojis
+; (use-package emojify
+;   :init
+;   (add-hook 'after-init-hook #'global-emojify-mode))
+;   (bind-key "<C-m> r" 'Region___/body)
+;
+;
+; engine-mode
+; source https://readingworldmagazine.com/emacs/2020-03-20-emacs-selection-region-mark-browsers/
 
-;;    
-;;    (transient-mark-mode 1)
-;;    (make-variable-buffer-local 'transient-mark-mode)
-;;    (put 'transient-mark-mode 'permanent-local t)
-;;    (setq-default transient-mark-mode t)
-;;    
-;;    ;enables C-u C-<SPC>, to return to last mark, followed by C-<SPC> to cycle through all marks set
-;;    (setq set-mark-command-repeat-pop t)
-;;    
-;;    ;autofill-mode
-;;    (bind-key "C-c q" 'auto-fill-mode)
-;;    
-;;    ;unfill paragraph
-;;    (defun unfill-paragraph (&optional region)
-;;    "Takes a multi-line paragraph and makes it into a single line of text."
-;;    (interactive (progn (barf-if-buffer-read-only) '(t)))
-;;    (let ((fill-column (point-max))
-;;    	  ;; This would override `fill-column' if it's an integer.
-;;    	  (emacs-lisp-docstring-fill-column t))
-;;      (fill-paragraph nil region)))
-;;    
-;;    ;useful packages
-;;    (use-package expand-region
-;;    :after hydra
-;;    :config
-;;    (require 'expand-region)
-;;    (use-package change-inner
-;;    :config
-;;    (require 'change-inner));end change inner
-;;    (defun ejmr-mark-line ()
-;;        "Mark the current line."
-;;        (interactive)
-;;        (end-of-line)
-;;        (set-mark (point))
-;;        (beginning-of-line))
-;;    );end use-package expand-region
-;;    
-;;    (defvar region-title (with-faicon "book" "Marking The Region"))
-;;    ;generate hydra
-;;    (pretty-hydra-define Region___ ( :title region-title :quit-key "q" :color Pink )
-;;    (   "A"
-;;       (
-;;        ("r" er/expand-region "Expand Region" )
-;;        ("j" er/contract-region "Contract Region" )
-;;        ("i" change-inner "Mark Inside Brackets/Quotes" :color blue)
-;;        ("l" ejmr-mark-line "Mark The Line" :color blue )
-;;        ("t" er/mark-inside-pairs "Mark Inside Pairs" :color blue )
-;;        ("u" er/mark-url "Mark Url" :color blue)
-;;        ("w" er/mark-word "Mark Word" :color blue)
-;;    ;    ("e" academic-phrases "Insert Academic Phrase (content ideas)" )
-;;    ;    ("i" academic-phrases-by-section "Insert Academic Phrase (section ideas)" )
-;;    ;    ("g" writegood-mode "Write Good Mode" :toggle t )
-;;    
-;;    );end theme
-;;    "B"
-;;    (
-;;        ("p" er/mark-paragraph "Mark Paragraph" )
-;;        (";" er/mark-comment "Mark Comment")
-;;        ("R" rectangle-mark-mode "Mark Rectangle")
-;;        ("k" copy-rectangle-as-kill "Copy Rectangle" )
-;;        ("Y" yank-rectangle "Paste Rectangle" )
-;;        ("d" delete-rectangle "Delete Rectangle" )
-;;        ("c"  sp-change-inner "Change Enclosed" :color blue )
-;;    
-;;    
-;;    );end highlighting
-;;    "C"
-;;    (
-;;    
-;;        ("s" er/mark-sentence "Mark Sentence" :color blue)
-;;        ("y" helm-show-kill-ring "Helm Kill Ring")
-;;    ;    ("n" clear-kill-ring "Clear Clip Board")
-;;    ;    ("t" toggle-company-idle-delay "Toggle Company Dropdown")
-;;    ;    ("l" query-replace-regexp "Find and Replace Text" :color blue)
-;;    ;    ("o" Org-Central/body "Visit Org Central" :color blue)
-;;    ;    ("E" Org-Editor/body "Org Editing Manager" :color blue)
-;;    ;    ("#" count-words "Count Words")
-;;        ("h" hydra-helm/body "Return To Helm" :color blue )
-;;        ("<SPC>" nil "Quit" :color blue)
-;;    ;    ("m" visual-fill-column-mode "Wrap Line Column"  :toggle t)
-;;    ;    ("i" highlight-indent-guides-mode  "Show Indent Guides" :toggle t )
-;;    ;    ("g" fci-mode "Show Fill Column" :toggle t )
-;;    );end miscellaneous
-;;    );end hydra body
-;;    );end pretty-hydra-appearance
-;;    
+;
+;    (transient-mark-mode 1)
+;    (make-variable-buffer-local 'transient-mark-mode)
+;    (put 'transient-mark-mode 'permanent-local t)
+;    (setq-default transient-mark-mode t)
+;
+;    ;enables C-u C-<SPC>, to return to last mark, followed by C-<SPC> to cycle through all marks set
+;    (setq set-mark-command-repeat-pop t)
+;
+;    ;autofill-mode
+;    (bind-key "C-c q" 'auto-fill-mode)
+;
+;    ;unfill paragraph
+;    (defun unfill-paragraph (&optional region)
+;    "Takes a multi-line paragraph and makes it into a single line of text."
+;    (interactive (progn (barf-if-buffer-read-only) '(t)))
+;    (let ((fill-column (point-max))
+;          ;; This would override `fill-column' if it's an integer.
+;          (emacs-lisp-docstring-fill-column t))
+;      (fill-paragraph nil region)))
+;
+;    ;useful packages
+;    (use-package expand-region
+;    :after hydra
+;    :config
+;    (require 'expand-region)
+;    (use-package change-inner
+;    :config
+;    (require 'change-inner));end change inner
+;    (defun ejmr-mark-line ()
+;        "Mark the current line."
+;        (interactive)
+;        (end-of-line)
+;        (set-mark (point))
+;        (beginning-of-line))
+;    );end use-package expand-region
+;
+;    (defvar region-title (with-faicon "book" "Marking The Region"))
+;    ;generate hydra
+;    (pretty-hydra-define Region___ ( :title region-title :quit-key "q" :color Pink )
+;    (   "A"
+;       (
+;        ("r" er/expand-region "Expand Region" )
+;        ("j" er/contract-region "Contract Region" )
+;        ("i" change-inner "Mark Inside Brackets/Quotes" :color blue)
+;        ("l" ejmr-mark-line "Mark The Line" :color blue )
+;        ("t" er/mark-inside-pairs "Mark Inside Pairs" :color blue )
+;        ("u" er/mark-url "Mark Url" :color blue)
+;        ("w" er/mark-word "Mark Word" :color blue)
+;    ;    ("e" academic-phrases "Insert Academic Phrase (content ideas)" )
+;    ;    ("i" academic-phrases-by-section "Insert Academic Phrase (section ideas)" )
+;    ;    ("g" writegood-mode "Write Good Mode" :toggle t )
+;
+;    );end theme
+;    "B"
+;    (
+;        ("p" er/mark-paragraph "Mark Paragraph" )
+;        (";" er/mark-comment "Mark Comment")
+;        ("R" rectangle-mark-mode "Mark Rectangle")
+;        ("k" copy-rectangle-as-kill "Copy Rectangle" )
+;        ("Y" yank-rectangle "Paste Rectangle" )
+;        ("d" delete-rectangle "Delete Rectangle" )
+;        ("c"  sp-change-inner "Change Enclosed" :color blue )
+;
+;
+;    );end highlighting
+;    "C"
+;    (
+;
+;        ("s" er/mark-sentence "Mark Sentence" :color blue)
+;        ("y" helm-show-kill-ring "Helm Kill Ring")
+;    ;    ("n" clear-kill-ring "Clear Clip Board")
+;    ;    ("t" toggle--idle-delay "Toggle Company Dropdown")
+;    ;    ("l" query-replace-regexp "Find and Replace Text" :color blue)
+;    ;    ("o" Org-Central/body "Visit Org Central" :color blue)
+;    ;    ("E" Org-Editor/body "Org Editing Manager" :color blue)
+;    ;    ("#" count-words "Count Words")
+;        ("h" hydra-helm/body "Return To Helm" :color blue )
+;        ("<SPC>" nil "Quit" :color blue)
+;    ;    ("m" visual-fill-column-mode "Wrap Line Column"  :toggle t)
+;    ;    ("i" highlight-indent-guides-mode  "Show Indent Guides" :toggle t )
+;    ;    ("g" fci-mode "Show Fill Column" :toggle t )
+;    );end miscellaneous
+;    );end hydra body
+;    );end pretty-hydra-appearance
 
 
 
 
-
-
-
-
-;;;(setq browse-url-browser-function 'browse-url-default-browser)
-;;;(setq browse-url-firefox-program firefox-p)
-;;;(setq auto-window-vscroll nil)
-;;;
-;;;;browse-url in this shortcut or hyrda
-;;;(bind-key "C-c C-o" 'browse-url)
-;;;
-;;;;use package engine-mode
-;;;(use-package engine-mode
-;;;:after hydra
-;;;:commands Browse-Web/body
-;;;:config
-;;;;(engine-mode t)
-;;;;engine mode configuration
-;;;
-;;;(defengine duckduckgo
-;;;"https://duckduckgo.com/?q=%s"
-;;;;:keybinding "d"
-;;;)
-;;;
-;;;(defengine github
-;;;"https://github.com/search?ref=simplesearch&q=%s"
-;;;;:keybinding "h"
-;;;)
-;;;
-;;;(defengine google
-;;;"http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
-;;;;:keybinding "g"
-;;;)
-;;;
-;;;(defengine google-images
-;;;"http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s"
-;;;;:keybinding "i"
-;;;)
-;;;
-;;;(defengine google-maps
-;;;"http://maps.google.com/maps?q=%s"
-;;;:docstring "Mappin' it up."
-;;;;:keybinding "m"
-;;;)
-;;;
-;;;(defengine stack-overflow
-;;;"https://stackoverflow.com/search?q=%s"
-;;;;:keybinding "q"
-;;;)
-;;;
-;;;(defengine wikipedia
-;;;"http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-;;;;:keybinding "w"
-;;;:docstring "Searchin' the wikis.")
-;;;
-;;;(defengine youtube
-;;;"http://www.youtube.com/results?aq=f&oq=&search_query=%s"
-;;;;:keybinding "y"
-;;;);youtube
-;;;
-;;;(defengine visual-hunt
-;;;"https://visualhunt.com/search/instant/?q=%s"
-;;;:docstring "Searchin' Visual Hunt For Images."
-;;;);end visualhunt
-;;;
-;;;(defengine pxhere
-;;;"https://pxhere.com/en/photos?q=%s"
-;;;:docstring "Searchin' pxhere For Images."
-;;;);end pxhere
-;;;
-;;;;custom function print buffer in browser.
-;;;(defun print-buffer-to-browser ()
-;;;  (interactive)
-;;;  (browse-url-of-buffer (htmlize-buffer)))
-;;;
-;;;;custom function print region to browser
-;;;(defun print-region-to-browser ()
-;;;(interactive)
-;;;(if (use-region-p)
-;;;        (setq beg (region-beginning)
-;;;              end (region-end)))
-;;;(browse-url-of-buffer (htmlize-region beg end)))
-;;;
-;;;:config
-;;;;generate title for hydra
-;;;(defvar browser-title (with-octicon "globe" "USE BROWSER"))
-;;;:bind
-;;;("<C-m> b" . Browse-Web_/body)
-;;;
-;;;:pretty-hydra
-;;;(Browse-Web_ (:color blue :quit-key "q" :title browser-title)
-;;;(
-;;;          "Search Engines"
-;;;          (("d" engine/search-duckduckgo         "Duckduckgo")
-;;;           ("g" engine/search-google                 "Google")
-;;;           ("i" engine/search-google-images   "Google-images")
-;;;           ("m" engine/search-google-maps       "Google-maps")
-;;;           ("v" engine/search-visual-hunt       "Visual Hunt")
-;;;           ("3" engine/search-pxhere                 "PXHERE")
-;;;           ("e" helm-google-suggest   "Google Suggest in Helm")
-;;;);end search
-;;;
-;;;          "Other"
-;;;          (("w" engine/search-wikipedia "Wikipedia")
-;;;           ("b" engine/search-github          "Github")
-;;;           ("s" engine/search-stack-overflow   "Stack Over Flow")
-;;;           ("y" engine/search-youtube      "Youtube")
-;;;           ("x" xah-open-in-external-app "Open File in default file program")
-;;;;          ("c" engine/search-soundcloud "Search Sound Cloud" )
-;;;);end other
-;;;
-;;;          "Send Local Files To Browser"
-;;;          (("u" browse-url "Browse URL At Point")
-;;;           ("P" print-buffer-to-browser   "Print Buffer To Browser")
-;;;           ("p" print-region-to-browser   "Print Region To Browser")
-;;;           ("e" browse-url-of-buffer   "Render Buffer With Browser")
-;;;           ("h" hydra-helm/body "Return To Helm" :color blue )
-;;;           ("<SPC>" nil "QUIT" :color blue ));end local
-;;;);end heads
-;;;);end browse-web hydra
-;;;);end use-package engine-mode
+;;(setq browse-url-browser-function 'browse-url-default-browser)
+;;(setq browse-url-firefox-program firefox-p)
+;;(setq auto-window-vscroll nil)
+;;
+;;;browse-url in this shortcut or hyrda
+;;(bind-key "C-c C-o" 'browse-url)
+;;
+;;;use package engine-mode
+;;(use-package engine-mode
+;;:after hydra
+;;:commands Browse-Web/body
+;;:config
+;;;(engine-mode t)
+;;;engine mode configuration
+;;
+;;(defengine duckduckgo
+;;"https://duckduckgo.com/?q=%s"
+;;;:keybinding "d"
+;;)
+;;
+;;(defengine github
+;;"https://github.com/search?ref=simplesearch&q=%s"
+;;;:keybinding "h"
+;;)
+;;
+;;(defengine google
+;;"http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+;;;:keybinding "g"
+;;)
+;;
+;;(defengine google-images
+;;"http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s"
+;;;:keybinding "i"
+;;)
+;;
+;;(defengine google-maps
+;;"http://maps.google.com/maps?q=%s"
+;;:docstring "Mappin' it up."
+;;;:keybinding "m"
+;;)
+;;
+;;(defengine stack-overflow
+;;"https://stackoverflow.com/search?q=%s"
+;;;:keybinding "q"
+;;)
+;;
+;;(defengine wikipedia
+;;"http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+;;;:keybinding "w"
+;;:docstring "Searchin' the wikis.")
+;;
+;;(defengine youtube
+;;"http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+;;;:keybinding "y"
+;;);youtube
+;;
+;;(defengine visual-hunt
+;;"https://visualhunt.com/search/instant/?q=%s"
+;;:docstring "Searchin' Visual Hunt For Images."
+;;);end visualhunt
+;;
+;;(defengine pxhere
+;;"https://pxhere.com/en/photos?q=%s"
+;;:docstring "Searchin' pxhere For Images."
+;;);end pxhere
+;;
+;;;custom function print buffer in browser.
+;;(defun print-buffer-to-browser ()
+;;  (interactive)
+;;  (browse-url-of-buffer (htmlize-buffer)))
+;;
+;;;custom function print region to browser
+;;(defun print-region-to-browser ()
+;;(interactive)
+;;(if (use-region-p)
+;;        (setq beg (region-beginning)
+;;              end (region-end)))
+;;(browse-url-of-buffer (htmlize-region beg end)))
+;;
+;;:config
+;;;generate title for hydra
+;;(defvar browser-title (with-octicon "globe" "USE BROWSER"))
+;;:bind
+;;("<C-m> b" . Browse-Web_/body)
+;;
+;;:pretty-hydra
+;;(Browse-Web_ (:color blue :quit-key "q" :title browser-title)
+;;(
+;;          "Search Engines"
+;;          (("d" engine/search-duckduckgo         "Duckduckgo")
+;;           ("g" engine/search-google                 "Google")
+;;           ("i" engine/search-google-images   "Google-images")
+;;           ("m" engine/search-google-maps       "Google-maps")
+;;           ("v" engine/search-visual-hunt       "Visual Hunt")
+;;           ("3" engine/search-pxhere                 "PXHERE")
+;;           ("e" helm-google-suggest   "Google Suggest in Helm")
+;;);end search
+;;
+;;          "Other"
+;;          (("w" engine/search-wikipedia "Wikipedia")
+;;           ("b" engine/search-github          "Github")
+;;           ("s" engine/search-stack-overflow   "Stack Over Flow")
+;;           ("y" engine/search-youtube      "Youtube")
+;;           ("x" xah-open-in-external-app "Open File in default file program")
+;;;          ("c" engine/search-soundcloud "Search Sound Cloud" )
+;;);end other
+;;
+;;          "Send Local Files To Browser"
+;;          (("u" browse-url "Browse URL At Point")
+;;           ("P" print-buffer-to-browser   "Print Buffer To Browser")
+;;           ("p" print-region-to-browser   "Print Region To Browser")
+;;           ("e" browse-url-of-buffer   "Render Buffer With Browser")
+;;           ("h" hydra-helm/body "Return To Helm" :color blue )
+;;           ("<SPC>" nil "QUIT" :color blue ));end local
+;;);end heads
+;;);end browse-web hydra
+;;);end use-package engine-mode
 
 
 ;;*** eros
@@ -2687,6 +3174,12 @@ concatenated."
 ;; https://github.com/xiongtx/eros
 ;; Eros provides Cider like behavoir for elisp with the output resturned in-line.
 ;; I learned about eros from yantar92 during the 2023-01-01 meeting of Mastering Emacs bookclub.
+
+
+;; (use-package emacs-cursorless
+;;   :load-path "/Users/blaine-mooers/emacs30/manual-packages/emacs-cursorless/")
+
+
 
 (use-package eros
       :init
@@ -2728,12 +3221,39 @@ concatenated."
                                                :right-fringe 16)))
 
 
+;;*** flymake-vale
+
+(use-package flymake-vale
+     :load-path "manual-packages/flymake-vale/")
+
+;; Add flymake-vale as a backend to specific modes by adding flymake-vale-load to the relevant hook
+(add-hook 'text-mode-hook #'flymake-vale-load)
+(add-hook 'latex-mode-hook #'flymake-vale-load)
+(add-hook 'org-mode-hook #'flymake-vale-load)
+(add-hook 'markdown-mode-hook #'flymake-vale-load)
+(add-hook 'message-mode-hook #'flymake-vale-load)
+(add-hook 'rst-mode-hook #'flymake-vale-load)
+;; (add-hook 'adoc-mode-hook #'flymake-vale-load)
+
+;; Load flymake-vale automatically upon opening a file when that file's major mode is in flymake-vale-mode:
+(add-hook 'find-file-hook 'flymake-vale-maybe-load)
+
+;; flymake-vale-modes defaults to: 
+;;  => (text-mode latex-mode org-mode markdown-mode message-mode)
+
+;; (add-to-list 'flymake-vale-mode 'adoc-mode)
+;; (add-to-list 'flymake-vale-modes 'latex-mode)
+;; (add-to-list 'flymake-vale-modes 'markdown-mode)
+;; (add-to-list 'flymake-vale-modes 'message-mode)
+;; (add-to-list 'flymake-vale-modes 'org-mode)
+;; (add-to-list 'flymake-vale-modes 'text-mode)
+;; (add-to-list 'flymake-vale-modes 'rst-mode)
 
 
 ;;*** FlySpell (spell checking)
 (dolist (flyspellmodes '(text-mode-hook
-					   org-mode-hook
-					   latex-mode-hook))
+                       org-mode-hook
+                       latex-mode-hook))
 (add-hook flyspellmodes 'turn-on-flyspell))
 
 ;; comments and strings in code
@@ -2746,8 +3266,8 @@ concatenated."
 (defun change-dictionary ()
 (interactive)
 (ispell-change-dictionary (if (string-equal ispell-current-dictionary "american")
-							  "norsk"
-							"american")))
+                              "norsk"
+                            "american")))
 
 ;; helm functionality for flyspell. To make it more user friendly
 ;; (use-package helm-flyspell
@@ -2814,8 +3334,8 @@ concatenated."
 ;;*** greader
 ;; Reads back the text that you have written in Emacs.
 ;;Install espeak via macports or brew.
-;; 
-(use-package greader)
+;;
+;; (use-package greader)
 
 
 ;;*** gxref
@@ -2836,7 +3356,7 @@ concatenated."
     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
     (global-set-key (kbd "C-x C-f") 'helm-find-files))
 
-;;    :config 
+;;    :config
 ;;     (helm-autoresize-mode 1)
 ;;     (helm-mode 0)
 ;;     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
@@ -3155,6 +3675,12 @@ concatenated."
     (insert "\\end{itemize}\n")))
 
 
+(defun ichmk ()
+  "Inserts a checkmark."
+  (interactive)
+  (insert "\\\item \\checkmark "))
+
+
 
 ;; source https://github.com/ashok-khanna/emacs-notes/blob/main/bayes-init.el
 ;; 25 Feb 2023
@@ -3169,6 +3695,13 @@ concatenated."
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-mode)
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
+
+(add-hook 'latex-mode-hook
+    (function (lambda ()
+       ;; (flymake-mode)
+       ;; (reftex-mode)
+       (auto-fill-mode)
+       (setq fill-column 200))))
 
 ;;(setq
 ;; ;; Set the list of viewers for Mac OS X.
@@ -3192,18 +3725,18 @@ concatenated."
 (use-package tex
   :ensure auctex
   :custom ((TeX-auto-save t)
-	   (TeX-parse-self t)
-	   (TeX-master nil)
-	   (reftex-plug-into-auctex t)
-	   (font-latex-fontify-script nil)
+       (TeX-parse-self t)
+       (TeX-master nil)
+       (reftex-plug-into-auctex t)
+       (font-latex-fontify-script nil)
            (LaTeX-electric-left-right-brace t)
            )
   :hook ((LaTeX-mode . my-LaTeX-mode)
-	 (LaTeX-mode . flyspell-mode)
-	 (LaTeX-mode . LaTeX-math-mode)
+     (LaTeX-mode . flyspell-mode)
+     (LaTeX-mode . LaTeX-math-mode)
          (LaTeX-mode . TeX-fold-mode)
-	 (LaTeX-mode . turn-on-reftex)
-	 (LaTeX-mode . rainbow-delimiters-mode)))
+     (LaTeX-mode . turn-on-reftex)
+     (LaTeX-mode . rainbow-delimiters-mode)))
 
 
 ;;#### LaTeX related
@@ -3216,10 +3749,10 @@ concatenated."
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
-(setq doc-view-continuous t) ;; scroll over all pages in doc view 
+(setq doc-view-continuous t) ;; scroll over all pages in doc view
 
 ;; Settings for minted package issue
-(eval-after-load "tex" 
+(eval-after-load "tex"
   '(setcdr (assoc "LaTeX" TeX-command-list)
           '("%`%l%(mode) -shell-escape%' %t"
           TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")))
@@ -3263,6 +3796,8 @@ concatenated."
 (add-to-list 'Info-directory-list "/opt/local/share/texmf-texlive/doc/info")
 
 
+
+
 ;; LSP in LaTeX
 ;; digestif is an LSP for LaTeX. Install it via this command in the terminal:   luarocks install digestif
 ;; digestif is one of two latex-lsps available
@@ -3295,7 +3830,7 @@ concatenated."
 ;; Enlarge equation preview
 ;; Set the scale of the preview of the LaTeX equation so you can see it.
 ;; Place the point in equation and enter C-c C-x C-l to render.
-(setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
+;; (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
 
 
 ;; Grammar checking with language-tool
@@ -3379,7 +3914,7 @@ concatenated."
 
 ;; *** LSP = Language Server Protocol
 ;; lsp-mode uses LSP servers to provides IDE functionality like code completion
-;; (intellisense like using company-capf), navigation (jump to symbol),
+;; (intellisense like using -capf), navigation (jump to symbol),
 ;; refactoring functionality and so on. lsp-ui is used to get prettier boxes and
 ;; more info visible in an easy way (like javadoc).
 
@@ -3437,9 +3972,9 @@ concatenated."
     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l", "s-l")
     (setq lsp-keymap-prefix "s-l")
     :hook (; replace XXX-mode with concrete major-mode (e. g. python-mode)
-           (clojure-mode . lsp)
-           (clojurec-mode . lsp)
-           (clojurescript-mode . lsp)
+           ;;(clojure-mode . lsp)
+           ;; (clojurec-mode . lsp)
+           ;; (clojurescript-mode . lsp)
            (latex-mode . lsp)
            (python-mode . lsp)
            ;; if you want which-key integration
@@ -3529,7 +4064,8 @@ concatenated."
   :after magit
   :init
   (global-git-gutter-mode 1)
-  (setq-default left-fringe-width 20)
+  (setq-default left-fringe-width
+                20)
   :hook
   (magit-post-refresh . git-gutter:update-all-windows))
 
@@ -3599,7 +4135,7 @@ concatenated."
 ;; The impatient-mode package takes the content of your buffer, passes it through a filter, and serves the result via simple-httpd HTTP server.
 (use-package impatient-mode
   :commands impatient-mode)
-;; Create a filter function to process the Markdown buffer. 
+;; Create a filter function to process the Markdown buffer.
 ;; The function my-markdown-filter uses github-markdown-css to mimic the look of GitHub.
 (defun my-markdown-filter (buffer)
   (princ
@@ -3610,7 +4146,7 @@ concatenated."
        (format "<!DOCTYPE html><html><title>Markdown preview</title><link rel=\"stylesheet\" href = \"https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css\"/>
 <body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
    (current-buffer)))
-;; Create the function my-markdown-preview to show the preview. 
+;; Create the function my-markdown-preview to show the preview.
 (defun my-markdown-preview ()
   "Preview markdown."
   (interactive)
@@ -3655,7 +4191,7 @@ concatenated."
 ;;### Move selected regions up or down
 ;; It is commands like these one that enable rapid reorganization of your prose when writing one sentence per row.
 ;; Thank you to DivineDomain for the suggested upgrade.
-;; Source: https://www.emacswiki.org/emacs/MoveText 
+;; Source: https://www.emacswiki.org/emacs/MoveText
 ;; (defun move-text-internal (arg)
 ;;   (cond
 ;;    ((and mark-active transient-mark-mode)
@@ -3733,17 +4269,16 @@ concatenated."
 
 ;; mermaid-mode
 ;; Flow chart generator
-;; Mermaid is a JavaScript-based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams. 
+;; Mermaid is a JavaScript-based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams.
 ;; For examples, see https://github.com/mermaid-js/mermaid
-;; 
-;; 
+;;
 ;; flowchart LR
-;; 
+;;
 ;; A[Hard] -->|Text| B(Round)
 ;; B --> C{Decision}
 ;; C -->|One| D[Result 1]
 ;; C -->|Two| E[Result 2]
-;; 
+;;
 ;; Runs mmdc-cli, which was installed with  `sudo npm install -g @mermaid-js/mermaid-cli`.
 ;; Installed in /Users/blaine/.nvm/versions/node/v20.2.0/bin/mmdc
 ;; https://github.com/mermaid-js/mermaid-cli
@@ -4085,9 +4620,6 @@ concatenated."
 
 
 
-
-
-
 ;; org-caputre templates
 
 (setq org-capture-templates
@@ -4177,7 +4709,7 @@ concatenated."
 ;;             (org-clock-goto)
 ;;             (org-pomodoro '(25))
 ;;             (register-to-point 1)
-;;             (shell-command-to-string "open -a tomighty.app")            
+;;             (shell-command-to-string "open -a tomighty.app")
 ;;             ))
 
 (use-package sound-wav)
@@ -4205,6 +4737,7 @@ concatenated."
 (use-package org-ref)
 ;; (require 'org-ref-ivy)
 (use-package bibtex)
+(use-package helm-bibtex)
 
 (setq bibtex-completion-bibliography '("/Users/blaine/Documents/global.bib")
     bibtex-completion-library-path '("/Users/blaine/0papersLabeled/" "/Users/blaine/0booksLabeled/")
@@ -4317,12 +4850,12 @@ concatenated."
 ;;                          :info (list :citekey (car keys-entries))
 ;;                          :node (org-roam-node-create :title title)
 ;;                          :props '(:finalize find-file))))
-;; 
-;; 
+;;
+;;
 ;; (defun jethro/tag-new-node-as-draft ()
 ;;   (org-roam-tag-add '("draft")))
 ;; (add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
-;; 
+;;
 
 (use-package consult-org-roam)
 
@@ -4705,7 +5238,7 @@ concatenated."
 ;;
 
 
-;; *** polymode 
+;; *** polymode
 ;; 25 Feb 2023
 ;; source https://github.com/ashok-khanna/emacs-notes/blob/main/bayes-init.el
 ;; Polymode settings
@@ -4738,7 +5271,7 @@ concatenated."
 
 ;;*** posframe
 ;; Like having the minibuffer at point. Very cool!
-;; https://github.com/tumashu/company-posframe
+;; https://github.com/tumashu/-posframe
 
 (use-package posframe)
 
@@ -4752,12 +5285,12 @@ concatenated."
   (posframe-show my-posframe-buffer
                  :position (point)))
 
-(use-package company-posframe)
-(company-posframe-mode 1)
-(setq company-tooltip-minimum-width 60)
+;; (use-package -posframe)
+;; (-posframe-mode 1)
+;; (setq -tooltip-minimum-width 60)
 
-(use-package vertico-posframe)
-(vertico-posframe-mode 1)
+;;(use-package vertico-posframe)
+;;(vertico-posframe-mode 1)
 
 
 ;;*** pretty-hydra
@@ -4765,21 +5298,21 @@ concatenated."
 
 
 
-
-
-
-
-
-
-
-
-
 ;;*** projectile
+;; Documentation: https://docs.projectile.mx/projectile/usage.html
+;; projectile-commander s-p m
 (use-package projectile)
-(projectile-mode +1)
+;;(projectile-mode +1)
 (setq projectile-enable-caching t)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "s-,") 'projectile-command-map)
+(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+(define-key projectile-mode-map [?\s-g] 'projectile-grep)
+
+
 
 
 ;; *** Python
@@ -4803,11 +5336,20 @@ concatenated."
 
 ;;** Q
 
-;; *** eqmacs 
-;; This is an interactice quiz.
+;; *** eqmacs
+;; This is an interactice quiz about clojure.
+(use-package qclj
+    :load-path "~/emacs30/manual-packages/qclj/")
 
+;; *** eqmacs
+;; This is an interactice quiz about Emacs.
 (use-package qemacs
     :load-path "~/emacs30/manual-packages/qemacs/")
+
+;; *** qvoice 
+;; This is an interactive quiz about Talon Voice
+(use-package qvoice
+    :load-path "~/emacs30/manual-packages/qvoice/")
 
 
 
@@ -4834,34 +5376,36 @@ concatenated."
 ;;   (setq markdown-code-block-braces t))
 
 
+
+
 ;;** S
 
-;; slime 
-
-;; Source: https://github.com/susam/emacs4cl/blob/main/.emacs
-;; Configure SBCL as the Lisp program for SLIME.
-(add-to-list 'exec-path "/opt/local/bin")
-(setq inferior-lisp-program "sbcl")
-
-(push "/Users/blaine/software/lispRepos/slime-critic" load-path)
-(add-to-list 'slime-contribs 'slime-critic)
-(slime-setup)
-
-
-;;    M-x slime-critic-critique-buffer: critique the current buffer.
-;;    M-x slime-critic-critique-file: critique a file.
-
-;; Enable Paredit.
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
-(defun override-slime-del-key ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
-(add-hook 'slime-repl-mode-hook 'override-slime-del-key)
+; ;; slime
+;
+; ;; Source: https://github.com/susam/emacs4cl/blob/main/.emacs
+; ;; Configure SBCL as the Lisp program for SLIME.
+; (add-to-list 'exec-path "/opt/local/bin")
+; (setq inferior-lisp-program "sbcl")
+;
+; ; (push "/Users/blaine/emacs30/manual-packages/slime-critic" load-path)
+; ; (add-to-list 'slime-contribs 'slime-critic)
+; (slime-setup)
+;
+;
+; ;;    M-x slime-critic-critique-buffer: critique the current buffer.
+; ;;    M-x slime-critic-critique-file: critique a file.
+;
+; ;; Enable Paredit.
+; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+; (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+; (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+; (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+; (defun override-slime-del-key ()
+;   (define-key slime-repl-mode-map
+;     (read-kbd-macro paredit-backward-delete-key) nil))
+; (add-hook 'slime-repl-mode-hook 'override-slime-del-key)
 
 ;; ;; Enable Rainbow Delimiters.
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
@@ -4869,7 +5413,7 @@ concatenated."
 ;; (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
-;; 
+;;
 ;; ;; Customize Rainbow Delimiters.
 ;; (use-package rainbow-delimiters)
 ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
@@ -4881,9 +5425,19 @@ concatenated."
 ;; (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
 ;; (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 ;; (set-face-foreground 'rainbow-delimiters-depth-9-face "#666")  ; dark gray
-;; 
+;;
 
 
+
+;;*** serenade (source: https://github.com/justin-roche/serenade-mode)
+(use-package serenade-mode
+    :load-path "~/emacs30/manual-packages/serenade-mode/")
+
+(setq serenade-completion-frontend 'helm)
+(setq serenade-helm-M-x t)
+(setq serenade-snippet-engine 'yasnippet)
+
+;; Call serenade mode with the command in elisp (serenade-mode)
 
 
 
@@ -4909,11 +5463,6 @@ concatenated."
 ;; ;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 ;; ;;    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 ;;     ))
-
-
-
-
-
 
 
 ;;**T
@@ -5026,7 +5575,6 @@ concatenated."
 
 
 (set-default-coding-systems 'utf-8)
-    
 ;; (set-keyboard-coding-system 'mac-roman)
 ;; (create-fontset-from-fontset-spec
 ;;  "-apple-monaco-medium-r-normal--10-*-*-*-*-*-fontset-monaco,
@@ -5035,16 +5583,16 @@ concatenated."
 ;;   mule-unicode-0100-24ff:-apple-monaco-medium-r-normal--10-100-75-75-m-100-mac-roman")
 ;; (set-frame-font "fontset-monaco")
 ;; (set-clipboard-coding-system 'mac-roman)
-;; 
+
 
 
 ;;** V
 ;;*** emacs-vega-view
-(add-to-list 'load-path "~/emacs30/manual-packages/emacs-vega-view")
-(use-package vega-view)
-(setq vega-view-prefer-png t)
-;; source: https://github.com/applied-science/emacs-vega-view
-;; M-x veaga-view
+;; (add-to-list 'load-path "~/emacs30/manual-packages/emacs-vega-view")
+;; (use-package vega-view)
+;; (setq vega-view-prefer-png t)
+;; ;; source: https://github.com/applied-science/emacs-vega-view
+;; ;; M-x veaga-view
 
 
 
@@ -5088,11 +5636,100 @@ concatenated."
 ;; (add-hook 'R-mode-hook 'lsp)
 (which-key-setup-side-window-right-bottom)
 
+;;*** whisper
+;; inspiration: Emacs Elements  https://www.youtube.com/watch?v=I7IKAgGOnKs
+;; pip install -U openai-whisper
+;; source: https://github.com/natrys/whisper.el
+
+(use-package whisper
+  :load-path "/Users/blaine/emacs30/manual-packages/whisper/"
+  :bind ("M-s r" . whisper-run)
+  :config
+  (setq whisper-install-directory "~/emacs30/.cache/"
+        whisper-model "base"
+        whisper-language "en"
+        whisper-translate nil
+        whisper--ffmpeg-input-format "avfoundation"
+        whisper--ffmpeg-input-device "MacBook Pro Microphone"
+        )
+  )
+
+;;   (setq whisper-ffmpeg "/opt/local/bin/ffmpeg")
+;;   (setq whisper-input  "/opt/local/bin/ffmpeg -y -i /tmp/whisper.wav -acodec pcm_s16le -ac 1 -ar 16000 /tmp/whisper.raw")
+;;   (setq whisper-arecord-device "hw:2,0")
+;;  (setq whisper-arecord-args '("-f" "cd" "-c" "1"))
+;;   (setq whisper--ffmpeg "/opt/local/bin/ffmpeg")
+
+
+
+(defun rk/get-ffmpeg-device ()
+  "Gets the list of devices available to ffmpeg.
+The output of the ffmpeg command is pretty messy, e.g.
+  [AVFoundation indev @ 0x7f867f004580] AVFoundation video devices:
+  [AVFoundation indev @ 0x7f867f004580] [0] FaceTime HD Camera (Built-in)
+  [AVFoundation indev @ 0x7f867f004580] AVFoundation audio devices:
+  [AVFoundation indev @ 0x7f867f004580] [0] Cam Link 4K
+  [AVFoundation indev @ 0x7f867f004580] [1] MacBook Pro Microphone
+so we need to parse it to get the list of devices.
+The return value contains two lists, one for video devices and one for audio devices.
+Each list contains a list of cons cells, where the car is the device number and the cdr is the device name."
+  (unless (string-equal system-type "darwin")
+    (error "This function is currently only supported on macOS"))
+
+  (let ((lines (string-split (shell-command-to-string "ffmpeg -list_devices true -f avfoundation -i dummy || true") "\n")))
+    (cl-loop with at-video-devices = nil
+             with at-audio-devices = nil
+             with video-devices = nil
+             with audio-devices = nil
+             for line in lines
+             when (string-match "AVFoundation video devices:" line)
+             do (setq at-video-devices t
+                      at-audio-devices nil)
+             when (string-match "AVFoundation audio devices:" line)
+             do (setq at-audio-devices t
+                      at-video-devices nil)
+             when (and at-video-devices
+                       (string-match "\\[\\([0-9]+\\)\\] \\(.+\\)" line))
+             do (push (cons (string-to-number (match-string 1 line)) (match-string 2 line)) video-devices)
+             when (and at-audio-devices
+                       (string-match "\\[\\([0-9]+\\)\\] \\(.+\\)" line))
+             do (push (cons (string-to-number (match-string 1 line)) (match-string 2 line)) audio-devices)
+             finally return (list (nreverse video-devices) (nreverse audio-devices)))))
+
+(defun rk/find-device-matching (string type)
+  "Get the devices from `rk/get-ffmpeg-device' and look for a device
+matching `STRING'. `TYPE' can be :video or :audio."
+  (let* ((devices (rk/get-ffmpeg-device))
+         (device-list (if (eq type :video)
+                          (car devices)
+                        (cadr devices))))
+    (cl-loop for device in device-list
+             when (string-match-p string (cdr device))
+             return (car device))))
+
+(defcustom rk/default-audio-device nil
+  "The default audio device to use for whisper.el and outher audio processes."
+  :type 'string)
+
+(defun rk/select-default-audio-device (&optional device-name)
+  "Interactively select an audio device to use for whisper.el and other audio processes.
+If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
+  (interactive)
+  (let* ((audio-devices (cadr (rk/get-ffmpeg-device)))
+         (indexes (mapcar #'car audio-devices))
+         (names (mapcar #'cdr audio-devices))
+         (name (or device-name (completing-read "Select audio device: " names nil t))))
+    (setq rk/default-audio-device (rk/find-device-matching name :audio))
+    (when (boundp 'whisper--ffmpeg-input-device)
+      (setq whisper--ffmpeg-input-device (format ":%s" rk/default-audio-device)))))
+
+
+
 
 ;; *** wttrn
 (use-package wttrin
-    :init
-    (setq wttrin-default-cities '("Oklahoma City" "Chapel Hill")
+  :init
+  (setq wttrin-default-cities '("Oklahoma City" "Chapel Hill")
         wttrin-default-accept-language '("Accept-Language" . "en-US")))
 
 ;; (use-package wttrin-weather-modeline
@@ -5148,6 +5785,46 @@ concatenated."
     :load-path "/Users/blaine/emacs30/manual-packages/license-snippets")
 (license-snippets-init)
 
+
+;; *** Z
+
+
+;; ƒ(use-package zetteldesk)
+;; ƒ(zetteldesk-mode 1)
+;; ƒ(setq zetteldesk-kb-hydra-prefix (kbd "C-c z"))
+;; ƒ(use-package zetteldesk-kb)
+
+
+
+(setq orb-preformat-keywords '("citekey" "author" "date" "entry-type" "keywords" "url" "file" "journaltitle" "note" "annote"))
+
+(setq bibtex-export-capture-template
+'(("b" "bibliographic entry" plain "%?" :if-new
+   (file+head "ref/${citekey}.org" "#+title: ${title}\n
+- keywords :: ${keywords}
+- tags :: ${note}
+
+* ${entry-type} by ${author} in ${journaltitle}, ${date}\n
+${annote}")
+   :unnarowed t
+   :jump-to-captured t
+   :immediate-finish t)))
+
+(defun bibtex-export-org-roam (citekey)
+  "Export a bibtex entry to an org-roam file.
+
+If called interactively, select a citekey using
+`citar-select-ref'.  Otherwise, give a citekey and with that, set
+`org-roam-capture-templates' to `bibtex-export-capture-template',
+a template specifically for this purpose and run `orb--new-note'
+on that citekey using that template."
+  (interactive (list (citar-select-ref)))
+  (let ((org-roam-capture-templates bibtex-export-capture-template))
+    (orb--new-note citekey)))
+
+
+
+
 ;; A new snippet can be created in a new buffer with the command C-c & C-n
 ;; The key binding is a little awkward but this is a very fast way to generate new snippets.
 ;; Enter C-c C-c when finished with the snippet.
@@ -5157,7 +5834,7 @@ concatenated."
 ;; '(yas-new-snippet-default
 ;;   "# -*- mode: snippet -*-\12# name: ${1:name} \12# group: ${2:group}\12# key: ${3:${1:$(yas--key-from-desc yas-text)}}\12# --\12$0`(yas-escape-text yas-selected-text)`"))
 
-;; Better yet. Redefine the snippet. 
+;; Better yet. Redefine the snippet.
 ;; However, you cannot use defcustom inside the init.el file.
 ;; (defcustom yas-new-snippet-default "\
 ;; # -*- mode: snippet -*-
@@ -5181,12 +5858,18 @@ concatenated."
 # contributor: Blaine Mooers bmooers1@gamil.com
 # --
 $0`(yas-escape-text yas-selected-text)`"
-"Default snippet to use when creating a new snippet.
+                        "Default snippet to use when creating a new snippet.
 If nil, don't use any snippet.")
 
 
 ;;(let ((yas-new-snippet-default my-yas-new-snippet-default)))
 
+
+;; Set the web browser to the system default browser
+(setq browse-url-browser-function 'browse-url-default-macosx-browser)
+
+;; (setq browse-url-browser-function 'browse-url-generic
+;;       browse-url-generic-program "Google\ Chrome")
 
 (message "config • Finished package configuration. You now may enjoy Emacs.")
 
@@ -5195,7 +5878,6 @@ If nil, don't use any snippet.")
 ;; (require 'server)
 ;; (unless (server-running-p)
 ;;   (server-start))
-;; 
 ;; (message "Using emacs server.")
 
 
