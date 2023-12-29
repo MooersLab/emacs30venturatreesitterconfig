@@ -52,9 +52,11 @@
 (add-to-list 'package-selected-packages 'ack-menu)
 ;;(add-to-list 'package-selected-packages 'aide)
 (add-to-list 'package-selected-packages 'all-the-icons)
+(add-to-list 'package-selected-packages 'all-the-icons-ivy-rich)
 ;; (add-to-list 'package-selected-packages 'anaconda-mode)
 (add-to-list 'package-selected-packages 'atomic-chrome)
 (add-to-list 'package-selected-packages 'auctex)
+;;(add-to-list 'package-selected-packages 'auto-virtualenv)
 (add-to-list 'package-selected-packages 'auto-yasnippet)
 ;;(add-to-list 'package-selected-packages 'auto-complete)
 ;;(add-to-list 'package-selected-packages 'auto-complete-config)
@@ -73,7 +75,12 @@
 (add-to-list 'package-selected-packages 'change-region)
 (add-to-list 'package-selected-packages 'cider)
 (add-to-list 'package-selected-packages 'citar)
+(add-to-list 'package-selected-packages 'citar-embark)
+(add-to-list 'package-selected-packages 'citar-org)
 (add-to-list 'package-selected-packages 'citar-org-roam)
+(add-to-list 'package-selected-packages 'citeproc-org)
+(add-to-list 'package-selected-packages 'code-cells)
+
 ;;(add-to-list 'package-selected-packages 'clomacs) ;; depends on cider-0.22.1
 ;; (add-to-list 'package-selected-packages 'cmake-ide)
 ;; (add-to-list 'package-selected-packages 'cmake-mode)
@@ -92,10 +99,11 @@
 (add-to-list 'package-selected-packages 'consult)
 (add-to-list 'package-selected-packages 'consult-projectile)
 (add-to-list 'package-selected-packages 'consult-org-roam)
-(add-to-list 'package-selected-packages 'copilot)
-;; (add-to-list 'package-selected-packages 'corfu)
+;; (add-to-list 'package-selected-packages 'copilot)
+(add-to-list 'package-selected-packages 'corfu)
 ;; (add-to-list 'package-selected-packages 'corfu-prescient)
 ;; (add-to-list 'package-selected-packages 'counsel)
+
 
 (add-to-list 'package-selected-packages 'dash)
 (add-to-list 'package-selected-packages 'dashboard-hackernews)
@@ -107,6 +115,8 @@
 (add-to-list 'package-selected-packages 'dirvish)
 (add-to-list 'package-selected-packages 'dot-mode)
 (add-to-list 'package-selected-packages 'drag-stuff)
+
+
 
 ;;(add-to-list 'package-selected-packages 'edwina)
 (add-to-list 'package-selected-packages 'ef-themes)
@@ -123,6 +133,7 @@
 (add-to-list 'package-selected-packages 'elfeed-score)
 (add-to-list 'package-selected-packages 'elpy)
 ;; (add-to-list 'package-selected-packages 'emacs-cursorless)
+(add-to-list 'package-selected-packages 'emacs-eat)
 ;; (add-to-list 'package-selected-packages 'embark)
 ;; (add-to-list 'package-selected-packages 'embark-consult)
 (add-to-list 'package-selected-packages 'ement)
@@ -151,6 +162,9 @@
 ;; (add-to-list 'package-selected-packages 'fn)
 ;; (add-to-list 'package-selected-packages 'fzf)
 (add-to-list 'package-selected-packages 'focus)
+
+(add-to-list 'package-selected-packages 'gcmh)
+(add-to-list 'package-selected-packages 'general)
 (add-to-list 'package-selected-packages 'git-gutter)
 (add-to-list 'package-selected-packages 'gnuplot)
 (add-to-list 'package-selected-packages 'gnuplot-mode)
@@ -167,15 +181,25 @@
 (add-to-list 'package-selected-packages 'helm-bibtex)
 (add-to-list 'package-selected-packages 'highlight-defined)
 (add-to-list 'package-selected-packages 'hydra)
+;;(add-to-list 'package-selected-packages 'hyperdrive)
 ;; (add-to-list 'package-selected-packages 'highlight-parentheses)
+(add-to-list 'package-selected-packages 'hyperbole)
 
 (add-to-list 'package-selected-packages 'iedit)
 (add-to-list 'package-selected-packages 'impatient-mode)
 ;; (add-to-list 'package-selected-packages 'jedi)
 ;; (add-to-list 'package-selected-packages 'jedi-core)
+(add-to-list 'package-selected-packages 'ivy)
 (add-to-list 'package-selected-packages 'ivy-prescient)
+(add-to-list 'package-selected-packages 'ivy-rich)
+
+
 
 (add-to-list 'package-selected-packages 'jupyter)
+(add-to-list 'package-selected-packages 'julia-snail)
+
+(add-to-list 'package-selected-packages 'kind-icon)
+
 
 (add-to-list 'package-selected-packages 'languagetool)
 (add-to-list 'package-selected-packages 'latex-preview-pane)
@@ -198,14 +222,18 @@
 ;; (add-to-list 'package-selected-packages 'mu4e-alert)
 ;; (add-to-list 'package-selected-packages 'mu4e-views)
 (add-to-list 'package-selected-packages 'multiple-cursors)
+(add-to-list 'package-selected-packages 'mw-thesaurus)
 (add-to-list 'package-selected-packages 'my-hydras)
 (add-to-list 'package-selected-packages 'my-uniteai)
 
 (add-to-list 'package-selected-packages 'nov)
+
+
 ;; (add-to-list 'package-selected-packages 'ob-diagrams)
 ;; (add-to-list 'package-selected-packages 'ob-ess-julia)
 ;; (add-to-list 'package-selected-packages 'ob-ipython)
 ;; (add-to-list 'package-selected-packages 'ob-mermaid)
+(add-to-list 'package-selected-packages 'ob-julia-vterm)
 ;;(add-to-list 'package-selected-packages 'openai)
 
 (add-to-list 'package-selected-packages 'orderless)
@@ -257,14 +285,18 @@
 (add-to-list 'package-selected-packages 'prescient)
 (add-to-list 'package-selected-packages 'pretty-hydra)
 (add-to-list 'package-selected-packages 'projectile)
+(add-to-list 'package-selected-packages 'pyvenv-auto)
 ;; (add-to-list 'package-selected-packages 'pydoc)
 ;; (add-to-list 'package-selected-packages 'python-pytest)
 
 (add-to-list 'package-selected-packages 'qclj)
 (add-to-list 'package-selected-packages 'qemacs)
-(add-to-list 'package-selected-packages 'qvoice)
+;; (add-to-list 'package-selected-packages 'qvoice)
+(add-to-list 'package-selected-packages 'qtalonvoice)
 (add-to-list 'package-selected-packages 'quelpa)
 (add-to-list 'package-selected-packages 'quelpa-use-package)
+(add-to-list 'package-selected-packages 'query-replace-parallel)
+
 
 ;;(add-to-list 'package-selected-packages 'racket-mode)
 (add-to-list 'package-selected-packages 'rainbow-delimiters)
@@ -292,6 +324,13 @@
 ;; (add-to-list 'package-selected-packages 'treemacs-magit)
 ;; (add-to-list 'package-selected-packages 'treemacs-persp)
 ;; (add-to-list 'package-selected-packages 'treemacs-projectile)
+;;(add-to-list 'package-selected-packages 'transient)
+
+(add-to-list 'package-selected-packages 'tree-sitter-ispell)
+(add-to-list 'package-selected-packages 'tree-sitter-ess-r)
+(add-to-list 'package-selected-packages 'tree-sitter-mode)
+
+
 (add-to-list 'package-selected-packages 'tree-sitter-langs)
 
 (add-to-list 'package-selected-packages 'vertico)
@@ -320,6 +359,30 @@
 
 (package-install-selected-packages)
 (message "Installing missing packages. Take 4-5 minutes when all are missing.")
+
+
+;; garbage collection
+(use-package gcmh
+  :diminish gcmh-mode
+  :config
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 16 1024 1024))  ; 16mb
+  (gcmh-mode 1))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-percentage 0.1))) ;; Default value for `gc-cons-percentage'
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+
+
+
 
 
 ;; ############################## save current init.el to ~/.saves ####################
@@ -861,6 +924,78 @@ version-control t)
                     :cond #'laas-object-on-left-condition
                     "qq" (lambda () (interactive) (laas-wrap-previous-object "sqrt"))))
 
+
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :config
+  (setq corfu-auto t
+        corfu-echo-documentation t
+        corfu-scroll-margin 0
+        corfu-count 8
+        corfu-max-width 50
+        corfu-min-width corfu-max-width
+        corfu-auto-prefix 2)
+
+  (corfu-history-mode 1)
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'corfu-history)
+
+  (defun corfu-enable-always-in-minibuffer ()
+    (setq-local corfu-auto nil)
+    (corfu-mode 1))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
+;;
+;;  (:map corfu-map
+;;    ("TAB" . corfu-next)
+;;    ([tab] . corfu-next)
+;;    ("S-TAB" . corfu-previous)
+;;    ([backtab] . corfu-previous)
+;;    ("C-n" . corfu-next)
+;;    ("C-p" . corfu-previous)
+;;    ("C-j" . corfu-next)
+;;    ("C-k" . corfu-previous)
+;;    ("RET" . corfu-complete)
+;;    ([escape] . corfu-quit))
+
+;;  :bind (:map corfu-map
+;;          ("M-SPC" . corfu-insert-separator)
+;;          ("TAB" . corfu-next)
+;;          ([tab] . corfu-next)
+;;          ("S-TAB" . corfu-previous)
+;;          ([backtab] . corfu-previous)
+;;          ("C-n" . corfu-next)
+;;          ("C-p" . corfu-previous)
+;;          ("C-j" . corfu-next)
+;;          ("C-k" . corfu-previous)
+;;          ("S-<return>" . corfu-insert)
+;;          ("RET" . nil))
+)
+
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;; kinda confusing re length, WIP/TODO
+  ;; :hook (org-mode . (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
+  ;; :config
+  ;; (setq dabbrev-check-other-buffers nil
+  ;;       dabbrev-check-all-buffers nil
+  ;;       cape-dabbrev-min-length 6)
+  )
+
+
+(use-package kind-icon
+  :config
+  (setq kind-icon-default-face 'corfu-default)
+  (setq kind-icon-default-style '(:padding 0 :stroke 0 :margin 0 :radius 0 :height 0.9 :scale 1))
+  (setq kind-icon-blend-frac 0.08)
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  (add-hook 'counsel-load-theme #'(lambda () (interactive) (kind-icon-reset-cache)))
+  (add-hook 'load-theme         #'(lambda () (interactive) (kind-icon-reset-cache))))
+
+
+
 ;;  (use-package corfu
 ;;      ;; Optional customizations
 ;;      :custom
@@ -986,8 +1121,7 @@ version-control t)
 ;;  (("C-="                     . embark-act)
 ;;   ([remap describe-bindings] . embark-bindings)
 ;;   :map embark-file-map
-;;   ("C-d"                     . dragon-drop)
-;;   :map embark-defun-map
+;;   ("C-d"                     . dragon-drop);;   :map embark-defun-map
 ;;   ("M-t" . chatgpt-gen-tests-for-region)
 ;;   :map embark-general-map
 ;;   ("M-c" . chatgpt-prompt)
@@ -1894,7 +2028,7 @@ version-control t)
 ;;ARG is the thing being completed in the minibuffer."
 ;;  (interactive "p")
 ;;  (if minibuffer-completing-file-name
-;;      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+;;      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issue-comment-803283608
 ;;      (if (string-match-p "/." (minibuffer-contents))
 ;;          (zap-up-to-char (- arg) ?/)
 ;;        (delete-minibuffer-contents))
@@ -2056,7 +2190,7 @@ version-control t)
 (global-set-key (kbd "s-0") 'awesome-tab-select-visible-tab)
 
 
-; ;;** B
+;;** B
 ;
 ;
 ;
@@ -2224,8 +2358,9 @@ version-control t)
 ;   (let ((latest (bookmark-get-bookmark bookmark)))
 ;     (setq bookmark-alist (delq latest bookmark-alist))
 ;     (add-to-list 'bookmark-alist latest)))
-;
-;;** C;;
+
+
+;;** C
 ;;*** Cider
 
 (setq org-babel-clojure-backend 'cider)
@@ -2361,22 +2496,35 @@ version-control t)
 ;; (use-package clomacs)
 
 
+;;*** code-cells
+;; Source: https://github.com/astoff/code-cells.el?tab=readme-ov-file
+(use-package code-cells)
+
+(with-eval-after-load 'code-cells
+  (let ((map code-cells-mode-map))
+    (define-key map (kbd "M-p") 'code-cells-backward-cell)
+    (define-key map (kbd "M-n") 'code-cells-forward-cell)
+    (define-key map (kbd "C-c C-c") 'code-cells-eval)
+    ;; Overriding other minor mode bindings requires some insistence...
+    (define-key map [remap jupyter-eval-line-or-region] 'code-cells-eval)))
+
+
 
 ;;*** copilot
 
 (use-package quelpa)
 (use-package quelpa-use-package)
-(use-package copilot
-  :quelpa (copilot :fetcher github
-                   :repo "zerolfx/copilot.el"
-                   :branch "main"
-                   :files ("dist" "*.el")))
-;; you can utilize :map :hook and :config to customize copilot
-
-(add-hook 'prog-mode-hook 'copilot-mode)
-
-(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+; (use-package copilot
+;   :quelpa (copilot :fetcher github
+;                    :repo "zerolfx/copilot.el"
+;                    :branch "main"
+;                    :files ("dist" "*.el")))
+; ;; you can utilize :map :hook and :config to customize copilot
+;
+; (add-hook 'prog-mode-hook 'copilot-mode)
+;
+; (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+; (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 
 
 
@@ -2597,21 +2745,21 @@ version-control t)
 ;;(dashboard-refresh-buffer)
 
 (use-package dashboard
-  :init
-  (dashboard-setup-startup-hook)
-  :custom
-  (dashboard-banner-logo-title "Just begin and the mind grows heated; continue and the task will be completed! -- Geothe")
-  (dashboard-startup-banner "/Users/blaine/images/loxoSmall.png")
-  (setq dashboard-image-banner-max-width 37)
-  (setq dashboard-image-banner-max-height 30)
-  (dashboard-set-navigator t)
-  (dashboard-center-content t)
-  (dashboard-set-heading-icons t)
-  (dashboard-set-file-icons t)
-  (dashboard-items '((projects . 11)
-                     (recents . 11)
-                     (bookmarks . 11)
-                     (hackernews . 7))))
+ :init
+ (dashboard-setup-startup-hook)
+ :custom
+ (dashboard-banner-logo-title "Just begin and the mind grows heated; continue and the task will be completed! -- Geothe")
+ (dashboard-startup-banner "/Users/blaine/images/loxoSmall.png")
+ (setq dashboard-image-banner-max-width 37)
+ (setq dashboard-image-banner-max-height 30)
+ (dashboard-set-navigator t)
+ (dashboard-center-content t)
+ (dashboard-set-heading-icons t)
+ (dashboard-set-file-icons t)
+ (dashboard-items '((projects . 11)
+                    (recents . 11)
+                    (bookmarks . 11)
+                    (hackernews . 7))))
 (use-package dashboard-hackernews)
 (setq dashboard-items '((hackernews . 10)))
 
@@ -2822,6 +2970,40 @@ version-control t)
 (use-package elfeed-org)
 (setq rmh-elfeed-org-files (list "~/emacs30/elfeed.org"))
 (elfeed-org)
+
+;; Emacs-eat: fast terminal
+;; source https://codeberg.org/akib/emacs-eat
+;; Talk at emacsconf23: 
+
+;;(use-package emacs-eat
+;;  :load-path "~/emacs30/manual-packages/emacs-eat")
+
+; (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+;
+; (use-package eat
+;   :pin nongnu
+;   :custom
+;   (eat-kill-buffer-on-exit t)
+;   :config
+;   (delete [?\C-u] eat-semi-char-non-bound-keys) ; make C-u work in Eat terminals like in normal terminals
+;   (delete [?\C-g] eat-semi-char-non-bound-keys) ; ditto for C-g
+;   (eat-update-semi-char-mode-map)
+;   ;; XXX: Awkward workaround for the need to call eat-reload after changing Eat's keymaps,
+;   ;; but reloading from :config section causes infinite recursion because :config wraps with-eval-after-load.
+;   (defvar eat--prevent-use-package-config-recursion nil)
+;   (unless eat--prevent-use-package-config-recursion
+;     (setq eat--prevent-use-package-config-recursion t)
+;     (eat-reload))
+;   (makunbound 'eat--prevent-use-package-config-recursion)
+;   )
+
+
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
 
 ;; Keep commented out unless it is an emergency
@@ -3286,6 +3468,125 @@ version-control t)
 
 ;;** G
 
+;;*** general
+(use-package general)
+
+(general-define-key
+ :states '(normal motion visual)
+ :keymaps 'override
+ :prefix "SPC"
+
+;; Top level functions
+"/" '(jib/rg :which-key "ripgrep")
+";" '(spacemacs/deft :which-key "deft")
+":" '(project-find-file :which-key "p-find file")
+"." '(counsel-find-file :which-key "find file")
+"," '(counsel-recentf :which-key "recent files")
+"TAB" '(switch-to-prev-buffer :which-key "previous buffer")
+"SPC" '(counsel-find-file :which-key "M-x")
+"q" '(save-buffers-kill-terminal :which-key "quit emacs")
+"r" '(jump-to-register :which-key "registers")
+"c" 'org-capture
+
+;; "Applications"
+"a" '(nil :which-key "applications")
+"ao" '(org-agenda :which-key "org-agenda")
+"am" '(mu4e :which-key "mu4e")
+"aC" '(calc :which-key "calc")
+"ac" '(org-capture :which-key "org-capture")
+"aqq" '(org-ql-view :which-key "org-ql-view")
+"aqs" '(org-ql-search :which-key "org-ql-search")
+
+"ab" '(nil :which-key "browse url")
+"abf" '(browse-url-firefox :which-key "firefox")
+"abc" '(browse-url-chrome :which-key "chrome")
+"abx" '(xwidget-webkit-browse-url :which-key "xwidget")
+"abg" '(jib/er-google :which-key "google search")
+
+"ad" '(dired :which-key "dired")
+
+;; Buffers
+"b" '(nil :which-key "buffer")
+"bb" '(counsel-switch-buffer :which-key "switch buffers")
+"bd" '(evil-delete-buffer :which-key "delete buffer")
+"bs" '(jib/switch-to-scratch-buffer :which-key "scratch buffer")
+"bm" '(jib/kill-other-buffers :which-key "kill other buffers")
+"bi" '(clone-indirect-buffer  :which-key "indirect buffer")
+"br" '(revert-buffer :which-key "revert buffer")
+
+;; Files
+"f" '(nil :which-key "files")
+"fb" '(counsel-bookmark :which-key "bookmarks")
+"ff" '(counsel-find-file :which-key "find file")
+"fn" '(spacemacs/new-empty-buffer :which-key "new file")
+"fr" '(counsel-recentf :which-key "recent files")
+"fR" '(rename-file :which-key "rename file")
+"fs" '(save-buffer :which-key "save buffer")
+"fS" '(evil-write-all :which-key "save all buffers")
+"fo" '(reveal-in-osx-finder :which-key "reveal in finder")
+"fO" '(jib/open-buffer-file-mac :which-key "open buffer file")
+
+
+;; Help/emacs
+"h" '(nil :which-key "help/emacs")
+
+"hv" '(counsel-describe-variable :which-key "des. variable")
+"hb" '(counsel-descbinds :which-key "des. bindings")
+"hM" '(describe-mode :which-key "des. mode")
+"hf" '(counsel-describe-function :which-key "des. func")
+"hF" '(counsel-describe-face :which-key "des. face")
+"hk" '(describe-key :which-key "des. key")
+
+"hed" '((lambda () (interactive) (jump-to-register 67)) :which-key "edit dotfile")
+
+"hm" '(nil :which-key "switch mode")
+"hme" '(emacs-lisp-mode :which-key "elisp mode")
+"hmo" '(org-mode :which-key "org mode")
+"hmt" '(text-mode :which-key "text mode")
+
+"hp" '(nil :which-key "packages")
+"hpr" 'package-refresh-contents
+"hpi" 'package-install
+"hpd" 'package-delete
+
+;; Help/emacs
+"x" '(nil :which-key "text")
+"xC" '(jib/copy-whole-buffer-to-clipboard :which-key "copy whole buffer to clipboard")
+"xr" '(anzu-query-replace :which-key "find and replace")
+"xs" '(yas-insert-snippet :which-key "insert yasnippet")
+"xf" '(flush-lines :which-key "flush-lines")
+"xR" '(replace-regexp :which-key "replace-regexp")
+
+;; Toggles
+"t" '(nil :which-key "toggles")
+"tt" '(toggle-truncate-lines :which-key "truncate lines")
+"tv" '(visual-line-mode :which-key "visual line mode")
+"tn" '(display-line-numbers-mode :which-key "display line numbers")
+"ta" '(mixed-pitch-mode :which-key "variable pitch mode")
+"ty" '(counsel-load-theme :which-key "load theme")
+"tw" '(writeroom-mode :which-key "writeroom-mode")
+"tR" '(read-only-mode :which-key "read only mode")
+"tI" '(toggle-input-method :which-key "toggle input method")
+"tr" '(display-fill-column-indicator-mode :which-key "fill column indicator")
+"tm" '(hide-mode-line-mode :which-key "hide modeline mode")
+ 
+;; Windows
+"w" '(nil :which-key "window")
+"wm" '(jib/toggle-maximize-buffer :which-key "maximize buffer")
+"wN" '(make-frame :which-key "make frame")
+"wd" '(evil-window-delete :which-key "delete window")
+"wc" '(evil-window-delete :which-key "delete window")
+"w-" '(jib/split-window-vertically-and-switch :which-key "split below")
+"w/" '(jib/split-window-horizontally-and-switch :which-key "split right")
+"wr" '(jb-hydra-window/body :which-key "hydra window")
+"wl" '(evil-window-right :which-key "evil-window-right")
+"wh" '(evil-window-left :which-key "evil-window-left")
+"wj" '(evil-window-down :which-key "evil-window-down")
+"wk" '(evil-window-up :which-key "evil-window-up")
+"wz" '(text-scale-adjust :which-key "text zoom")
+) ;; End SPC prefix block
+ 
+
 
 ;;*** google-this
 ;; use C-x / g n on a region for search submission without prompt
@@ -3486,6 +3787,20 @@ version-control t)
 ;;
 
 
+;;*** hyperdrive
+;; Emacsconf23 talk:
+;; Manaul: https://ushin.org/hyperdrive/hyperdrive-manual.html
+;;(use-package hyperdrive
+;;  :bind ("C-c h" . hyperdrive-menu)
+;;  :init (hyperdrive-menu-bar-mode 1))
+
+
+
+;;*** hyperbole
+;; More info: https://blog.abrochard.com/hyperbole-intro.html https://www.gnu.org/software/hyperbole/#invocation, 
+(use-package hyperbole)
+(hyperbole-mode 1)
+
 
 
 ;;** I
@@ -3578,8 +3893,74 @@ version-control t)
 (global-set-key (kbd "M-i") 'imenu)
 
 
-(ivy-mode 0)
+;;*** ivy
+(use-package ivy
+  :diminish ivy-mode
+  :config
+  (setq ivy-extra-directories nil) ;; Hides . and .. directories
+  (setq ivy-initial-inputs-alist nil) ;; Removes the ^ in ivy searches
+  (if (eq jib/computer 'laptop)
+      (setq-default ivy-height 10)
+    (setq-default ivy-height 11))
+  (setq ivy-fixed-height-minibuffer t)
+  (add-to-list 'ivy-height-alist '(counsel-M-x . 7)) ;; Don't need so many lines for M-x, I usually know what command I want
 
+  (ivy-mode 1)
+
+  ;; Shows a preview of the face in counsel-describe-face
+  (add-to-list 'ivy-format-functions-alist '(counsel-describe-face . counsel--faces-format-function))
+
+  :general
+  (general-define-key
+   ;; Also put in ivy-switch-buffer-map b/c otherwise switch buffer map overrides and C-k kills buffers
+   :keymaps '(ivy-minibuffer-map ivy-switch-buffer-map)
+   "S-SPC" 'nil
+   "C-SPC" 'ivy-restrict-to-matches ;; Default is S-SPC, changed this b/c sometimes I accidentally hit S-SPC
+   ;; C-j and C-k to move up/down in Ivy
+   "C-k" 'ivy-previous-line
+   "C-j" 'ivy-next-line)
+  )
+
+
+;;;; Nice icons in Ivy. Replaces all-the-icons-ivy.
+;;(use-package all-the-icons-ivy-rich
+;;  :init (all-the-icons-ivy-rich-mode 1)
+;;  :config
+;;  (setq all-the-icons-ivy-rich-icon-size 1.0))
+
+;;
+(use-package ivy-rich
+  :after ivy
+  :init
+  (setq ivy-rich-path-style 'abbrev)
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  :config
+  (ivy-rich-mode 1))
+
+
+
+
+
+
+
+;;** J
+
+;;*** Julia
+
+;;**** julia-snail
+;; Requires v-term
+(use-package vterm
+  :ensure t)
+;; Now run `M-x vterm` and make sure it works!
+
+(use-package julia-snail
+  :ensure t
+  :hook (julia-mode . julia-snail-mode))
+
+(add-to-list 'display-buffer-alist
+             '("\\*julia" (display-buffer-reuse-window display-buffer-same-window)))
+
+(customize-set-variable 'split-height-threshold 15)
 
 
 ;;** L
@@ -3814,6 +4195,7 @@ version-control t)
 (add-hook 'LaTeX-mode-hook #'yas-minor-mode)
 
 
+;; 
 ;; eglot in LaTeX mode
 ;; Emacs’s polyglot lsp server.
 ;; Eglot provides completion, documentation, and navigation commands in LaTeX documents.
@@ -4314,6 +4696,14 @@ version-control t)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;;*** mw-thesaurus
+
+(use-package mw-thesaurus
+  :defer t
+  :config
+  (add-hook 'mw-thesaurus-mode-hook
+            (lambda () (define-key evil-normal-state-local-map (kbd "q") 'mw-thesaurus--quit))))
+
 
 ;; ** N
 
@@ -4343,11 +4733,8 @@ version-control t)
 ;   (org-mode . olivetti-mode))
 
 
-
+;;*** BEGINNING of org-agenda
 (define-key org-mode-map (kbd "M-i") 'org-insert-item)
-
-
-;; <<<<<<< BEGINNING of org-agenda >>>>>>>>>>>>>>
 (setq org-agenda-start-with-log-mode t)
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
@@ -4361,15 +4748,20 @@ version-control t)
 (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
 
 (setq org-agenda-files '("/Users/blaine/gtd/tasks/JournalArticles.org"
- "/Users/blaine/gtd/tasks/Proposals.org"
- "/Users/blaine/gtd/tasks/Books.org"
- "/Users/blaine/gtd/tasks/Talks.org"
- "/Users/blaine/gtd/tasks/Posters.org"
- "/Users/blaine/gtd/tasks/ManuscriptReviews.org"
- "/Users/blaine/gtd/tasks/Private.org"
- "/Users/blaine/gtd/tasks/Service.org"
- "/Users/blaine/gtd/tasks/Teaching.org"
- "/Users/blaine/gtd/tasks/Workshops.org"))
+                         "/Users/blaine/gtd/tasks/potentialWriting.org"
+                         "/Users/blaine/gtd/tasks/Proposals.org"
+                         "/Users/blaine/gtd/tasks/Books.org"
+                         "/Users/blaine/gtd/tasks/Talks.org"
+                         "/Users/blaine/gtd/tasks/Posters.org"
+                         "/Users/blaine/gtd/tasks/ManuscriptReviews.org"
+                         "/Users/blaine/gtd/tasks/Private.org"
+                         "/Users/blaine/gtd/tasks/Service.org"
+                         "/Users/blaine/gtd/tasks/Teaching.org"
+                         "/Users/blaine/gtd/tasks/Workshops.org"
+                         "/Users/blaine/gtd/tasks/december23.org"
+                         "/Users/blaine/gtd/tasks/springsem24.org"
+                         "/Users/blaine/gtd/tasks/summersem24.org"
+                         "/Users/blaine/gtd/tasks/fallsem24.org"))
 
 ;; Cycle through these keywords with shift right or left arrows.
 (setq org-todo-keywords
@@ -4385,7 +4777,12 @@ version-control t)
    ("/Users/blaine/gtd/tasks/Service.org" :maxlevel . 2)
    ("/Users/blaine/gtd/tasks/Teaching.org" :maxlevel . 2)
    ("/Users/blaine/gtd/tasks/grasscatcer.org" :maxlevel . 2)
-   ("/Users/blaine/gtd/tasks/Workshops.org" :maxlevel . 2)))
+   ("/Users/blaine/gtd/tasks/Workshops.org" :maxlevel . 2)
+   ("/Users/blaine/gtd/tasks/december23.org" :maxlevel . 2)
+   ("/Users/blaine/gtd/tasks/springsem24.org" :maxlevel . 2)
+   ("/Users/blaine/gtd/tasks/summersem24.org" :maxlevel . 2)
+   ("/Users/blaine/gtd/tasks/fallsem24.org" :maxlevel . 2)
+   ))
 (setq org-refile-use-outline-path 'file)
 
 ;; ***** customized agenda views
@@ -4537,11 +4934,25 @@ version-control t)
     (file+function "/Users/blaine/gtd/tasks/Workshops.org" org-ask-location)
     "\n\n*** TODO %?\n<%<%Y-%m-%d %a %T>>"
     :empty-lines 1)
-    ("s" "Slipbox" entry  (file "/User/org-roam/inbox.org")
+    ("d" "December" entry
+    (file+function "/Users/blaine/gtd/tasks/december23.org" org-ask-location)
+    "\n\n*** TODO %?\n<%<%Y-%m-%d %a %T>>"
+    :empty-lines 1)
+    ("s" "springsem24" entry
+    (file+function "/Users/blaine/gtd/tasks/springsem24.org" org-ask-location)
+    "\n\n*** TODO %?\n<%<%Y-%m-%d %a %T>>"
+    :empty-lines 1)
+    ("u" "springsem24" entry
+    (file+function "/Users/blaine/gtd/tasks/summersem24.org" org-ask-location)
+    "\n\n*** TODO %?\n<%<%Y-%m-%d %a %T>>"
+    :empty-lines 1)
+    ("f" "fallsem24" entry
+    (file+function "/Users/blaine/gtd/tasks/fallsem24.org" org-ask-location)
+    "\n\n*** TODO %?\n<%<%Y-%m-%d %a %T>>"
+    :empty-lines 1)
+    ("x" "Slipbox" entry  (file "/User/org-roam/inbox.org")
            "* %?\n")
     ))
-
-
 (defun jethro/org-capture-slipbox ()
     (interactive)
     (org-capture nil "s"))
@@ -4549,6 +4960,9 @@ version-control t)
 
 
 ;; <<<<<<< END of org-agenda >>>>>>>>>>>>>>
+
+;; https://github.com/shg/ob-julia-vterm.el
+;;(add-to-list 'org-babel-load-languages '(julia-vterm . t))
 
 ;;*** org-babel
 (org-babel-do-load-languages
@@ -4569,9 +4983,18 @@ version-control t)
    (org . t)
    (julia . t)
    (python . t)
-   (R . t)))
+   (R . t)
+   (jupyter . t)))
 
 ;;  Removed  (jupyter . t) on May 14 due to an error message.
+
+;; By default, you need to specify julia-vterm as the language name for source blocks. 
+;; To use julia as the language name, define the following aliases.
+
+;; (defalias 'org-babel-execute:julia 'org-babel-execute:julia-vterm)
+;; (defalias 'org-babel-variable-assignments:julia 'org-babel-variable-assignments:julia-vterm)
+
+
 
 ;;*** org-bookmark-heading
 (use-package org-bookmark-heading)
@@ -4770,6 +5193,11 @@ version-control t)
 (define-key org-mode-map (kbd "H-d") 'doi-add-bibtex-entry)
 
 
+;; to use org-cite-insert
+(setq org-ref-insert-cite-function
+      (lambda ()
+	(org-cite-insert nil)))
+
 ;; <<<<<<< END org-ref >>>>>>>>>>>>>>
 
 
@@ -4927,23 +5355,28 @@ version-control t)
 ;;  :END:")))
 ;;
 
-(use-package citar-org-roam
-  :after (citar org-roam)
-  :no-require
-  :config (citar-org-roam-mode))
+;; (require 'org-cite
+;;     :custom
+;;     ;; Actually, I set this value to `kb/bib-files', which is a list of file paths.
+;;     ;; I set that as the value of any variable that requires bibliography files,
+;;     ;; such as `citar', as you'll see below.
+;;     (org-cite-global-bibliography
+;;      '("/Users/blaine/Documents/global.bib"))
+;;      (org-cite-export-processors
+;;       '((md . (csl "chicago-fullnote-bibliography.csl"))   ; Footnote reliant
+;;         (latex biblatex)                                   ; For humanities
+;;         (odt . (csl "chicago-fullnote-bibliography.csl"))  ; Footnote reliant
+;;         (t . (csl "modern-language-association.csl"))))      ; Fallback
+;;      :custom-face
+;;      ;; Have citation link faces look closer to as they were for `org-ref'
+;;      (org-cite ((t (:foreground "DarkSeaGreen4"))))
+;;      (org-cite-key ((t (:foreground "forest green" :slant italic))))
+;;      
+;;     )
 
-;; source: https://github.com/emacs-citar/citar/wiki/Notes-configuration#org-roam-bibtex
-;; Not sure if this is outdated.
-;;(citar-register-notes-source
-;; 'orb-citar-source (list :name "Org-Roam Notes"
-;;        :category 'org-roam-node
-;;        :items #'citar-org-roam--get-candidates
-;;        :hasitems #'citar-org-roam-has-notes
-;;        :open #'citar-org-roam-open-note
-;;        :create #'orb-citar-edit-note
-;;        :annotate #'citar-org-roam--annotate))
 
-;; (setq citar-notes-source 'orb-citar-source)
+(use-package citeproc-org)
+
 
 
 (setq citar-org-roam-capture-template-key "n")
@@ -4953,11 +5386,60 @@ version-control t)
          :map minibuffer-local-map
          ("M-b" . citar-insert-preset))
   :custom
-  (citar-bibliography '("/Users/blaine/Documents/global.bib")))
+    (citar-bibliography '("/Users/blaine/Documents/global.bib"))
+  :hook
+  ;; enable autocompletion in buffer of citekeys
+    (LaTeX-mode . citar-capf-setup)
+    (org-mode . citar-capf-setup))
 
 (setenv "PATH" (concat ":/opt/local/bin/" (getenv "PATH")))
 (add-to-list 'exec-path "/opt/local/bin/")
 
+
+;;*** citar-org, use after org-cite
+(use-package citar-org
+  :after oc
+  :custom
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  :general
+  (:keymaps 'org-mode-map
+   :prefix "C-c b"
+   "b" '(citar-insert-citation :wk "Insert citation")
+   "r" '(citar-insert-reference :wk "Insert reference")
+   "o" '(citar-open-notes :wk "Open note"))
+  :custom
+  (citar-notes-paths '("/Users/blaine/org-roam/")) ; List of directories for reference nodes
+  (citar-open-note-function 'orb-citar-edit-note) ; Open notes in `org-roam'
+  (citar-at-point-function 'embark-act)           ; Use `embark'
+  )
+
+
+(use-package citar-embark
+  ;; get a table of options including opening related files and the entry in global.bib.
+  :after citar embark
+  :no-require
+  :config (citar-embark-mode))
+
+
+(use-package citar-org-roam
+    :after (citar org-roam)
+    :no-require
+    :config (citar-org-roam-mode))
+
+  ;; source: https://github.com/emacs-citar/citar/wiki/Notes-configuration#org-roam-bibtex
+  ;; Not sure if this is outdated.
+  ;;(citar-register-notes-source
+  ;; 'orb-citar-source (list :name "Org-Roam Notes"
+  ;;        :category 'org-roam-node
+  ;;        :items #'citar-org-roam--get-candidates
+  ;;        :hasitems #'citar-org-roam-has-notes
+  ;;        :open #'citar-org-roam-open-note
+  ;;        :create #'orb-citar-edit-note
+  ;;        :annotate #'citar-org-roam--annotate))
+
+  ;; (setq citar-notes-source 'orb-citar-source)
 
 
 
@@ -5015,7 +5497,7 @@ version-control t)
 (setq org-speed-commands (cons '("w" . widen) org-speed-commands))
 (define-key org-mode-map (kbd "^") 'org-sort)
 ;; (define-key org-mode-map (kbd "z") 'org-refile)
-(define-key org-mode-map (kbd "@") 'org-mark-subtree)
+;; (define-key org-mode-map (kbd "@") 'org-mark-subtree) ; conflicts with org-cite-insert.
 (eval-after-load 'org-mode '(define-key org-mode-map "z" nil))
 
 (use-package org2blog)
@@ -5329,6 +5811,23 @@ version-control t)
 ;;   (require 'lsp-pyright))
 
 
+;; Using my virtual environments
+;;;;(use-package pyvenv
+;;;;  :defer t
+;;;;  :init
+;;;;  (setenv "WORKON_HOME" "~/.pyenv/versions")) ;; Where the virtual envs are stored on my computer
+
+(use-package pyvenv-auto
+        :hook ((python-mode . pyvenv-auto-run)))
+
+;; Automatically set the virtual environment when entering a directory
+;;(use-package auto-virtualenv
+;;  :defer 2
+;;  :config
+;;  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv))
+  
+  
+
 ;; *** elpy (Emacs Lisp Python Environment)
 ;; source: https://realpython.com/emacs-the-best-python-editor/#initialization-file
 (use-package elpy)
@@ -5348,8 +5847,21 @@ version-control t)
 
 ;; *** qvoice 
 ;; This is an interactive quiz about Talon Voice
-(use-package qvoice
-    :load-path "~/emacs30/manual-packages/qvoice/")
+;;(use-package qvoice
+;;    :load-path "~/emacs30/manual-packages/qvoice/")
+
+;; *** qtalonvoice 
+;; This is an interactive quiz about Talon Voice
+(use-package qtalonvoice
+    :load-path "~/emacs30/manual-packages/qtalonvoice/")
+
+;; *** query-replace-parallel
+;; source: https://github.com/hokomo/query-replace-parallel
+;; Talk at emacsconf23: https://emacsconf.org/2023/talks/parallel/
+
+(use-package query-replace-parallel
+  :load-path "~/emacs30/manual-packages/query-replace-parallel"
+  :commands (query-replace-parallel query-replace-parallel-regexp))
 
 
 
@@ -5380,32 +5892,32 @@ version-control t)
 
 ;;** S
 
-; ;; slime
-;
-; ;; Source: https://github.com/susam/emacs4cl/blob/main/.emacs
-; ;; Configure SBCL as the Lisp program for SLIME.
-; (add-to-list 'exec-path "/opt/local/bin")
-; (setq inferior-lisp-program "sbcl")
-;
-; ; (push "/Users/blaine/emacs30/manual-packages/slime-critic" load-path)
-; ; (add-to-list 'slime-contribs 'slime-critic)
-; (slime-setup)
-;
-;
-; ;;    M-x slime-critic-critique-buffer: critique the current buffer.
-; ;;    M-x slime-critic-critique-file: critique a file.
-;
-; ;; Enable Paredit.
-; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-; (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-; (add-hook 'ielm-mode-hook 'enable-paredit-mode)
-; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-; (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
-; (defun override-slime-del-key ()
-;   (define-key slime-repl-mode-map
-;     (read-kbd-macro paredit-backward-delete-key) nil))
-; (add-hook 'slime-repl-mode-hook 'override-slime-del-key)
+                                        ; ;; slime
+                                        ;
+                                        ; ;; Source: https://github.com/susam/emacs4cl/blob/main/.emacs
+                                        ; ;; Configure SBCL as the Lisp program for SLIME.
+                                        ; (add-to-list 'exec-path "/opt/local/bin")
+                                        ; (setq inferior-lisp-program "sbcl")
+                                        ;
+                                        ; ; (push "/Users/blaine/emacs30/manual-packages/slime-critic" load-path)
+                                        ; ; (add-to-list 'slime-contribs 'slime-critic)
+                                        ; (slime-setup)
+                                        ;
+                                        ;
+                                        ; ;;    M-x slime-critic-critique-buffer: critique the current buffer.
+                                        ; ;;    M-x slime-critic-critique-file: critique a file.
+                                        ;
+                                        ; ;; Enable Paredit.
+                                        ; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+                                        ; (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+                                        ; (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+                                        ; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+                                        ; (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+                                        ; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+                                        ; (defun override-slime-del-key ()
+                                        ;   (define-key slime-repl-mode-map
+                                        ;     (read-kbd-macro paredit-backward-delete-key) nil))
+                                        ; (add-hook 'slime-repl-mode-hook 'override-slime-del-key)
 
 ;; ;; Enable Rainbow Delimiters.
 ;; (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
@@ -5431,7 +5943,7 @@ version-control t)
 
 ;;*** serenade (source: https://github.com/justin-roche/serenade-mode)
 (use-package serenade-mode
-    :load-path "~/emacs30/manual-packages/serenade-mode/")
+  :load-path "~/emacs30/manual-packages/serenade-mode/")
 
 (setq serenade-completion-frontend 'helm)
 (setq serenade-helm-M-x t)
