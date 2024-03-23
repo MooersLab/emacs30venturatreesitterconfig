@@ -1,15 +1,15 @@
 ![Version](https://img.shields.io/static/v1?label=emacs30venturatreesitterconfig&message=0.1&color=brightcolor)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-#+Title: Emacs Configuration with Support for Structured Editing
-#+Author: Blaine Mooers
+# Emacs Configuration with Support for Structured Editing
 
-** Moved to Codeberg
+
+## Moved to Codeberg
 I will try to keep this updated, but
 go [[https://codeberg.org/MooersLab/emacs30init/src/branch/main/README.org][here]] for the most recent version.
 
 
-** Purpose
+## Purpose
 
 This configuration supports structured editing of computer code with concrete syntax trees. 
 The built-in package tree-sitter and the new package combobulate support this editing.
@@ -26,7 +26,7 @@ Many thanks go to Jeff Bowman for this suggestion.
 However, after two weeks of use, I am having trouble with only some of the elisp files in the *elpa* folder compiled after upgrading packages.
 Fixing this issue can take 30 minutes.
 I did not have this issue when I used `:ensure t` with use-package.
-I recommend updating your packages sparingly; once a month may be frequent enough.
+I think updating your packages sparingly is a good idea; once a month may be frequent enough.
 Likewise, I also recommend using the emacs-server and emacsclient for instant access.
 
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
@@ -41,7 +41,7 @@ You may have to byte-recompile these packages.
 
 ** Features
 
-The content of the configuration file supports my academic research writing with occasional code writing for research purposes.
+The configuration file's content supports my academic research writing with occasional code writing for research purposes.
 
 - Configured for structured editing with combobulate and tree-sitter.
 - Uses the Vertico and friends for completion by default. I love the in-line documentation from Marginalia.
@@ -82,13 +82,13 @@ This is an attention trap, so you may comment it out.
 The startup time should be shorter on Linux and longer on Windows. 
 
 I tried zsh and Bash. 
-On the Mac, there was no difference in Emacs startup times, although these two shells differ in the startup times of new tabs.
+On the Mac, Emacs startup times were the same, although these two shells differ in the startup times of new tabs.
 The Emacs binary starts up in a flash without an init.el. 
 
 #+html: <p align="center"><img src="images/dashboard25Feb.png" /></p>
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be automatically listed on the dashboard.
-For example, clicking on the icon in the dashboard of a book's PDF opens the book in Emacs for immediate reading. 
+For example, clicking on the icon in a book's PDF dashboard opens the book in Emacs for immediate reading. 
 The bookmarks are a way of keeping track of material that needs to be read soon.
 You can configure Emacs to use the *bookmarks* file as the startup page.
 
@@ -98,4 +98,4 @@ You can navigate to the directory of interest in a Dired buffer.
 With the directory name selected in the Dired buffer, enter ~C-x x m~ to add the directory as a bookmark. 
 Remember to save the *bookmarks list* buffer. 
 I add bookmarks to my writing projects on Overleaf, the project folder in my local drive, and a PROJ headline in my journalArticles.org file where I store my logbook for tracking my Pomodoros on a project. 
-Thanks to bookmarks+ and its developer Drew Adams, I can pop into any of those three locations in a flash with the click of a mouse. 
+Thanks to Bookmarks+ and its developer, Drew Adams, I can pop into any of those three locations in a flash with the click of a mouse. 
