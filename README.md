@@ -10,7 +10,6 @@ go [[https://codeberg.org/MooersLab/emacs30init/src/branch/main/README.org][here
 
 
 ## Purpose
-
 This configuration supports structured editing of computer code with concrete syntax trees. 
 The built-in package tree-sitter and the new package combobulate support this editing.
 Emacs has to be compiled with support for tree-sitter.
@@ -39,7 +38,7 @@ Their ~*.elc~ files will only work on Ventura with Emacs compiled the same way I
 You may have to byte-recompile these packages.
 
 
-** Features
+## Features
 
 The configuration file's content supports my academic research writing with occasional code writing for research purposes.
 
@@ -72,7 +71,7 @@ I find it much easier to bookmark URLs of heavily visited sites than to store th
 You can also bookmark project directories and even dired buffers.
 
 
-** What the landing page (dashboard) will resemble when first loaded
+## What the landing page (dashboard) will resemble when first loaded
 
 The default image for the dashboard is the Emacs logo. 
 I substituted another image that is included above for testing.
@@ -85,7 +84,7 @@ I tried zsh and Bash.
 On the Mac, Emacs startup times were the same, although these two shells differ in the startup times of new tabs.
 The Emacs binary starts up in a flash without an init.el. 
 
-#+html: <p align="center"><img src="images/dashboard25Feb.png" /></p>
+<p align="center"><img src="images/dashboard25Feb.png" /></p>
 
 Note that bookmarks are normally accessed via the *bookmarks list* buffer, but some can be automatically listed on the dashboard.
 For example, clicking on the icon in a book's PDF dashboard opens the book in Emacs for immediate reading. 
