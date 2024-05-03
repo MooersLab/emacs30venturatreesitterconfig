@@ -29,7 +29,7 @@ I think updating your packages sparingly is a good idea; once a month may be fre
 Likewise, I also recommend using the emacs-server and emacsclient for instant access.
 
 The *init.el* file was developed on Ventura (macOS 13.2), but it should be transferrable to older Mac operating systems.
-There are several Mac-specific lines in the basic configuration section that can be quickly switched for Linux or Windows.
+There are several Mac-specific lines in the basic configuration section that can be quickly switched for use in Linux or Windows.
 There are also several file paths that may need customizing. 
 Both sites are marked with *;; ==> adjust here* in the init.el file.
 
@@ -54,7 +54,7 @@ The configuration file's content supports my academic research writing with occa
 - Uses evil-nerd-commenter for smart commenting of lines and regions.
 - Configured for Clojure, Python, and R programming.
 - Supports the use of LaTeX via AUCTeX.
-- Supports *google-this*. Make selection and enter `C-c / g` to submit as selected region as a search term to Google in default browser.
+- Supports *google-this*. Make a selection and enter `C-c / g` to submit the selected region as a search term to Google in the default browser.
 - Eglot is built into this version of Emacs.
 
 I invoke org-Pomodoro with the point on a Project's headline in an org file to generate the logbook for storing the record of Pomodoros.
@@ -101,4 +101,11 @@ Thanks to Bookmarks+ and its developer, Drew Adams, I can quickly access any of 
 
 ## Funding
 
-Funding
+- NIH: R01 CA242845, R01 AI088011
+- NIH: P30 CA225520 (PI: R. Mannel); P20GM103640 and P30GM145423 (PI: A. West)
+
+
+|Version      | Changes                                                                                                                                    | Date                 |
+|:-----------:|:------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------:|
+| Version 0.2 |  Added funding and update table.                                                                                                             | 2024 May 3        |
+
