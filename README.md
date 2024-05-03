@@ -64,11 +64,11 @@ I use the area under a project headline to store the logbook and relevant inform
 I may not need the bookmarks if I used org-agenda for scheduling my daily activities, which I do not because it is too hard to stay on top of everything.
 I just use org-agenda to schedule upcoming meetings.
 
-Note that the bookmarks+ package runs on top of the built-in bookmarks.el package. 
+Note that the bookmarks+ package runs on top of the built-in `bookmarks.e`l package. 
 Bookmarks+ can bookmark a much more comprehensive array of items.
 You can bookmark PDFs for later reading and websites of interest.
 I find it much easier to bookmark URLs of heavily visited sites than to store them in my private index.html file.
-You can also bookmark project directories and even dired buffers.
+You can also bookmark project directories and even `dired` buffers.
 
 
 ## What the landing page (dashboard) will resemble when first loaded
@@ -82,7 +82,7 @@ The startup time should be shorter on Linux and longer on Windows.
 
 I tried zsh and Bash. 
 On the Mac, Emacs startup times were the same, although these two shells differ in the startup times of new tabs.
-The Emacs binary starts up in a flash without an init.el. 
+The Emacs binary starts up in a flash without an `init.el`. 
 
 <p align="center"><img src="images/dashboard25Feb.png" /></p>
 
@@ -97,4 +97,8 @@ You can navigate to the directory of interest in a Dired buffer.
 With the directory name selected in the Dired buffer, enter ~C-x x m~ to add the directory as a bookmark. 
 Remember to save the *bookmarks list* buffer. 
 I add bookmarks to my writing projects on Overleaf, the project folder in my local drive, and a PROJ headline in my journalArticles.org file where I store my logbook for tracking my Pomodoros on a project. 
-Thanks to Bookmarks+ and its developer, Drew Adams, I can pop into any of those three locations in a flash with the click of a mouse. 
+Thanks to Bookmarks+ and its developer, Drew Adams, I can quickly access any of those three locations with the click of a mouse. 
+
+## Funding
+
+Funding
