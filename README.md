@@ -6,7 +6,7 @@
 
 ## Moved to Codeberg
 I will try to keep this updated, but
-go (here)[https://codeberg.org/MooersLab/emacs30init/src/branch/main/README.org] for the most recent version.
+go [here](https://codeberg.org/MooersLab/emacs30init/src/branch/main/README.org) for the most recent version.
 
 
 ## Purpose
